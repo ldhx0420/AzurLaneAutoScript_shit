@@ -120,6 +120,7 @@ class IslandTeahouse(Island, WarehouseOCR, LoginHandler):
                     if self.appear(ISLAND_WORKING):
                         self.device.click(ISLAND_POST_CHECK)
                         break
+                self.device.click(ISLAND_POST_CHECK)
             self.device.click(POST_CLOSE)
         elif self.appear(ISLAND_POST_SELECT):
             self.posts[post_id]['status'] = 'idle'
