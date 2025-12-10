@@ -900,9 +900,9 @@ IslandGrill:
     option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
 IslandGrillNextTask:
   MealTask1:
-    value: None
+    value: stir_fried_chicken
     option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
-  MealTaskNumber1: 0
+  MealTaskNumber1: 100
   MealTask2:
     value: None
     option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]

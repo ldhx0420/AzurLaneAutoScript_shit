@@ -521,8 +521,8 @@ class GeneratedConfig:
     IslandGrill_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
 
     # Group `IslandGrillNextTask`
-    IslandGrillNextTask_MealTask1 = 'None'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
-    IslandGrillNextTask_MealTaskNumber1 = 0
+    IslandGrillNextTask_MealTask1 = 'stir_fried_chicken'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
+    IslandGrillNextTask_MealTaskNumber1 = 100
     IslandGrillNextTask_MealTask2 = 'None'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
     IslandGrillNextTask_MealTaskNumber2 = 0
     IslandGrillNextTask_MealTask3 = 'None'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy

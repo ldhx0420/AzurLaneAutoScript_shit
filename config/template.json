@@ -2053,8 +2053,8 @@
       "Waiter2": "WorkerJuu"
     },
     "IslandGrillNextTask": {
-      "MealTask1": "None",
-      "MealTaskNumber1": 0,
+      "MealTask1": "stir_fried_chicken",
+      "MealTaskNumber1": 100,
       "MealTask2": "None",
       "MealTaskNumber2": 0,
       "MealTask3": "None",

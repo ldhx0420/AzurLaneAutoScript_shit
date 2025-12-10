@@ -214,31 +214,75 @@ class IslandTeahouse(Island, WarehouseOCR, LoginHandler):
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
         self.device.click(POST_CLOSE)
         self.post_manage_up_swipe(450)
+
+        # 保存原始需求
+        original_post_products = self.post_products.copy()
+
         total_subtract = Counter(self.post_check_meal)
         total_subtract.update(self.warehouse_counts)
-        for item, total in total_subtract.items():
-            if item in self.post_products:
-                self.post_products[item] -= total
-                if self.post_products[item] <= 0:
-                    del self.post_products[item]
+
+        # 计算剩余需求，但不删除为0或负数的项
+        remaining_products = {}
+        for item, target_count in self.post_products.items():
+            current_count = total_subtract.get(item, 0)
+            remaining = target_count - current_count
+            if remaining > 0:
+                remaining_products[item] = remaining
+
         self.post_check_meal.clear()
+
         if not self.task_completed:
             if not self.doubled:
-                self.process_meal_requirements(self.post_products)
+                # 使用剩余需求
+                self.process_meal_requirements(remaining_products)
                 if not self.to_post_products:
-                    print("正常需求为空，翻倍需求")
-                    self.doubled = True
-                    for key in list(self.post_products.keys()):
-                        self.post_products[key] *= 2
-                    self.process_meal_requirements(self.post_products)
+                    print("正常需求为空，检查是否需要翻倍")
+                    # 检查是否有需求项存在
+                    has_any_demand = any(count > 0 for count in original_post_products.values())
+                    if has_any_demand:
+                        print("存在需求，但库存已满足，尝试翻倍需求")
+                        self.doubled = True
+                        # 翻倍原始需求
+                        doubled_demand = {}
+                        for key, value in original_post_products.items():
+                            doubled_demand[key] = value * 2
+
+                        # 重新计算翻倍后的剩余需求
+                        remaining_after_double = {}
+                        for item, target_count in doubled_demand.items():
+                            current_count = total_subtract.get(item, 0)
+                            remaining = target_count - current_count
+                            if remaining > 0:
+                                remaining_after_double[item] = remaining
+
+                        self.process_meal_requirements(remaining_after_double)
+                    else:
+                        print("没有设置任何需求")
+                else:
+                    print(f"需要生产的餐品: {self.to_post_products}")
             else:
-                self.process_meal_requirements(self.post_products)
-            if not self.to_post_products:
-                print("翻倍后需求为空，进入任务模式")
-                self.process_task_requirements()
+                # 翻倍模式下，使用翻倍后的需求
+                doubled_demand = {}
+                for key, value in original_post_products.items():
+                    doubled_demand[key] = value * 2
+
+                # 重新计算翻倍后的剩余需求
+                remaining_after_double = {}
+                for item, target_count in doubled_demand.items():
+                    current_count = total_subtract.get(item, 0)
+                    remaining = target_count - current_count
+                    if remaining > 0:
+                        remaining_after_double[item] = remaining
+
+                self.process_meal_requirements(remaining_after_double)
+
+                if not self.to_post_products:
+                    print("翻倍后需求为空，进入任务模式")
+                    self.process_task_requirements()
         else:
             print("任务已完成，进入挂机模式")
             self.process_away_cook()
+
         if self.to_post_products:
             self.schedule_production()
 

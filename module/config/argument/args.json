@@ -10097,7 +10097,7 @@
     "IslandGrillNextTask": {
       "MealTask1": {
         "type": "select",
-        "value": "None",
+        "value": "stir_fried_chicken",
         "option": [
           "None",
           "roasted_skewer",
@@ -10111,7 +10111,7 @@
       },
       "MealTaskNumber1": {
         "type": "input",
-        "value": 0
+        "value": 100
       },
       "MealTask2": {
         "type": "select",
