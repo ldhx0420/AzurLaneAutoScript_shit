@@ -58,10 +58,10 @@ class IslandGrill(Island, WarehouseOCR, LoginHandler):
         # 同样的方式处理任务餐品
         self.post_products_task = {}
         task_keys = [
-            ('IslandGGrillNextTask_MealTask1', 'IslandGGrillNextTask_MealTaskNumber1'),
-            ('IslandGGrillNextTask_MealTask2', 'IslandGGrillNextTask_MealTaskNumber2'),
-            ('IslandGGrillNextTask_MealTask3', 'IslandGGrillNextTask_MealTaskNumber3'),
-            ('IslandGGrillNextTask_MealTask4', 'IslandGGrillNextTask_MealTaskNumber4')
+            ('IslandGrillNextTask_MealTask1', 'IslandGrillNextTask_MealTaskNumber1'),
+            ('IslandGrillNextTask_MealTask2', 'IslandGrillNextTask_MealTaskNumber2'),
+            ('IslandGrillNextTask_MealTask3', 'IslandGrillNextTask_MealTaskNumber3'),
+            ('IslandGrillNextTask_MealTask4', 'IslandGrillNextTask_MealTaskNumber4')
         ]
 
         for task_key, number_key in task_keys:
