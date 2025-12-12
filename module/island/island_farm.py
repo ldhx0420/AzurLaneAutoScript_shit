@@ -38,35 +38,35 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
                 'items': [
                     {'name': 'wheat', 'template': TEMPLATE_WHEAT, 'var_name': 'wheat',
                      'selection': WHEAT_SELECTION, 'selection_check': WHEAT_SELECTION_CHECK,
-                     'post_action': POST_WHEAT, 'category': 'farm', 'seed_number': 108,
+                     'post_action': POST_WHEAT, 'category': 'farm', 'seed_number': 99,
                      'shop': SHOP_SEED_WHEAT},
                     {'name': 'corn', 'template': TEMPLATE_CORN, 'var_name': 'corn',
                      'selection': CORN_SELECTION, 'selection_check': CORN_SELECTION_CHECK,
-                     'post_action': POST_CORN, 'category': 'farm', 'seed_number': 108,
+                     'post_action': POST_CORN, 'category': 'farm', 'seed_number': 99,
                      'shop': SHOP_SEED_CORN},
                     {'name': 'rice', 'template': TEMPLATE_RICE, 'var_name': 'rice',
                      'selection': RICE_SELECTION, 'selection_check': RICE_SELECTION_CHECK,
-                     'post_action': POST_RICE, 'category': 'farm', 'seed_number': 54,
+                     'post_action': POST_RICE, 'category': 'farm', 'seed_number': 45,
                      'shop': SHOP_SEED_RICE},
                     {'name': 'chinese_cabbage', 'template': TEMPLATE_CHINESE_CABBAGE, 'var_name': 'chinese_cabbage',
                      'selection': CHINESE_CABBAGE_SELECTION, 'selection_check': CHINESE_CABBAGE_SELECTION_CHECK,
-                     'post_action': POST_CHINESE_CABBAGE, 'category': 'farm', 'seed_number': 108,
+                     'post_action': POST_CHINESE_CABBAGE, 'category': 'farm', 'seed_number': 99,
                      'shop': SHOP_SEED_CHINESE_CABBAGE},
                     {'name': 'potato', 'template': TEMPLATE_POTATO, 'var_name': 'potato',
                      'selection': POTATO_SELECTION, 'selection_check': POTATO_SELECTION_CHECK,
-                     'post_action': POST_POTATO, 'category': 'farm', 'seed_number': 45,
+                     'post_action': POST_POTATO, 'category': 'farm', 'seed_number': 36,
                      'shop': SHOP_SEED_POTATO},
                     {'name': 'soybean', 'template': TEMPLATE_SOYBEAN, 'var_name': 'soybean',
                      'selection': SOYBEAN_SELECTION, 'selection_check': SOYBEAN_SELECTION_CHECK,
-                     'post_action': POST_SOYBEAN, 'category': 'farm', 'seed_number': 54,
+                     'post_action': POST_SOYBEAN, 'category': 'farm', 'seed_number': 45,
                      'shop': SHOP_SEED_SOYBEAN},
                     {'name': 'pasture', 'template': TEMPLATE_PASTURE, 'var_name': 'pasture',
                      'selection': PASTURE_SELECTION, 'selection_check': PASTURE_SELECTION_CHECK,
-                     'post_action': POST_PASTURE, 'category': 'farm', 'seed_number': 108,
+                     'post_action': POST_PASTURE, 'category': 'farm', 'seed_number': 99,
                      'shop': SHOP_SEED_PASTURE},
                     {'name': 'coffee_bean', 'template': TEMPLATE_COFFEE_BEAN, 'var_name': 'coffee_bean',
                      'selection': COFFEE_BEAN_SELECTION, 'selection_check': COFFEE_BEAN_SELECTION_CHECK,
-                     'post_action': POST_COFFEE_BEAN, 'category': 'farm', 'seed_number': 45,
+                     'post_action': POST_COFFEE_BEAN, 'category': 'farm', 'seed_number': 36,
                      'shop': SHOP_SEED_COFFEE_BEAN},
                 ]
             },
@@ -76,31 +76,31 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
                 'items': [
                     {'name': 'apple', 'template': TEMPLATE_APPLE, 'var_name': 'apple',
                      'selection': APPLE_SELECTION, 'selection_check': APPLE_SELECTION_CHECK,
-                     'post_action': POST_APPLE, 'category': 'orchard', 'seed_number': 24,
+                     'post_action': POST_APPLE, 'category': 'orchard', 'seed_number': 20,
                      'shop': SHOP_SEED_APPLE},
                     {'name': 'citrus', 'template': TEMPLATE_CITRUS, 'var_name': 'citrus',
                      'selection': CITRUS_SELECTION, 'selection_check': CITRUS_SELECTION_CHECK,
-                     'post_action': POST_CITRUS, 'category': 'orchard', 'seed_number': 24,
+                     'post_action': POST_CITRUS, 'category': 'orchard', 'seed_number': 20,
                      'shop': SHOP_SEED_CITRUS},
                     {'name': 'banana', 'template': TEMPLATE_BANANA, 'var_name': 'banana',
                      'selection': BANANA_SELECTION, 'selection_check': BANANA_SELECTION_CHECK,
-                     'post_action': POST_BANANA, 'category': 'orchard', 'seed_number': 20,
+                     'post_action': POST_BANANA, 'category': 'orchard', 'seed_number': 16,
                      'shop': SHOP_SEED_BANANA},
                     {'name': 'mango', 'template': TEMPLATE_MANGO, 'var_name': 'mango',
                      'selection': MANGO_SELECTION, 'selection_check': MANGO_SELECTION_CHECK,
-                     'post_action': POST_MANGO, 'category': 'orchard', 'seed_number': 20,
+                     'post_action': POST_MANGO, 'category': 'orchard', 'seed_number': 16,
                      'shop': SHOP_SEED_MANGO},
                     {'name': 'lemon', 'template': TEMPLATE_LEMON, 'var_name': 'lemon',
                      'selection': LEMON_SELECTION, 'selection_check': LEMON_SELECTION_CHECK,
-                     'post_action': POST_LEMON, 'category': 'orchard', 'seed_number': 32,
+                     'post_action': POST_LEMON, 'category': 'orchard', 'seed_number': 28,
                      'shop': SHOP_SEED_LEMON},
                     {'name': 'avocado', 'template': TEMPLATE_AVOCADO, 'var_name': 'avocado',
                      'selection': AVOCADO_SELECTION, 'selection_check': AVOCADO_SELECTION_CHECK,
-                     'post_action': POST_AVOCADO, 'category': 'orchard', 'seed_number': 20,
+                     'post_action': POST_AVOCADO, 'category': 'orchard', 'seed_number': 16,
                      'shop': SHOP_SEED_AVOCADO},
                     {'name': 'rubber', 'template': TEMPLATE_RUBBER, 'var_name': 'rubber',
                      'selection': RUBBER_SELECTION, 'selection_check': RUBBER_SELECTION_CHECK,
-                     'post_action': POST_RUBBER, 'category': 'orchard', 'seed_number': 20,
+                     'post_action': POST_RUBBER, 'category': 'orchard', 'seed_number': 16,
                      'shop': SHOP_SEED_RUBBER},
                 ]
             },
@@ -110,31 +110,31 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
                 'items': [
                     {'name': 'carrot', 'template': TEMPLATE_CARROT, 'var_name': 'carrot',
                      'selection': CARROT_SELECTION, 'selection_check': CARROT_SELECTION_CHECK,
-                     'post_action': POST_CARROT, 'category': 'nursery', 'seed_number': 36,
+                     'post_action': POST_CARROT, 'category': 'nursery', 'seed_number': 33,
                      'shop': SHOP_SEED_CARROT},
                     {'name': 'onion', 'template': TEMPLATE_ONION, 'var_name': 'onion',
                      'selection': ONION_SELECTION, 'selection_check': ONION_SELECTION_CHECK,
-                     'post_action': POST_ONION, 'category': 'nursery', 'seed_number': 15,
+                     'post_action': POST_ONION, 'category': 'nursery', 'seed_number': 12,
                      'shop': SHOP_SEED_ONION},
                     {'name': 'flax', 'template': TEMPLATE_FLAX, 'var_name': 'flax',
                      'selection': FLAX_SELECTION, 'selection_check': FLAX_SELECTION_CHECK,
-                     'post_action': POST_FLAX, 'category': 'nursery', 'seed_number': 36,
+                     'post_action': POST_FLAX, 'category': 'nursery', 'seed_number': 33,
                      'shop': SHOP_SEED_FLAX},
                     {'name': 'strawberry', 'template': TEMPLATE_STRAWBERRY, 'var_name': 'strawberry',
                      'selection': STRAWBERRY_SELECTION, 'selection_check': STRAWBERRY_SELECTION_CHECK,
-                     'post_action': POST_STRAWBERRY, 'category': 'nursery', 'seed_number': 15,
+                     'post_action': POST_STRAWBERRY, 'category': 'nursery', 'seed_number': 12,
                      'shop': SHOP_SEED_STRAWBERRY},
                     {'name': 'cotton', 'template': TEMPLATE_COTTON, 'var_name': 'cotton',
                      'selection': COTTON_SELECTION, 'selection_check': COTTON_SELECTION_CHECK,
-                     'post_action': POST_COTTON, 'category': 'nursery', 'seed_number': 24,
+                     'post_action': POST_COTTON, 'category': 'nursery', 'seed_number': 21,
                      'shop': SHOP_SEED_COTTON},
                     {'name': 'tea', 'template': TEMPLATE_TEA, 'var_name': 'tea',
                      'selection': TEA_SELECTION, 'selection_check': TEA_SELECTION_CHECK,
-                     'post_action': POST_TEA, 'category': 'nursery', 'seed_number': 15,
+                     'post_action': POST_TEA, 'category': 'nursery', 'seed_number': 12,
                      'shop': SHOP_SEED_TEA},
                     {'name': 'lavender', 'template': TEMPLATE_LAVENDER, 'var_name': 'lavender',
                      'selection': LAVENDER_SELECTION, 'selection_check': LAVENDER_SELECTION_CHECK,
-                     'post_action': POST_LAVENDER, 'category': 'nursery', 'seed_number': 15,
+                     'post_action': POST_LAVENDER, 'category': 'nursery', 'seed_number': 12,
                      'shop': SHOP_SEED_LAVENDER},
                 ]
             }
@@ -181,13 +181,11 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
             inventory = self.warehouse_inventory(category, return_full_info=True)
             config = self.INVENTORY_CONFIG[category]
             threshold = config['threshold']
-            print(f"\n检查{category}类别，阈值: {threshold}")
             for item_name, item_info in inventory.items():
                 if category == 'orchard' and item_name == 'avocado' and self.farm_config['ignore_avocado']:
                     continue
                 if item_info['count'] < threshold:
                     self.to_plant_lists[category].append(item_name)
-            print(f"{category}需要补种: {self.to_plant_lists[category]}")
 
     def warehouse_inventory(self, category, return_full_info=False):
         config = self.INVENTORY_CONFIG[category]
@@ -201,7 +199,6 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
         for item_config in config['items']:
             count = self.ocr_item_quantity(image, item_config['template'])
             if return_full_info:
-                # 返回完整信息
                 results[item_config['name']] = {
                     'count': count,
                     'selection': item_config.get('selection'),
@@ -232,7 +229,7 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
         if self.appear(ISLAND_WORK_COMPLETE,offset=(5,5)):
             while True:
                 self.device.screenshot()
-                if self.appear(ISLAND_POST_SELECT,offset=1):
+                if self.appear(ISLAND_POST_SELECT,offset=(5,5)):
                     break
                 if self.device.click(POST_GET):
                     continue
@@ -248,7 +245,9 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
             finish_time = datetime.now() + time_value
             setattr(self, time_var_name, finish_time)
             self.posts[post_id]['status'] = 'working'
+            self.device.click(ISLAND_POST_CHECK)
         elif self.appear(ISLAND_POST_SELECT,offset=(5,5)):
+            self.device.click(ISLAND_POST_CHECK)
             self.posts[post_id]['status'] = 'idle'
             setattr(self, time_var_name, None)
         self.device.click(POST_CLOSE)
@@ -261,7 +260,7 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
         selection = self.name_to_config[product]['selection']
         selection_check = self.name_to_config[product]['selection_check']
         if self.appear_then_click(ISLAND_POST_SELECT):
-            self.select_worker_juu()
+            self.select_character()
             self.select_product(selection, selection_check)
             self.appear_then_click(POST_MAX)
             self.device.click(POST_ADD_ORDER)
@@ -294,7 +293,7 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
             if self.appear_then_click(seed_button,interval=0.3):
                 pass
         if self.appear(ISLAND_SHOPPING_CHECK):
-            self.set_seeds_number(target)
+            self.set_buy_number(target)
         while 1:
             self.device.screenshot()
             if self.appear(ISLAND_SHOP_CHECK, offset=1):
@@ -302,7 +301,7 @@ class IslandFarm(Island,WarehouseOCR,LoginHandler):
             if self.appear_then_click(ISLAND_SHOP_CONFIRM):
                 continue
             self.device.click(ISLAND_SHOP_CONFIRM)
-    def set_seeds_number(self,target):
+    def set_buy_number(self,target):
         increment = target - 1
         add_ten_clicks = increment // 10
         add_one_clicks = increment % 10

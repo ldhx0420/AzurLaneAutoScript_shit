@@ -4,13 +4,11 @@ from module.island.island import *
 from collections import Counter
 from datetime import datetime
 from module.handler.login import LoginHandler
-from module.island.warehouse import *
 from module.ocr.ocr import *
 
-class IslandJuuCoffee(Island, WarehouseOCR, LoginHandler):
+class IslandJuuCoffee(Island, LoginHandler):
     def __init__(self, *args, **kwargs):
         Island.__init__(self, *args, **kwargs)
-        WarehouseOCR.__init__(self)
         self.ISLAND_JUU_COFFEE = [
             {'name': 'iced_coffee', 'template': TEMPLATE_ICED_COFFEE, 'var_name': 'iced_coffee',
              'selection': ICED_COFFEE_SELECTION, 'selection_check': ICED_COFFEE_SELECTION_CHECK,
@@ -156,7 +154,7 @@ class IslandJuuCoffee(Island, WarehouseOCR, LoginHandler):
         selection = self.name_to_config[product]['selection']
         selection_check = self.name_to_config[product]['selection_check']
         if self.appear_then_click(ISLAND_POST_SELECT):
-            self.select_worker_juu()
+            self.select_character()
             self.select_product(selection, selection_check)
             for _ in range(number):
                 self.device.click(POST_ADD_ONE)

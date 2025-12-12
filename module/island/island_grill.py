@@ -6,9 +6,10 @@ from datetime import datetime
 from module.handler.login import LoginHandler
 from module.island.warehouse import *
 from module.ocr.ocr import *
+from module.island.island_select_character import *
 
 
-class IslandGrill(Island, WarehouseOCR, LoginHandler):
+class IslandGrill(Island,LoginHandler):
     def __init__(self, *args, **kwargs):
         Island.__init__(self, *args, **kwargs)
         WarehouseOCR.__init__(self)
@@ -151,7 +152,7 @@ class IslandGrill(Island, WarehouseOCR, LoginHandler):
         selection = self.name_to_config[product]['selection']
         selection_check = self.name_to_config[product]['selection_check']
         if self.appear_then_click(ISLAND_POST_SELECT):
-            self.select_worker_juu()
+            self.select_character()
             self.select_product(selection, selection_check)
             for _ in range(number):
                 self.device.click(POST_ADD_ONE)
@@ -393,9 +394,7 @@ class IslandGrill(Island, WarehouseOCR, LoginHandler):
 
     def test(self):
         print(self.post_products, self.post_products_task)
-    def test1(self):
-        self.get_warehouse_counts()
-        print(self.warehouse_counts)
+
 if __name__ == "__main__":
     az =IslandGrill('alas', task='Alas')
     az.device.screenshot()

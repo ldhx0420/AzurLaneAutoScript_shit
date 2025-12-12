@@ -1,19 +1,21 @@
 from module.island.island import *
 from time import sleep
 class IslandDailyGather(Island):
+    def __init__(self, *args, **kwargs):
+        Island.__init__(self, *args, **kwargs)
     def run(self):
         now = datetime.now()
         current_hour = now.hour
         if 0 <= current_hour < 3:
-            self.gather_wood()
             self.gather_coal()
+            self.gather_wood()
             self.gather_farm()
             self.gather_nursery()
             next_run_time = now.replace(hour=3, minute=0, second=0, microsecond=0)
             self.config.task_delay(target=next_run_time)
         elif 3 <= current_hour < 18:
-            self.gather_wood()
             self.gather_coal()
+            self.gather_wood()
             self.gather_farm()
             self.gather_nursery()
             next_run_time = now.replace(hour=18, minute=0, second=0, microsecond=0)
@@ -24,8 +26,8 @@ class IslandDailyGather(Island):
                 self.gather_farm()
                 self.gather_nursery()
             else:
-                self.gather_wood()
                 self.gather_coal()
+                self.gather_wood()
                 self.gather_farm()
                 self.gather_nursery()
             next_run_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -69,7 +71,6 @@ class IslandDailyGather(Island):
         self.island_right(1800)
         self.island_down(1300)
         self.island_right(300)
-        self.island_gathering()
         self.island_gathering()
         self.island_down(2100)
         self.island_left(1600)

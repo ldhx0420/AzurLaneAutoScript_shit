@@ -7,6 +7,8 @@ from module.island.warehouse import *
 
 
 class IslandMineForest(Island, LoginHandler):
+    def __init__(self, *args, **kwargs):
+        Island.__init__(self, *args, **kwargs)
     PRODUCT_CONFIGS = {
         "Copper": (COPPER_SELECTION, COPPER_SELECTION_CHECK, POST_COPPER),
         "Aluminium": (ALUMINIUM_SELECTION, ALUMINIUM_SELECTION_CHECK, POST_ALUMINIUM),
