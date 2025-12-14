@@ -126,10 +126,11 @@ class IslandMineForest(Island,SelectCharacter,LoginHandler):
         ]
 
         # 通用设置
-        self.goto_management()
-        self.ui_goto(page_island_postmanage)
+        self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
         self.device.click(POST_CLOSE)
+        self.post_manage_down_swipe(450)
+        self.post_manage_down_swipe(450)
 
         # 运行所有岗位
         for post_id, product_config, time_var_name in all_configs:
@@ -138,7 +139,6 @@ class IslandMineForest(Island,SelectCharacter,LoginHandler):
 
         # 收集并处理完成时间
         self._process_finish_times(time_vars)
-        self.ui_goto_main()
     def _process_finish_times(self, time_vars):
         """处理完成时间"""
         finish_times = [getattr(self, var) for var in time_vars if getattr(self, var) is not None]

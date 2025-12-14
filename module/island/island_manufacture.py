@@ -19,7 +19,7 @@ class IslandManufacture(IslandShopBase):
         self.post_produce_swipe_count = 2
 
         # 设置筛选资产
-        self.filter_asset = [FILTER_BASIC, FILTER_FACTORY]
+        self.filter_asset = FILTER_FACTORY
 
         # 制造业产品配置
         self.manufacture = {
@@ -283,6 +283,6 @@ class IslandManufacture(IslandShopBase):
             self.config.task_delay(target=finish_times)
         else:
             self.config.task_delay(success=True)
-        self.ui_goto_main()
+
 
 

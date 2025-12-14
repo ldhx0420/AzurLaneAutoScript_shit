@@ -11,6 +11,14 @@ from module.ui.ui import *
 
 
 class Island(UI):
+    def goto_postmanage(self):
+        page = self.ui_get_current_page()
+        valid_pages = ['page_island_management', 'page_island_postmanage', 'page_island']
+        if page.name in valid_pages:
+            self.ui_goto(page_island_postmanage)
+        else:
+            self.goto_management()
+            self.ui_goto(page_island_postmanage)
     def goto_management(self):
         self.ui_goto(page_island)
         while True:
@@ -91,7 +99,7 @@ class Island(UI):
         self.device.swipe_vector(vector=(0, -distance), box=(688, 69, 725, 656), name="PostUpSwipe")
         self.device.click(ISLAND_WORKING)
     def post_manage_down_swipe(self,distance):
-        self.device.swipe_vector(vector=(0, -distance), box=(688, 69, 725, 656), name="PostUpSwipe")
+        self.device.swipe_vector(vector=(0, distance), box=(688, 69, 725, 656), name="PostDownSwipe")
         self.device.click(ISLAND_WORKING)
     def island_up(self,hold_time):
         p1 = (218, 507)

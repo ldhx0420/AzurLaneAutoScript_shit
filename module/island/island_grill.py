@@ -69,8 +69,10 @@ class IslandGrill(IslandShopBase):
 
         # 初始化店铺
         self.initialize_shop()
+    def test(self):
+        self.goto_postmanage()
 
 if __name__ == "__main__":
     az = IslandGrill('alas', task='Alas')
     az.device.screenshot()
-    az.run()
+    az.test()

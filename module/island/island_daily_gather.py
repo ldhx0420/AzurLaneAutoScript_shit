@@ -32,7 +32,6 @@ class IslandDailyGather(Island):
             next_run_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
             next_run_time += timedelta(days=1)
             self.config.task_delay(target=next_run_time)
-        self.ui_goto_main()
 
     def island_gathering(self):
         self.device.click(ISLAND_GATHER_A)

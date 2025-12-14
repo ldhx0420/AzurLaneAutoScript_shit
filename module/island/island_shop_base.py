@@ -246,10 +246,11 @@ class IslandShopBase(Island, WarehouseOCR, SelectCharacter, LoginHandler):
 
     def run(self):
         """运行店铺逻辑（通用）"""
-        self.goto_management()
-        self.ui_goto(page_island_postmanage)
+        self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
         self.device.click(POST_CLOSE)
+        self.post_manage_down_swipe(450)
+        self.post_manage_down_swipe(450)
 
         # 滑动以看到岗位（使用post_manage_swipe_count配置）
         for _ in range(self.post_manage_swipe_count):
@@ -351,7 +352,6 @@ class IslandShopBase(Island, WarehouseOCR, SelectCharacter, LoginHandler):
             self.config.task_delay(target=finish_times)
         else:
             self.config.task_delay(success=True)
-        self.ui_goto_main()
 
     def process_meal_requirements(self, source_products):
         """处理套餐分解（通用）"""

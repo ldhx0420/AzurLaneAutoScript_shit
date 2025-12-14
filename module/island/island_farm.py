@@ -339,10 +339,11 @@ class IslandFarm(Island,WarehouseOCR,SelectCharacter,LoginHandler):
             'orchard': [None] * self.farm_config['orchard_positions'],
             'nursery': [None] * self.farm_config['nursery_positions']
         }
-        self.goto_management()
-        self.ui_goto(page_island_postmanage)
+        self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
         self.device.click(POST_CLOSE)
+        self.post_manage_down_swipe(450)
+        self.post_manage_down_swipe(450)
 
         # 岗位映射，这里存储的是按钮对象
         post_button_mapping = {
@@ -539,7 +540,6 @@ class IslandFarm(Island,WarehouseOCR,SelectCharacter,LoginHandler):
         else:
             print('没有找到农田岗位计时器')
             self.config.task_delay(success=True)
-        self.ui_goto_main()
 
 if __name__ == "__main__":
     az =IslandFarm('alas', task='Alas')
