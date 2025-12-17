@@ -455,6 +455,39 @@ class IslandShopBase(Island, WarehouseOCR):
             print("没有空闲的岗位")
             return
 
+        # 检查是否为挂机模式（无限数量生产）
+        is_away_cook_mode = False
+        for product, quantity in self.to_post_products.items():
+            if quantity == 9999:  # 挂机模式的标识
+                is_away_cook_mode = True
+                away_cook_product = product
+                break
+
+        if is_away_cook_mode:
+            print(f"挂机模式：为所有空闲岗位安排生产 {away_cook_product}")
+            # 为每个空闲岗位安排生产
+            for post_id in idle_posts:
+                # 检查材料限制
+                batch_size = min(5, 9999)  # 最大5个
+                batch_size = self.check_material_limits(away_cook_product, batch_size)
+
+                if batch_size <= 0:
+                    print(f"生产 {away_cook_product} 的前置材料不足，跳过岗位 {post_id}")
+                    continue
+
+                # 分配生产
+                post_num = post_id[-1]
+                time_var_name = f'{self.time_prefix}{post_num}'
+                self.post_produce(post_id, away_cook_product, batch_size, time_var_name)
+
+                # 如果当前岗位安排成功，检查是否还有空闲岗位
+                idle_posts = self.get_idle_posts()
+                if not idle_posts:
+                    break
+
+            print("挂机模式：已为所有空闲岗位安排生产")
+            return
+
         # 按需求数量排序（需求大的优先）
         sorted_products = sorted(
             self.to_post_products.items(),

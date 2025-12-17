@@ -622,6 +622,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     success = self.mill_process(item)
                     if success:
                         break
+            self.device.click(ISLAND_MILL_GOTO_ISLAND)
         else:
             print("没有磨坊加工需求")
         ranch_needs = self.check_ranch_needs()
