@@ -90,7 +90,7 @@ class IslandMineForest(Island,LoginHandler):
 
             self._update_time_and_close(time_work, post_id, time_var_name)
 
-        elif self.appear(ISLAND_POST_SELECT):
+        elif self.appear_then_click(ISLAND_POST_SELECT):
             self._select_product(config)
             self._update_time_and_close(time_work, post_id, time_var_name)
 
