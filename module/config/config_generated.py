@@ -438,7 +438,6 @@ class GeneratedConfig:
     # Group `PersonnelManagement`
     PersonnelManagement_BusinessStatus = 0  # 0, 1, 2
     PersonnelManagement_AmagiChanRubber = False
-    PersonnelManagement_YingSwei = True
 
     # Group `IslandRestaurantBusiness`
     IslandRestaurantBusiness_time = 'None'  # None, one, two
@@ -502,13 +501,11 @@ class GeneratedConfig:
     # Group `IslandRestaurant`
     IslandRestaurant_PostNumber = 2  # 1, 2
     IslandRestaurant_MealNumber = 6  # 5, 6, 7
+    IslandRestaurant_Chef = 'YingSwei'  # WorkerJuu, a, b, YingSwei
     IslandRestaurant_Meal1 = 'tofu_meat'  # None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal
     IslandRestaurant_Meal2 = 'hearty_meal'  # None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal
     IslandRestaurant_Meal3 = 'omurice'  # None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal
     IslandRestaurant_Meal4 = 'None'  # None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal
-    IslandRestaurant_time = 'None'  # None, one, two
-    IslandRestaurant_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandRestaurant_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
 
     # Group `IslandRestaurantNextTask`
     IslandRestaurantNextTask_MealTask1 = 'None'  # None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal
@@ -524,14 +521,12 @@ class GeneratedConfig:
     # Group `IslandTeahouse`
     IslandTeahouse_PostNumber = 2  # 1, 2
     IslandTeahouse_MealNumber = 6  # 5, 6, 7
+    IslandTeahouse_Chef = 'WorkerJuu'  # WorkerJuu, a, b
     IslandTeahouse_SunnyHoney = True
     IslandTeahouse_Meal1 = 'floral_fruity'  # None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey
     IslandTeahouse_Meal2 = 'lavender_tea'  # None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey
     IslandTeahouse_Meal3 = 'strawberry_lemon'  # None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey
     IslandTeahouse_Meal4 = 'None'  # None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey
-    IslandTeahouse_time = 'None'  # None, one, two
-    IslandTeahouse_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandTeahouse_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
 
     # Group `IslandTeahouseNextTask`
     IslandTeahouseNextTask_MealTask1 = 'None'  # None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey
@@ -547,13 +542,11 @@ class GeneratedConfig:
     # Group `IslandGrill`
     IslandGrill_PostNumber = 1  # 1, 2
     IslandGrill_MealNumber = 6  # 5, 6, 7
+    IslandGrill_Chef = 'WorkerJuu'  # WorkerJuu, a, b
     IslandGrill_Meal1 = 'double_energy'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
     IslandGrill_Meal2 = 'steak_bowl'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
     IslandGrill_Meal3 = 'stir_fried_chicken'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
     IslandGrill_Meal4 = 'None'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
-    IslandGrill_time = 'None'  # None, one, two
-    IslandGrill_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandGrill_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
 
     # Group `IslandGrillNextTask`
     IslandGrillNextTask_MealTask1 = 'stir_fried_chicken'  # None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy
@@ -569,13 +562,11 @@ class GeneratedConfig:
     # Group `IslandJuuEatery`
     IslandJuuEatery_PostNumber = 1  # 1, 2
     IslandJuuEatery_MealNumber = 6  # 5, 6, 7
+    IslandJuuEatery_Chef = 'WorkerJuu'  # WorkerJuu, a, b
     IslandJuuEatery_Meal1 = 'berry_orange'  # None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte
     IslandJuuEatery_Meal2 = 'succulently_sweet'  # None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte
     IslandJuuEatery_Meal3 = 'rice_mango'  # None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte
     IslandJuuEatery_Meal4 = 'None'  # None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte
-    IslandJuuEatery_time = 'None'  # None, one, two
-    IslandJuuEatery_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandJuuEatery_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
 
     # Group `IslandJuuEateryNextTask`
     IslandJuuEateryNextTask_MealTask1 = 'None'  # None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte
@@ -591,13 +582,11 @@ class GeneratedConfig:
     # Group `IslandJuuCoffee`
     IslandJuuCoffee_PostNumber = 2  # 1, 2
     IslandJuuCoffee_MealNumber = 6  # 5, 6, 7
+    IslandJuuCoffee_Chef = 'WorkerJuu'  # WorkerJuu, a, b
     IslandJuuCoffee_Meal1 = 'wake_up_call'  # None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier
     IslandJuuCoffee_Meal2 = 'cheese'  # None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier
     IslandJuuCoffee_Meal3 = 'fruity_fruitier'  # None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier
     IslandJuuCoffee_Meal4 = 'None'  # None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier
-    IslandJuuCoffee_time = 'None'  # None, one, two
-    IslandJuuCoffee_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandJuuCoffee_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
 
     # Group `IslandJuuCoffeeNextTask`
     IslandJuuCoffeeNextTask_MealTask1 = 'cheese'  # None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier

@@ -9198,10 +9198,6 @@
       "AmagiChanRubber": {
         "type": "checkbox",
         "value": false
-      },
-      "YingSwei": {
-        "type": "checkbox",
-        "value": true
       }
     },
     "IslandRestaurantBusiness": {
@@ -9764,6 +9760,16 @@
           7
         ]
       },
+      "Chef": {
+        "type": "select",
+        "value": "YingSwei",
+        "option": [
+          "WorkerJuu",
+          "a",
+          "b",
+          "YingSwei"
+        ]
+      },
       "Meal1": {
         "type": "select",
         "value": "tofu_meat",
@@ -9818,51 +9824,6 @@
           "tofu_meat",
           "tofu_combo",
           "hearty_meal"
-        ]
-      },
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
         ]
       }
     },
@@ -10017,6 +9978,15 @@
           7
         ]
       },
+      "Chef": {
+        "type": "select",
+        "value": "WorkerJuu",
+        "option": [
+          "WorkerJuu",
+          "a",
+          "b"
+        ]
+      },
       "SunnyHoney": {
         "type": "checkbox",
         "value": true
@@ -10083,51 +10053,6 @@
           "fruit_paradise",
           "lavender_tea",
           "sunny_honey"
-        ]
-      },
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
         ]
       }
     },
@@ -10292,6 +10217,15 @@
           7
         ]
       },
+      "Chef": {
+        "type": "select",
+        "value": "WorkerJuu",
+        "option": [
+          "WorkerJuu",
+          "a",
+          "b"
+        ]
+      },
       "Meal1": {
         "type": "select",
         "value": "double_energy",
@@ -10346,51 +10280,6 @@
           "steak_bowl",
           "carnival",
           "double_energy"
-        ]
-      },
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
         ]
       }
     },
@@ -10545,6 +10434,15 @@
           7
         ]
       },
+      "Chef": {
+        "type": "select",
+        "value": "WorkerJuu",
+        "option": [
+          "WorkerJuu",
+          "a",
+          "b"
+        ]
+      },
       "Meal1": {
         "type": "select",
         "value": "berry_orange",
@@ -10607,51 +10505,6 @@
           "succulently_sweet",
           "berry_orange",
           "strawberry_charlotte"
-        ]
-      },
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
         ]
       }
     },
@@ -10816,6 +10669,15 @@
           7
         ]
       },
+      "Chef": {
+        "type": "select",
+        "value": "WorkerJuu",
+        "option": [
+          "WorkerJuu",
+          "a",
+          "b"
+        ]
+      },
       "Meal1": {
         "type": "select",
         "value": "wake_up_call",
@@ -10878,51 +10740,6 @@
           "morning_light",
           "wake_up_call",
           "fruity_fruitier"
-        ]
-      },
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn"
         ]
       }
     },

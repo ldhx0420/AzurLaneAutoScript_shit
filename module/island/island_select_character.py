@@ -193,7 +193,7 @@ class SelectCharacter(UI):
         if character_name == "WorkerJuu":
             return True
         # 特殊角色配置检查
-        if character_name == "YingSwei" and self.config.PersonnelManagement_YingSwei:
+        if character_name == "YingSwei" and self.config.IslandRestaurant_Chef == "YingSwei":
             return False  # 不可用
         if character_name == "Amagi_chan" and self.config.PersonnelManagement_AmagiChanRubber:
             return False  # 不可用
@@ -269,6 +269,7 @@ class SelectCharacter(UI):
             worker_info = character_dict["WorkerJuu"]
             return worker_info["grid_position"]
         return None
+
     def select_character_a(self):
         """
         选择第一个可用的A类角色，否则选择WorkerJuu
@@ -294,24 +295,10 @@ class SelectCharacter(UI):
     def select_character_b(self):
         """
         选择第一个可用的B类角色，否则选择WorkerJuu
-        角色列表: "Cheshire", "YingSwei"
+        合并了原来的B类和C类角色
+        角色列表: "Cheshire", "YingSwei", "Shimakaze", "Saratoga", "Tashkent", "Akashi"
         """
-        character_list = ["Cheshire", "YingSwei"]
-        screenshot = self.device.screenshot()
-        position = self._select_first_available_character(screenshot, character_list)
-        row, col = position
-        button = self.select_character_grid[row, col]
-        while True:
-            screenshot = self.device.screenshot()
-            current_char_info = self.get_character_by_position(screenshot, row, col)
-            if current_char_info and current_char_info["is_selected"]:
-                break
-            else:
-                self.device.click(button)
-            self.device.sleep(0.3)
-
-    def select_character_c(self):
-        character_list = ["Shimakaze", "Saratoga", "Tashkent", "Akashi"]
+        character_list = ["Cheshire", "YingSwei", "Shimakaze", "Saratoga", "Tashkent", "Akashi"]
         screenshot = self.device.screenshot()
         position = self._select_first_available_character(screenshot, character_list)
         row, col = position

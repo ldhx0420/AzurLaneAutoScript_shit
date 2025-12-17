@@ -1,8 +1,6 @@
-# island_juu_coffee.py
 from module.island_juu_coffee.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
-from module.ui.page import *
 
 
 class IslandJuuCoffee(IslandShopBase):
@@ -12,6 +10,7 @@ class IslandJuuCoffee(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "juu_coffee"
         self.time_prefix = "time_coffee"
+        self.chef_config = self.config.IslandJuuCoffee_Chef
 
         # 设置商品列表
         self.shop_items = [

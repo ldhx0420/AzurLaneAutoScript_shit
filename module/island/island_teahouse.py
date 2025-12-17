@@ -11,6 +11,7 @@ class IslandTeahouse(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "teahouse"
         self.time_prefix = "time_tea"
+        self.chef_config = self.config.IslandTeahouse_Chef
 
         # 设置商品列表
         self.shop_items = [

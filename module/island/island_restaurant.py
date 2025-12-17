@@ -1,4 +1,3 @@
-# island_restaurant.py
 from module.island_restaurant.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
@@ -11,6 +10,7 @@ class IslandRestaurant(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "restaurant"
         self.time_prefix = "time_restaurant"
+        self.chef_config = self.config.IslandRestaurant_Chef
 
         # 设置商品列表
         self.shop_items = [
@@ -153,7 +153,9 @@ class IslandRestaurant(IslandShopBase):
                 self.warehouse_counts['tofu'] -= tofu_needed
                 print(f"扣除豆腐：tofu -{tofu_needed} (用于制作 {product})")
     def test(self):
-        self.post_open(ISLAND_RESTAURANT_POST1)
+        chef_config = getattr(self.config, "IslandRestaurant_Chef", "WorkerJuu")
+        print(chef_config)
+
 
 if __name__ == "__main__":
     az = IslandRestaurant('alas', task='Alas')

@@ -18,6 +18,9 @@ class IslandShopBase(Island, WarehouseOCR):
         self.post_buttons = {}  # 岗位按钮
         self.time_prefix = "time_meal"  # 时间变量前缀
 
+        # 角色选择配置
+        self.chef_config = None
+
         # 通用属性
         self.high_priority_products = {}
         self.name_to_config = {}
@@ -100,6 +103,19 @@ class IslandShopBase(Island, WarehouseOCR):
         for post_id, button in self.post_buttons.items():
             self.posts[post_id] = {'status': 'none', 'button': button}
 
+    # ============ 角色选择方法 ============
+    def select_character_for_shop(self):
+        """根据chef_config选择角色"""
+        if self.chef_config == "WorkerJuu":
+            self.select_character()  # 默认WorkerJuu
+        elif self.chef_config == "a":
+            self.select_character_a()
+        elif self.chef_config == "b":
+            self.select_character_b()
+        elif self.chef_config == "YingSwei":
+            self.select_character(character_name="YingSwei")
+        else:
+            self.select_character()
     # ============ 通用方法 ============
 
     def post_check(self, post_id, time_var_name):
@@ -187,14 +203,14 @@ class IslandShopBase(Island, WarehouseOCR):
 
         if self.appear_then_click(ISLAND_POST_SELECT):
             self.wait_until_appear(ISLAND_SELECT_CHARACTER_CHECK)
-            self.select_character()
+            self.select_character_for_shop()
             self.appear_then_click(SELECT_UI_CONFIRM)
             self.select_product(selection, selection_check)
 
-            for _ in range(number-1):
+            for _ in range(number - 1):
                 self.device.click(POST_ADD_ONE)
             self.device.click(POST_ADD_ORDER)
-            self.wait_until_appear(ISLAND_POSTMANAGE_CHECK,offset=(1,1))
+            self.wait_until_appear(ISLAND_POSTMANAGE_CHECK, offset=(1, 1))
             # 滑动以看到岗位（使用post_produce_swipe_count配置）
             for _ in range(self.post_produce_swipe_count):
                 self.post_manage_up_swipe(450)

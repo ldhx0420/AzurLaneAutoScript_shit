@@ -10,7 +10,7 @@ class IslandGrill(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "grill"
         self.time_prefix = "time_meal"
-
+        self.chef_config = self.config.IslandGrill_Chef
         # 设置商品列表
         self.shop_items = [
             {'name': 'roasted_skewer', 'template': TEMPLATE_ROASTED_SKEWER, 'var_name': 'roasted_skewer',
@@ -70,7 +70,8 @@ class IslandGrill(IslandShopBase):
         # 初始化店铺
         self.initialize_shop()
     def test(self):
-        self.goto_postmanage()
+        if self.config.IslandRestaurant_Chef == "YingSwei":
+            print('yes')
 
 if __name__ == "__main__":
     az = IslandGrill('alas', task='Alas')

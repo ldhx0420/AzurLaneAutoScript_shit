@@ -738,7 +738,6 @@ PersonnelManagement:
     value: 0
     option: [ 0, 1, 2 ]
   AmagiChanRubber: false
-  YingSwei: true
 IslandRestaurantBusiness:
   time:
     value: None
@@ -846,6 +845,9 @@ IslandRestaurant:
   MealNumber:
     value: 6
     option: [ 5, 6, 7 ]
+  Chef:
+    value: YingSwei
+    option: [ WorkerJuu, a, b, YingSwei]
   Meal1:
     value: tofu_meat
     option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
@@ -858,15 +860,6 @@ IslandRestaurant:
   Meal4:
     value: None
     option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
-  time:
-    value: None
-    option: [ None, one, two]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
 IslandRestaurantNextTask:
   MealTask1:
     value: None
@@ -894,6 +887,9 @@ IslandTeahouse:
   MealNumber:
     value: 6
     option: [ 5, 6, 7 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
   SunnyHoney: True
   Meal1:
     value: floral_fruity
@@ -907,15 +903,6 @@ IslandTeahouse:
   Meal4:
     value: None
     option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
-  time:
-    value: None
-    option: [ None, one, two]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
 IslandTeahouseNextTask:
   MealTask1:
     value: None
@@ -943,6 +930,9 @@ IslandGrill:
   MealNumber:
     value: 6
     option: [ 5, 6, 7 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
   Meal1:
     value: double_energy
     option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy  ]
@@ -955,15 +945,6 @@ IslandGrill:
   Meal4:
     value: None
     option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
-  time:
-    value: None
-    option: [ None, one, two]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
 IslandGrillNextTask:
   MealTask1:
     value: stir_fried_chicken
@@ -991,6 +972,9 @@ IslandJuuEatery:
   MealNumber:
     value: 6
     option: [ 5, 6, 7 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
   Meal1:
     value: berry_orange
     option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
@@ -1003,15 +987,6 @@ IslandJuuEatery:
   Meal4:
     value: None
     option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
-  time:
-    value: None
-    option: [ None, one, two ]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
 IslandJuuEateryNextTask:
   MealTask1:
     value: None
@@ -1039,6 +1014,9 @@ IslandJuuCoffee:
   MealNumber:
     value: 6
     option: [ 5, 6, 7 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
   Meal1:
     value: wake_up_call
     option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
@@ -1051,15 +1029,6 @@ IslandJuuCoffee:
   Meal4:
     value: None
     option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
-  time:
-    value: None
-    option: [ None, one, two ]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
 IslandJuuCoffeeNextTask:
   MealTask1:
     value: cheese

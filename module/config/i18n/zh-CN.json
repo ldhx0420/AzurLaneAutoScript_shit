@@ -2599,10 +2599,6 @@
     "AmagiChanRubber": {
       "name": "小天城种橡胶",
       "help": ""
-    },
-    "YingSwei": {
-      "name": "应瑞有鱼",
-      "help": ""
     }
   },
   "IslandRestaurantBusiness": {
@@ -3022,6 +3018,14 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "厨师",
+      "help": "",
+      "WorkerJuu": "工作啾",
+      "a": "a",
+      "b": "b",
+      "YingSwei": "应瑞+工作啾"
+    },
     "Meal1": {
       "name": "餐品1",
       "help": "",
@@ -3069,45 +3073,6 @@
       "tofu_meat": "肉末烧豆腐",
       "tofu_combo": "经典豆腐套餐",
       "hearty_meal": "绵玉定食"
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
     }
   },
   "IslandRestaurantNextTask": {
@@ -3210,6 +3175,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "厨师",
+      "help": "",
+      "WorkerJuu": "工作啾",
+      "a": "方案a",
+      "b": "方案b"
+    },
     "SunnyHoney": {
       "name": "阳光蜜水",
       "help": ""
@@ -3269,45 +3241,6 @@
       "fruit_paradise": "缤纷果乐园",
       "lavender_tea": "薰衣草茶",
       "sunny_honey": "阳光蜜水"
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
     }
   },
   "IslandTeahouseNextTask": {
@@ -3420,6 +3353,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "厨师",
+      "help": "",
+      "WorkerJuu": "工作啾",
+      "a": "方案a",
+      "b": "方案b"
+    },
     "Meal1": {
       "name": "餐品1",
       "help": "",
@@ -3467,45 +3407,6 @@
       "steak_bowl": "汉堡肉饭",
       "carnival": "烤肉狂欢",
       "double_energy": "能量双拼套餐"
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
     }
   },
   "IslandGrillNextTask": {
@@ -3608,6 +3509,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "厨师",
+      "help": "",
+      "WorkerJuu": "工作啾",
+      "a": "方案a",
+      "b": "方案b"
+    },
     "Meal1": {
       "name": "餐品1",
       "help": "",
@@ -3663,45 +3571,6 @@
       "succulently_sweet": "香甜组合",
       "berry_orange": "莓果香橙甜点组",
       "strawberry_charlotte": "草莓夏洛特"
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
     }
   },
   "IslandJuuEateryNextTask": {
@@ -3814,6 +3683,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "厨师",
+      "help": "",
+      "WorkerJuu": "工作啾",
+      "a": "方案a",
+      "b": "方案b"
+    },
     "Meal1": {
       "name": "餐品1",
       "help": "",
@@ -3869,45 +3745,6 @@
       "morning_light": "晨光活力组合",
       "wake_up_call": "醒神套餐",
       "fruity_fruitier": "果香双杯乐"
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽"
     }
   },
   "IslandJuuCoffeeNextTask": {

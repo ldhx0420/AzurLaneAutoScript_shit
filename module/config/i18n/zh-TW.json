@@ -2599,10 +2599,6 @@
     "AmagiChanRubber": {
       "name": "PersonnelManagement.AmagiChanRubber.name",
       "help": "PersonnelManagement.AmagiChanRubber.help"
-    },
-    "YingSwei": {
-      "name": "PersonnelManagement.YingSwei.name",
-      "help": "PersonnelManagement.YingSwei.help"
     }
   },
   "IslandRestaurantBusiness": {
@@ -3022,6 +3018,14 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "IslandRestaurant.Chef.name",
+      "help": "IslandRestaurant.Chef.help",
+      "WorkerJuu": "WorkerJuu",
+      "a": "a",
+      "b": "b",
+      "YingSwei": "YingSwei"
+    },
     "Meal1": {
       "name": "IslandRestaurant.Meal1.name",
       "help": "IslandRestaurant.Meal1.help",
@@ -3069,45 +3073,6 @@
       "tofu_meat": "tofu_meat",
       "tofu_combo": "tofu_combo",
       "hearty_meal": "hearty_meal"
-    },
-    "time": {
-      "name": "IslandRestaurant.time.name",
-      "help": "IslandRestaurant.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandRestaurant.Waiter1.name",
-      "help": "IslandRestaurant.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
-    },
-    "Waiter2": {
-      "name": "IslandRestaurant.Waiter2.name",
-      "help": "IslandRestaurant.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
     }
   },
   "IslandRestaurantNextTask": {
@@ -3210,6 +3175,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "IslandTeahouse.Chef.name",
+      "help": "IslandTeahouse.Chef.help",
+      "WorkerJuu": "WorkerJuu",
+      "a": "a",
+      "b": "b"
+    },
     "SunnyHoney": {
       "name": "IslandTeahouse.SunnyHoney.name",
       "help": "IslandTeahouse.SunnyHoney.help"
@@ -3269,45 +3241,6 @@
       "fruit_paradise": "fruit_paradise",
       "lavender_tea": "lavender_tea",
       "sunny_honey": "sunny_honey"
-    },
-    "time": {
-      "name": "IslandTeahouse.time.name",
-      "help": "IslandTeahouse.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandTeahouse.Waiter1.name",
-      "help": "IslandTeahouse.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
-    },
-    "Waiter2": {
-      "name": "IslandTeahouse.Waiter2.name",
-      "help": "IslandTeahouse.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
     }
   },
   "IslandTeahouseNextTask": {
@@ -3420,6 +3353,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "IslandGrill.Chef.name",
+      "help": "IslandGrill.Chef.help",
+      "WorkerJuu": "WorkerJuu",
+      "a": "a",
+      "b": "b"
+    },
     "Meal1": {
       "name": "IslandGrill.Meal1.name",
       "help": "IslandGrill.Meal1.help",
@@ -3467,45 +3407,6 @@
       "steak_bowl": "steak_bowl",
       "carnival": "carnival",
       "double_energy": "double_energy"
-    },
-    "time": {
-      "name": "IslandGrill.time.name",
-      "help": "IslandGrill.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandGrill.Waiter1.name",
-      "help": "IslandGrill.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
-    },
-    "Waiter2": {
-      "name": "IslandGrill.Waiter2.name",
-      "help": "IslandGrill.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
     }
   },
   "IslandGrillNextTask": {
@@ -3608,6 +3509,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "IslandJuuEatery.Chef.name",
+      "help": "IslandJuuEatery.Chef.help",
+      "WorkerJuu": "WorkerJuu",
+      "a": "a",
+      "b": "b"
+    },
     "Meal1": {
       "name": "IslandJuuEatery.Meal1.name",
       "help": "IslandJuuEatery.Meal1.help",
@@ -3663,45 +3571,6 @@
       "succulently_sweet": "succulently_sweet",
       "berry_orange": "berry_orange",
       "strawberry_charlotte": "strawberry_charlotte"
-    },
-    "time": {
-      "name": "IslandJuuEatery.time.name",
-      "help": "IslandJuuEatery.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandJuuEatery.Waiter1.name",
-      "help": "IslandJuuEatery.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
-    },
-    "Waiter2": {
-      "name": "IslandJuuEatery.Waiter2.name",
-      "help": "IslandJuuEatery.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
     }
   },
   "IslandJuuEateryNextTask": {
@@ -3814,6 +3683,13 @@
       "6": "6",
       "7": "7"
     },
+    "Chef": {
+      "name": "IslandJuuCoffee.Chef.name",
+      "help": "IslandJuuCoffee.Chef.help",
+      "WorkerJuu": "WorkerJuu",
+      "a": "a",
+      "b": "b"
+    },
     "Meal1": {
       "name": "IslandJuuCoffee.Meal1.name",
       "help": "IslandJuuCoffee.Meal1.help",
@@ -3869,45 +3745,6 @@
       "morning_light": "morning_light",
       "wake_up_call": "wake_up_call",
       "fruity_fruitier": "fruity_fruitier"
-    },
-    "time": {
-      "name": "IslandJuuCoffee.time.name",
-      "help": "IslandJuuCoffee.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandJuuCoffee.Waiter1.name",
-      "help": "IslandJuuCoffee.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
-    },
-    "Waiter2": {
-      "name": "IslandJuuCoffee.Waiter2.name",
-      "help": "IslandJuuCoffee.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
     }
   },
   "IslandJuuCoffeeNextTask": {

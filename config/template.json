@@ -1909,8 +1909,7 @@
   "PersonnelManagement": {
     "PersonnelManagement": {
       "BusinessStatus": 0,
-      "AmagiChanRubber": false,
-      "YingSwei": true
+      "AmagiChanRubber": false
     },
     "IslandRestaurantBusiness": {
       "time": "None",
@@ -2013,13 +2012,11 @@
     "IslandRestaurant": {
       "PostNumber": 2,
       "MealNumber": 6,
+      "Chef": "YingSwei",
       "Meal1": "tofu_meat",
       "Meal2": "hearty_meal",
       "Meal3": "omurice",
-      "Meal4": "None",
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
+      "Meal4": "None"
     },
     "IslandRestaurantNextTask": {
       "MealTask1": "None",
@@ -2048,14 +2045,12 @@
     "IslandTeahouse": {
       "PostNumber": 2,
       "MealNumber": 6,
+      "Chef": "WorkerJuu",
       "SunnyHoney": true,
       "Meal1": "floral_fruity",
       "Meal2": "lavender_tea",
       "Meal3": "strawberry_lemon",
-      "Meal4": "None",
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
+      "Meal4": "None"
     },
     "IslandTeahouseNextTask": {
       "MealTask1": "None",
@@ -2084,13 +2079,11 @@
     "IslandGrill": {
       "PostNumber": 1,
       "MealNumber": 6,
+      "Chef": "WorkerJuu",
       "Meal1": "double_energy",
       "Meal2": "steak_bowl",
       "Meal3": "stir_fried_chicken",
-      "Meal4": "None",
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
+      "Meal4": "None"
     },
     "IslandGrillNextTask": {
       "MealTask1": "stir_fried_chicken",
@@ -2119,13 +2112,11 @@
     "IslandJuuEatery": {
       "PostNumber": 1,
       "MealNumber": 6,
+      "Chef": "WorkerJuu",
       "Meal1": "berry_orange",
       "Meal2": "succulently_sweet",
       "Meal3": "rice_mango",
-      "Meal4": "None",
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
+      "Meal4": "None"
     },
     "IslandJuuEateryNextTask": {
       "MealTask1": "None",
@@ -2154,13 +2145,11 @@
     "IslandJuuCoffee": {
       "PostNumber": 2,
       "MealNumber": 6,
+      "Chef": "WorkerJuu",
       "Meal1": "wake_up_call",
       "Meal2": "cheese",
       "Meal3": "fruity_fruitier",
-      "Meal4": "None",
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
+      "Meal4": "None"
     },
     "IslandJuuCoffeeNextTask": {
       "MealTask1": "cheese",
