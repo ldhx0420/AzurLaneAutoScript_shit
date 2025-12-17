@@ -75,26 +75,19 @@ class IslandManufacture(IslandShopBase):
     def _init_post_buttons(self):
         """根据配置初始化岗位按钮"""
         post_buttons = {}
-
-        # 木料加工岗位
-        wood_processing_positions = getattr(self.config, 'WoodProcessing_Positions', 0)
-        if wood_processing_positions >= 1:
+        if self.config.WoodProcessing_Positions >= 1:
             post_buttons['ISLAND_WOOD_PROCESSING_POST1'] = ISLAND_WOOD_PROCESSING_POST1
-        if wood_processing_positions >= 2:
+        if self.config.WoodProcessing_Positions >= 2:
             post_buttons['ISLAND_WOOD_PROCESSING_POST2'] = ISLAND_WOOD_PROCESSING_POST2
 
-        # 工业生产岗位
-        industrial_positions = getattr(self.config, 'Industrial_Positions', 0)
-        if industrial_positions >= 1:
+        if self.config.Industrial_Positions >= 1:
             post_buttons['ISLAND_INDUSTRIAL_POST1'] = ISLAND_INDUSTRIAL_POST1
-        if industrial_positions >= 2:
+        if self.config.Industrial_Positions >= 2:
             post_buttons['ISLAND_INDUSTRIAL_POST2'] = ISLAND_INDUSTRIAL_POST2
 
-        # 手工业生产岗位
-        handmade_positions = getattr(self.config, 'Handmade_Positions', 0)
-        if handmade_positions >= 1:
+        if self.config.Handmade_Positions >= 1:
             post_buttons['ISLAND_HANDMADE_POST1'] = ISLAND_HANDMADE_POST1
-        if handmade_positions >= 2:
+        if self.config.Handmade_Positions >= 2:
             post_buttons['ISLAND_HANDMADE_POST2'] = ISLAND_HANDMADE_POST2
 
         return post_buttons
@@ -124,7 +117,7 @@ class IslandManufacture(IslandShopBase):
             print(f"无法进入岗位选择界面: {post_id}")
             return None
 
-        self.wait_until_appear(ISLAND_SELECT_CHARACTER_CHECK)
+        self.wait_until_appear(ISLAND_SELECT_CHARACTER_CHECK,offset=(1,1))
         self.select_character()
         self.appear_then_click(SELECT_UI_CONFIRM)
 
@@ -185,9 +178,10 @@ class IslandManufacture(IslandShopBase):
             # 关闭岗位界面
             while True:
                 self.device.screenshot()
-                if not self.appear(ISLAND_POST_CHECK):
+                if not self.appear(ISLAND_POST_CHECK) or self.appear(ISLAND_GET):
                     break
                 self.device.click(POST_CLOSE)
+            self.device.click(POST_CLOSE)
 
             return None
 
@@ -348,12 +342,10 @@ class IslandManufacture(IslandShopBase):
             self.config.task_delay(success=True)
 
     def test(self):
-        self.wait_until_appear(ISLAND_POSTMANAGE_CHECK, offset=(1, 1))
-        # 滑动以看到岗位（使用post_produce_swipe_count配置）
-        for _ in range(self.post_produce_swipe_count):
-            self.post_manage_up_swipe(450)
+        if self.config.Industrial_Positions > 1:
+            print(2)
 if __name__ == "__main__":
     az = IslandManufacture('alas', task='Alas')
     az.device.screenshot()
-    az.run()
+    az.test()
 
