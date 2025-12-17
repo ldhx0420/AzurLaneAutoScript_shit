@@ -472,6 +472,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if self.appear_then_click(ISLAND_SHOP_CONFIRM):
                 continue
             self.device.click(ISLAND_SHOP_CONFIRM)
+        if self.appear(ISLAND_GET):
+            self.device.click(ISLAND_MILL_CHECK)
         # 扣除原材料
         if required_material in self.inventory_counts['farm']:
             self.inventory_counts['farm'][required_material] -= 330
