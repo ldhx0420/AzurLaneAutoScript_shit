@@ -324,7 +324,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if self.appear(ISAND_SELECT_PRODUCT_CHECK,offset=1):
                 self.appear_then_click(POST_MAX)
                 self.device.click(POST_ADD_ORDER)
-                continue
+                break
 
     def ranch_post(self, post_id, time_var_name):
         """牧场岗位处理"""
