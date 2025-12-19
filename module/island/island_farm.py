@@ -301,7 +301,12 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
     def ranch_post_get_and_add(self):
         while 1:
             self.device.screenshot()
-            if self.appear(ISLAND_POST_CHECK, offset=1) and not self.appear(POST_GET,offset=(50, 0)) and not self.appear(POST_ADD, offset=1):
+            if (
+                    self.appear(ISLAND_POST_CHECK, offset=1)
+                    and not self.appear(POST_GET, offset=(50, 0))
+                    and not self.appear(POST_ADD, offset=1)
+                    and not self.appear(ISLAND_POST_SELECT, offset=1)
+            ):
                 self.device.click(POST_CLOSE)
                 break
             if self.appear(ERROR1,offset=30):
@@ -322,7 +327,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
             if self.appear(ISAND_SELECT_PRODUCT_CHECK,offset=1):
-                self.appear_then_click(POST_MAX)
+                self.device.click(POST_MAX)
+                self.device.click(POST_MAX)
                 self.device.click(POST_ADD_ORDER)
                 break
 
@@ -795,7 +801,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def test(self):
-        self.select_product(SELECT_RUBBER,SELECT_RUBBER_CHECK)
+        self.post_get_and_add()
 if __name__ == "__main__":
     az =IslandFarm('alas', task='Alas')
     az.device.screenshot()
