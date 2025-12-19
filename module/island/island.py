@@ -19,7 +19,7 @@ class Island(SelectCharacter):
 
     def goto_postmanage(self):
         page = self.ui_get_current_page()
-        valid_pages = ['page_island_management', 'page_island_postmanage', 'page_island']
+        valid_pages = ['page_island_management', 'page_island_postmanage', 'page_island', 'page_island_warehouse']
         if page.name in valid_pages:
             self.ui_goto(page_island_postmanage)
         else:
