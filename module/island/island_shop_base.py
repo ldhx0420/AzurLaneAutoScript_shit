@@ -181,8 +181,6 @@ class IslandShopBase(Island, WarehouseOCR):
         selection_check = self.name_to_config[product]['selection_check']
         while 1:
             self.device.screenshot()
-            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
-                break
             if self.appear_then_click(ISLAND_POST_SELECT,offset=1):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
@@ -194,7 +192,7 @@ class IslandShopBase(Island, WarehouseOCR):
                 for _ in range(number - 1):
                     self.device.click(POST_ADD_ONE)
                 self.device.click(POST_ADD_ORDER)
-                continue
+                break
         for _ in range(self.post_produce_swipe_count):
             self.post_manage_up_swipe(450)
         self.post_open(post_button)

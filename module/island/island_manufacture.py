@@ -117,10 +117,6 @@ class IslandManufacture(IslandShopBase):
             self.device.screenshot()
             if self.appear_then_click(ISLAND_POST_SELECT):
                 continue
-            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,
-                                                                              threshold=1) and not self.appear(
-                    ISLAND_POST_CHECK):
-                break
             if self.appear_then_click(ISLAND_POST_SELECT, offset=1):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
