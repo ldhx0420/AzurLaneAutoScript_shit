@@ -15,6 +15,7 @@ class Island(SelectCharacter):
         # 调用两个父类的初始化
         UI.__init__(self, *args, **kwargs)
         SelectCharacter.__init__(self, *args, **kwargs)
+        self.island_error = False
 
     def goto_postmanage(self):
         page = self.ui_get_current_page()
@@ -85,6 +86,63 @@ class Island(SelectCharacter):
             if self.appear_then_click(product_selection,offset=300):
                 continue
             self.device.swipe_vector(vector=(0, -200), box=(333, 142, 431, 602), name="SelectionUpSwipe")
+    def post_close(self):
+        while 1:
+            self.device.screenshot()
+            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
+                break
+            if self.appear(ISLAND_GET,offset=1):
+                self.device.click(ISLAND_POST_SAFE_AREA)
+                continue
+            if  self.appear(ISLAND_POST_CHECK,offset=1):
+                self.device.click(POST_CLOSE)
+                continue
+    def post_get_and_close(self):
+        while 1:
+            self.device.screenshot()
+            if self.appear(ISLAND_POSTMANAGE_CHECK,offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
+                break
+            if self.appear(ERROR1,offset=30):
+                self.device.click(POST_CLOSE)
+                self.island_error = True
+                continue
+            if self.appear(ISLAND_GET,offset=1):
+                self.device.click(ISLAND_POST_SAFE_AREA)
+                continue
+            if self.appear_then_click(POST_GET,offset=(50,0)):
+                continue
+            if  self.appear(ISLAND_POST_CHECK,offset=1) and not self.appear(POST_GET,offset=(50,0)):
+                self.device.click(POST_CLOSE)
+                continue
+
+
+    def post_get_and_add(self,product_selection,product_selection_check):
+        while 1:
+            self.device.screenshot()
+            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
+                break
+            if self.appear(ERROR1,offset=30):
+                self.device.click(POST_CLOSE)
+                self.island_error = True
+                continue
+            if self.appear(ISLAND_GET,offset=1):
+                self.device.click(ISLAND_POST_SAFE_AREA)
+                continue
+            if self.appear_then_click(POST_GET,offset=(50,0)):
+                continue
+            if self.appear_then_click(ISLAND_POST_SELECT,offset=1):
+                continue
+            if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
+                self.select_character()
+                self.appear_then_click(SELECT_UI_CONFIRM)
+                continue
+            if self.appear(ISAND_SELECT_PRODUCT_CHECK,offset=1):
+                self.select_product(product_selection,product_selection_check)
+                self.appear_then_click(POST_MAX)
+                self.device.click(POST_ADD_ORDER)
+                continue
+
+
 
 
     def post_open(self,post):
@@ -121,22 +179,29 @@ class Island(SelectCharacter):
         p1 = (218, 507)
         p2 = (152, 507)
         self.device.island_swipe_hold(p1, p2,hold_time)
-    def goto_mill(self):
-        self.island_map_goto('farm')
-        self.island_up(800)
-        self.island_left(1300)
-        self.island_down(1000)
-        self.island_left(500)
-        self.island_down(2500)
-        start_time = time.time()
-        while True:
-            self.device.screenshot()
-            if self.appear_then_click(ISLAND_MILL):
-                continue
-            if self.appear(ISLAND_MILL_CHECK):
-                return True
-            if time.time() - start_time > 5:
-                return False
+
+    def goto_mill(self, max_attempts=3):
+        for attempt in range(max_attempts):
+            print(f"尝试前往磨坊，第{attempt + 1}次尝试")
+            self.island_map_goto('farm')
+            self.island_up(800)
+            self.island_left(1300)
+            self.island_down(1000)
+            self.island_left(500)
+            self.island_down(2500)
+            start_time = time.time()
+            while True:
+                self.device.screenshot()
+                if self.appear_then_click(ISLAND_MILL):
+                    continue
+                if self.appear(ISLAND_MILL_CHECK):
+                    print("成功到达磨坊")
+                    return True
+                if time.time() - start_time > 5:
+                    print("超时，重新尝试")
+                    break
+        print(f"尝试{max_attempts}次后仍然失败")
+        return False
 
 
 

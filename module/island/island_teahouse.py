@@ -94,7 +94,7 @@ class IslandTeahouse(IslandShopBase):
         self.appear_then_click(FILTER_BASIC)
         self.appear_then_click(FILTER_OTHER)
         self.appear_then_click(FILTER_CONFIRM)
-        self.wait_until_appear(ISLAND_WAREHOUSE_GOTO_WAREHOUSE_FILTER)
+        self.device.sleep(0.3)
         image = self.device.screenshot()
         self.fresh_honey = self.ocr_item_quantity(image, TEMPLATE_FRESH_HONEY)
         print(f"蜂蜜数量: {self.fresh_honey}")

@@ -230,7 +230,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         self.appear_then_click(FILTER_CONFIRM)
         self.device.sleep(0.3)
         image = self.device.screenshot()
-
         results = {}
         for item_config in config['items']:
             count = self.ocr_item_quantity(image, item_config['template'])
@@ -238,7 +237,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             results[item_config['name']] = count
             setattr(self, item_config['var_name'], count)
             print(f"{item_config['name']}: {count}")
-
         return results
 
     def warehouse_mill_ranch(self):
@@ -277,22 +275,11 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
     def decided_lists(self, post_button, post_id, category, time_var_name):
         # post_button: Button对象
         # post_id: 字符串岗位ID，如 'ISLAND_FARM_POST1'
-        while True:
-            self.device.screenshot()
-            if not self.appear(ISLAND_POST_CHECK):
-                break
-            self.device.click(POST_CLOSE)
-        self.post_open(post_button)  # 使用按钮对象
+        self.post_close()
+        self.post_open(post_button)
         self.device.screenshot()
-        if self.appear(ISLAND_WORK_COMPLETE, offset=(5, 5)):
-            while True:
-                self.device.screenshot()
-                if self.appear(ISLAND_POST_SELECT, offset=(5, 5)):
-                    break
-                if self.device.click(POST_GET):
-                    continue
+        if self.appear(ISLAND_WORK_COMPLETE, offset=1):
             self.posts[post_id]['status'] = 'idle'  # 使用字符串ID
-
             setattr(self, time_var_name, None)
         elif self.appear(ISLAND_WORKING):
             product_name = self.post_plant_check(category)
@@ -307,111 +294,79 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if category in self.time_vars and post_index < len(self.time_vars[category]):
                 self.time_vars[category][post_index] = finish_time
             self.posts[post_id]['status'] = 'working'  # 使用字符串ID
-            self.device.click(ISLAND_POST_CHECK)
-        elif self.appear(ISLAND_POST_SELECT, offset=(5, 5)):
-            self.device.click(ISLAND_POST_CHECK)
+        elif self.appear(ISLAND_POST_SELECT, offset=1):
             self.posts[post_id]['status'] = 'idle'  # 使用字符串ID
             setattr(self, time_var_name, None)
-        while True:
+        self.post_get_and_close()
+    def ranch_post_get_and_add(self):
+        while 1:
             self.device.screenshot()
-            if not self.appear(ISLAND_POST_CHECK):
+            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
                 break
-            self.device.click(POST_CLOSE)
+            if self.appear(ERROR1,offset=30):
+                self.device.click(POST_CLOSE)
+                self.island_error = True
+                continue
+            if self.appear(ISLAND_GET,offset=1):
+                self.device.click(ISLAND_POST_SAFE_AREA)
+                continue
+            if self.appear_then_click(POST_GET,offset=(50,0)):
+                continue
+            if self.appear_then_click(POST_ADD,offset=1):
+                continue
+            if self.appear_then_click(ISLAND_POST_SELECT,offset=1):
+                continue
+            if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
+                self.select_character()
+                self.appear_then_click(SELECT_UI_CONFIRM)
+                continue
+            if self.appear(ISAND_SELECT_PRODUCT_CHECK,offset=1):
+                self.appear_then_click(POST_MAX)
+                self.device.click(POST_ADD_ORDER)
+                continue
 
     def ranch_post(self, post_id, time_var_name):
         """牧场岗位处理"""
         post_button = self.posts_ranch[post_id]  # post_id是字符串，获取按钮对象
-        while True:
-            self.device.screenshot()
-            if not self.appear(ISLAND_POST_CHECK):
-                break
-            self.device.click(POST_CLOSE)
+        self.post_close()
         self.post_open(post_button)
         self.device.screenshot()
-
         time_work = Duration(ISLAND_WORKING_TIME)
-
-        if self.appear(ISLAND_WORKING):
-            if self.appear(POST_GET,offset=(50,0)):
-                self.ranch_max()
-                self.post_open(post_button)
-                time_value = time_work.ocr(self.device.image)
-                setattr(self, time_var_name, datetime.now() + time_value)
-                self.device.click(POST_CLOSE)
-            else:
-                time_value = time_work.ocr(self.device.image)
-                setattr(self, time_var_name, datetime.now() + time_value)
-                self.device.click(POST_CLOSE)
-
-        elif self.appear(ISLAND_WORK_COMPLETE):
-            while not self.appear(ISLAND_POST_SELECT):
-                self.device.screenshot()
-                if self.appear_then_click(POST_GET):
-                    continue
-            self.appear_then_click(ISLAND_POST_CHECK)
-
-            if self.appear_then_click(ISLAND_POST_SELECT):
-                self.wait_until_appear(ISLAND_SELECT_CHARACTER_CHECK,offset=(1,1))
-                self.select_character()
-                self.appear_then_click(SELECT_UI_CONFIRM)
-                self.ranch_max()
-
-            time_value = time_work.ocr(self.device.image)
-            setattr(self, time_var_name, datetime.now() + time_value)
-            self.device.click(POST_CLOSE)
-
-        elif self.appear_then_click(ISLAND_POST_SELECT):
-            self.wait_until_appear(ISLAND_SELECT_CHARACTER_CHECK,offset=(1,1))
-            self.select_character()
-            self.appear_then_click(SELECT_UI_CONFIRM)
-            self.ranch_max()
-
-            time_value = time_work.ocr(self.device.image)
-            setattr(self, time_var_name, datetime.now() + time_value)
-            self.device.click(POST_CLOSE)
-
-    def ranch_max(self):
-        """处理最大数量检查"""
-        while True:
-            self.device.screenshot()
-            if self.appear(POST_MAX_CHECK):
-                self.device.click(POST_ADD_ORDER)
-                break
-            if self.appear(ERROR1):
-                self.device.app_stop()
-                self.device.app_start()
-                self.handle_app_login()
-                break
-            if self.appear_then_click(POST_MAX):
-                continue
-            if self.appear_then_click(POST_GET):
-                continue
-            if self.device.click(POST_ADD):
-                continue
+        self.ranch_post_get_and_add()
+        self.post_open(post_button)
+        time_value = time_work.ocr(self.device.image)
+        setattr(self, time_var_name, datetime.now() + time_value)
 
     def post_plant(self, post_button, product, category, time_var_name):
         # post_button: Button对象
-        self.device.click(POST_CLOSE)
+        self.post_close()
         self.post_open(post_button)  # 使用按钮对象
         self.device.screenshot()
         time_work = Duration(ISLAND_WORKING_TIME)
         selection = self.name_to_config[product]['selection']
         selection_check = self.name_to_config[product]['selection_check']
-        if self.appear_then_click(ISLAND_POST_SELECT):
-            self.wait_until_appear(ISLAND_SELECT_CHARACTER_CHECK,offset=(1,1))
-            if product == 'rubber' and self.config.PersonnelManagement_AmagiChanRubber:
-                self.select_character(character_name="Amagi_chan")
-            else:
-                self.select_character()
-            self.appear_then_click(SELECT_UI_CONFIRM)
-            self.select_product(selection, selection_check)
-            self.appear_then_click(POST_MAX)
-            self.device.click(POST_ADD_ORDER)
-            self.post_open(post_button)  # 使用按钮对象
-            time_value = time_work.ocr(self.device.image)
-            finish_time = datetime.now() + time_value
-            setattr(self, time_var_name, finish_time)
-        self.device.click(POST_CLOSE)
+        while 1:
+            self.device.screenshot()
+            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
+                break
+            if self.appear_then_click(ISLAND_POST_SELECT, offset=1):
+                continue
+            if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
+                if product == 'rubber' and self.config.PersonnelManagement_AmagiChanRubber:
+                    self.select_character(character_name="Amagi_chan")
+                else:
+                    self.select_character()
+                self.appear_then_click(SELECT_UI_CONFIRM)
+                continue
+            if self.appear(ISAND_SELECT_PRODUCT_CHECK, offset=1):
+                self.select_product(selection, selection_check)
+                self.appear_then_click(POST_MAX)
+                self.device.click(POST_ADD_ORDER)
+                continue
+        self.post_open(post_button)  # 使用按钮对象
+        time_value = time_work.ocr(self.device.image)
+        finish_time = datetime.now() + time_value
+        setattr(self, time_var_name, finish_time)
 
     def buy_seeds(self, seed, category):
         category_map = {
@@ -482,13 +437,11 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         # 增加磨坊产品
         self.inventory_counts['mill'][mill_item] = self.inventory_counts['mill'].get(mill_item, 0) + target*10
         print(f"加工完成：{mill_item} +{target}")
-
         return True
 
     def check_mill_needs(self):
         """检查磨坊需求"""
         mill_needs = []
-
         # 检查面粉需求（优先级最高）
         wheat_flour_count = self.inventory_counts['mill'].get('wheat_flour', 0)
         wheat_count = self.inventory_counts['farm'].get('wheat', 0)
@@ -533,7 +486,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         if sheep_feed_count < 50 and pasture_count > 330:
             mill_needs.append('sheep_feed')
             print("需要加工羊饲料")
-
         return mill_needs
 
     def set_buy_number(self, target):
@@ -598,10 +550,10 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         if sheep_feed_count >= 50:
             ranch_needs.append('ISLAND_RANCH_POST4')
             print("需要执行养羊任务")
-
         return ranch_needs
 
     def run(self):
+        self.island_error = False
         self.check_inventory_and_prepare_lists()
         self.warehouse_mill_ranch()
         # 打印当前库存
@@ -629,7 +581,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         ranch_needs = self.check_ranch_needs()
         self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
-        self.device.click(POST_CLOSE)
+        self.post_close()
         self.post_manage_down_swipe(450)
         self.post_manage_down_swipe(450)
 
@@ -768,7 +720,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             self.goto_management()
             self.ui_goto(page_island_postmanage)
             self.post_manage_mode(POST_MANAGE_PRODUCTION)
-            self.device.click(POST_CLOSE)
+            self.post_close()
 
         # 4. 播种空闲岗位
         for category in ['farm', 'orchard', 'nursery']:
@@ -836,7 +788,12 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             self.config.task_delay(target=future_finish)
             print(f'下次运行时间: {future_finish[0]}')
         else:
-            self.config.task_delay(success=True)
+            next_check = datetime.now() + timedelta(hours=12)
+            logger.info(f'没有任务需要安排，下次检查时间：{next_check.strftime("%H:%M")}')
+            self.config.task_delay(target=[next_check])
+        if self.island_error:
+            from module.exception import GameBugError
+            raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def test(self):
         self.select_product(SELECT_RUBBER,SELECT_RUBBER_CHECK)

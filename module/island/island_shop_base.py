@@ -116,24 +116,17 @@ class IslandShopBase(Island, WarehouseOCR):
             self.select_character(character_name="YingSwei")
         else:
             self.select_character()
-    # ============ 通用方法 ============
 
+    # ============ 通用方法 ============
     def post_check(self, post_id, time_var_name):
         """检查岗位状态（通用）"""
         post_button = self.posts[post_id]['button']
-        self.device.click(POST_CLOSE)
+        self.post_close()
         self.post_open(post_button)
         image = self.device.screenshot()
         ocr_post_number = Digit(OCR_POST_NUMBER, letter=(57, 58, 60), threshold=100,
                                 alphabet='0123456789')
-
-        if self.appear(ISLAND_WORK_COMPLETE, offset=(5, 5)):
-            while True:
-                self.device.screenshot()
-                if self.appear(ISLAND_POST_SELECT):
-                    break
-                if self.device.click(POST_GET):
-                    continue
+        if self.appear(ISLAND_WORK_COMPLETE, offset=1):
             self.posts[post_id]['status'] = 'idle'
             setattr(self, time_var_name, None)
         elif self.appear(ISLAND_WORKING):
@@ -149,25 +142,10 @@ class IslandShopBase(Island, WarehouseOCR):
                     self.post_check_meal[product] += number
                 else:
                     self.post_check_meal[product] = number
-            if self.appear_then_click(POST_GET, offset=(5, 5)):
-                while True:
-                    self.device.screenshot()
-                    self.device.click(ISLAND_POST_CHECK)
-                    if self.appear(ISLAND_GET):
-                        self.device.click(ISLAND_POST_CHECK)
-                        continue
-                    if self.appear(ISLAND_WORKING):
-                        self.device.click(ISLAND_POST_CHECK)
-                        break
-                self.device.click(ISLAND_POST_CHECK)
         elif self.appear(ISLAND_POST_SELECT):
             self.posts[post_id]['status'] = 'idle'
             setattr(self, time_var_name, None)
-        while True:
-            self.device.screenshot()
-            if not self.appear(ISLAND_POST_CHECK):
-                break
-            self.device.click(POST_CLOSE)
+        self.post_get_and_close()
         self.device.sleep(0.3)
 
     def post_product_check(self):
@@ -195,46 +173,48 @@ class IslandShopBase(Island, WarehouseOCR):
     def post_produce(self, post_id, product, number, time_var_name):
         """生产产品（通用）"""
         post_button = self.posts[post_id]['button']
-        self.device.click(POST_CLOSE)
+        self.post_close()
         self.post_open(post_button)
         self.device.screenshot()
         time_work = Duration(ISLAND_WORKING_TIME)
         selection = self.name_to_config[product]['selection']
         selection_check = self.name_to_config[product]['selection_check']
-
-        if self.appear_then_click(ISLAND_POST_SELECT):
-            self.wait_until_appear(ISLAND_SELECT_CHARACTER_CHECK,offset=(1,1))
-            self.select_character_for_shop()
-            self.appear_then_click(SELECT_UI_CONFIRM)
-            self.select_product(selection, selection_check)
-
-            for _ in range(number - 1):
-                self.device.click(POST_ADD_ONE)
-            self.device.click(POST_ADD_ORDER)
-            self.wait_until_appear(ISLAND_POSTMANAGE_CHECK, offset=(1, 1))
-            # 滑动以看到岗位（使用post_produce_swipe_count配置）
-            for _ in range(self.post_produce_swipe_count):
-                self.post_manage_up_swipe(450)
-            self.post_open(post_button)
-            image = self.device.screenshot()
-            ocr_post_number = Digit(OCR_POST_NUMBER, letter=(57, 58, 60), threshold=100,
-                                    alphabet='0123456789')
-            actual_number = ocr_post_number.ocr(image)
-            time_value = time_work.ocr(self.device.image)
-            finish_time = datetime.now() + time_value
-            setattr(self, time_var_name, finish_time)
-            self.posts[post_id]['status'] = 'working'
-            # 扣除前置材料（子类可覆盖）
-            self.deduct_materials(product, actual_number)
-            # 更新需求
-            if product in self.to_post_products:
-                self.to_post_products[product] -= actual_number
-                if self.to_post_products[product] <= 0:
-                    del self.to_post_products[product]
-
-            print(f"已安排生产：{product} x{actual_number}")
-            self.device.sleep(0.3)
-            self.device.click(POST_CLOSE)
+        while 1:
+            self.device.screenshot()
+            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
+                break
+            if self.appear_then_click(ISLAND_POST_SELECT,offset=1):
+                continue
+            if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
+                self.select_character_for_shop()
+                self.appear_then_click(SELECT_UI_CONFIRM)
+                continue
+            if self.appear(ISAND_SELECT_PRODUCT_CHECK,offset=1):
+                self.select_product(selection,selection_check)
+                for _ in range(number - 1):
+                    self.device.click(POST_ADD_ONE)
+                self.device.click(POST_ADD_ORDER)
+                continue
+        for _ in range(self.post_produce_swipe_count):
+            self.post_manage_up_swipe(450)
+        self.post_open(post_button)
+        image = self.device.screenshot()
+        ocr_post_number = Digit(OCR_POST_NUMBER, letter=(57, 58, 60), threshold=100,
+                                alphabet='0123456789')
+        actual_number = ocr_post_number.ocr(image)
+        time_value = time_work.ocr(self.device.image)
+        finish_time = datetime.now() + time_value
+        setattr(self, time_var_name, finish_time)
+        self.posts[post_id]['status'] = 'working'
+        # 扣除前置材料（子类可覆盖）
+        self.deduct_materials(product, actual_number)
+        # 更新需求
+        if product in self.to_post_products:
+            self.to_post_products[product] -= actual_number
+            if self.to_post_products[product] <= 0:
+                del self.to_post_products[product]
+        print(f"已安排生产：{product} x{actual_number}")
+        self.post_close()
 
     def deduct_materials(self, product, number):
         """扣除前置材料（可被子类覆盖）"""
@@ -253,10 +233,11 @@ class IslandShopBase(Island, WarehouseOCR):
     # ============ 核心逻辑 ============
 
     def run(self):
+        self.island_error = False
         """运行店铺逻辑（通用）- 修改版本，支持高优先级"""
         self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
-        self.device.click(POST_CLOSE)
+        self.post_close()
         self.post_manage_down_swipe(450)
         self.post_manage_down_swipe(450)
 
@@ -277,9 +258,9 @@ class IslandShopBase(Island, WarehouseOCR):
         # 获取仓库数量
         self.get_warehouse_counts()
 
-        self.ui_goto(page_island_postmanage)
+        self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
-        self.device.click(POST_CLOSE)
+        self.post_close()
         self.post_manage_down_swipe(450)
         self.post_manage_down_swipe(450)
 
@@ -394,7 +375,12 @@ class IslandShopBase(Island, WarehouseOCR):
             finish_times.sort()
             self.config.task_delay(target=finish_times)
         else:
-            self.config.task_delay(success=True)
+            next_check = datetime.now() + timedelta(hours=12)
+            logger.info(f'没有任务需要安排，下次检查时间：{next_check.strftime("%H:%M")}')
+            self.config.task_delay(target=[next_check])
+        if self.island_error:
+            from module.exception import GameBugError
+            raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def process_meal_requirements(self, source_products):
         """处理套餐分解（通用）"""

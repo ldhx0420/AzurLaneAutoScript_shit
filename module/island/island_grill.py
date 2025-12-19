@@ -1,6 +1,6 @@
 from module.island_grill.assets import *
 from module.island.island_shop_base import IslandShopBase
-from module.island.assets import FILTER_ISLAND_GRILL
+from module.island.assets import FILTER_ISLAND_GRILL, POST_MANAGE_GETTED_CHECK
 
 
 class IslandGrill(IslandShopBase):
@@ -70,8 +70,12 @@ class IslandGrill(IslandShopBase):
         # 初始化店铺
         self.initialize_shop()
     def test(self):
-        if self.config.IslandRestaurant_Chef == "YingSwei":
-            print('yes')
+        self.island_error = False
+        self.post_get_and_close()
+        if self.island_error:
+            print('error1')
+
+
 
 if __name__ == "__main__":
     az = IslandGrill('alas', task='Alas')
