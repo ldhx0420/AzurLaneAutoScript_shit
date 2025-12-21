@@ -115,14 +115,18 @@ class IslandTeahouse(IslandShopBase):
         if batch_size <= 0:
             return 0
 
-        # 蜂蜜柠檬需要检查蜂蜜
-        if product == 'honey_lemon':
-            max_by_honey = min(batch_size, self.fresh_honey)
-            return max_by_honey
-
-        # sunny_honey需要检查蜂蜜（通过honey_lemon）
+        # sunny_honey需要honey_lemon或蜂蜜
         if product == 'sunny_honey':
-            # sunny_honey需要honey_lemon，每个需要1个蜂蜜
+            # 计算可用原材料：蜂蜜 + honey_lemon库存
+            honey_available = self.fresh_honey
+            honey_lemon_available = self.warehouse_counts.get('honey_lemon', 0)
+            total_available = honey_available + honey_lemon_available
+
+            max_by_material = min(batch_size, total_available)
+            return max_by_material
+
+        # honey_lemon需要蜂蜜
+        if product == 'honey_lemon':
             max_by_honey = min(batch_size, self.fresh_honey)
             return max_by_honey
 
@@ -133,22 +137,31 @@ class IslandTeahouse(IslandShopBase):
         # 先调用父类方法扣除套餐原材料
         super().deduct_materials(product, number)
 
-        # 蜂蜜柠檬需要扣除蜂蜜
-        if product == 'honey_lemon':
-            honey_needed = number
-            self.fresh_honey = max(0, self.fresh_honey - honey_needed)
-            if 'fresh_honey' in self.warehouse_counts:
-                self.warehouse_counts['fresh_honey'] = self.fresh_honey
-            print(f"扣除蜂蜜：fresh_honey -{honey_needed}")
-
-        # sunny_honey套餐中的honey_lemon也需要扣除蜂蜜
+        # sunny_honey套餐需要扣除原材料
         if product == 'sunny_honey':
-            # sunny_honey需要honey_lemon，每个需要1个蜂蜜
+            # sunny_honey需要honey_lemon和strawberry_lemon各1个
+            # honey_lemon可以通过蜂蜜制作，所以优先扣除蜂蜜，不够再扣除honey_lemon
+
             honey_needed = number
-            self.fresh_honey = max(0, self.fresh_honey - honey_needed)
-            if 'fresh_honey' in self.warehouse_counts:
-                self.warehouse_counts['fresh_honey'] = self.fresh_honey
-            print(f"扣除蜂蜜（用于sunny_honey）：fresh_honey -{honey_needed}")
+            honey_lemon_needed = number
+
+            # 优先扣除蜂蜜
+            if self.fresh_honey >= honey_needed:
+                self.fresh_honey -= honey_needed
+                print(f"扣除蜂蜜：fresh_honey -{honey_needed} (用于制作sunny_honey)")
+            else:
+                # 蜂蜜不足，扣除honey_lemon
+                remaining_needed = honey_needed - self.fresh_honey
+                if self.fresh_honey > 0:
+                    print(f"扣除蜂蜜：fresh_honey -{self.fresh_honey} (用于制作sunny_honey)")
+                    self.fresh_honey = 0
+
+                # 扣除honey_lemon库存
+                if 'honey_lemon' in self.warehouse_counts:
+                    available_honey_lemon = min(remaining_needed, self.warehouse_counts['honey_lemon'])
+                    if available_honey_lemon > 0:
+                        self.warehouse_counts['honey_lemon'] -= available_honey_lemon
+                        print(f"扣除honey_lemon：honey_lemon -{available_honey_lemon} (用于制作sunny_honey)")
 
     def apply_special_material_constraints(self, requirements):
         """覆盖：根据蜂蜜库存调整需求"""
@@ -189,26 +202,36 @@ class IslandTeahouse(IslandShopBase):
     # ============ 新增方法：处理蜂蜜任务 ============
     def process_honey_task(self):
         """处理蜂蜜任务 - 强制生产消耗strawberry_lemon"""
-        if not (self.config.IslandTeahouse_SunnyHoney and self.fresh_honey > 0):
+        # 修改条件：考虑honey_lemon库存或蜂蜜库存
+        if not self.config.IslandTeahouse_SunnyHoney:
+            return
+
+        # 获取honey_lemon库存
+        honey_lemon_stock = self.warehouse_counts.get('honey_lemon', 0)
+
+        # 如果既没有蜂蜜也没有honey_lemon，则跳过
+        if self.fresh_honey <= 0 and honey_lemon_stock <= 0:
+            print("蜂蜜任务：没有蜂蜜或honey_lemon库存，跳过")
             return
 
         print("=== 检测到蜂蜜任务 ===")
 
         # 获取库存
         strawberry_lemon_stock = self.warehouse_counts.get('strawberry_lemon', 0)
-        honey_lemon_stock = self.warehouse_counts.get('honey_lemon', 0)
         current_sunny_honey = self.warehouse_counts.get('sunny_honey', 0)
 
         print(
-            f"当前库存: sunny_honey={current_sunny_honey}, strawberry_lemon={strawberry_lemon_stock}, honey_lemon={honey_lemon_stock}, honey={self.fresh_honey}")
+            f"当前库存: sunny_honey={current_sunny_honey}, strawberry_lemon={strawberry_lemon_stock}, "
+            f"honey_lemon={honey_lemon_stock}, honey={self.fresh_honey}"
+        )
 
-        # 计算需要生产的数量（强制生产，不考虑现有sunny_honey库存）
-        # 1. 蜂蜜限制
-        max_by_honey = self.fresh_honey
+        # 计算需要生产的数量
+        # 1. 可用原材料限制：使用蜂蜜或honey_lemon
+        available_material = max(self.fresh_honey, honey_lemon_stock)
+        max_by_material = available_material  # 每个sunny_honey需要1个honey_lemon或1个蜂蜜
 
-        # 2. 原材料限制
+        # 2. strawberry_lemon库存限制
         max_by_strawberry = strawberry_lemon_stock
-        max_by_honey_lemon = honey_lemon_stock
 
         # 3. 目标库存控制 - 避免过多生产strawberry_lemon
         strawberry_lemon_target = 20  # strawberry_lemon的目标库存
@@ -220,23 +243,21 @@ class IslandTeahouse(IslandShopBase):
 
         # 4. 计算最大可生产数量
         max_producible = min(
-            max_by_honey,
+            max_by_material,
             max_by_strawberry,
-            max_by_honey_lemon,
             max_by_strawberry_target,
             10  # 2个岗位，每个最多5个
         )
 
         if max_producible > 0:
-            # 强制生产，不考虑现有sunny_honey库存
-            # 但需要检查实际需求：如果库存已经很多，可以少生产一些
-            # 这里设置一个上限：最多生产5个
-            actual_production = min(max_producible, 5)
+            # 设置实际生产数量
+            actual_production = min(max_producible, 5)  # 最多生产5个
 
             # 添加到高优先级任务
             self.add_high_priority_product('sunny_honey', actual_production)
             print(f"蜂蜜任务：安排生产sunny_honey x{actual_production}来消耗strawberry_lemon")
             print(f"  当前sunny_honey库存: {current_sunny_honey}")
+            print(f"  可用原材料: {available_material} (蜂蜜:{self.fresh_honey}, honey_lemon:{honey_lemon_stock})")
             print(f"  最大可生产: {max_producible}")
             print(f"  实际安排生产: {actual_production}")
         else:
