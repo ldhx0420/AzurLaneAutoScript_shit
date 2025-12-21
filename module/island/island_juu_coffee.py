@@ -86,6 +86,18 @@ class IslandJuuCoffee(IslandShopBase):
         # 初始化店铺
         self.initialize_shop()
 
+    def process_meal_requirements(self, source_products):
+        """覆盖：处理套餐需求，添加调试信息"""
+        print(f"=== IslandJuuCoffee.process_meal_requirements ===")
+        print(f"传入的需求: {source_products}")
+
+        # 调用父类方法
+        result = super().process_meal_requirements(source_products)
+
+        print(f"返回结果: {result}")
+        print(f"=== 结束IslandJuuCoffee.process_meal_requirements ===")
+
+        return result
 
 if __name__ == "__main__":
     az = IslandJuuCoffee('alas', task='Alas')

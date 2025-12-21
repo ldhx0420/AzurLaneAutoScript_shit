@@ -279,6 +279,26 @@ class IslandShopBase(Island, WarehouseOCR):
         for item in set(self.post_products.keys()) | set(total_subtract.keys()):
             self.current_totals[item] = total_subtract.get(item, 0)
 
+        # ============ 添加调试信息 ============
+        print(f"=== 调试信息 ===")
+        print(f"仓库库存: {self.warehouse_counts}")
+        print(f"生产中库存: {self.post_check_meal}")
+        print(f"当前总库存: {self.current_totals}")
+        print(f"基础需求配置: {self.post_products}")
+        print(f"任务需求配置: {self.post_products_task}")
+        print(f"是否翻倍: {self.doubled}")
+        print(f"任务是否完成: {self.task_completed}")
+
+        # 计算各个餐品的状态
+        print("=== 各餐品状态 ===")
+        for product, target in self.post_products.items():
+            current = self.current_totals.get(product, 0)
+            double_target = target * 2
+            print(
+                f"{product}: 基础需求={target}, 当前库存={current}, 翻倍需求={double_target}, 差值={double_target - current}")
+
+        print("===============")
+
         # 清空待生产列表
         self.to_post_products = {}
 
@@ -391,6 +411,11 @@ class IslandShopBase(Island, WarehouseOCR):
 
     def process_meal_requirements(self, source_products):
         """修复版本：智能需求处理，避免重复扣减库存"""
+        print(f"=== 进入process_meal_requirements ===")
+        print(f"传入的需求: {source_products}")
+        print(f"当前总库存: {self.current_totals}")
+        print(f"仓库库存: {self.warehouse_counts}")
+
         result = {}
 
         # 1. 将需求分为套餐需求和基础餐品需求
@@ -402,37 +427,53 @@ class IslandShopBase(Island, WarehouseOCR):
                 continue
             if product in self.meal_compositions:
                 meal_demands[product] = quantity
+                print(f"  识别为套餐: {product} x{quantity}")
             else:
                 base_demands[product] = quantity
+                print(f"  识别为基础餐品: {product} x{quantity}")
+
+        print(f"套餐需求: {meal_demands}")
+        print(f"基础需求: {base_demands}")
 
         # 2. 处理套餐需求
         material_needs = {}
 
         for meal, meal_quantity in meal_demands.items():
-            # 计算套餐净需求（减去当前总库存）
-            meal_stock = self.current_totals.get(meal, 0)
-            net_meal_needed = max(0, meal_quantity - meal_stock)
+            # 重要：source_products中传入的已经是净需求
+            # 所以直接使用meal_quantity作为净需求
+            net_meal_needed = meal_quantity
+
+            print(f"  处理套餐 {meal}: 需求={meal_quantity}, 净需求={net_meal_needed}")
 
             if net_meal_needed > 0:
                 # 套餐需求加入结果
                 result[meal] = net_meal_needed
+                print(f"    添加到生产计划: {meal} x{net_meal_needed}")
 
                 # 计算套餐所需原材料
                 composition = self.meal_compositions[meal]
-                for material in composition['required']:
-                    material_needs[material] = material_needs.get(material, 0) + (
-                            net_meal_needed * composition.get('quantity_per', 1)
-                    )
+                print(f"    套餐组成: {composition}")
 
-        # 3. 处理基础需求，并合并原材料需求（一次性计算）
+                for material in composition['required']:
+                    needed = net_meal_needed * composition.get('quantity_per', 1)
+                    material_needs[material] = material_needs.get(material, 0) + needed
+                    print(f"    需要原材料: {material} x{needed}")
+
+        print(f"原材料总需求: {material_needs}")
+
+        # 3. 处理基础需求，并合并原材料需求
         for base_product, base_quantity in base_demands.items():
-            # 获取当前库存
+            print(f"  处理基础餐品 {base_product}: 需求={base_quantity}")
+
+            # 使用仓库实际库存
             warehouse_stock = self.warehouse_counts.get(base_product, 0)
+            print(f"    仓库库存: {warehouse_stock}")
 
             # 总需求 = 基础需求 + 套餐原材料需求（如果该产品是原材料）
             total_needed = base_quantity
             if base_product in material_needs:
                 total_needed += material_needs[base_product]
+                print(f"    合并原材料需求: +{material_needs[base_product]} = {total_needed}")
                 # 从material_needs中移除，避免重复计算
                 del material_needs[base_product]
 
@@ -440,20 +481,29 @@ class IslandShopBase(Island, WarehouseOCR):
             net_needed = max(0, total_needed - warehouse_stock)
             if net_needed > 0:
                 result[base_product] = net_needed
+                print(f"    添加到生产计划: {base_product} x{net_needed}")
+            else:
+                print(f"    库存充足，不需要生产")
 
-        # 4. 处理剩余的原材料需求（非基础产品的原材料）
+        # 4. 处理剩余的原材料需求
         for material, material_quantity in material_needs.items():
+            print(f"  处理剩余原材料 {material}: 需求={material_quantity}")
+
             warehouse_stock = self.warehouse_counts.get(material, 0)
+            print(f"    仓库库存: {warehouse_stock}")
+
             net_needed = max(0, material_quantity - warehouse_stock)
             if net_needed > 0:
                 result[material] = net_needed
+                print(f"    添加到生产计划: {material} x{net_needed}")
+            else:
+                print(f"    库存充足，不需要生产")
 
         # 5. 考虑特殊材料限制
         result = self.apply_special_material_constraints(result)
 
-        print(f"需求处理结果:")
-        print(f"  原始需求: {source_products}")
-        print(f"  生产计划: {result}")
+        print(f"最终生产计划: {result}")
+        print(f"=== 离开process_meal_requirements ===")
 
         return result
 
