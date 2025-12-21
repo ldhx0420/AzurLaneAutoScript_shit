@@ -327,7 +327,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if (
                     self.appear(ISLAND_POST_CHECK, offset=1)
                     and not self.appear(POST_GET, offset=(50, 0))
-                    and not self.appear(POST_ADD, offset=1)
+                    and not self.appear(POST_ADD)
                     and not self.appear(ISLAND_POST_SELECT, offset=1)
             ):
                 self.device.click(POST_CLOSE)
@@ -338,7 +338,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         post_button = self.posts_ranch[post_id]  # post_id是字符串，获取按钮对象
         self.post_close()
         self.post_open(post_button)
-        self.device.screenshot()
         time_work = Duration(ISLAND_WORKING_TIME)
         self.ranch_post_get_and_add()
         self.post_open(post_button)
@@ -802,8 +801,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def test(self):
-        self.post_get_and_add()
+        self.ui_goto(page_island_warehouse_filter)
 if __name__ == "__main__":
     az =IslandFarm('alas', task='Alas')
     az.device.screenshot()
-    az.run()
+    az.test()

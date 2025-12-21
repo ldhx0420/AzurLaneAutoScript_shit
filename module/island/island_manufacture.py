@@ -3,11 +3,16 @@ from module.island_manufacture.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
 from module.ui.page import *
+from datetime import datetime, timedelta
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class IslandManufacture(IslandShopBase):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        # 先初始化基类
+        IslandShopBase.__init__(self, *args, **kwargs)
 
         # 设置店铺类型
         self.shop_type = "manufacture"
@@ -62,12 +67,22 @@ class IslandManufacture(IslandShopBase):
         for category in self.manufacture.values():
             self.shop_items.extend(category['items'])
 
-        # 初始化店铺
-        self.initialize_shop()
-
         # 初始化需求列表（制造业不需要外部配置的需求）
         self.post_products = {}
         self.post_products_task = {}
+
+        # 设置配置（使用默认值）
+        self.setup_config(
+            config_meal_prefix="IslandManufacture_Meal",
+            config_number_prefix="IslandManufacture_MealNumber",
+            config_task_prefix="IslandManufactureNextTask_MealTask",
+            config_task_number_prefix="IslandManufactureNextTask_MealTaskNumber",
+            config_post_number="IslandManufacture_PostNumber",
+            config_away_cook="IslandManufactureNextTask_AwayCook"
+        )
+
+        # 初始化店铺
+        self.initialize_shop()
 
         # 设置任务标志
         self.task_completed = False
@@ -102,18 +117,19 @@ class IslandManufacture(IslandShopBase):
         elif category == 'handmade':
             category_posts = ['ISLAND_HANDMADE_POST1', 'ISLAND_HANDMADE_POST2']
 
+        # 只返回实际存在的空闲岗位
         return [post_id for post_id in category_posts
                 if post_id in self.posts and self.posts[post_id]['status'] == 'idle']
 
     def select_product_with_material_check(self, post_id, product_list):
-        """选择产品并检查材料是否充足"""
+        """选择产品并检查材料是否充足（覆盖基类方法）"""
         post_button = self.posts[post_id]['button']
 
         # 打开岗位
         self.post_close()
         self.post_open(post_button)
 
-        while 1:
+        while True:
             self.device.screenshot()
             if self.appear_then_click(ISLAND_POST_SELECT, offset=1):
                 continue
@@ -150,6 +166,7 @@ class IslandManufacture(IslandShopBase):
                         self.device.click(POST_ADD_ORDER)
                         print(f"选择产品成功: {product_name}")
                         break  # 跳出产品选择循环
+
                 if not selected_product:
                     print("所有产品材料都不足，点击返回")
                     self.device.click(SELECT_UI_BACK)
@@ -171,12 +188,14 @@ class IslandManufacture(IslandShopBase):
                         if hasattr(self, time_var_name):
                             setattr(self, time_var_name, None)
                             print(f"清空岗位时间变量: {time_var_name}")
+
                 self.wait_until_appear(ISLAND_POSTMANAGE_CHECK)
                 self.device.sleep(0.3)
                 self.post_close()
 
                 for _ in range(self.post_produce_swipe_count):
                     self.post_manage_up_swipe(450)
+
                 if selected_product:
                     self.post_open(post_button)
                     # 获取生产时间和数量
@@ -189,20 +208,26 @@ class IslandManufacture(IslandShopBase):
                     finish_time = datetime.now() + time_value
 
                     # 设置时间变量
-                    post_num = post_id[-1]  # 假设post_id格式为 'ISLAND_XXX_POST1'
-                    time_var_name = f'{self.time_prefix}{post_num}'
-                    setattr(self, time_var_name, finish_time)
+                    # 从post_id中提取数字
+                    import re
+                    match = re.search(r'POST(\d+)', post_id)
+                    if match:
+                        post_num = match.group(1)
+                        time_var_name = f'{self.time_prefix}{post_num}'
+                        setattr(self, time_var_name, finish_time)
+
                     self.posts[post_id]['status'] = 'working'
 
                     print(f"已安排生产：{selected_product['name']} x{actual_number}")
                     self.post_close()
+                    return selected_product
 
-                return selected_product
+                break  # 跳出循环
 
         return None  # 正常情况下不会执行到这里
 
     def schedule_manufacture(self):
-        """安排制造业生产"""
+        """安排制造业生产（覆盖基类方法）"""
         # 1. 木料加工：只生产file_cabinet
         self.schedule_wood_processing()
         # 2. 工业生产
@@ -218,7 +243,6 @@ class IslandManufacture(IslandShopBase):
         # 木料加工只生产file_cabinet
         product_list = self.manufacture['wood_processing']['items']
         for post_id in idle_posts:
-            # 调用已经包含完整生产流程的方法
             self.select_product_with_material_check(post_id, product_list)
 
     def schedule_industrial_production(self):
@@ -238,6 +262,7 @@ class IslandManufacture(IslandShopBase):
 
         for post_id in idle_posts:
             self.select_product_with_material_check(post_id, product_list)
+
     def schedule_handmade(self):
         """安排手工生产"""
         idle_posts = self.get_idle_posts_by_category('handmade')
@@ -267,14 +292,15 @@ class IslandManufacture(IslandShopBase):
             self.select_product_with_material_check(post_id, product_list)
 
     def run(self):
-        """运行制造业逻辑"""
+        """运行制造业逻辑（完全覆盖基类方法）"""
         self.island_error = False
-        # 第一次进入岗位管理界面，检查岗位状态
+
+        # 第一步：检查岗位状态
         self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
         self.post_close()
 
-        # 第一次滑动以看到岗位（检查岗位状态时需要）
+        # 滑动以看到岗位
         for _ in range(self.post_manage_swipe_count):
             self.post_manage_up_swipe(450)
 
@@ -294,19 +320,19 @@ class IslandManufacture(IslandShopBase):
         self.get_warehouse_counts()
 
         # 判断是否有需要安排的任务
-        idle_posts_count = len(self.get_idle_posts())
-        if idle_posts_count > 0:
+        idle_posts = self.get_idle_posts()
+        if idle_posts:
             # 如果有空闲岗位，重新进入岗位管理界面安排生产
-            print(f"有 {idle_posts_count} 个空闲岗位，开始安排生产")
-            # 重新进入岗位管理界面，但不在界面内滑动
+            print(f"有 {len(idle_posts)} 个空闲岗位，开始安排生产")
+
+            # 重新进入岗位管理界面
             self.goto_postmanage()
             self.post_manage_mode(POST_MANAGE_PRODUCTION)
             self.post_close()
-            # 注意：这里不再滑动，滑动将在每个岗位安排前进行
+
+            # 滑动以看到岗位
             for _ in range(self.post_manage_swipe_count):
                 self.post_manage_up_swipe(450)
-            # 清空待生产列表（制造业不需要）
-            self.to_post_products = {}
 
             # 安排生产
             self.schedule_manufacture()
@@ -327,15 +353,46 @@ class IslandManufacture(IslandShopBase):
             next_check = datetime.now() + timedelta(hours=12)
             logger.info(f'没有任务需要安排，下次检查时间：{next_check.strftime("%H:%M")}')
             self.config.task_delay(target=[next_check])
+
         if self.island_error:
             from module.exception import GameBugError
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
+    # 以下方法重写以禁用基类的相关逻辑
+    def process_meal_requirements(self, source_products):
+        """制造业不需要处理套餐需求"""
+        return source_products
+
+    def process_task_requirements(self):
+        """制造业没有任务需求"""
+        pass
+
+    def process_away_cook(self):
+        """制造业没有挂机模式"""
+        pass
+
+    def schedule_production(self):
+        """制造业使用自己的生产调度"""
+        self.schedule_manufacture()
+
+    def get_max_producible(self, product, requested_quantity):
+        """制造业的生产数量由材料检查决定"""
+        return requested_quantity
+
+    def check_special_materials(self, product, batch_size):
+        """制造业没有特殊材料检查"""
+        return batch_size
+
+    def apply_special_material_constraints(self, requirements):
+        """制造业没有特殊材料限制"""
+        return requirements
+
     def test(self):
         if self.config.Industrial_Positions > 1:
             print(2)
+
+
 if __name__ == "__main__":
     az = IslandManufacture('alas', task='Alas')
     az.device.screenshot()
     az.test()
-

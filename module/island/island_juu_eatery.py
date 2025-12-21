@@ -3,6 +3,7 @@ from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
 from module.ui.page import *
 
+
 class IslandJuuEatery(IslandShopBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -11,6 +12,7 @@ class IslandJuuEatery(IslandShopBase):
         self.shop_type = "juu_eatery"
         self.time_prefix = "time_eatery"
         self.chef_config = self.config.IslandJuuEatery_Chef
+
         # 设置商品列表
         self.shop_items = [
             {'name': 'apple_pie', 'template': TEMPLATE_APPLE_PIE, 'var_name': 'apple_pie',
@@ -43,7 +45,7 @@ class IslandJuuEatery(IslandShopBase):
              'post_action': POST_STRAWBERRY_CHARLOTTE},
         ]
 
-        # 设置套餐组成和特殊餐品需求
+        # 设置套餐组成
         self.meal_compositions = {
             'berry_orange': {
                 'required': ['strawberry_charlotte', 'orange_pie'],
@@ -56,14 +58,6 @@ class IslandJuuEatery(IslandShopBase):
             'succulently_sweet': {
                 'required': ['corn_cup', 'rice_mango'],
                 'quantity_per': 1
-            }
-        }
-
-        # 特殊餐品需求（strawberry_charlotte需要2个cheese）
-        self.special_meal_requirements = {
-            'strawberry_charlotte': {
-                'required': ['cheese'],
-                'quantity_per': 2
             }
         }
 
@@ -88,12 +82,14 @@ class IslandJuuEatery(IslandShopBase):
 
         # 特殊材料：cheese
         self.cheese_stock = 0
+        self.special_materials = {'cheese': 0}  # 用于基类处理
 
         # 初始化店铺
         self.initialize_shop()
 
     def get_warehouse_counts(self):
         """覆盖：获取仓库数量，包括cheese"""
+        # 先调用父类方法获取基础库存
         super().get_warehouse_counts()
 
         # 额外获取cheese数量
@@ -104,6 +100,7 @@ class IslandJuuEatery(IslandShopBase):
         self.wait_until_appear(ISLAND_WAREHOUSE_GOTO_WAREHOUSE_FILTER)
         image = self.device.screenshot()
         self.cheese_stock = self.ocr_item_quantity(image, TEMPLATE_CHEESE)
+        self.special_materials['cheese'] = self.cheese_stock
         print(f"芝士数量: {self.cheese_stock}")
 
         # 将cheese库存也存入warehouse_counts，便于统一处理
@@ -111,69 +108,58 @@ class IslandJuuEatery(IslandShopBase):
 
         return self.warehouse_counts
 
-    def check_material_limits(self, product, batch_size):
-        """覆盖：检查材料限制，包括芝士和套餐原材料"""
+    def check_special_materials(self, product, batch_size):
+        """覆盖：检查特殊材料（芝士）限制"""
         if batch_size <= 0:
             return 0
 
-        # 先检查特殊材料（芝士）
+        # strawberry_charlotte需要2个芝士
         if product == 'strawberry_charlotte':
             cheese_needed_per_batch = 2
-            possible_batch = min(batch_size, self.cheese_stock // cheese_needed_per_batch)
-            if possible_batch <= 0:
-                print(f"生产 {product} 的芝士不足")
-                return 0
-            batch_size = possible_batch
-
-        # 检查套餐的原材料
-        if product in self.meal_compositions:
-            composition = self.meal_compositions[product]
-            for material in composition['required']:
-                material_stock = self.warehouse_counts.get(material, 0)
-                possible_batch = min(batch_size, material_stock // composition.get('quantity_per', 1))
-                if possible_batch <= 0:
-                    print(f"生产 {product} 的原材料 {material} 不足")
-                    return 0
-                batch_size = possible_batch
+            cheese_available = self.cheese_stock
+            max_by_cheese = cheese_available // cheese_needed_per_batch
+            return min(batch_size, max_by_cheese)
 
         return batch_size
 
     def deduct_materials(self, product, number):
-        """覆盖：扣除前置材料"""
+        """覆盖：扣除前置材料，包括芝士和套餐原材料"""
         # 先调用父类方法扣除套餐原材料
-        if product in self.meal_compositions:
-            composition = self.meal_compositions[product]
-            quantity_per = composition.get('quantity_per', 1)
-            for material in composition['required']:
-                material_needed = number * quantity_per
-                if material in self.warehouse_counts:
-                    self.warehouse_counts[material] -= material_needed
-                    print(f"扣除原材料：{material} -{material_needed} (用于制作 {product})")
+        super().deduct_materials(product, number)
 
-        # 处理strawberry_charlotte的芝士扣除
+        # strawberry_charlotte需要扣除芝士
         if product == 'strawberry_charlotte':
             cheese_needed = number * 2
-            self.cheese_stock -= cheese_needed
+            self.cheese_stock = max(0, self.cheese_stock - cheese_needed)
+            self.special_materials['cheese'] = self.cheese_stock
             if 'cheese' in self.warehouse_counts:
-                self.warehouse_counts['cheese'] -= cheese_needed
+                self.warehouse_counts['cheese'] = self.cheese_stock
             print(f"扣除芝士：cheese -{cheese_needed} (用于制作 {product})")
 
     def apply_special_material_constraints(self, requirements):
         """覆盖：根据芝士库存调整需求"""
         result = requirements.copy()
 
-        # 处理芝士限制
+        # 处理strawberry_charlotte的芝士限制
         if 'strawberry_charlotte' in result and result['strawberry_charlotte'] > 0:
             strawberry_needed = result['strawberry_charlotte']
             cheese_needed = strawberry_needed * 2
+            cheese_available = self.cheese_stock
 
-            if self.cheese_stock < cheese_needed:
+            if cheese_available < cheese_needed:
                 # 调整需求
-                max_strawberry = self.cheese_stock // 2
+                max_strawberry = cheese_available // 2
                 result['strawberry_charlotte'] = max_strawberry
-                print(f"芝士不足，将strawberry_charlotte需求从{strawberry_needed}调整为{max_strawberry}")
+                print(f"芝士不足：strawberry_charlotte需求从{strawberry_needed}调整为{max_strawberry}")
 
         return result
+
+    # 新增方法：处理芝士任务（如果需要）
+    def process_special_task(self):
+        """处理特殊任务（如芝士消耗）"""
+        # 这里可以添加处理芝士相关任务的逻辑
+        # 例如：如果芝士过多，强制生产strawberry_charlotte来消耗芝士
+        pass
 
 
 if __name__ == "__main__":

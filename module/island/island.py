@@ -147,7 +147,7 @@ class Island(SelectCharacter):
             if (
                     self.appear(ISLAND_POST_CHECK, offset=1)
                     and not self.appear(POST_GET, offset=(50, 0))
-                    and not self.appear(POST_ADD, offset=1)
+                    and not self.appear(POST_ADD)
                     and not self.appear(ISLAND_POST_SELECT, offset=1)
             ):
                 self.device.click(POST_CLOSE)

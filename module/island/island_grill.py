@@ -11,6 +11,7 @@ class IslandGrill(IslandShopBase):
         self.shop_type = "grill"
         self.time_prefix = "time_meal"
         self.chef_config = self.config.IslandGrill_Chef
+
         # 设置商品列表
         self.shop_items = [
             {'name': 'roasted_skewer', 'template': TEMPLATE_ROASTED_SKEWER, 'var_name': 'roasted_skewer',
@@ -69,12 +70,12 @@ class IslandGrill(IslandShopBase):
 
         # 初始化店铺
         self.initialize_shop()
+
     def test(self):
         self.island_error = False
         self.post_get_and_close()
         if self.island_error:
             print('error1')
-
 
 
 if __name__ == "__main__":

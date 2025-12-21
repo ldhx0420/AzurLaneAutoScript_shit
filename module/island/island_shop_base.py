@@ -212,13 +212,10 @@ class IslandShopBase(Island, WarehouseOCR):
         self.posts[post_id]['status'] = 'working'
         # 扣除前置材料（子类可覆盖）
         self.deduct_materials(product, actual_number)
-        # 更新需求
-        if product in self.to_post_products:
-            self.to_post_products[product] -= actual_number
-            if self.to_post_products[product] <= 0:
-                del self.to_post_products[product]
         print(f"已安排生产：{product} x{actual_number}")
         self.post_close()
+        # 返回实际生产数量
+        return actual_number
 
     def deduct_materials(self, product, number):
         """扣除前置材料（包括套餐原材料）"""
@@ -534,7 +531,7 @@ class IslandShopBase(Island, WarehouseOCR):
                 print("挂机模式：跳过生产")
 
     def schedule_production(self):
-        """修复：智能安排生产"""
+        """修复：智能安排生产，利用所有空闲岗位"""
         if not self.to_post_products:
             print("没有需要生产的餐品")
             return
@@ -547,6 +544,7 @@ class IslandShopBase(Island, WarehouseOCR):
 
         # 检查是否为挂机模式（无限数量生产）
         is_away_cook_mode = False
+        away_cook_product = None
         for product, quantity in self.to_post_products.items():
             if quantity == 9999:  # 挂机模式的标识
                 is_away_cook_mode = True
@@ -570,68 +568,105 @@ class IslandShopBase(Island, WarehouseOCR):
                 time_var_name = f'{self.time_prefix}{post_num}'
                 self.post_produce(post_id, away_cook_product, batch_size, time_var_name)
 
-                # 如果当前岗位安排成功，检查是否还有空闲岗位
-                idle_posts = self.get_idle_posts()
-                if not idle_posts:
-                    break
-
             print("挂机模式：已为所有空闲岗位安排生产")
             return
 
+        # 非挂机模式：处理所有产品需求
         products_to_process = list(self.to_post_products.items())
 
-        # 智能排序：先生产可立即生产的，再处理需要原材料的
-        def production_priority(item):
-            product, quantity = item
-            if product in self.meal_compositions:
-                # 检查套餐原材料是否充足
-                max_producible = self.get_max_producible(product, min(5, quantity))
-                if max_producible > 0:
-                    return 0  # 最高优先级：可立即生产的套餐
+        # 如果有多个产品需求，按优先级排序
+        if len(products_to_process) > 1:
+            def production_priority(item):
+                product, quantity = item
+                if product in self.meal_compositions:
+                    # 检查套餐原材料是否充足
+                    max_producible = self.get_max_producible(product, min(5, quantity))
+                    if max_producible > 0:
+                        return 0  # 最高优先级：可立即生产的套餐
+                    else:
+                        return 2  # 低优先级：原材料不足的套餐
                 else:
-                    return 2  # 低优先级：原材料不足的套餐
-            else:
-                # 基础餐品：检查是否可以生产
-                max_producible = self.get_max_producible(product, min(5, quantity))
-                if max_producible > 0:
-                    return 1  # 中等优先级：可生产的基础餐品
-                else:
-                    return 3  # 最低优先级：无法生产的基础餐品
+                    # 基础餐品：检查是否可以生产
+                    max_producible = self.get_max_producible(product, min(5, quantity))
+                    if max_producible > 0:
+                        return 1  # 中等优先级：可生产的基础餐品
+                    else:
+                        return 3  # 最低优先级：无法生产的基础餐品
 
-        sorted_products = sorted(products_to_process, key=production_priority)
+            products_to_process = sorted(products_to_process, key=production_priority)
 
-        # 处理每个产品需求
-        for product, required_quantity in sorted_products:
+        # 为每个空闲岗位分配生产任务
+        post_index = 0
+        total_idle_posts = len(idle_posts)
+
+        for product, required_quantity in products_to_process:
             if required_quantity <= 0:
                 continue
 
-            # 重新获取空闲岗位
-            idle_posts = self.get_idle_posts()
-            if not idle_posts:
-                print("所有岗位都在工作中")
-                break
-
-            # 计算最大可生产数量
-            max_producible = self.get_max_producible(product, min(5, required_quantity))
-
-            if max_producible <= 0:
-                print(f"生产 {product} 的材料不足，跳过")
+            # 获取当前还有需求的量
+            remaining_need = self.to_post_products.get(product, 0)
+            if remaining_need <= 0:
                 continue
 
-            # 分配生产
-            post_id = idle_posts[0]
-            post_num = post_id[-1]
-            time_var_name = f'{self.time_prefix}{post_num}'
+            # 为每个空闲岗位分配生产（直到需求满足或没有空闲岗位）
+            while remaining_need > 0 and post_index < total_idle_posts:
+                post_id = idle_posts[post_index]
 
-            # 安排生产
-            self.post_produce(post_id, product, max_producible, time_var_name)
+                # 计算最大可生产数量
+                max_producible = self.get_max_producible(product, min(5, remaining_need))
 
-            # 更新需求
-            self.to_post_products[product] -= max_producible
-            if self.to_post_products[product] <= 0:
-                del self.to_post_products[product]
+                if max_producible <= 0:
+                    print(f"生产 {product} 的材料不足，跳过")
+                    break
+
+                # 分配生产
+                post_num = post_id[-1]
+                time_var_name = f'{self.time_prefix}{post_num}'
+
+                # 安排生产并获取实际生产数量
+                actual_number = self.post_produce(post_id, product, max_producible, time_var_name)
+
+                # 更新需求
+                if product in self.to_post_products:
+                    self.to_post_products[product] -= actual_number
+                    if self.to_post_products[product] <= 0:
+                        del self.to_post_products[product]
+
+                # 更新剩余需求
+                remaining_need = self.to_post_products.get(product, 0)
+
+                # 移动到下一个岗位
+                post_index += 1
+
+            # 如果所有岗位都已分配，退出循环
+            if post_index >= total_idle_posts:
+                break
 
         print(f"生产安排完成，剩余需求: {self.to_post_products}")
+
+        # 如果还有空闲岗位且没有其他需求，可以安排挂机产品
+        if post_index < total_idle_posts and not self.to_post_products:
+            # 检查是否有挂机产品配置
+            away_cook = getattr(self.config, self.config_away_cook, None)
+            if away_cook and away_cook != "None" and away_cook in self.name_to_config:
+                print(f"仍有空闲岗位，安排挂机产品: {away_cook}")
+
+                # 为剩余的空闲岗位安排挂机生产
+                for i in range(post_index, total_idle_posts):
+                    post_id = idle_posts[i]
+
+                    # 检查材料限制
+                    batch_size = min(5, 9999)
+                    batch_size = self.get_max_producible(away_cook, batch_size)
+
+                    if batch_size <= 0:
+                        print(f"生产 {away_cook} 的前置材料不足，跳过岗位 {post_id}")
+                        continue
+
+                    # 分配生产
+                    post_num = post_id[-1]
+                    time_var_name = f'{self.time_prefix}{post_num}'
+                    self.post_produce(post_id, away_cook, batch_size, time_var_name)
 
     def check_material_limits(self, product, batch_size):
         """检查材料限制（通用）"""

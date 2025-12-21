@@ -37,7 +37,7 @@ class IslandRestaurant(IslandShopBase):
              'post_action': POST_HEARTY_MEAL},
         ]
 
-        # 设置套餐组成和特殊餐品需求
+        # 设置套餐组成
         self.meal_compositions = {
             'hearty_meal': {
                 'required': ['tofu', 'omurice'],
@@ -49,17 +49,8 @@ class IslandRestaurant(IslandShopBase):
             }
         }
 
-        # 特殊餐品需求（需要豆腐）
-        self.special_meal_requirements = {
-            'cabbage_tofu': {
-                'required': ['tofu'],
-                'quantity_per': 1
-            },
-            'tofu_meat': {
-                'required': ['tofu'],
-                'quantity_per': 2
-            }
-        }
+        # 特殊材料：豆腐（用于特殊餐品制作）
+        self.special_materials = {}
 
         # 设置岗位按钮
         self.post_buttons = {
@@ -83,75 +74,78 @@ class IslandRestaurant(IslandShopBase):
         # 初始化店铺
         self.initialize_shop()
 
-    def process_meal_requirements(self, source_products):
-        """覆盖：处理套餐分解和特殊餐品需求"""
-        result = {}
+    def check_special_materials(self, product, batch_size):
+        """覆盖：检查特殊材料（豆腐）限制"""
+        if batch_size <= 0:
+            return 0
 
-        # 处理套餐需求
-        for meal, quantity in source_products.items():
-            if meal in self.meal_compositions:
-                composition = self.meal_compositions[meal]
-                required_materials = composition['required']
-                required_quantity = composition['quantity_per'] * quantity
-                for req_material in required_materials:
-                    if req_material in result:
-                        result[req_material] += required_quantity
-                    else:
-                        result[req_material] = required_quantity
+        # cabbage_tofu需要1个豆腐
+        if product == 'cabbage_tofu':
+            tofu_needed_per_batch = 1
+            tofu_available = self.warehouse_counts.get('tofu', 0)
+            max_by_tofu = tofu_available // tofu_needed_per_batch
+            return min(batch_size, max_by_tofu)
 
-        # 处理特殊餐品需求
-        for meal, quantity in source_products.items():
-            if meal in self.special_meal_requirements:
-                requirement = self.special_meal_requirements[meal]
-                required_materials = requirement['required']
-                required_quantity = requirement['quantity_per'] * quantity
-                for req_material in required_materials:
-                    if req_material in result:
-                        result[req_material] += required_quantity
-                    else:
-                        result[req_material] = required_quantity
-
-        # 添加非套餐需求
-        for meal, quantity in source_products.items():
-            if meal not in self.meal_compositions and meal not in self.special_meal_requirements:
-                if meal in result:
-                    result[meal] += quantity
-                else:
-                    result[meal] = quantity
-
-        self.to_post_products = result
-        print(f"转换完成：source_products -> to_post_products")
-        print(f"原始需求: {source_products}")
-        print(f"生产计划: {self.to_post_products}")
-
-    def check_material_limits(self, product, batch_size):
-        """覆盖：检查材料限制，包括豆腐需求"""
-        batch_size = super().check_material_limits(product, batch_size)
-
-        # 处理特殊餐品的豆腐需求
-        if product in self.special_meal_requirements:
-            requirement = self.special_meal_requirements[product]
-            tofu_needed_per_batch = requirement['quantity_per']
-            tofu_stock = self.warehouse_counts.get('tofu', 0)
-            possible_batch = min(batch_size, tofu_stock // tofu_needed_per_batch)
-            if possible_batch <= 0:
-                print(f"生产 {product} 的豆腐不足")
-                return 0
-            batch_size = possible_batch
+        # tofu_meat需要2个豆腐
+        if product == 'tofu_meat':
+            tofu_needed_per_batch = 2
+            tofu_available = self.warehouse_counts.get('tofu', 0)
+            max_by_tofu = tofu_available // tofu_needed_per_batch
+            return min(batch_size, max_by_tofu)
 
         return batch_size
 
     def deduct_materials(self, product, number):
-        """覆盖：扣除前置材料"""
+        """覆盖：扣除前置材料，包括豆腐"""
+        # 先调用父类方法扣除套餐原材料
         super().deduct_materials(product, number)
 
-        # 处理特殊餐品的豆腐扣除
-        if product in self.special_meal_requirements:
-            requirement = self.special_meal_requirements[product]
-            tofu_needed = number * requirement['quantity_per']
+        # cabbage_tofu需要扣除豆腐
+        if product == 'cabbage_tofu':
+            tofu_needed = number * 1
             if 'tofu' in self.warehouse_counts:
                 self.warehouse_counts['tofu'] -= tofu_needed
                 print(f"扣除豆腐：tofu -{tofu_needed} (用于制作 {product})")
+
+        # tofu_meat需要扣除豆腐
+        if product == 'tofu_meat':
+            tofu_needed = number * 2
+            if 'tofu' in self.warehouse_counts:
+                self.warehouse_counts['tofu'] -= tofu_needed
+                print(f"扣除豆腐：tofu -{tofu_needed} (用于制作 {product})")
+
+    def apply_special_material_constraints(self, requirements):
+        """覆盖：根据豆腐库存调整需求"""
+        result = requirements.copy()
+
+        # 获取豆腐库存
+        tofu_stock = self.warehouse_counts.get('tofu', 0)
+
+        # 处理cabbage_tofu的需求
+        if 'cabbage_tofu' in result and result['cabbage_tofu'] > 0:
+            cabbage_needed = result['cabbage_tofu']
+            tofu_needed = cabbage_needed * 1  # 每个cabbage_tofu需要1个豆腐
+
+            if tofu_stock < tofu_needed:
+                # 调整需求
+                max_cabbage = tofu_stock // 1
+                result['cabbage_tofu'] = max_cabbage
+                print(f"豆腐不足：cabbage_tofu需求从{cabbage_needed}调整为{max_cabbage}")
+                tofu_stock -= max_cabbage  # 更新剩余豆腐
+
+        # 处理tofu_meat的需求
+        if 'tofu_meat' in result and result['tofu_meat'] > 0:
+            tofu_meat_needed = result['tofu_meat']
+            tofu_needed = tofu_meat_needed * 2  # 每个tofu_meat需要2个豆腐
+
+            if tofu_stock < tofu_needed:
+                # 调整需求
+                max_tofu_meat = tofu_stock // 2
+                result['tofu_meat'] = max_tofu_meat
+                print(f"豆腐不足：tofu_meat需求从{tofu_meat_needed}调整为{max_tofu_meat}")
+
+        return result
+
     def test(self):
         chef_config = getattr(self.config, "IslandRestaurant_Chef", "WorkerJuu")
         print(chef_config)
