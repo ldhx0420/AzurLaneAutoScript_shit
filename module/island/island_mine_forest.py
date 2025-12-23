@@ -93,8 +93,9 @@ class IslandMineForest(Island,LoginHandler):
         else:
             logger.info('No post timers found')
             self.config.task_delay(success=True)
-
+    def test(self):
+        self.post_get_and_add(SELECT_SILVER, SELECT_SILVER_CHECK)
 if __name__ == "__main__":
     az =IslandMineForest('alas', task='Alas')
     az.device.screenshot()
-    az.run()
+    az.test()

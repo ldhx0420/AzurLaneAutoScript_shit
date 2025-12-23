@@ -81,7 +81,7 @@ class Island(SelectCharacter):
     def select_product(self,product_selection,product_selection_check):
         while True:
             self.device.screenshot()
-            if self.appear(product_selection_check,offset=1):
+            if self.appear(product_selection_check,offset=1) and self.appear(product_selection_check):
                 break
             if self.appear_then_click(product_selection,offset=300):
                 continue
@@ -136,13 +136,13 @@ class Island(SelectCharacter):
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
                 self.select_character()
                 self.device.sleep(0.5)
-                self.device.click(SELECT_UI_CONFIRM)
+                self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
-            if self.appear(ISAND_SELECT_PRODUCT_CHECK,offset=1):
+            if self.appear(ISLAND_SELECT_PRODUCT_CHECK,offset=1):
                 self.select_product(product_selection,product_selection_check)
-                self.device.sleep(0.5)
-                self.appear_then_click(POST_MAX)
-                self.device.sleep(0.5)
+                self.device.sleep(0.3)
+                self.device.click(POST_MAX)
+                self.device.sleep(0.3)
                 self.device.click(POST_ADD_ORDER)
                 break
             if (
@@ -177,7 +177,7 @@ class Island(SelectCharacter):
             for _ in range(count):
                 self.post_manage_up_swipe(450)
         elif count == 1:
-            if self.appear(ISLAND_FARM_POST1, offset=50):
+            if self.appear(ISLAND_FARM_POST1, offset=100):
                 for _ in range(count):
                     self.post_manage_up_swipe(450)
             else:
@@ -188,7 +188,7 @@ class Island(SelectCharacter):
                 for _ in range(count):
                     self.post_manage_up_swipe(450)
         elif count == 0:
-            if not self.appear(ISLAND_FARM_POST1, offset=50):
+            if not self.appear(ISLAND_FARM_POST1, offset=100):
                 self.post_manage_down_swipe(450)
                 self.device.sleep(0.3)
                 self.post_manage_down_swipe(450)

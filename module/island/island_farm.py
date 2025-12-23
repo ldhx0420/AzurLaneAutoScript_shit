@@ -319,7 +319,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 self.select_character()
                 self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
-            if self.appear(ISAND_SELECT_PRODUCT_CHECK,offset=1):
+            if self.appear(ISLAND_SELECT_PRODUCT_CHECK,offset=1):
                 self.device.sleep(0.5)
                 self.device.click(POST_MAX)
                 self.device.sleep(0.5)
@@ -362,11 +362,13 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     self.select_character(character_name="Amagi_chan")
                 else:
                     self.select_character()
-                self.appear_then_click(SELECT_UI_CONFIRM)
+                self.device.click(SELECT_UI_CONFIRM)
                 continue
-            if self.appear(ISAND_SELECT_PRODUCT_CHECK, offset=1):
+            if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 self.select_product(selection, selection_check)
-                self.appear_then_click(POST_MAX)
+                self.device.sleep(0.3)
+                self.device.click(POST_MAX)
+                self.device.sleep(0.3)
                 self.device.click(POST_ADD_ORDER)
                 break
         self.post_open(post_button)  # 使用按钮对象
@@ -801,7 +803,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def test(self):
-        self.ranch_post_get_and_add()
+        self.post_manage_swipe(0)
 if __name__ == "__main__":
     az =IslandFarm('alas', task='Alas')
     az.device.screenshot()

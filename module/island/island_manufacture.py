@@ -310,12 +310,11 @@ class IslandManufacture(IslandShopBase):
             self.post_check(post_id, time_var_name)
             post_index += 1
 
-        # 获取仓库数量
-        self.get_warehouse_counts()
 
         # 判断是否有需要安排的任务
         idle_posts = self.get_idle_posts()
         if idle_posts:
+            self.get_warehouse_counts()
             # 如果有空闲岗位，重新进入岗位管理界面安排生产
             print(f"有 {len(idle_posts)} 个空闲岗位，开始安排生产")
 

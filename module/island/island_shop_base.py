@@ -164,10 +164,11 @@ class IslandShopBase(Island, WarehouseOCR):
                 self.select_character_for_shop()
                 self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
-            if self.appear(ISAND_SELECT_PRODUCT_CHECK, offset=1):
+            if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 self.select_product(selection, selection_check)
                 for _ in range(number - 1):
                     self.device.click(POST_ADD_ONE)
+                self.device.sleep(0.3)
                 self.device.click(POST_ADD_ORDER)
                 break
         self.wait_until_appear(ISLAND_POSTMANAGE_CHECK)
@@ -224,58 +225,57 @@ class IslandShopBase(Island, WarehouseOCR):
             setattr(self, time_var_name, None)
             post_id = f'ISLAND_{self.shop_type.upper()}_POST{i + 1}'
             self.post_check(post_id, time_var_name)
+        if self.get_idle_posts():
+            self.get_warehouse_counts()
+            self.goto_postmanage()
+            self.post_manage_mode(POST_MANAGE_PRODUCTION)
+            self.post_close()
+            self.post_manage_swipe(self.post_manage_swipe_count)
 
-        # 获取仓库数量
-        self.get_warehouse_counts()
-        self.goto_postmanage()
-        self.post_manage_mode(POST_MANAGE_PRODUCTION)
-        self.post_close()
-        self.post_manage_swipe(self.post_manage_swipe_count)
+            # 计算当前总库存
+            total_subtract = Counter(self.post_check_meal)
+            total_subtract.update(self.warehouse_counts)
+            self.current_totals = {}
+            for item in set(self.post_products.keys()) | set(total_subtract.keys()):
+                self.current_totals[item] = total_subtract.get(item, 0)
 
-        # 计算当前总库存
-        total_subtract = Counter(self.post_check_meal)
-        total_subtract.update(self.warehouse_counts)
-        self.current_totals = {}
-        for item in set(self.post_products.keys()) | set(total_subtract.keys()):
-            self.current_totals[item] = total_subtract.get(item, 0)
+            # ============ 调试信息 ============
+            print(f"=== 调试信息 ===")
+            print(f"仓库库存: {self.warehouse_counts}")
+            print(f"生产中库存: {self.post_check_meal}")
+            print(f"当前总库存: {self.current_totals}")
+            print(f"基础需求配置: {self.post_products}")
+            print("===============")
 
-        # ============ 调试信息 ============
-        print(f"=== 调试信息 ===")
-        print(f"仓库库存: {self.warehouse_counts}")
-        print(f"生产中库存: {self.post_check_meal}")
-        print(f"当前总库存: {self.current_totals}")
-        print(f"基础需求配置: {self.post_products}")
-        print("===============")
+            # 清空待生产列表
+            self.to_post_products = {}
 
-        # 清空待生产列表
-        self.to_post_products = {}
+            # ============ 基础需求计算 ============
+            print("阶段：基础需求")
+            # 计算基础需求
+            for item, target in self.post_products.items():
+                current = self.current_totals.get(item, 0)
+                if current < target:
+                    self.to_post_products[item] = target - current
 
-        # ============ 基础需求计算 ============
-        print("阶段：基础需求")
-        # 计算基础需求
-        for item, target in self.post_products.items():
-            current = self.current_totals.get(item, 0)
-            if current < target:
-                self.to_post_products[item] = target - current
+            # ============ 处理套餐分解 ============
+            if self.to_post_products:
+                self.to_post_products = self.process_meal_requirements(self.to_post_products)
+                print(f"基础需求生产计划: {self.to_post_products}")
 
-        # ============ 处理套餐分解 ============
-        if self.to_post_products:
-            self.to_post_products = self.process_meal_requirements(self.to_post_products)
-            print(f"基础需求生产计划: {self.to_post_products}")
-
-        # ============ 安排生产 ============
-        if self.to_post_products:
-            self.schedule_production()
-        else:
-            # 如果生产列表为空，检查是否有常驻餐品
-            print("基础需求已满足，检查常驻餐品")
-            self.process_away_cook()
-
-            # 如果有常驻餐品，安排生产
+            # ============ 安排生产 ============
             if self.to_post_products:
                 self.schedule_production()
             else:
-                print("没有常驻餐品设置，保持空闲状态")
+                # 如果生产列表为空，检查是否有常驻餐品
+                print("基础需求已满足，检查常驻餐品")
+                self.process_away_cook()
+
+                # 如果有常驻餐品，安排生产
+                if self.to_post_products:
+                    self.schedule_production()
+                else:
+                    print("没有常驻餐品设置，保持空闲状态")
 
         # ============ 设置任务延迟 ============
         finish_times = []
