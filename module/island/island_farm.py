@@ -408,10 +408,14 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if self.appear(ISLAND_SHOP_CHECK, offset=1):
                 break
             if self.appear_then_click(ISLAND_SHOP_CONFIRM):
+                self.device.sleep(0.5)
                 self.device.click(ISLAND_SHOP_CONFIRM)
                 self.device.sleep(0.5)
                 continue
-        if self.appear(ISLAND_GET):
+            if self.appear(ISLAND_SHOP_GET):
+                self.device.click(ISLAND_SHOP_CONFIRM)
+                continue
+        if self.appear(ISLAND_SHOP_GET):
             self.device.click(ISLAND_SHOP_CONFIRM)
     def mill_process(self, mill_item):
         """磨坊加工"""
@@ -439,11 +443,15 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if self.appear(ISLAND_MILL_CHECK, offset=1):
                 break
             if self.appear_then_click(ISLAND_SHOP_CONFIRM):
+                self.device.sleep(0.5)
                 self.device.click(ISLAND_SHOP_CONFIRM)
                 self.device.sleep(0.5)
                 continue
-        if self.appear(ISLAND_GET):
-            self.device.click(ISLAND_MILL_CHECK)
+            if self.appear(ISLAND_SHOP_GET):
+                self.device.click(ISLAND_SHOP_CONFIRM)
+                continue
+        if self.appear(ISLAND_SHOP_GET):
+            self.device.click(ISLAND_SHOP_CONFIRM)
         # 扣除原材料
         if required_material in self.inventory_counts['farm']:
             self.inventory_counts['farm'][required_material] -= 330
@@ -809,7 +817,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def test(self):
-        self.post_manage_swipe(0)
+        self.buy_seeds('potato','farm')
 if __name__ == "__main__":
     az =IslandFarm('alas', task='Alas')
     az.device.screenshot()
