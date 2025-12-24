@@ -408,9 +408,11 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if self.appear(ISLAND_SHOP_CHECK, offset=1):
                 break
             if self.appear_then_click(ISLAND_SHOP_CONFIRM):
+                self.device.click(ISLAND_SHOP_CONFIRM)
+                self.device.sleep(0.5)
                 continue
+        if self.appear(ISLAND_GET):
             self.device.click(ISLAND_SHOP_CONFIRM)
-
     def mill_process(self, mill_item):
         """磨坊加工"""
         mill_config = self.name_to_config[mill_item]
@@ -437,8 +439,9 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             if self.appear(ISLAND_MILL_CHECK, offset=1):
                 break
             if self.appear_then_click(ISLAND_SHOP_CONFIRM):
+                self.device.click(ISLAND_SHOP_CONFIRM)
+                self.device.sleep(0.5)
                 continue
-            self.device.click(ISLAND_SHOP_CONFIRM)
         if self.appear(ISLAND_GET):
             self.device.click(ISLAND_MILL_CHECK)
         # 扣除原材料
