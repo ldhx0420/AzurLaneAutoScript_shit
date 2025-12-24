@@ -83,7 +83,7 @@ class Island(SelectCharacter):
         attempt = 0
         while attempt < max_attempts:
             self.device.screenshot()
-            if self.appear(product_selection_check, offset=1):
+            if self.appear(product_selection_check, offset=1) and self.appear(product_selection_check):
                 return True
             if self.appear_then_click(product_selection, offset=300):
                 continue
