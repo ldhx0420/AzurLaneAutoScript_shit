@@ -2628,7 +2628,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     },
     "Waiter2": {
       "name": "IslandRestaurantBusiness.Waiter2.name",
@@ -2644,7 +2645,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     }
   },
   "IslandTeahouseBusiness": {
@@ -2673,7 +2675,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     },
     "Waiter2": {
       "name": "IslandTeahouseBusiness.Waiter2.name",
@@ -2689,7 +2692,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     }
   },
   "IslandGrillBusiness": {
@@ -2718,7 +2722,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     },
     "Waiter2": {
       "name": "IslandGrillBusiness.Waiter2.name",
@@ -2734,7 +2739,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     }
   },
   "IslandJuuEateryBusiness": {
@@ -2763,7 +2769,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     },
     "Waiter2": {
       "name": "IslandJuuEateryBusiness.Waiter2.name",
@@ -2779,7 +2786,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     }
   },
   "IslandJuuCoffeeBusiness": {
@@ -2808,7 +2816,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     },
     "Waiter2": {
       "name": "IslandJuuCoffeeBusiness.Waiter2.name",
@@ -2824,7 +2833,8 @@
       "Shimakaze": "Shimakaze",
       "Amagi_chan": "Amagi_chan",
       "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn"
+      "Unicorn": "Unicorn",
+      "ChaoHo": "ChaoHo"
     }
   },
   "IslandFarm": {

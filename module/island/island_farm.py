@@ -310,22 +310,23 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 continue
             if self.appear_then_click(POST_GET,offset=(50,0)):
                 self.device.click(ISLAND_POST_SAFE_AREA)
-                self.device.sleep(0.5)
+                self.device.click(ISLAND_POST_SAFE_AREA)
+                self.device.sleep(0.3)
                 continue
             if self.appear_then_click(POST_ADD):
                 continue
             if self.appear_then_click(ISLAND_POST_SELECT,offset=1):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
-                self.select_character()
-                self.appear_then_click(SELECT_UI_CONFIRM)
+                if self.select_character():
+                    self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK,offset=1):
-                self.device.sleep(0.5)
-                self.device.click(POST_MAX)
-                self.device.sleep(0.5)
-                self.device.click(POST_ADD_ORDER)
-                break
+                if self.appear_then_click(POST_MAX):
+                    self.device.sleep(0.3)
+                    self.device.click(POST_ADD_ORDER)
+                    break
+                continue
             if (
                     self.appear(ISLAND_POST_CHECK, offset=1)
                     and not self.appear(POST_GET, offset=(50, 0))
@@ -360,18 +361,19 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
                 if product == 'rubber' and self.config.PersonnelManagement_AmagiChanRubber:
-                    self.select_character(character_name="Amagi_chan")
+                    if self.select_character(character_name="Amagi_chan"):
+                        self.device.click(SELECT_UI_CONFIRM)
                 else:
-                    self.select_character()
-                self.device.click(SELECT_UI_CONFIRM)
+                    if self.select_character():
+                        self.device.click(SELECT_UI_CONFIRM)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
-                self.select_product(selection, selection_check)
-                self.device.sleep(0.3)
-                self.device.click(POST_MAX)
-                self.device.sleep(0.3)
-                self.device.click(POST_ADD_ORDER)
-                break
+                if self.select_product(selection, selection_check):
+                    self.device.sleep(0.3)
+                    self.device.click(POST_MAX)
+                    self.device.sleep(0.3)
+                    self.device.click(POST_ADD_ORDER)
+                    break
         self.post_open(post_button)  # 使用按钮对象
         time_value = time_work.ocr(self.device.image)
         finish_time = datetime.now() + time_value

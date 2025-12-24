@@ -79,13 +79,17 @@ class Island(SelectCharacter):
                 break
 
     def select_product(self,product_selection,product_selection_check):
-        while True:
+        max_attempts = 6  # 最大尝试次数
+        attempt = 0
+        while attempt < max_attempts:
             self.device.screenshot()
-            if self.appear(product_selection_check,offset=1) and self.appear(product_selection_check):
-                break
-            if self.appear_then_click(product_selection,offset=300):
+            if self.appear(product_selection_check, offset=1):
+                return True
+            if self.appear_then_click(product_selection, offset=300):
                 continue
             self.device.swipe_vector(vector=(0, -200), box=(333, 142, 431, 602), name="SelectionUpSwipe")
+            attempt += 1
+        return False
     def post_close(self):
         while 1:
             self.device.screenshot()
@@ -108,6 +112,8 @@ class Island(SelectCharacter):
                 continue
             if self.appear(ISLAND_GET,offset=1):
                 self.device.click(ISLAND_POST_SAFE_AREA)
+                self.device.click(ISLAND_POST_SAFE_AREA)
+                self.device.sleep(0.5)
                 continue
             if self.appear_then_click(POST_GET,offset=(50,0)):
                 continue
@@ -130,22 +136,24 @@ class Island(SelectCharacter):
                 continue
             if self.appear_then_click(POST_GET,offset=(50,0)):
                 self.device.click(ISLAND_POST_SAFE_AREA)
+                self.device.click(ISLAND_POST_SAFE_AREA)
                 self.device.sleep(0.5)
                 continue
             if self.appear_then_click(ISLAND_POST_SELECT,offset=1):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
-                self.select_character()
-                self.device.sleep(0.3)
-                self.appear_then_click(SELECT_UI_CONFIRM)
+                if self.select_character():
+                    self.device.sleep(0.3)
+                    self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK,offset=1):
-                self.select_product(product_selection,product_selection_check)
-                self.device.sleep(0.3)
-                self.device.click(POST_MAX)
-                self.device.sleep(0.3)
-                self.device.click(POST_ADD_ORDER)
-                break
+                if self.select_product(product_selection,product_selection_check):
+                    self.device.sleep(0.3)
+                    self.device.click(POST_MAX)
+                    self.device.sleep(0.3)
+                    self.device.click(POST_ADD_ORDER)
+                    break
+                continue
             if (
                     self.appear(ISLAND_POST_CHECK, offset=1)
                     and not self.appear(POST_GET, offset=(50, 0))

@@ -441,28 +441,28 @@ class GeneratedConfig:
 
     # Group `IslandRestaurantBusiness`
     IslandRestaurantBusiness_time = 'None'  # None, one, two
-    IslandRestaurantBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandRestaurantBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
+    IslandRestaurantBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
+    IslandRestaurantBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
 
     # Group `IslandTeahouseBusiness`
     IslandTeahouseBusiness_time = 'None'  # None, one, two
-    IslandTeahouseBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandTeahouseBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
+    IslandTeahouseBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
+    IslandTeahouseBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
 
     # Group `IslandGrillBusiness`
     IslandGrillBusiness_time = 'None'  # None, one, two
-    IslandGrillBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandGrillBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
+    IslandGrillBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
+    IslandGrillBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
 
     # Group `IslandJuuEateryBusiness`
     IslandJuuEateryBusiness_time = 'None'  # None, one, two
-    IslandJuuEateryBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandJuuEateryBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
+    IslandJuuEateryBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
+    IslandJuuEateryBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
 
     # Group `IslandJuuCoffeeBusiness`
     IslandJuuCoffeeBusiness_time = 'None'  # None, one, two
-    IslandJuuCoffeeBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
-    IslandJuuCoffeeBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn
+    IslandJuuCoffeeBusiness_Waiter1 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
+    IslandJuuCoffeeBusiness_Waiter2 = 'WorkerJuu'  # None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo
 
     # Group `IslandFarm`
     IslandFarm_Positions = 3  # 1, 2, 3, 4

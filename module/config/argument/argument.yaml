@@ -744,50 +744,50 @@ IslandRestaurantBusiness:
     option: [ None, one, two ]
   Waiter1:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
   Waiter2:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
 IslandTeahouseBusiness:
   time:
     value: None
     option: [ None, one, two ]
   Waiter1:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
   Waiter2:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
 IslandGrillBusiness:
   time:
     value: None
     option: [ None, one, two ]
   Waiter1:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
   Waiter2:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
 IslandJuuEateryBusiness:
   time:
     value: None
     option: [ None, one, two ]
   Waiter1:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
   Waiter2:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
 IslandJuuCoffeeBusiness:
   time:
     value: None
     option: [ None, one, two ]
   Waiter1:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
   Waiter2:
     value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn ]
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
 IslandFarm:
   Positions:
     value: 3

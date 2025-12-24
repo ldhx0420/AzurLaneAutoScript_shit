@@ -32,7 +32,8 @@ class SelectCharacter(UI):
             "Shimakaze": TEMPLATE_SHIMAKAZE,
             "Amagi_chan": TEMPLATE_AMAGI_CHAN,
             "Cheshire": TEMPLATE_CHESHIRE,
-            "Unicorn": TEMPLATE_UNICORN
+            "Unicorn": TEMPLATE_UNICORN,
+            "ChaoHo": TEMPLATE_CHAO_HO
         }
 
     def recognize_all_characters(self, screenshot):
@@ -105,13 +106,13 @@ class SelectCharacter(UI):
         """检查体力是否充沛"""
         stamina_area = self._get_absolute_area(button, self.stamina_area_relative)
         stamina_color = get_color(screenshot, stamina_area)
-        return color_similar(stamina_color, (18.0, 211.0, 186.0),80)
+        return color_similar(stamina_color, (18.0, 211.0, 186.0), 80)
 
     def _check_selected_status(self, screenshot, button):
         """检查是否已选中"""
         selected_area = self._get_absolute_area(button, self.selected_area_relative)
         selected_color = get_color(screenshot, selected_area)
-        return color_similar(selected_color, (19.0, 182.0, 234.0),80)
+        return color_similar(selected_color, (19.0, 182.0, 234.0), 80)
 
     def _get_absolute_area(self, button, relative_area):
         """将相对坐标转换为绝对坐标"""
@@ -159,31 +160,52 @@ class SelectCharacter(UI):
         return None
 
     def select_character(self, character_name="WorkerJuu"):
-        """选择指定角色，如果不可用则选择WorkerJuu"""
+        """
+        选择指定角色，如果不可用则选择WorkerJuu
+
+        Returns:
+            bool: 成功选择角色返回True，无角色可选返回False
+        """
         screenshot = self.device.screenshot()
         all_status = self.recognize_all_characters(screenshot)
         target_row, target_col = None, None
+
+        # 首先尝试选择指定角色
         if character_name != "WorkerJuu":
             for char_info in all_status:
                 if char_info["character_name"] == character_name:
                     if not char_info["is_working"] and char_info["has_stamina"]:
                         target_row, target_col = char_info["grid_position"]
                         break
+
+        # 如果指定角色不可用，则选择WorkerJuu
         if target_row is None:
             for char_info in all_status:
                 if char_info["character_name"] == "WorkerJuu":
                     target_row, target_col = char_info["grid_position"]
                     break
-        if target_row is not None and target_col is not None:
-            button = self.select_character_grid[target_row, target_col]
-            while True:
-                screenshot = self.device.screenshot()
-                current_char_info = self.get_character_by_position(screenshot, target_row, target_col)
-                if current_char_info and current_char_info["is_selected"]:
-                    break
-                else:
-                    self.device.click(button)
-                self.device.sleep(0.3)
+
+        # 如果连WorkerJuu都找不到，返回False
+        if target_row is None or target_col is None:
+            return False
+
+        # 点击选择角色
+        button = self.select_character_grid[target_row, target_col]
+        max_attempts = 5
+        attempts = 0
+
+        while attempts < max_attempts:
+            screenshot = self.device.screenshot()
+            current_char_info = self.get_character_by_position(screenshot, target_row, target_col)
+
+            if current_char_info and current_char_info["is_selected"]:
+                return True
+            else:
+                self.device.click(button)
+
+            self.device.sleep(0.3)
+            attempts += 1
+        return False
 
     def _is_character_available_by_config(self, character_name):
         """
@@ -248,6 +270,9 @@ class SelectCharacter(UI):
         """
         从指定角色列表中选择第一个空闲且体力充沛的角色
         如果无可选角色则选择WorkerJuu
+
+        Returns:
+            tuple: (row, col) 或 None
         """
         all_characters = self.recognize_all_characters(screenshot)
 
@@ -274,44 +299,66 @@ class SelectCharacter(UI):
         """
         选择第一个可用的A类角色，否则选择WorkerJuu
         角色列表: "Amagi_chan", "NewJersey", "Unicorn", "LeMalin"
+
+        Returns:
+            bool: 成功选择角色返回True，无角色可选返回False
         """
-        character_list = ["LeMalin", "Unicorn", "NewJersey", "Amagi_chan"]
+        character_list = ["LeMalin", "Unicorn", "ChaoHo", "NewJersey", "Amagi_chan"]
 
         screenshot = self.device.screenshot()
         position = self._select_first_available_character(screenshot, character_list)
 
-
+        # 如果没有找到任何可用角色
+        if position is None:
+            return False
         row, col = position
         button = self.select_character_grid[row, col]
-        while True:
+
+        max_attempts = 5
+        attempts = 0
+
+        while attempts < max_attempts:
             screenshot = self.device.screenshot()
             current_char_info = self.get_character_by_position(screenshot, row, col)
             if current_char_info and current_char_info["is_selected"]:
-                break
+                return True
             else:
                 self.device.click(button)
             self.device.sleep(0.3)
+            attempts += 1
+        return False
 
     def select_character_b(self):
         """
         选择第一个可用的B类角色，否则选择WorkerJuu
         合并了原来的B类和C类角色
         角色列表: "Cheshire", "YingSwei", "Shimakaze", "Saratoga", "Tashkent", "Akashi"
+
+        Returns:
+            bool: 成功选择角色返回True，无角色可选返回False
         """
         character_list = ["Cheshire", "YingSwei", "Shimakaze", "Saratoga", "Tashkent", "Akashi"]
         screenshot = self.device.screenshot()
         position = self._select_first_available_character(screenshot, character_list)
+
+        # 如果没有找到任何可用角色
+        if position is None:
+            return False
+
         row, col = position
         button = self.select_character_grid[row, col]
-        while True:
+
+        max_attempts = 5
+        attempts = 0
+
+        while attempts < max_attempts:
             screenshot = self.device.screenshot()
             current_char_info = self.get_character_by_position(screenshot, row, col)
             if current_char_info and current_char_info["is_selected"]:
-                break
+                return True
             else:
                 self.device.click(button)
+
             self.device.sleep(0.3)
-
-
-
-
+            attempts += 1
+        return False

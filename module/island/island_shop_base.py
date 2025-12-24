@@ -84,15 +84,15 @@ class IslandShopBase(Island, WarehouseOCR):
     def select_character_for_shop(self):
         """根据chef_config选择角色"""
         if self.chef_config == "WorkerJuu":
-            self.select_character()  # 默认WorkerJuu
+            return self.select_character()  # 默认WorkerJuu
         elif self.chef_config == "a":
-            self.select_character_a()
+            return self.select_character_a()
         elif self.chef_config == "b":
-            self.select_character_b()
+            return self.select_character_b()
         elif self.chef_config == "YingSwei":
-            self.select_character(character_name="YingSwei")
+            return self.select_character(character_name="YingSwei")
         else:
-            self.select_character()
+            return self.select_character()
 
     # ============ 通用方法 ============
     def post_check(self, post_id, time_var_name):
@@ -161,16 +161,17 @@ class IslandShopBase(Island, WarehouseOCR):
             if self.appear_then_click(ISLAND_POST_SELECT, offset=1):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
-                self.select_character_for_shop()
-                self.appear_then_click(SELECT_UI_CONFIRM)
+                if self.select_character_for_shop():
+                    self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
-                self.select_product(selection, selection_check)
-                for _ in range(number - 1):
-                    self.device.click(POST_ADD_ONE)
-                self.device.sleep(0.3)
-                self.device.click(POST_ADD_ORDER)
-                break
+                if self.select_product(selection, selection_check):
+                    for _ in range(number - 1):
+                        self.device.click(POST_ADD_ONE)
+                    self.device.sleep(0.3)
+                    self.device.click(POST_ADD_ORDER)
+                    break
+                continue
         self.wait_until_appear(ISLAND_POSTMANAGE_CHECK)
         self.device.sleep(0.3)
         self.post_manage_swipe(self.post_manage_swipe_count)
@@ -295,7 +296,7 @@ class IslandShopBase(Island, WarehouseOCR):
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def process_meal_requirements(self, source_products):
-        """处理套餐需求"""
+        """处理套餐需求（修正版）"""
         print(f"=== 进入process_meal_requirements ===")
         print(f"传入的需求: {source_products}")
 
@@ -318,41 +319,32 @@ class IslandShopBase(Island, WarehouseOCR):
         print(f"套餐需求: {meal_demands}")
         print(f"基础需求: {base_demands}")
 
-        # 2. 处理套餐需求
+        # 2. 处理套餐需求 - 直接加入结果（套餐可以直接生产）
+        # 注意：这里传入的已经是净需求，不需要再扣除库存
+        for meal, meal_quantity in meal_demands.items():
+            if meal_quantity > 0:
+                result[meal] = meal_quantity
+                print(f"  套餐直接生产: {meal} x{meal_quantity}")
+
+        # 3. 处理基础需求（这些可能是套餐的原材料）
         material_needs = {}
 
+        # 计算所有套餐需要的原材料总量
         for meal, meal_quantity in meal_demands.items():
-            # 使用仓库实际库存
-            meal_stock = self.warehouse_counts.get(meal, 0)
-            net_meal_needed = max(0, meal_quantity - meal_stock)
-
-            print(f"  处理套餐 {meal}: 需求={meal_quantity}, 库存={meal_stock}, 净需求={net_meal_needed}")
-
-            if net_meal_needed > 0:
-                # 套餐需求加入结果
-                result[meal] = net_meal_needed
-                print(f"    添加到生产计划: {meal} x{net_meal_needed}")
-
-                # 计算套餐所需原材料
+            if meal_quantity > 0 and meal in self.meal_compositions:
                 composition = self.meal_compositions[meal]
-                print(f"    套餐组成: {composition}")
-
                 for material in composition['required']:
-                    needed = net_meal_needed * composition.get('quantity_per', 1)
+                    needed = meal_quantity * composition.get('quantity_per', 1)
                     material_needs[material] = material_needs.get(material, 0) + needed
-                    print(f"    需要原材料: {material} x{needed}")
+                    print(f"  套餐 {meal} 需要原材料: {material} x{needed}")
 
         print(f"原材料总需求: {material_needs}")
 
-        # 3. 处理基础需求，并合并原材料需求
+        # 4. 处理基础需求，并考虑原材料需求
         for base_product, base_quantity in base_demands.items():
-            print(f"  处理基础餐品 {base_product}: 需求={base_quantity}")
+            print(f"  处理基础餐品 {base_product}: 基础需求={base_quantity}")
 
-            # 使用仓库实际库存
-            warehouse_stock = self.warehouse_counts.get(base_product, 0)
-            print(f"    仓库库存: {warehouse_stock}")
-
-            # 总需求 = 基础需求 + 套餐原材料需求（如果该产品是原材料）
+            # 总需求 = 基础需求 + 套餐原材料需求
             total_needed = base_quantity
             if base_product in material_needs:
                 total_needed += material_needs[base_product]
@@ -360,29 +352,33 @@ class IslandShopBase(Island, WarehouseOCR):
                 # 从material_needs中移除，避免重复计算
                 del material_needs[base_product]
 
-            # 计算净需求（一次性扣减库存）
-            net_needed = max(0, total_needed - warehouse_stock)
+            # 检查当前库存（包括生产中的）
+            current_stock = self.current_totals.get(base_product, 0)
+            print(f"    当前总库存: {current_stock}")
+
+            # 计算净需求
+            net_needed = max(0, total_needed - current_stock)
             if net_needed > 0:
                 result[base_product] = net_needed
                 print(f"    添加到生产计划: {base_product} x{net_needed}")
             else:
                 print(f"    库存充足，不需要生产")
 
-        # 4. 处理剩余的原材料需求
+        # 5. 处理剩余的原材料需求（这些基础餐品不在基础需求列表中）
         for material, material_quantity in material_needs.items():
             print(f"  处理剩余原材料 {material}: 需求={material_quantity}")
 
-            warehouse_stock = self.warehouse_counts.get(material, 0)
-            print(f"    仓库库存: {warehouse_stock}")
+            current_stock = self.current_totals.get(material, 0)
+            print(f"    当前总库存: {current_stock}")
 
-            net_needed = max(0, material_quantity - warehouse_stock)
+            net_needed = max(0, material_quantity - current_stock)
             if net_needed > 0:
                 result[material] = net_needed
                 print(f"    添加到生产计划: {material} x{net_needed}")
             else:
                 print(f"    库存充足，不需要生产")
 
-        # 5. 考虑特殊材料限制
+        # 6. 考虑特殊材料限制
         result = self.apply_special_material_constraints(result)
 
         print(f"最终生产计划: {result}")
@@ -391,14 +387,14 @@ class IslandShopBase(Island, WarehouseOCR):
         return result
 
     def get_max_producible(self, product, requested_quantity):
-        """获取最大可生产数量"""
+        """获取最大可生产数量（修正版）"""
         max_producible = requested_quantity
 
         # 1. 如果是套餐，检查原材料库存
         if product in self.meal_compositions:
             composition = self.meal_compositions[product]
             for material in composition['required']:
-                # 使用仓库实际库存
+                # 使用仓库实际库存（生产会消耗仓库库存）
                 material_stock = self.warehouse_counts.get(material, 0)
                 quantity_per = composition.get('quantity_per', 1)
                 if quantity_per == 0:
