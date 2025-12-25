@@ -2596,10 +2596,6 @@
       "0": "0",
       "1": "1",
       "2": "2"
-    },
-    "AmagiChanRubber": {
-      "name": "PersonnelManagement.AmagiChanRubber.name",
-      "help": "PersonnelManagement.AmagiChanRubber.help"
     }
   },
   "IslandRestaurantBusiness": {
@@ -2893,6 +2889,10 @@
       "2": "2",
       "3": "3",
       "4": "4"
+    },
+    "AmagiChanRubber": {
+      "name": "IslandOrchard.AmagiChanRubber.name",
+      "help": "IslandOrchard.AmagiChanRubber.help"
     }
   },
   "IslandNursery": {

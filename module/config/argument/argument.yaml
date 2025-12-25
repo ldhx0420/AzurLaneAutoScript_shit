@@ -737,7 +737,6 @@ PersonnelManagement:
   BusinessStatus:
     value: 0
     option: [ 0, 1, 2 ]
-  AmagiChanRubber: false
 IslandRestaurantBusiness:
   time:
     value: None
@@ -805,6 +804,7 @@ IslandOrchard:
   PlantRubber:
     value: 0
     option: [ 0, 1, 2, 3, 4 ]
+  AmagiChanRubber: false
 IslandNursery:
   Positions:
     value: 2

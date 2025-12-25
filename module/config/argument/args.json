@@ -9194,10 +9194,6 @@
           1,
           2
         ]
-      },
-      "AmagiChanRubber": {
-        "type": "checkbox",
-        "value": false
       }
     },
     "IslandRestaurantBusiness": {
@@ -9546,6 +9542,10 @@
           3,
           4
         ]
+      },
+      "AmagiChanRubber": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "IslandNursery": {

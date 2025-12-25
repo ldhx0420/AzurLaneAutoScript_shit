@@ -2596,10 +2596,6 @@
       "0": "0",
       "1": "1",
       "2": "2"
-    },
-    "AmagiChanRubber": {
-      "name": "小天城种橡胶",
-      "help": ""
     }
   },
   "IslandRestaurantBusiness": {
@@ -2893,6 +2889,10 @@
       "2": "2",
       "3": "3",
       "4": "4"
+    },
+    "AmagiChanRubber": {
+      "name": "天城种橡胶",
+      "help": ""
     }
   },
   "IslandNursery": {

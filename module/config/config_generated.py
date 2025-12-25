@@ -437,7 +437,6 @@ class GeneratedConfig:
 
     # Group `PersonnelManagement`
     PersonnelManagement_BusinessStatus = 0  # 0, 1, 2
-    PersonnelManagement_AmagiChanRubber = False
 
     # Group `IslandRestaurantBusiness`
     IslandRestaurantBusiness_time = 'None'  # None, one, two
@@ -474,6 +473,7 @@ class GeneratedConfig:
     IslandOrchard_MinOrchard = 300
     IslandOrchard_IgnoreAvocado = True
     IslandOrchard_PlantRubber = 0  # 0, 1, 2, 3, 4
+    IslandOrchard_AmagiChanRubber = False
 
     # Group `IslandNursery`
     IslandNursery_Positions = 2  # 1, 2

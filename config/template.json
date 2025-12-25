@@ -1908,8 +1908,7 @@
   },
   "PersonnelManagement": {
     "PersonnelManagement": {
-      "BusinessStatus": 0,
-      "AmagiChanRubber": false
+      "BusinessStatus": 0
     },
     "IslandRestaurantBusiness": {
       "time": "None",
@@ -1958,7 +1957,8 @@
       "Positions": 4,
       "MinOrchard": 300,
       "IgnoreAvocado": true,
-      "PlantRubber": 0
+      "PlantRubber": 0,
+      "AmagiChanRubber": false
     },
     "IslandNursery": {
       "Positions": 2,
