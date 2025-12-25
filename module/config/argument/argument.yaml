@@ -793,20 +793,26 @@ IslandFarm:
     value: 3
     option: [ 1, 2, 3, 4 ]
   MinFarm: 300
-  PlantPotatoes: true
+  PlantPotatoes:
+    value: 4
+    option: [ 0, 1, 2, 3, 4 ]
 IslandOrchard:
   Positions:
     value: 4
     option: [ 1, 2, 3, 4 ]
   MinOrchard: 300
   IgnoreAvocado: true
-  PlantRubber: true
+  PlantRubber:
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
 IslandNursery:
   Positions:
     value: 2
     option: [ 1, 2 ]
   MinNursery: 0
-  PlantLavender: true
+  PlantLavender:
+    value: 2
+    option: [ 0, 1, 2 ]
 IslandRanch:
   MinChicken: 300
   MinPork: 300

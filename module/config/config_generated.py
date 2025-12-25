@@ -467,18 +467,18 @@ class GeneratedConfig:
     # Group `IslandFarm`
     IslandFarm_Positions = 3  # 1, 2, 3, 4
     IslandFarm_MinFarm = 300
-    IslandFarm_PlantPotatoes = True
+    IslandFarm_PlantPotatoes = 4  # 0, 1, 2, 3, 4
 
     # Group `IslandOrchard`
     IslandOrchard_Positions = 4  # 1, 2, 3, 4
     IslandOrchard_MinOrchard = 300
     IslandOrchard_IgnoreAvocado = True
-    IslandOrchard_PlantRubber = True
+    IslandOrchard_PlantRubber = 0  # 0, 1, 2, 3, 4
 
     # Group `IslandNursery`
     IslandNursery_Positions = 2  # 1, 2
     IslandNursery_MinNursery = 0
-    IslandNursery_PlantLavender = True
+    IslandNursery_PlantLavender = 2  # 0, 1, 2
 
     # Group `IslandRanch`
     IslandRanch_MinChicken = 300

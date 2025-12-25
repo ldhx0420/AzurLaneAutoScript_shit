@@ -9506,8 +9506,15 @@
         "value": 300
       },
       "PlantPotatoes": {
-        "type": "checkbox",
-        "value": true
+        "type": "select",
+        "value": 4,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
       }
     },
     "IslandOrchard": {
@@ -9530,8 +9537,15 @@
         "value": true
       },
       "PlantRubber": {
-        "type": "checkbox",
-        "value": true
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
       }
     },
     "IslandNursery": {
@@ -9548,8 +9562,13 @@
         "value": 0
       },
       "PlantLavender": {
-        "type": "checkbox",
-        "value": true
+        "type": "select",
+        "value": 2,
+        "option": [
+          0,
+          1,
+          2
+        ]
       }
     },
     "IslandRanch": {

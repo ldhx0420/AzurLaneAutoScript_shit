@@ -9,29 +9,28 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
     def __init__(self, *args, **kwargs):
         Island.__init__(self, *args, **kwargs)
         WarehouseOCR.__init__(self)
-        # 直接使用配置变量，不再使用farm_config字典
-        self.farm_positions = self.config.IslandFarm_Positions  # 农田岗位数量 1-4
-        self.orchard_positions = self.config.IslandOrchard_Positions  # 果园岗位数量 1-4
-        self.nursery_positions = self.config.IslandNursery_Positions  # 苗圃岗位数量 1-2
-        self.ignore_avocado = self.config.IslandOrchard_IgnoreAvocado  # 是否忽略牛油果
-        self.farm_threshold = self.config.IslandFarm_MinFarm  # 农田库存阈值
-        self.orchard_threshold = self.config.IslandOrchard_MinOrchard  # 果园库存阈值
-        self.nursery_threshold = self.config.IslandNursery_MinNursery  # 苗圃库存阈值
+        self.farm_positions = self.config.IslandFarm_Positions
+        self.orchard_positions = self.config.IslandOrchard_Positions
+        self.nursery_positions = self.config.IslandNursery_Positions
+        self.ignore_avocado = self.config.IslandOrchard_IgnoreAvocado
+        self.farm_threshold = self.config.IslandFarm_MinFarm
+        self.orchard_threshold = self.config.IslandOrchard_MinOrchard
+        self.nursery_threshold = self.config.IslandNursery_MinNursery
         self.ranch_chicken_threshold = self.config.IslandRanch_MinChicken
         self.ranch_pork_threshold = self.config.IslandRanch_MinPork
 
-        # 保留默认作物配置
-        self.plant_config = {  # 默认作物配置
+        # 修改默认作物配置：数值类型，表示要种植默认作物的岗位数量
+        self.plant_config = {
             'farm': {
-                'plant_default': self.config.IslandFarm_PlantPotatoes,
+                'plant_default': self.config.IslandFarm_PlantPotatoes,  # 0-4
                 'default_crop': 'potato'
             },
             'orchard': {
-                'plant_default': self.config.IslandOrchard_PlantRubber,
-                'default_crop': 'rubber'  # 即使有默认作物也不种
+                'plant_default': self.config.IslandOrchard_PlantRubber,  # 0-4
+                'default_crop': 'rubber'
             },
             'nursery': {
-                'plant_default': self.config.IslandNursery_PlantLavender,
+                'plant_default': self.config.IslandNursery_PlantLavender,  # 0-2
                 'default_crop': 'lavender'
             }
         }
@@ -39,7 +38,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         self.INVENTORY_CONFIG = {
             'farm': {
                 'filter': FILTER_FARM,
-                'threshold': self.farm_threshold,  # 直接使用变量
+                'threshold': self.farm_threshold,
                 'items': [
                     {'name': 'wheat', 'template': TEMPLATE_WHEAT, 'var_name': 'wheat',
                      'selection': SELECT_WHEAT, 'selection_check': SELECT_WHEAT_CHECK,
@@ -77,7 +76,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             },
             'orchard': {
                 'filter': FILTER_ORCHARD,
-                'threshold': self.orchard_threshold,  # 直接使用变量
+                'threshold': self.orchard_threshold,
                 'items': [
                     {'name': 'apple', 'template': TEMPLATE_APPLE, 'var_name': 'apple',
                      'selection': SELECT_APPLE, 'selection_check': SELECT_APPLE_CHECK,
@@ -111,7 +110,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             },
             'nursery': {
                 'filter': FILTER_NURSERY,
-                'threshold': self.nursery_threshold,  # 直接使用变量
+                'threshold': self.nursery_threshold,
                 'items': [
                     {'name': 'carrot', 'template': TEMPLATE_CARROT, 'var_name': 'carrot',
                      'selection': SELECT_CARROT, 'selection_check': SELECT_CARROT_CHECK,
@@ -168,22 +167,21 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 ]
             }
         }
+
+        # 简化岗位信息，只保留按钮和作物信息
         self.posts = {
-            # 农场岗位
-            'ISLAND_FARM_POST1': {'status': 'none', 'button': ISLAND_FARM_POST1},
-            'ISLAND_FARM_POST2': {'status': 'none', 'button': ISLAND_FARM_POST2},
-            'ISLAND_FARM_POST3': {'status': 'none', 'button': ISLAND_FARM_POST3},
-            'ISLAND_FARM_POST4': {'status': 'none', 'button': ISLAND_FARM_POST4},
+            'ISLAND_FARM_POST1': {'button': ISLAND_FARM_POST1, 'crop': None},
+            'ISLAND_FARM_POST2': {'button': ISLAND_FARM_POST2, 'crop': None},
+            'ISLAND_FARM_POST3': {'button': ISLAND_FARM_POST3, 'crop': None},
+            'ISLAND_FARM_POST4': {'button': ISLAND_FARM_POST4, 'crop': None},
 
-            # 果园岗位
-            'ISLAND_ORCHARD_POST1': {'status': 'none', 'button': ISLAND_ORCHARD_POST1},
-            'ISLAND_ORCHARD_POST2': {'status': 'none', 'button': ISLAND_ORCHARD_POST2},
-            'ISLAND_ORCHARD_POST3': {'status': 'none', 'button': ISLAND_ORCHARD_POST3},
-            'ISLAND_ORCHARD_POST4': {'status': 'none', 'button': ISLAND_ORCHARD_POST4},
+            'ISLAND_ORCHARD_POST1': {'button': ISLAND_ORCHARD_POST1, 'crop': None},
+            'ISLAND_ORCHARD_POST2': {'button': ISLAND_ORCHARD_POST2, 'crop': None},
+            'ISLAND_ORCHARD_POST3': {'button': ISLAND_ORCHARD_POST3, 'crop': None},
+            'ISLAND_ORCHARD_POST4': {'button': ISLAND_ORCHARD_POST4, 'crop': None},
 
-            # 苗圃岗位
-            'ISLAND_NURSERY_POST1': {'status': 'none', 'button': ISLAND_NURSERY_POST1},
-            'ISLAND_NURSERY_POST2': {'status': 'none', 'button': ISLAND_NURSERY_POST2}
+            'ISLAND_NURSERY_POST1': {'button': ISLAND_NURSERY_POST1, 'crop': None},
+            'ISLAND_NURSERY_POST2': {'button': ISLAND_NURSERY_POST2, 'crop': None}
         }
         self.posts_ranch = {
             'ISLAND_RANCH_POST1': ISLAND_RANCH_POST1,
@@ -211,11 +209,11 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
     def check_inventory_and_prepare_lists(self):
         """检查库存并准备需要补种的列表"""
         for category in ['farm', 'orchard', 'nursery']:
-            inventory = self.warehouse_inventory(category)  # 改为只返回数量
+            inventory = self.warehouse_inventory(category)
             config = self.INVENTORY_CONFIG[category]
             threshold = config['threshold']
             self.inventory_counts[category] = inventory
-            for item_name, count in inventory.items():  # 现在item_name是作物名，count是数量
+            for item_name, count in inventory.items():
                 if category == 'orchard' and item_name == 'avocado' and self.ignore_avocado:
                     continue
                 if count < threshold:
@@ -224,7 +222,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
     def warehouse_inventory(self, category):
         """获取仓库库存信息"""
         config = self.INVENTORY_CONFIG[category]
-        self.ui_goto(page_island_warehouse_filter,get_ship=False)
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
         self.appear_then_click(FILTER_RESET)
         self.appear_then_click(config['filter'])
         self.appear_then_click(FILTER_CONFIRM)
@@ -233,14 +231,13 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         results = {}
         for item_config in config['items']:
             count = self.ocr_item_quantity(image, item_config['template'])
-            # 现在只返回数量，不返回完整信息
             results[item_config['name']] = count
             setattr(self, item_config['var_name'], count)
             print(f"{item_config['name']}: {count}")
         return results
 
     def warehouse_mill_ranch(self):
-        self.ui_goto(page_island_warehouse_filter,get_ship=False)
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
         self.appear_then_click(FILTER_RESET)
         self.appear_then_click(FILTER_PROCESSED)
         self.appear_then_click(FILTER_CONFIRM)
@@ -252,7 +249,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             count = self.ocr_item_quantity(image, item_config['template'])
             self.inventory_counts['mill'][item_config['name']] = count
             print(f"{item_config['name']}: {count}")
-        self.ui_goto(page_island_warehouse_filter,get_ship=False)
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
         self.appear_then_click(FILTER_RESET)
         self.appear_then_click(FILTER_RANCH)
         self.appear_then_click(FILTER_CONFIRM)
@@ -273,42 +270,40 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         return None
 
     def decided_lists(self, post_button, post_id, category, time_var_name):
-        # post_button: Button对象
-        # post_id: 字符串岗位ID，如 'ISLAND_FARM_POST1'
         self.post_close()
         self.post_open(post_button)
         self.device.screenshot()
         if self.appear(ISLAND_WORK_COMPLETE, offset=1):
-            self.posts[post_id]['status'] = 'idle'  # 使用字符串ID
+            self.posts[post_id]['crop'] = None
             setattr(self, time_var_name, None)
         elif self.appear(ISLAND_WORKING):
             product_name = self.post_plant_check(category)
             if product_name in self.to_plant_lists[category]:
                 self.to_plant_lists[category].remove(product_name)
+            self.posts[post_id]['crop'] = product_name
             time_work = Duration(ISLAND_WORKING_TIME)
             time_value = time_work.ocr(self.device.image)
             finish_time = datetime.now() + time_value
             setattr(self, time_var_name, finish_time)
-            # 从post_id字符串中提取索引
-            post_index = int(post_id[-1]) - 1  # 从 POST1 中提取 0
+            post_index = int(post_id[-1]) - 1
             if category in self.time_vars and post_index < len(self.time_vars[category]):
                 self.time_vars[category][post_index] = finish_time
-            self.posts[post_id]['status'] = 'working'  # 使用字符串ID
         elif self.appear(ISLAND_POST_SELECT, offset=1):
-            self.posts[post_id]['status'] = 'idle'  # 使用字符串ID
+            self.posts[post_id]['crop'] = None
             setattr(self, time_var_name, None)
         self.post_get_and_close()
+
     def ranch_post_get_and_add(self):
         while 1:
             self.device.screenshot()
-            if self.appear(ERROR1,offset=30):
+            if self.appear(ERROR1, offset=30):
                 self.device.click(POST_CLOSE)
                 self.island_error = True
                 continue
-            if self.appear(ISLAND_GET,offset=1):
+            if self.appear(ISLAND_GET, offset=1):
                 self.device.click(ISLAND_POST_SAFE_AREA)
                 continue
-            if self.appear_then_click(POST_GET,offset=(50,0)):
+            if self.appear_then_click(POST_GET, offset=(50, 0)):
                 self.device.sleep(0.3)
                 self.device.click(ISLAND_POST_SAFE_AREA)
                 self.device.sleep(0.3)
@@ -317,13 +312,13 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 continue
             if self.appear_then_click(POST_ADD):
                 continue
-            if self.appear_then_click(ISLAND_POST_SELECT,offset=1):
+            if self.appear_then_click(ISLAND_POST_SELECT, offset=1):
                 continue
-            if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
+            if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
                 if self.select_character():
                     self.appear_then_click(SELECT_UI_CONFIRM)
                 continue
-            if self.appear(ISLAND_SELECT_PRODUCT_CHECK,offset=1):
+            if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 if self.appear_then_click(POST_MAX):
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
@@ -339,8 +334,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 break
 
     def ranch_post(self, post_id, time_var_name):
-        """牧场岗位处理"""
-        post_button = self.posts_ranch[post_id]  # post_id是字符串，获取按钮对象
+        post_button = self.posts_ranch[post_id]
         self.post_close()
         self.post_open(post_button)
         time_work = Duration(ISLAND_WORKING_TIME)
@@ -350,9 +344,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         setattr(self, time_var_name, datetime.now() + time_value)
 
     def post_plant(self, post_button, product, category, time_var_name):
-        # post_button: Button对象
         self.post_close()
-        self.post_open(post_button)  # 使用按钮对象
+        self.post_open(post_button)
         self.device.screenshot()
         time_work = Duration(ISLAND_WORKING_TIME)
         selection = self.name_to_config[product]['selection']
@@ -376,10 +369,17 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
                     break
-        self.post_open(post_button)  # 使用按钮对象
+        self.post_open(post_button)
         time_value = time_work.ocr(self.device.image)
         finish_time = datetime.now() + time_value
         setattr(self, time_var_name, finish_time)
+
+        # 更新岗位作物信息
+        for post_id, post_info in self.posts.items():
+            if post_info['button'] == post_button:
+                post_info['crop'] = product
+                break
+        return True
 
     def buy_seeds(self, seed, category):
         category_map = {
@@ -419,13 +419,12 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 continue
         if self.appear(ISLAND_SHOP_GET):
             self.device.click(ISLAND_SHOP_CONFIRM)
+
     def mill_process(self, mill_item):
-        """磨坊加工"""
         mill_config = self.name_to_config[mill_item]
         mill_button = mill_config['mill']
         target = mill_config['number']
         required_material = mill_config['required_material']
-        # 检查原材料是否充足（需要至少330）
         if required_material in self.inventory_counts['farm']:
             if self.inventory_counts['farm'][required_material] < 330:
                 print(f"原材料{required_material}不足，无法加工{mill_item}")
@@ -436,10 +435,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 break
             if self.appear_then_click(mill_button, interval=0.3):
                 pass
-        # 设置购买数量
         if self.appear(ISLAND_SHOPPING_CHECK):
             self.set_buy_number(target)
-        # 确认购买
         while True:
             self.device.screenshot()
             if self.appear(ISLAND_MILL_CHECK, offset=1):
@@ -454,19 +451,15 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 continue
         if self.appear(ISLAND_SHOP_GET):
             self.device.click(ISLAND_SHOP_CONFIRM)
-        # 扣除原材料
         if required_material in self.inventory_counts['farm']:
             self.inventory_counts['farm'][required_material] -= 330
             print(f"扣除原材料{required_material} 330单位")
-        # 增加磨坊产品
-        self.inventory_counts['mill'][mill_item] = self.inventory_counts['mill'].get(mill_item, 0) + target*10
+        self.inventory_counts['mill'][mill_item] = self.inventory_counts['mill'].get(mill_item, 0) + target * 10
         print(f"加工完成：{mill_item} +{target}")
         return True
 
     def check_mill_needs(self):
-        """检查磨坊需求"""
         mill_needs = []
-        # 检查面粉需求（优先级最高）
         wheat_flour_count = self.inventory_counts['mill'].get('wheat_flour', 0)
         wheat_count = self.inventory_counts['farm'].get('wheat', 0)
 
@@ -474,18 +467,16 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             mill_needs.append('wheat_flour')
             print("需要加工面粉")
 
-        # 检查鸡饲料需求,饲料10倍产量,11份会产出110个饲料
         chicken_count = self.inventory_counts['ranch'].get('chicken', 0)
         chicken_feed_count = self.inventory_counts['mill'].get('chicken_feed', 0)
 
         if (chicken_count < self.config.IslandRanch_MinChicken and
                 wheat_count > 330 and
                 chicken_feed_count < 50 and
-                'wheat_flour' not in mill_needs):  # 面粉优先级更高
+                'wheat_flour' not in mill_needs):
             mill_needs.append('chicken_feed')
             print("需要加工鸡饲料")
 
-        # 检查猪饲料需求
         pork_count = self.inventory_counts['ranch'].get('pork', 0)
         pig_feed_count = self.inventory_counts['mill'].get('pig_feed', 0)
         corn_count = self.inventory_counts['farm'].get('corn', 0)
@@ -496,7 +487,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             mill_needs.append('pig_feed')
             print("需要加工猪饲料")
 
-        # 检查牛饲料需求
         cattle_feed_count = self.inventory_counts['mill'].get('cattle_feed', 0)
         pasture_count = self.inventory_counts['farm'].get('pasture', 0)
 
@@ -504,7 +494,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             mill_needs.append('cattle_feed')
             print("需要加工牛饲料")
 
-        # 检查羊饲料需求
         sheep_feed_count = self.inventory_counts['mill'].get('sheep_feed', 0)
 
         if sheep_feed_count < 50 and pasture_count > 330:
@@ -544,10 +533,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             add_one_clicks -= 1
 
     def check_ranch_needs(self):
-        """检查牧场需求"""
         ranch_needs = []
 
-        # 检查岗位1（养鸡）
         chicken_count = self.inventory_counts['ranch'].get('chicken', 0)
         chicken_feed_count = self.inventory_counts['mill'].get('chicken_feed', 0)
 
@@ -555,7 +542,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             ranch_needs.append('ISLAND_RANCH_POST1')
             print("需要执行养鸡任务")
 
-        # 检查岗位2（养猪）
         pork_count = self.inventory_counts['ranch'].get('pork', 0)
         pig_feed_count = self.inventory_counts['mill'].get('pig_feed', 0)
 
@@ -563,13 +549,11 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             ranch_needs.append('ISLAND_RANCH_POST2')
             print("需要执行养猪任务")
 
-        # 检查岗位3（养牛）
         cattle_feed_count = self.inventory_counts['mill'].get('cattle_feed', 0)
         if cattle_feed_count >= 50:
             ranch_needs.append('ISLAND_RANCH_POST3')
             print("需要执行养牛任务")
 
-        # 检查岗位4（养羊）
         sheep_feed_count = self.inventory_counts['mill'].get('sheep_feed', 0)
         if sheep_feed_count >= 50:
             ranch_needs.append('ISLAND_RANCH_POST4')
@@ -580,19 +564,16 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         self.island_error = False
         self.check_inventory_and_prepare_lists()
         self.warehouse_mill_ranch()
-        # 打印当前库存
         print("\n当前库存统计:")
         print(f"农场库存: {self.inventory_counts['farm']}")
         print(f"磨坊库存: {self.inventory_counts['mill']}")
         print(f"牧场库存: {self.inventory_counts['ranch']}")
 
-        # 3. 磨坊加工
         print("\n[3/5] 检查并执行磨坊加工...")
         mill_needs = self.check_mill_needs()
         if mill_needs:
             self.goto_mill()
             print(f"需要加工的项目: {mill_needs}")
-            # 按照优先级加工：面粉 > 鸡饲料 > 猪饲料 > 牛饲料 > 羊饲料
             priority_order = ['wheat_flour', 'chicken_feed', 'pig_feed', 'cattle_feed', 'sheep_feed']
             for item in priority_order:
                 if item in mill_needs:
@@ -610,17 +591,15 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
 
         if ranch_needs:
             print(f"需要执行的牧场岗位: {ranch_needs}")
-            # 执行牧场岗位
             for post_id in ranch_needs:
-                time_var_name = f'ranch_time_{post_id[-1]}'  # 使用岗位编号作为时间变量
+                time_var_name = f'ranch_time_{post_id[-1]}'
                 self.ranch_post(post_id, time_var_name)
         self.time_vars = {
-            'farm': [None] * self.farm_positions,  # 直接使用变量
-            'orchard': [None] * self.orchard_positions,  # 直接使用变量
-            'nursery': [None] * self.nursery_positions  # 直接使用变量
+            'farm': [None] * self.farm_positions,
+            'orchard': [None] * self.orchard_positions,
+            'nursery': [None] * self.nursery_positions
         }
 
-        # 岗位映射，这里存储的是按钮对象
         post_button_mapping = {
             'farm': [self.posts['ISLAND_FARM_POST1']['button'],
                      self.posts['ISLAND_FARM_POST2']['button'],
@@ -634,37 +613,31 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                         self.posts['ISLAND_NURSERY_POST2']['button']]
         }
 
-        # 根据配置取相应数量的岗位
         post_buttons = {
-            'farm': post_button_mapping['farm'][:self.farm_positions],  # 直接使用变量
-            'orchard': post_button_mapping['orchard'][:self.orchard_positions],  # 直接使用变量
-            'nursery': post_button_mapping['nursery'][:self.nursery_positions]  # 直接使用变量
+            'farm': post_button_mapping['farm'][:self.farm_positions],
+            'orchard': post_button_mapping['orchard'][:self.orchard_positions],
+            'nursery': post_button_mapping['nursery'][:self.nursery_positions]
         }
 
-        # 创建岗位ID到按钮的映射
         post_id_to_button = {}
         for category in ['farm', 'orchard', 'nursery']:
-            positions_count = getattr(self, f'{category}_positions')  # 获取对应类别的岗位数量
+            positions_count = getattr(self, f'{category}_positions')
             for i, button in enumerate(post_buttons[category]):
                 post_id = f'ISLAND_{category.upper()}_POST{i + 1}'
                 post_id_to_button[post_id] = button
 
         idle_posts = {'farm': [], 'orchard': [], 'nursery': []}
 
-        # 检查岗位状态
         for category in ['farm', 'orchard', 'nursery']:
             positions = len(self.time_vars[category])
             for i in range(positions):
                 post_id = f'ISLAND_{category.upper()}_POST{i + 1}'
                 time_var_name = f'{category}_time_{i}'
 
-                # 获取按钮对象
                 button = post_id_to_button[post_id]
-
-                # 传递按钮对象和岗位ID字符串给decided_lists
                 self.decided_lists(button, post_id, category, time_var_name)
 
-                if self.posts[post_id]['status'] == 'idle':
+                if self.posts[post_id]['crop'] is None:
                     idle_posts[category].append({
                         'post_id': post_id,
                         'button': button,
@@ -676,15 +649,29 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         for category in ['farm', 'orchard', 'nursery']:
             print(f"{category}: {len(idle_posts[category])}个空闲岗位")
 
-        # 2. 统计所有需要购买的种子
         all_plants_to_buy = {'farm': [], 'orchard': [], 'nursery': []}
 
         for category in ['farm', 'orchard', 'nursery']:
             if not idle_posts[category]:
                 continue
+
             idle_count = len(idle_posts[category])
-            plant_config = self.plant_config[category]  # 使用保留的plant_config
+            plant_config = self.plant_config[category]
             to_plant_list = self.to_plant_lists[category]
+            default_crop = plant_config['default_crop']
+            default_count = plant_config['plant_default']
+
+            already_planted_default = 0
+            positions_count = getattr(self, f'{category}_positions')
+            for i in range(positions_count):
+                post_id = f'ISLAND_{category.upper()}_POST{i + 1}'
+                if self.posts[post_id]['crop'] == default_crop:
+                    already_planted_default += 1
+
+            print(f"{category}已有{already_planted_default}个岗位种植了{default_crop}，配置要求{default_count}个")
+
+            need_default = max(0, default_count - already_planted_default)
+
             num_from_list = min(len(to_plant_list), idle_count)
 
             for i in range(num_from_list):
@@ -692,32 +679,28 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 all_plants_to_buy[category].append(crop_name)
 
             remaining_idle = idle_count - num_from_list
-            if remaining_idle > 0 and plant_config['plant_default']:
-                default_crop = plant_config['default_crop']
-                if default_crop not in to_plant_list:
-                    for _ in range(remaining_idle):
-                        all_plants_to_buy[category].append(default_crop)
+
+            if remaining_idle > 0 and need_default > 0:
+                actual_default = min(remaining_idle, need_default)
+                for _ in range(actual_default):
+                    all_plants_to_buy[category].append(default_crop)
 
             if all_plants_to_buy[category]:
                 print(f"\n{category}需要购买的作物: {all_plants_to_buy[category]}")
 
-        # 3. 如果有需要购买的种子，统一购买
         need_to_buy_seeds = any(all_plants_to_buy.values())
 
         if need_to_buy_seeds:
-            self.ui_goto(page_island_shop,get_ship=False)
+            self.ui_goto(page_island_shop, get_ship=False)
 
-            # 按类别购买种子
             for category in ['farm', 'orchard', 'nursery']:
                 if not all_plants_to_buy[category]:
                     continue
 
-                # 统计该类别需要购买的作物和数量
                 crop_counts = {}
                 for crop_name in all_plants_to_buy[category]:
                     crop_counts[crop_name] = crop_counts.get(crop_name, 0) + 1
 
-                # 切换到对应的商店标签页
                 category_map = {
                     'farm': (SHOP_FARM_CHECK, SHOP_FARM),
                     'orchard': (SHOP_ORCHARD_CHECK, SHOP_ORCHARD),
@@ -725,7 +708,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 }
                 check_const, click_const = category_map[category]
 
-                # 切换到对应标签页
                 while 1:
                     self.device.screenshot()
                     if self.appear(check_const):
@@ -733,79 +715,50 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     if self.appear_then_click(click_const, interval=0.3):
                         pass
 
-                # 购买该类别所有种子
                 for crop, count in crop_counts.items():
                     print(f"购买{category}类别的{crop}种子，{count}份")
                     for _ in range(count):
                         self.buy_seeds(crop, category)
 
-            # 购买完成后返回岗位管理界面
             self.goto_management()
-            self.ui_goto(page_island_postmanage,get_ship=False)
+            self.ui_goto(page_island_postmanage, get_ship=False)
             self.post_manage_mode(POST_MANAGE_PRODUCTION)
             self.post_close()
 
-        # 4. 播种空闲岗位
         for category in ['farm', 'orchard', 'nursery']:
             if not idle_posts[category]:
                 continue
 
             idle_posts_list = idle_posts[category]
-            to_plant_list = self.to_plant_lists[category]
-            plant_config = self.plant_config[category]  # 使用保留的plant_config
-
-            # 我们需要跟踪哪些作物已经播种了
-            planted_crops = []
+            crops_to_plant = all_plants_to_buy[category]
 
             for i, post_info in enumerate(idle_posts_list):
-                post_id = post_info['post_id']
-                button = post_info['button']
-                index = post_info['index']
-                time_var_name = post_info['time_var_name']
-
-                crop_to_plant = None
-
-                # 首先尝试从补种列表中取作物
-                if i < len(to_plant_list):
-                    crop_to_plant = to_plant_list[i]
-                # 如果还有空闲岗位并且配置了种植默认作物
-                elif plant_config['plant_default']:
-                    default_crop = plant_config['default_crop']
-                    # 检查默认作物是否已经在补种列表中
-                    if default_crop not in to_plant_list:
-                        crop_to_plant = default_crop
-                    else:
-                        print(f"跳过{category}岗位{post_id}: 默认作物{default_crop}已在补种列表中")
-                        continue
-                else:
-                    print(f"跳过{category}岗位{post_id}: 没有需要种植的作物")
+                if i >= len(crops_to_plant):
+                    print(f"跳过{category}岗位{post_info['post_id']}: 没有需要种植的作物")
                     continue
 
-                if crop_to_plant:
-                    print(f"播种{category}岗位{post_id}: {crop_to_plant}")
-                    success = self.post_plant(button, crop_to_plant, category, time_var_name)
-                    if success:
-                        planted_crops.append(crop_to_plant)
+                crop_to_plant = crops_to_plant[i]
+                print(f"尝试播种{category}岗位{post_info['post_id']}: {crop_to_plant}")
 
-            # 播种完成后，从补种列表中移除已成功播种的作物
-            for crop in planted_crops:
-                if crop in self.to_plant_lists[category]:
-                    self.to_plant_lists[category].remove(crop)
+                success = self.post_plant(post_info['button'], crop_to_plant, category, post_info['time_var_name'])
+
+                if success:
+                    print(f"播种{category}岗位{post_info['post_id']}成功: {crop_to_plant}")
+                    if crop_to_plant in self.to_plant_lists[category]:
+                        self.to_plant_lists[category].remove(crop_to_plant)
 
         print("\n农田管理完成！")
         future_finish = []
 
-        # 使用正确的时间变量名格式收集时间
         for category in ['farm', 'orchard', 'nursery']:
             positions = len(self.time_vars[category])
             for i in range(positions):
-                var_name = f'{category}_time_{i}'  # 与decided_lists中的格式一致
+                var_name = f'{category}_time_{i}'
                 if hasattr(self, var_name):
                     time_var = getattr(self, var_name)
                     if time_var is not None:
                         future_finish.append(time_var)
 
-        # 排序并设置延迟
         if future_finish:
             future_finish.sort()
             self.config.task_delay(target=future_finish)
@@ -819,8 +772,10 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def test(self):
-        self.buy_seeds('potato','farm')
+        self.buy_seeds('potato', 'farm')
+
+
 if __name__ == "__main__":
-    az =IslandFarm('alas', task='Alas')
+    az = IslandFarm('alas', task='Alas')
     az.device.screenshot()
     az.test()

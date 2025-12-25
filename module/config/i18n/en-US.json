@@ -2856,7 +2856,12 @@
     },
     "PlantPotatoes": {
       "name": "IslandFarm.PlantPotatoes.name",
-      "help": "IslandFarm.PlantPotatoes.help"
+      "help": "IslandFarm.PlantPotatoes.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
     }
   },
   "IslandOrchard": {
@@ -2882,7 +2887,12 @@
     },
     "PlantRubber": {
       "name": "IslandOrchard.PlantRubber.name",
-      "help": "IslandOrchard.PlantRubber.help"
+      "help": "IslandOrchard.PlantRubber.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4"
     }
   },
   "IslandNursery": {
@@ -2902,7 +2912,10 @@
     },
     "PlantLavender": {
       "name": "IslandNursery.PlantLavender.name",
-      "help": "IslandNursery.PlantLavender.help"
+      "help": "IslandNursery.PlantLavender.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
     }
   },
   "IslandRanch": {

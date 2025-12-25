@@ -1952,18 +1952,18 @@
     "IslandFarm": {
       "Positions": 3,
       "MinFarm": 300,
-      "PlantPotatoes": true
+      "PlantPotatoes": 4
     },
     "IslandOrchard": {
       "Positions": 4,
       "MinOrchard": 300,
       "IgnoreAvocado": true,
-      "PlantRubber": true
+      "PlantRubber": 0
     },
     "IslandNursery": {
       "Positions": 2,
       "MinNursery": 0,
-      "PlantLavender": true
+      "PlantLavender": 2
     },
     "IslandRanch": {
       "MinChicken": 300,
