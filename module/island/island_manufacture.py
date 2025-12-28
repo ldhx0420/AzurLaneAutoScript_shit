@@ -129,7 +129,9 @@ class IslandManufacture(IslandShopBase):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
                 if self.select_character():
+                    self.device.sleep(0.5)
                     self.appear_then_click(SELECT_UI_CONFIRM)
+                    self.device.sleep(0.5)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 selected_product = None

@@ -162,7 +162,9 @@ class IslandShopBase(Island, WarehouseOCR):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
                 if self.select_character_for_shop():
+                    self.device.sleep(0.5)
                     self.appear_then_click(SELECT_UI_CONFIRM)
+                    self.device.sleep(0.5)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 if self.select_product(selection, selection_check):
@@ -170,6 +172,7 @@ class IslandShopBase(Island, WarehouseOCR):
                         self.device.click(POST_ADD_ONE)
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
+                    self.device.sleep(0.5)
                     break
                 continue
         self.wait_until_appear(ISLAND_POSTMANAGE_CHECK)

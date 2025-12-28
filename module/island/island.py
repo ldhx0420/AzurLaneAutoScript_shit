@@ -149,8 +149,9 @@ class Island(SelectCharacter):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK,offset=1):
                 if self.select_character():
-                    self.device.sleep(0.3)
+                    self.device.sleep(0.5)
                     self.appear_then_click(SELECT_UI_CONFIRM)
+                    self.device.sleep(0.5)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK,offset=1):
                 if self.select_product(product_selection,product_selection_check):
@@ -158,6 +159,7 @@ class Island(SelectCharacter):
                     self.device.click(POST_MAX)
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
+                    self.device.sleep(0.5)
                     break
                 continue
             if (

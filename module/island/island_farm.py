@@ -316,12 +316,15 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
                 if self.select_character():
+                    self.device.sleep(0.5)
                     self.appear_then_click(SELECT_UI_CONFIRM)
+                    self.device.sleep(0.5)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 if self.appear_then_click(POST_MAX):
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
+                    self.device.sleep(0.5)
                     break
                 continue
             if (
@@ -360,7 +363,9 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                         self.device.click(SELECT_UI_CONFIRM)
                 else:
                     if self.select_character():
+                        self.device.sleep(0.5)
                         self.device.click(SELECT_UI_CONFIRM)
+                        self.device.sleep(0.5)
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 if self.select_product(selection, selection_check):
@@ -368,6 +373,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     self.device.click(POST_MAX)
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
+                    self.device.sleep(0.5)
                     break
         self.post_open(post_button)
         time_value = time_work.ocr(self.device.image)
