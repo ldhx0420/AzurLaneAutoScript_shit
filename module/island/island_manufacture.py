@@ -249,7 +249,7 @@ class IslandManufacture(IslandShopBase):
         # 检查库存iron_nail
         iron_nail_stock = self.warehouse_counts.get('iron_nail', 0)
         # 根据规则选择产品
-        if iron_nail_stock >= 15:
+        if iron_nail_stock >= 20:
             product_list = [item for item in self.manufacture['industrial_production']['items']
                             if item['name'] == 'cutlery']
         else:
