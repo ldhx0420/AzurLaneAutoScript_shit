@@ -78,17 +78,26 @@ class Island(SelectCharacter):
             elif self.appear(post_manage_mode):
                 break
 
-    def select_product(self,product_selection,product_selection_check):
+    def select_product(self, product_selection, product_selection_check):
         max_attempts = 6  # 最大尝试次数
         attempt = 0
+
         while attempt < max_attempts:
             self.device.screenshot()
-            if self.appear(product_selection_check, offset=1) and self.appear(product_selection_check):
+
+            # 使用形状+颜色双重验证来识别 product_selection_check
+            if self.match_template_color(product_selection_check, offset=20, similarity=0.85, threshold=10):
                 return True
-            if self.appear_then_click(product_selection, offset=300):
+
+            # 使用形状+颜色双重验证来识别 product_selection 并点击
+            if self.match_template_color(product_selection, offset=300, similarity=0.85, threshold=10):
+                self.device.click(product_selection)
                 continue
+
+            # 如果都不匹配，则滑动寻找
             self.device.swipe_vector(vector=(0, -200), box=(333, 142, 431, 602), name="SelectionUpSwipe")
             attempt += 1
+
         return False
     def post_close(self):
         while 1:
@@ -185,10 +194,10 @@ class Island(SelectCharacter):
                 continue
     def post_manage_up_swipe(self,distance):
         self.device.swipe_vector(vector=(0, -distance), box=(688, 69, 725, 656), name="PostUpSwipe")
-        self.device.click(ISLAND_WORKING)
+        self.device.click(POST_MANAGE_SWIPE_STOP)
     def post_manage_down_swipe(self,distance):
         self.device.swipe_vector(vector=(0, distance), box=(688, 69, 725, 656), name="PostDownSwipe")
-        self.device.click(ISLAND_WORKING)
+        self.device.click(POST_MANAGE_SWIPE_STOP)
     def post_manage_swipe(self,count):
         if count >= 2:
             for _ in range(count):

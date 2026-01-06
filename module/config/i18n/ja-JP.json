@@ -3035,13 +3035,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "IslandRestaurant.MealNumber.name",
-      "help": "IslandRestaurant.MealNumber.help",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "IslandRestaurant.Chef.name",
       "help": "IslandRestaurant.Chef.help",
@@ -3062,6 +3055,10 @@
       "tofu_combo": "tofu_combo",
       "hearty_meal": "hearty_meal"
     },
+    "MealNumber1": {
+      "name": "IslandRestaurant.MealNumber1.name",
+      "help": "IslandRestaurant.MealNumber1.help"
+    },
     "Meal2": {
       "name": "IslandRestaurant.Meal2.name",
       "help": "IslandRestaurant.Meal2.help",
@@ -3073,6 +3070,10 @@
       "tofu_meat": "tofu_meat",
       "tofu_combo": "tofu_combo",
       "hearty_meal": "hearty_meal"
+    },
+    "MealNumber2": {
+      "name": "IslandRestaurant.MealNumber2.name",
+      "help": "IslandRestaurant.MealNumber2.help"
     },
     "Meal3": {
       "name": "IslandRestaurant.Meal3.name",
@@ -3086,6 +3087,10 @@
       "tofu_combo": "tofu_combo",
       "hearty_meal": "hearty_meal"
     },
+    "MealNumber3": {
+      "name": "IslandRestaurant.MealNumber3.name",
+      "help": "IslandRestaurant.MealNumber3.help"
+    },
     "Meal4": {
       "name": "IslandRestaurant.Meal4.name",
       "help": "IslandRestaurant.Meal4.help",
@@ -3097,6 +3102,74 @@
       "tofu_meat": "tofu_meat",
       "tofu_combo": "tofu_combo",
       "hearty_meal": "hearty_meal"
+    },
+    "MealNumber4": {
+      "name": "IslandRestaurant.MealNumber4.name",
+      "help": "IslandRestaurant.MealNumber4.help"
+    },
+    "Meal5": {
+      "name": "IslandRestaurant.Meal5.name",
+      "help": "IslandRestaurant.Meal5.help",
+      "None": "None",
+      "tofu": "tofu",
+      "omurice": "omurice",
+      "cabbage_tofu": "cabbage_tofu",
+      "salad": "salad",
+      "tofu_meat": "tofu_meat",
+      "tofu_combo": "tofu_combo",
+      "hearty_meal": "hearty_meal"
+    },
+    "MealNumber5": {
+      "name": "IslandRestaurant.MealNumber5.name",
+      "help": "IslandRestaurant.MealNumber5.help"
+    },
+    "Meal6": {
+      "name": "IslandRestaurant.Meal6.name",
+      "help": "IslandRestaurant.Meal6.help",
+      "None": "None",
+      "tofu": "tofu",
+      "omurice": "omurice",
+      "cabbage_tofu": "cabbage_tofu",
+      "salad": "salad",
+      "tofu_meat": "tofu_meat",
+      "tofu_combo": "tofu_combo",
+      "hearty_meal": "hearty_meal"
+    },
+    "MealNumber6": {
+      "name": "IslandRestaurant.MealNumber6.name",
+      "help": "IslandRestaurant.MealNumber6.help"
+    },
+    "Meal7": {
+      "name": "IslandRestaurant.Meal7.name",
+      "help": "IslandRestaurant.Meal7.help",
+      "None": "None",
+      "tofu": "tofu",
+      "omurice": "omurice",
+      "cabbage_tofu": "cabbage_tofu",
+      "salad": "salad",
+      "tofu_meat": "tofu_meat",
+      "tofu_combo": "tofu_combo",
+      "hearty_meal": "hearty_meal"
+    },
+    "MealNumber7": {
+      "name": "IslandRestaurant.MealNumber7.name",
+      "help": "IslandRestaurant.MealNumber7.help"
+    },
+    "Meal8": {
+      "name": "IslandRestaurant.Meal8.name",
+      "help": "IslandRestaurant.Meal8.help",
+      "None": "None",
+      "tofu": "tofu",
+      "omurice": "omurice",
+      "cabbage_tofu": "cabbage_tofu",
+      "salad": "salad",
+      "tofu_meat": "tofu_meat",
+      "tofu_combo": "tofu_combo",
+      "hearty_meal": "hearty_meal"
+    },
+    "MealNumber8": {
+      "name": "IslandRestaurant.MealNumber8.name",
+      "help": "IslandRestaurant.MealNumber8.help"
     }
   },
   "IslandRestaurantNextTask": {
@@ -3128,13 +3201,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "IslandTeahouse.MealNumber.name",
-      "help": "IslandTeahouse.MealNumber.help",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "IslandTeahouse.Chef.name",
       "help": "IslandTeahouse.Chef.help",
@@ -3156,6 +3222,10 @@
       "lavender_tea": "lavender_tea",
       "sunny_honey": "sunny_honey"
     },
+    "MealNumber1": {
+      "name": "IslandTeahouse.MealNumber1.name",
+      "help": "IslandTeahouse.MealNumber1.help"
+    },
     "Meal2": {
       "name": "IslandTeahouse.Meal2.name",
       "help": "IslandTeahouse.Meal2.help",
@@ -3169,6 +3239,10 @@
       "fruit_paradise": "fruit_paradise",
       "lavender_tea": "lavender_tea",
       "sunny_honey": "sunny_honey"
+    },
+    "MealNumber2": {
+      "name": "IslandTeahouse.MealNumber2.name",
+      "help": "IslandTeahouse.MealNumber2.help"
     },
     "Meal3": {
       "name": "IslandTeahouse.Meal3.name",
@@ -3184,6 +3258,10 @@
       "lavender_tea": "lavender_tea",
       "sunny_honey": "sunny_honey"
     },
+    "MealNumber3": {
+      "name": "IslandTeahouse.MealNumber3.name",
+      "help": "IslandTeahouse.MealNumber3.help"
+    },
     "Meal4": {
       "name": "IslandTeahouse.Meal4.name",
       "help": "IslandTeahouse.Meal4.help",
@@ -3197,6 +3275,82 @@
       "fruit_paradise": "fruit_paradise",
       "lavender_tea": "lavender_tea",
       "sunny_honey": "sunny_honey"
+    },
+    "MealNumber4": {
+      "name": "IslandTeahouse.MealNumber4.name",
+      "help": "IslandTeahouse.MealNumber4.help"
+    },
+    "Meal5": {
+      "name": "IslandTeahouse.Meal5.name",
+      "help": "IslandTeahouse.Meal5.help",
+      "None": "None",
+      "apple_juice": "apple_juice",
+      "banana_mango": "banana_mango",
+      "honey_lemon": "honey_lemon",
+      "strawberry_lemon": "strawberry_lemon",
+      "strawberry_honey": "strawberry_honey",
+      "floral_fruity": "floral_fruity",
+      "fruit_paradise": "fruit_paradise",
+      "lavender_tea": "lavender_tea",
+      "sunny_honey": "sunny_honey"
+    },
+    "MealNumber5": {
+      "name": "IslandTeahouse.MealNumber5.name",
+      "help": "IslandTeahouse.MealNumber5.help"
+    },
+    "Meal6": {
+      "name": "IslandTeahouse.Meal6.name",
+      "help": "IslandTeahouse.Meal6.help",
+      "None": "None",
+      "apple_juice": "apple_juice",
+      "banana_mango": "banana_mango",
+      "honey_lemon": "honey_lemon",
+      "strawberry_lemon": "strawberry_lemon",
+      "strawberry_honey": "strawberry_honey",
+      "floral_fruity": "floral_fruity",
+      "fruit_paradise": "fruit_paradise",
+      "lavender_tea": "lavender_tea",
+      "sunny_honey": "sunny_honey"
+    },
+    "MealNumber6": {
+      "name": "IslandTeahouse.MealNumber6.name",
+      "help": "IslandTeahouse.MealNumber6.help"
+    },
+    "Meal7": {
+      "name": "IslandTeahouse.Meal7.name",
+      "help": "IslandTeahouse.Meal7.help",
+      "None": "None",
+      "apple_juice": "apple_juice",
+      "banana_mango": "banana_mango",
+      "honey_lemon": "honey_lemon",
+      "strawberry_lemon": "strawberry_lemon",
+      "strawberry_honey": "strawberry_honey",
+      "floral_fruity": "floral_fruity",
+      "fruit_paradise": "fruit_paradise",
+      "lavender_tea": "lavender_tea",
+      "sunny_honey": "sunny_honey"
+    },
+    "MealNumber7": {
+      "name": "IslandTeahouse.MealNumber7.name",
+      "help": "IslandTeahouse.MealNumber7.help"
+    },
+    "Meal8": {
+      "name": "IslandTeahouse.Meal8.name",
+      "help": "IslandTeahouse.Meal8.help",
+      "None": "None",
+      "apple_juice": "apple_juice",
+      "banana_mango": "banana_mango",
+      "honey_lemon": "honey_lemon",
+      "strawberry_lemon": "strawberry_lemon",
+      "strawberry_honey": "strawberry_honey",
+      "floral_fruity": "floral_fruity",
+      "fruit_paradise": "fruit_paradise",
+      "lavender_tea": "lavender_tea",
+      "sunny_honey": "sunny_honey"
+    },
+    "MealNumber8": {
+      "name": "IslandTeahouse.MealNumber8.name",
+      "help": "IslandTeahouse.MealNumber8.help"
     }
   },
   "IslandTeahouseNextTask": {
@@ -3230,13 +3384,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "IslandGrill.MealNumber.name",
-      "help": "IslandGrill.MealNumber.help",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "IslandGrill.Chef.name",
       "help": "IslandGrill.Chef.help",
@@ -3256,6 +3403,10 @@
       "carnival": "carnival",
       "double_energy": "double_energy"
     },
+    "MealNumber1": {
+      "name": "IslandGrill.MealNumber1.name",
+      "help": "IslandGrill.MealNumber1.help"
+    },
     "Meal2": {
       "name": "IslandGrill.Meal2.name",
       "help": "IslandGrill.Meal2.help",
@@ -3267,6 +3418,10 @@
       "steak_bowl": "steak_bowl",
       "carnival": "carnival",
       "double_energy": "double_energy"
+    },
+    "MealNumber2": {
+      "name": "IslandGrill.MealNumber2.name",
+      "help": "IslandGrill.MealNumber2.help"
     },
     "Meal3": {
       "name": "IslandGrill.Meal3.name",
@@ -3280,6 +3435,10 @@
       "carnival": "carnival",
       "double_energy": "double_energy"
     },
+    "MealNumber3": {
+      "name": "IslandGrill.MealNumber3.name",
+      "help": "IslandGrill.MealNumber3.help"
+    },
     "Meal4": {
       "name": "IslandGrill.Meal4.name",
       "help": "IslandGrill.Meal4.help",
@@ -3291,6 +3450,74 @@
       "steak_bowl": "steak_bowl",
       "carnival": "carnival",
       "double_energy": "double_energy"
+    },
+    "MealNumber4": {
+      "name": "IslandGrill.MealNumber4.name",
+      "help": "IslandGrill.MealNumber4.help"
+    },
+    "Meal5": {
+      "name": "IslandGrill.Meal5.name",
+      "help": "IslandGrill.Meal5.help",
+      "None": "None",
+      "roasted_skewer": "roasted_skewer",
+      "chicken_potato": "chicken_potato",
+      "carrot_omelette": "carrot_omelette",
+      "stir_fried_chicken": "stir_fried_chicken",
+      "steak_bowl": "steak_bowl",
+      "carnival": "carnival",
+      "double_energy": "double_energy"
+    },
+    "MealNumber5": {
+      "name": "IslandGrill.MealNumber5.name",
+      "help": "IslandGrill.MealNumber5.help"
+    },
+    "Meal6": {
+      "name": "IslandGrill.Meal6.name",
+      "help": "IslandGrill.Meal6.help",
+      "None": "None",
+      "roasted_skewer": "roasted_skewer",
+      "chicken_potato": "chicken_potato",
+      "carrot_omelette": "carrot_omelette",
+      "stir_fried_chicken": "stir_fried_chicken",
+      "steak_bowl": "steak_bowl",
+      "carnival": "carnival",
+      "double_energy": "double_energy"
+    },
+    "MealNumber6": {
+      "name": "IslandGrill.MealNumber6.name",
+      "help": "IslandGrill.MealNumber6.help"
+    },
+    "Meal7": {
+      "name": "IslandGrill.Meal7.name",
+      "help": "IslandGrill.Meal7.help",
+      "None": "None",
+      "roasted_skewer": "roasted_skewer",
+      "chicken_potato": "chicken_potato",
+      "carrot_omelette": "carrot_omelette",
+      "stir_fried_chicken": "stir_fried_chicken",
+      "steak_bowl": "steak_bowl",
+      "carnival": "carnival",
+      "double_energy": "double_energy"
+    },
+    "MealNumber7": {
+      "name": "IslandGrill.MealNumber7.name",
+      "help": "IslandGrill.MealNumber7.help"
+    },
+    "Meal8": {
+      "name": "IslandGrill.Meal8.name",
+      "help": "IslandGrill.Meal8.help",
+      "None": "None",
+      "roasted_skewer": "roasted_skewer",
+      "chicken_potato": "chicken_potato",
+      "carrot_omelette": "carrot_omelette",
+      "stir_fried_chicken": "stir_fried_chicken",
+      "steak_bowl": "steak_bowl",
+      "carnival": "carnival",
+      "double_energy": "double_energy"
+    },
+    "MealNumber8": {
+      "name": "IslandGrill.MealNumber8.name",
+      "help": "IslandGrill.MealNumber8.help"
     }
   },
   "IslandGrillNextTask": {
@@ -3322,13 +3549,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "IslandJuuEatery.MealNumber.name",
-      "help": "IslandJuuEatery.MealNumber.help",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "IslandJuuEatery.Chef.name",
       "help": "IslandJuuEatery.Chef.help",
@@ -3350,6 +3570,10 @@
       "berry_orange": "berry_orange",
       "strawberry_charlotte": "strawberry_charlotte"
     },
+    "MealNumber1": {
+      "name": "IslandJuuEatery.MealNumber1.name",
+      "help": "IslandJuuEatery.MealNumber1.help"
+    },
     "Meal2": {
       "name": "IslandJuuEatery.Meal2.name",
       "help": "IslandJuuEatery.Meal2.help",
@@ -3363,6 +3587,10 @@
       "succulently_sweet": "succulently_sweet",
       "berry_orange": "berry_orange",
       "strawberry_charlotte": "strawberry_charlotte"
+    },
+    "MealNumber2": {
+      "name": "IslandJuuEatery.MealNumber2.name",
+      "help": "IslandJuuEatery.MealNumber2.help"
     },
     "Meal3": {
       "name": "IslandJuuEatery.Meal3.name",
@@ -3378,6 +3606,10 @@
       "berry_orange": "berry_orange",
       "strawberry_charlotte": "strawberry_charlotte"
     },
+    "MealNumber3": {
+      "name": "IslandJuuEatery.MealNumber3.name",
+      "help": "IslandJuuEatery.MealNumber3.help"
+    },
     "Meal4": {
       "name": "IslandJuuEatery.Meal4.name",
       "help": "IslandJuuEatery.Meal4.help",
@@ -3391,6 +3623,82 @@
       "succulently_sweet": "succulently_sweet",
       "berry_orange": "berry_orange",
       "strawberry_charlotte": "strawberry_charlotte"
+    },
+    "MealNumber4": {
+      "name": "IslandJuuEatery.MealNumber4.name",
+      "help": "IslandJuuEatery.MealNumber4.help"
+    },
+    "Meal5": {
+      "name": "IslandJuuEatery.Meal5.name",
+      "help": "IslandJuuEatery.Meal5.help",
+      "None": "None",
+      "apple_pie": "apple_pie",
+      "corn_cup": "corn_cup",
+      "orange_pie": "orange_pie",
+      "banana_crepe": "banana_crepe",
+      "orchard_duo": "orchard_duo",
+      "rice_mango": "rice_mango",
+      "succulently_sweet": "succulently_sweet",
+      "berry_orange": "berry_orange",
+      "strawberry_charlotte": "strawberry_charlotte"
+    },
+    "MealNumber5": {
+      "name": "IslandJuuEatery.MealNumber5.name",
+      "help": "IslandJuuEatery.MealNumber5.help"
+    },
+    "Meal6": {
+      "name": "IslandJuuEatery.Meal6.name",
+      "help": "IslandJuuEatery.Meal6.help",
+      "None": "None",
+      "apple_pie": "apple_pie",
+      "corn_cup": "corn_cup",
+      "orange_pie": "orange_pie",
+      "banana_crepe": "banana_crepe",
+      "orchard_duo": "orchard_duo",
+      "rice_mango": "rice_mango",
+      "succulently_sweet": "succulently_sweet",
+      "berry_orange": "berry_orange",
+      "strawberry_charlotte": "strawberry_charlotte"
+    },
+    "MealNumber6": {
+      "name": "IslandJuuEatery.MealNumber6.name",
+      "help": "IslandJuuEatery.MealNumber6.help"
+    },
+    "Meal7": {
+      "name": "IslandJuuEatery.Meal7.name",
+      "help": "IslandJuuEatery.Meal7.help",
+      "None": "None",
+      "apple_pie": "apple_pie",
+      "corn_cup": "corn_cup",
+      "orange_pie": "orange_pie",
+      "banana_crepe": "banana_crepe",
+      "orchard_duo": "orchard_duo",
+      "rice_mango": "rice_mango",
+      "succulently_sweet": "succulently_sweet",
+      "berry_orange": "berry_orange",
+      "strawberry_charlotte": "strawberry_charlotte"
+    },
+    "MealNumber7": {
+      "name": "IslandJuuEatery.MealNumber7.name",
+      "help": "IslandJuuEatery.MealNumber7.help"
+    },
+    "Meal8": {
+      "name": "IslandJuuEatery.Meal8.name",
+      "help": "IslandJuuEatery.Meal8.help",
+      "None": "None",
+      "apple_pie": "apple_pie",
+      "corn_cup": "corn_cup",
+      "orange_pie": "orange_pie",
+      "banana_crepe": "banana_crepe",
+      "orchard_duo": "orchard_duo",
+      "rice_mango": "rice_mango",
+      "succulently_sweet": "succulently_sweet",
+      "berry_orange": "berry_orange",
+      "strawberry_charlotte": "strawberry_charlotte"
+    },
+    "MealNumber8": {
+      "name": "IslandJuuEatery.MealNumber8.name",
+      "help": "IslandJuuEatery.MealNumber8.help"
     }
   },
   "IslandJuuEateryNextTask": {
@@ -3424,13 +3732,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "IslandJuuCoffee.MealNumber.name",
-      "help": "IslandJuuCoffee.MealNumber.help",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "IslandJuuCoffee.Chef.name",
       "help": "IslandJuuCoffee.Chef.help",
@@ -3452,6 +3753,10 @@
       "wake_up_call": "wake_up_call",
       "fruity_fruitier": "fruity_fruitier"
     },
+    "MealNumber1": {
+      "name": "IslandJuuCoffee.MealNumber1.name",
+      "help": "IslandJuuCoffee.MealNumber1.help"
+    },
     "Meal2": {
       "name": "IslandJuuCoffee.Meal2.name",
       "help": "IslandJuuCoffee.Meal2.help",
@@ -3465,6 +3770,10 @@
       "morning_light": "morning_light",
       "wake_up_call": "wake_up_call",
       "fruity_fruitier": "fruity_fruitier"
+    },
+    "MealNumber2": {
+      "name": "IslandJuuCoffee.MealNumber2.name",
+      "help": "IslandJuuCoffee.MealNumber2.help"
     },
     "Meal3": {
       "name": "IslandJuuCoffee.Meal3.name",
@@ -3480,6 +3789,10 @@
       "wake_up_call": "wake_up_call",
       "fruity_fruitier": "fruity_fruitier"
     },
+    "MealNumber3": {
+      "name": "IslandJuuCoffee.MealNumber3.name",
+      "help": "IslandJuuCoffee.MealNumber3.help"
+    },
     "Meal4": {
       "name": "IslandJuuCoffee.Meal4.name",
       "help": "IslandJuuCoffee.Meal4.help",
@@ -3493,6 +3806,82 @@
       "morning_light": "morning_light",
       "wake_up_call": "wake_up_call",
       "fruity_fruitier": "fruity_fruitier"
+    },
+    "MealNumber4": {
+      "name": "IslandJuuCoffee.MealNumber4.name",
+      "help": "IslandJuuCoffee.MealNumber4.help"
+    },
+    "Meal5": {
+      "name": "IslandJuuCoffee.Meal5.name",
+      "help": "IslandJuuCoffee.Meal5.help",
+      "None": "None",
+      "iced_coffee": "iced_coffee",
+      "omelette": "omelette",
+      "cheese": "cheese",
+      "latte": "latte",
+      "citrus_coffee": "citrus_coffee",
+      "strawberry_milkshake": "strawberry_milkshake",
+      "morning_light": "morning_light",
+      "wake_up_call": "wake_up_call",
+      "fruity_fruitier": "fruity_fruitier"
+    },
+    "MealNumber5": {
+      "name": "IslandJuuCoffee.MealNumber5.name",
+      "help": "IslandJuuCoffee.MealNumber5.help"
+    },
+    "Meal6": {
+      "name": "IslandJuuCoffee.Meal6.name",
+      "help": "IslandJuuCoffee.Meal6.help",
+      "None": "None",
+      "iced_coffee": "iced_coffee",
+      "omelette": "omelette",
+      "cheese": "cheese",
+      "latte": "latte",
+      "citrus_coffee": "citrus_coffee",
+      "strawberry_milkshake": "strawberry_milkshake",
+      "morning_light": "morning_light",
+      "wake_up_call": "wake_up_call",
+      "fruity_fruitier": "fruity_fruitier"
+    },
+    "MealNumber6": {
+      "name": "IslandJuuCoffee.MealNumber6.name",
+      "help": "IslandJuuCoffee.MealNumber6.help"
+    },
+    "Meal7": {
+      "name": "IslandJuuCoffee.Meal7.name",
+      "help": "IslandJuuCoffee.Meal7.help",
+      "None": "None",
+      "iced_coffee": "iced_coffee",
+      "omelette": "omelette",
+      "cheese": "cheese",
+      "latte": "latte",
+      "citrus_coffee": "citrus_coffee",
+      "strawberry_milkshake": "strawberry_milkshake",
+      "morning_light": "morning_light",
+      "wake_up_call": "wake_up_call",
+      "fruity_fruitier": "fruity_fruitier"
+    },
+    "MealNumber7": {
+      "name": "IslandJuuCoffee.MealNumber7.name",
+      "help": "IslandJuuCoffee.MealNumber7.help"
+    },
+    "Meal8": {
+      "name": "IslandJuuCoffee.Meal8.name",
+      "help": "IslandJuuCoffee.Meal8.help",
+      "None": "None",
+      "iced_coffee": "iced_coffee",
+      "omelette": "omelette",
+      "cheese": "cheese",
+      "latte": "latte",
+      "citrus_coffee": "citrus_coffee",
+      "strawberry_milkshake": "strawberry_milkshake",
+      "morning_light": "morning_light",
+      "wake_up_call": "wake_up_call",
+      "fruity_fruitier": "fruity_fruitier"
+    },
+    "MealNumber8": {
+      "name": "IslandJuuCoffee.MealNumber8.name",
+      "help": "IslandJuuCoffee.MealNumber8.help"
     }
   },
   "IslandJuuCoffeeNextTask": {

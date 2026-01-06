@@ -9780,15 +9780,6 @@
           2
         ]
       },
-      "MealNumber": {
-        "type": "select",
-        "value": 6,
-        "option": [
-          5,
-          6,
-          7
-        ]
-      },
       "Chef": {
         "type": "select",
         "value": "YingSwei",
@@ -9813,6 +9804,10 @@
           "hearty_meal"
         ]
       },
+      "MealNumber1": {
+        "type": "input",
+        "value": 6
+      },
       "Meal2": {
         "type": "select",
         "value": "hearty_meal",
@@ -9826,6 +9821,10 @@
           "tofu_combo",
           "hearty_meal"
         ]
+      },
+      "MealNumber2": {
+        "type": "input",
+        "value": 6
       },
       "Meal3": {
         "type": "select",
@@ -9841,6 +9840,10 @@
           "hearty_meal"
         ]
       },
+      "MealNumber3": {
+        "type": "input",
+        "value": 6
+      },
       "Meal4": {
         "type": "select",
         "value": "None",
@@ -9854,6 +9857,82 @@
           "tofu_combo",
           "hearty_meal"
         ]
+      },
+      "MealNumber4": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal5": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "tofu",
+          "omurice",
+          "cabbage_tofu",
+          "salad",
+          "tofu_meat",
+          "tofu_combo",
+          "hearty_meal"
+        ]
+      },
+      "MealNumber5": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal6": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "tofu",
+          "omurice",
+          "cabbage_tofu",
+          "salad",
+          "tofu_meat",
+          "tofu_combo",
+          "hearty_meal"
+        ]
+      },
+      "MealNumber6": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal7": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "tofu",
+          "omurice",
+          "cabbage_tofu",
+          "salad",
+          "tofu_meat",
+          "tofu_combo",
+          "hearty_meal"
+        ]
+      },
+      "MealNumber7": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal8": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "tofu",
+          "omurice",
+          "cabbage_tofu",
+          "salad",
+          "tofu_meat",
+          "tofu_combo",
+          "hearty_meal"
+        ]
+      },
+      "MealNumber8": {
+        "type": "input",
+        "value": 0
       }
     },
     "IslandRestaurantNextTask": {
@@ -9926,15 +10005,6 @@
           2
         ]
       },
-      "MealNumber": {
-        "type": "select",
-        "value": 6,
-        "option": [
-          5,
-          6,
-          7
-        ]
-      },
       "Chef": {
         "type": "select",
         "value": "WorkerJuu",
@@ -9960,6 +10030,10 @@
           "sunny_honey"
         ]
       },
+      "MealNumber1": {
+        "type": "input",
+        "value": 6
+      },
       "Meal2": {
         "type": "select",
         "value": "lavender_tea",
@@ -9975,6 +10049,10 @@
           "lavender_tea",
           "sunny_honey"
         ]
+      },
+      "MealNumber2": {
+        "type": "input",
+        "value": 6
       },
       "Meal3": {
         "type": "select",
@@ -9992,6 +10070,10 @@
           "sunny_honey"
         ]
       },
+      "MealNumber3": {
+        "type": "input",
+        "value": 6
+      },
       "Meal4": {
         "type": "select",
         "value": "None",
@@ -10007,6 +10089,90 @@
           "lavender_tea",
           "sunny_honey"
         ]
+      },
+      "MealNumber4": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal5": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_juice",
+          "banana_mango",
+          "honey_lemon",
+          "strawberry_lemon",
+          "strawberry_honey",
+          "floral_fruity",
+          "fruit_paradise",
+          "lavender_tea",
+          "sunny_honey"
+        ]
+      },
+      "MealNumber5": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal6": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_juice",
+          "banana_mango",
+          "honey_lemon",
+          "strawberry_lemon",
+          "strawberry_honey",
+          "floral_fruity",
+          "fruit_paradise",
+          "lavender_tea",
+          "sunny_honey"
+        ]
+      },
+      "MealNumber6": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal7": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_juice",
+          "banana_mango",
+          "honey_lemon",
+          "strawberry_lemon",
+          "strawberry_honey",
+          "floral_fruity",
+          "fruit_paradise",
+          "lavender_tea",
+          "sunny_honey"
+        ]
+      },
+      "MealNumber7": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal8": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_juice",
+          "banana_mango",
+          "honey_lemon",
+          "strawberry_lemon",
+          "strawberry_honey",
+          "floral_fruity",
+          "fruit_paradise",
+          "lavender_tea",
+          "sunny_honey"
+        ]
+      },
+      "MealNumber8": {
+        "type": "input",
+        "value": 0
       }
     },
     "IslandTeahouseNextTask": {
@@ -10081,15 +10247,6 @@
           2
         ]
       },
-      "MealNumber": {
-        "type": "select",
-        "value": 6,
-        "option": [
-          5,
-          6,
-          7
-        ]
-      },
       "Chef": {
         "type": "select",
         "value": "WorkerJuu",
@@ -10113,6 +10270,10 @@
           "double_energy"
         ]
       },
+      "MealNumber1": {
+        "type": "input",
+        "value": 6
+      },
       "Meal2": {
         "type": "select",
         "value": "steak_bowl",
@@ -10126,6 +10287,10 @@
           "carnival",
           "double_energy"
         ]
+      },
+      "MealNumber2": {
+        "type": "input",
+        "value": 6
       },
       "Meal3": {
         "type": "select",
@@ -10141,6 +10306,10 @@
           "double_energy"
         ]
       },
+      "MealNumber3": {
+        "type": "input",
+        "value": 6
+      },
       "Meal4": {
         "type": "select",
         "value": "None",
@@ -10154,6 +10323,82 @@
           "carnival",
           "double_energy"
         ]
+      },
+      "MealNumber4": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal5": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "roasted_skewer",
+          "chicken_potato",
+          "carrot_omelette",
+          "stir_fried_chicken",
+          "steak_bowl",
+          "carnival",
+          "double_energy"
+        ]
+      },
+      "MealNumber5": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal6": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "roasted_skewer",
+          "chicken_potato",
+          "carrot_omelette",
+          "stir_fried_chicken",
+          "steak_bowl",
+          "carnival",
+          "double_energy"
+        ]
+      },
+      "MealNumber6": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal7": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "roasted_skewer",
+          "chicken_potato",
+          "carrot_omelette",
+          "stir_fried_chicken",
+          "steak_bowl",
+          "carnival",
+          "double_energy"
+        ]
+      },
+      "MealNumber7": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal8": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "roasted_skewer",
+          "chicken_potato",
+          "carrot_omelette",
+          "stir_fried_chicken",
+          "steak_bowl",
+          "carnival",
+          "double_energy"
+        ]
+      },
+      "MealNumber8": {
+        "type": "input",
+        "value": 0
       }
     },
     "IslandGrillNextTask": {
@@ -10226,15 +10471,6 @@
           2
         ]
       },
-      "MealNumber": {
-        "type": "select",
-        "value": 6,
-        "option": [
-          5,
-          6,
-          7
-        ]
-      },
       "Chef": {
         "type": "select",
         "value": "WorkerJuu",
@@ -10260,6 +10496,10 @@
           "strawberry_charlotte"
         ]
       },
+      "MealNumber1": {
+        "type": "input",
+        "value": 6
+      },
       "Meal2": {
         "type": "select",
         "value": "succulently_sweet",
@@ -10275,6 +10515,10 @@
           "berry_orange",
           "strawberry_charlotte"
         ]
+      },
+      "MealNumber2": {
+        "type": "input",
+        "value": 6
       },
       "Meal3": {
         "type": "select",
@@ -10292,6 +10536,10 @@
           "strawberry_charlotte"
         ]
       },
+      "MealNumber3": {
+        "type": "input",
+        "value": 6
+      },
       "Meal4": {
         "type": "select",
         "value": "None",
@@ -10307,6 +10555,90 @@
           "berry_orange",
           "strawberry_charlotte"
         ]
+      },
+      "MealNumber4": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal5": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_pie",
+          "corn_cup",
+          "orange_pie",
+          "banana_crepe",
+          "orchard_duo",
+          "rice_mango",
+          "succulently_sweet",
+          "berry_orange",
+          "strawberry_charlotte"
+        ]
+      },
+      "MealNumber5": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal6": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_pie",
+          "corn_cup",
+          "orange_pie",
+          "banana_crepe",
+          "orchard_duo",
+          "rice_mango",
+          "succulently_sweet",
+          "berry_orange",
+          "strawberry_charlotte"
+        ]
+      },
+      "MealNumber6": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal7": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_pie",
+          "corn_cup",
+          "orange_pie",
+          "banana_crepe",
+          "orchard_duo",
+          "rice_mango",
+          "succulently_sweet",
+          "berry_orange",
+          "strawberry_charlotte"
+        ]
+      },
+      "MealNumber7": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal8": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "apple_pie",
+          "corn_cup",
+          "orange_pie",
+          "banana_crepe",
+          "orchard_duo",
+          "rice_mango",
+          "succulently_sweet",
+          "berry_orange",
+          "strawberry_charlotte"
+        ]
+      },
+      "MealNumber8": {
+        "type": "input",
+        "value": 0
       }
     },
     "IslandJuuEateryNextTask": {
@@ -10381,15 +10713,6 @@
           2
         ]
       },
-      "MealNumber": {
-        "type": "select",
-        "value": 6,
-        "option": [
-          5,
-          6,
-          7
-        ]
-      },
       "Chef": {
         "type": "select",
         "value": "WorkerJuu",
@@ -10415,6 +10738,10 @@
           "fruity_fruitier"
         ]
       },
+      "MealNumber1": {
+        "type": "input",
+        "value": 6
+      },
       "Meal2": {
         "type": "select",
         "value": "cheese",
@@ -10430,6 +10757,10 @@
           "wake_up_call",
           "fruity_fruitier"
         ]
+      },
+      "MealNumber2": {
+        "type": "input",
+        "value": 6
       },
       "Meal3": {
         "type": "select",
@@ -10447,6 +10778,10 @@
           "fruity_fruitier"
         ]
       },
+      "MealNumber3": {
+        "type": "input",
+        "value": 6
+      },
       "Meal4": {
         "type": "select",
         "value": "None",
@@ -10462,6 +10797,90 @@
           "wake_up_call",
           "fruity_fruitier"
         ]
+      },
+      "MealNumber4": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal5": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "iced_coffee",
+          "omelette",
+          "cheese",
+          "latte",
+          "citrus_coffee",
+          "strawberry_milkshake",
+          "morning_light",
+          "wake_up_call",
+          "fruity_fruitier"
+        ]
+      },
+      "MealNumber5": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal6": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "iced_coffee",
+          "omelette",
+          "cheese",
+          "latte",
+          "citrus_coffee",
+          "strawberry_milkshake",
+          "morning_light",
+          "wake_up_call",
+          "fruity_fruitier"
+        ]
+      },
+      "MealNumber6": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal7": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "iced_coffee",
+          "omelette",
+          "cheese",
+          "latte",
+          "citrus_coffee",
+          "strawberry_milkshake",
+          "morning_light",
+          "wake_up_call",
+          "fruity_fruitier"
+        ]
+      },
+      "MealNumber7": {
+        "type": "input",
+        "value": 0
+      },
+      "Meal8": {
+        "type": "select",
+        "value": "None",
+        "option": [
+          "None",
+          "iced_coffee",
+          "omelette",
+          "cheese",
+          "latte",
+          "citrus_coffee",
+          "strawberry_milkshake",
+          "morning_light",
+          "wake_up_call",
+          "fruity_fruitier"
+        ]
+      },
+      "MealNumber8": {
+        "type": "input",
+        "value": 0
       }
     },
     "IslandJuuCoffeeNextTask": {

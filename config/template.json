@@ -2011,12 +2011,23 @@
     },
     "IslandRestaurant": {
       "PostNumber": 2,
-      "MealNumber": 6,
       "Chef": "YingSwei",
       "Meal1": "tofu_meat",
+      "MealNumber1": 6,
       "Meal2": "hearty_meal",
+      "MealNumber2": 6,
       "Meal3": "omurice",
-      "Meal4": "None"
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
     },
     "IslandRestaurantNextTask": {
       "AwayCook": "None"
@@ -2036,12 +2047,23 @@
     },
     "IslandTeahouse": {
       "PostNumber": 2,
-      "MealNumber": 6,
       "Chef": "WorkerJuu",
       "Meal1": "floral_fruity",
+      "MealNumber1": 6,
       "Meal2": "lavender_tea",
+      "MealNumber2": 6,
       "Meal3": "strawberry_lemon",
-      "Meal4": "None"
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
     },
     "IslandTeahouseNextTask": {
       "AwayCook": "None"
@@ -2061,12 +2083,23 @@
     },
     "IslandGrill": {
       "PostNumber": 1,
-      "MealNumber": 6,
       "Chef": "WorkerJuu",
       "Meal1": "double_energy",
+      "MealNumber1": 6,
       "Meal2": "steak_bowl",
+      "MealNumber2": 6,
       "Meal3": "stir_fried_chicken",
-      "Meal4": "None"
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
     },
     "IslandGrillNextTask": {
       "AwayCook": "None"
@@ -2086,12 +2119,23 @@
     },
     "IslandJuuEatery": {
       "PostNumber": 1,
-      "MealNumber": 6,
       "Chef": "WorkerJuu",
       "Meal1": "berry_orange",
+      "MealNumber1": 6,
       "Meal2": "succulently_sweet",
+      "MealNumber2": 6,
       "Meal3": "rice_mango",
-      "Meal4": "None"
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
     },
     "IslandJuuEateryNextTask": {
       "AwayCook": "None"
@@ -2111,12 +2155,23 @@
     },
     "IslandJuuCoffee": {
       "PostNumber": 2,
-      "MealNumber": 6,
       "Chef": "WorkerJuu",
       "Meal1": "wake_up_call",
+      "MealNumber1": 6,
       "Meal2": "cheese",
+      "MealNumber2": 6,
       "Meal3": "fruity_fruitier",
-      "Meal4": "None"
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
     },
     "IslandJuuCoffeeNextTask": {
       "AwayCook": "None"

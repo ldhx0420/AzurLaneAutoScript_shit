@@ -50,23 +50,20 @@ class IslandShopBase(Island, WarehouseOCR):
 
     def setup_config(self, config_meal_prefix, config_number_prefix,
                      config_away_cook, config_post_number):
-        """从配置中读取餐品需求"""
+        """从配置中读取餐品需求 - 修改为8种餐品"""
         # 设置配置前缀
         self.config_meal_prefix = config_meal_prefix
         self.config_number_prefix = config_number_prefix
         self.config_away_cook = config_away_cook
         self.config_post_number = config_post_number
 
-        # 读取正常餐品需求
+        # 读取8种餐品需求
         self.post_products = {}
-        meal_keys = [
-            (f'{self.config_meal_prefix}1', f'{self.config_number_prefix}'),
-            (f'{self.config_meal_prefix}2', f'{self.config_number_prefix}'),
-            (f'{self.config_meal_prefix}3', f'{self.config_number_prefix}'),
-            (f'{self.config_meal_prefix}4', f'{self.config_number_prefix}')
-        ]
 
-        for meal_key, number_key in meal_keys:
+        for i in range(1, 9):  # 1到8
+            meal_key = f'{self.config_meal_prefix}{i}'
+            number_key = f'{self.config_number_prefix}{i}'
+
             meal_name = getattr(self.config, meal_key, None)
             if meal_name is not None and meal_name != "None":
                 meal_number = getattr(self.config, number_key, 0)
@@ -134,7 +131,7 @@ class IslandShopBase(Island, WarehouseOCR):
 
     def get_warehouse_counts(self):
         """获取仓库数量（通用）"""
-        self.ui_goto(page_island_warehouse_filter,get_ship=False)
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
         self.appear_then_click(FILTER_RESET)
         self.device.click(self.filter_asset)
         self.appear_then_click(FILTER_CONFIRM)
@@ -211,6 +208,7 @@ class IslandShopBase(Island, WarehouseOCR):
         """获取空闲的岗位ID列表（通用）"""
         return [post_id for post_id, post_info in self.posts.items()
                 if post_info['status'] == 'idle']
+
     # ============ 核心逻辑 ============
 
     def run(self):

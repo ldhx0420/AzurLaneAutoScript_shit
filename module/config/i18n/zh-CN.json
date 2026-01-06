@@ -3035,13 +3035,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "餐品数量",
-      "help": "会影响备餐",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "厨师",
       "help": "a为上限为a的厨师，b为b及b以下的厨师",
@@ -3062,6 +3055,10 @@
       "tofu_combo": "经典豆腐套餐",
       "hearty_meal": "绵玉定食"
     },
+    "MealNumber1": {
+      "name": "餐品1数量",
+      "help": ""
+    },
     "Meal2": {
       "name": "餐品2",
       "help": "",
@@ -3074,9 +3071,13 @@
       "tofu_combo": "经典豆腐套餐",
       "hearty_meal": "绵玉定食"
     },
+    "MealNumber2": {
+      "name": "餐品2数量",
+      "help": ""
+    },
     "Meal3": {
       "name": "餐品3",
-      "help": "未解锁第三格请选none",
+      "help": "",
       "None": "None",
       "tofu": "豆腐",
       "omurice": "蛋包饭",
@@ -3086,9 +3087,13 @@
       "tofu_combo": "经典豆腐套餐",
       "hearty_meal": "绵玉定食"
     },
+    "MealNumber3": {
+      "name": "餐品3数量",
+      "help": ""
+    },
     "Meal4": {
       "name": "餐品4",
-      "help": "未解锁第四格请选none",
+      "help": "",
       "None": "None",
       "tofu": "豆腐",
       "omurice": "蛋包饭",
@@ -3097,6 +3102,74 @@
       "tofu_meat": "肉末烧豆腐",
       "tofu_combo": "经典豆腐套餐",
       "hearty_meal": "绵玉定食"
+    },
+    "MealNumber4": {
+      "name": "餐品4数量",
+      "help": ""
+    },
+    "Meal5": {
+      "name": "餐品5",
+      "help": "",
+      "None": "None",
+      "tofu": "豆腐",
+      "omurice": "蛋包饭",
+      "cabbage_tofu": "白菜豆腐汤",
+      "salad": "蔬菜沙拉",
+      "tofu_meat": "肉末烧豆腐",
+      "tofu_combo": "经典豆腐套餐",
+      "hearty_meal": "绵玉定食"
+    },
+    "MealNumber5": {
+      "name": "餐品5数量",
+      "help": ""
+    },
+    "Meal6": {
+      "name": "餐品6",
+      "help": "",
+      "None": "None",
+      "tofu": "豆腐",
+      "omurice": "蛋包饭",
+      "cabbage_tofu": "白菜豆腐汤",
+      "salad": "蔬菜沙拉",
+      "tofu_meat": "肉末烧豆腐",
+      "tofu_combo": "经典豆腐套餐",
+      "hearty_meal": "绵玉定食"
+    },
+    "MealNumber6": {
+      "name": "餐品6数量",
+      "help": ""
+    },
+    "Meal7": {
+      "name": "餐品7",
+      "help": "",
+      "None": "None",
+      "tofu": "豆腐",
+      "omurice": "蛋包饭",
+      "cabbage_tofu": "白菜豆腐汤",
+      "salad": "蔬菜沙拉",
+      "tofu_meat": "肉末烧豆腐",
+      "tofu_combo": "经典豆腐套餐",
+      "hearty_meal": "绵玉定食"
+    },
+    "MealNumber7": {
+      "name": "餐品7数量",
+      "help": ""
+    },
+    "Meal8": {
+      "name": "餐品8",
+      "help": "",
+      "None": "None",
+      "tofu": "豆腐",
+      "omurice": "蛋包饭",
+      "cabbage_tofu": "白菜豆腐汤",
+      "salad": "蔬菜沙拉",
+      "tofu_meat": "肉末烧豆腐",
+      "tofu_combo": "经典豆腐套餐",
+      "hearty_meal": "绵玉定食"
+    },
+    "MealNumber8": {
+      "name": "餐品8数量",
+      "help": ""
     }
   },
   "IslandRestaurantNextTask": {
@@ -3128,13 +3201,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "餐品数量",
-      "help": "会影响备餐",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "厨师",
       "help": "a为上限为a的厨师，b为b及b以下的厨师",
@@ -3156,6 +3222,10 @@
       "lavender_tea": "薰衣草茶",
       "sunny_honey": "阳光蜜水"
     },
+    "MealNumber1": {
+      "name": "餐品1数量",
+      "help": ""
+    },
     "Meal2": {
       "name": "餐品2",
       "help": "",
@@ -3170,9 +3240,13 @@
       "lavender_tea": "薰衣草茶",
       "sunny_honey": "阳光蜜水"
     },
+    "MealNumber2": {
+      "name": "餐品2数量",
+      "help": ""
+    },
     "Meal3": {
       "name": "餐品3",
-      "help": "未解锁第三格请选none",
+      "help": "",
       "None": "None",
       "apple_juice": "苹果汁",
       "banana_mango": "香蕉芒果汁",
@@ -3184,9 +3258,13 @@
       "lavender_tea": "薰衣草茶",
       "sunny_honey": "阳光蜜水"
     },
+    "MealNumber3": {
+      "name": "餐品3数量",
+      "help": ""
+    },
     "Meal4": {
       "name": "餐品4",
-      "help": "未解锁第四格请选none",
+      "help": "",
       "None": "None",
       "apple_juice": "苹果汁",
       "banana_mango": "香蕉芒果汁",
@@ -3197,6 +3275,82 @@
       "fruit_paradise": "缤纷果乐园",
       "lavender_tea": "薰衣草茶",
       "sunny_honey": "阳光蜜水"
+    },
+    "MealNumber4": {
+      "name": "餐品4数量",
+      "help": ""
+    },
+    "Meal5": {
+      "name": "餐品5",
+      "help": "",
+      "None": "None",
+      "apple_juice": "苹果汁",
+      "banana_mango": "香蕉芒果汁",
+      "honey_lemon": "蜂蜜柠檬水",
+      "strawberry_lemon": "草莓蜜沁",
+      "strawberry_honey": "草莓蜂蜜冰沙",
+      "floral_fruity": "花香果韵",
+      "fruit_paradise": "缤纷果乐园",
+      "lavender_tea": "薰衣草茶",
+      "sunny_honey": "阳光蜜水"
+    },
+    "MealNumber5": {
+      "name": "餐品5数量",
+      "help": ""
+    },
+    "Meal6": {
+      "name": "餐品6",
+      "help": "",
+      "None": "None",
+      "apple_juice": "苹果汁",
+      "banana_mango": "香蕉芒果汁",
+      "honey_lemon": "蜂蜜柠檬水",
+      "strawberry_lemon": "草莓蜜沁",
+      "strawberry_honey": "草莓蜂蜜冰沙",
+      "floral_fruity": "花香果韵",
+      "fruit_paradise": "缤纷果乐园",
+      "lavender_tea": "薰衣草茶",
+      "sunny_honey": "阳光蜜水"
+    },
+    "MealNumber6": {
+      "name": "餐品6数量",
+      "help": ""
+    },
+    "Meal7": {
+      "name": "餐品7",
+      "help": "",
+      "None": "None",
+      "apple_juice": "苹果汁",
+      "banana_mango": "香蕉芒果汁",
+      "honey_lemon": "蜂蜜柠檬水",
+      "strawberry_lemon": "草莓蜜沁",
+      "strawberry_honey": "草莓蜂蜜冰沙",
+      "floral_fruity": "花香果韵",
+      "fruit_paradise": "缤纷果乐园",
+      "lavender_tea": "薰衣草茶",
+      "sunny_honey": "阳光蜜水"
+    },
+    "MealNumber7": {
+      "name": "餐品7数量",
+      "help": ""
+    },
+    "Meal8": {
+      "name": "餐品8",
+      "help": "",
+      "None": "None",
+      "apple_juice": "苹果汁",
+      "banana_mango": "香蕉芒果汁",
+      "honey_lemon": "蜂蜜柠檬水",
+      "strawberry_lemon": "草莓蜜沁",
+      "strawberry_honey": "草莓蜂蜜冰沙",
+      "floral_fruity": "花香果韵",
+      "fruit_paradise": "缤纷果乐园",
+      "lavender_tea": "薰衣草茶",
+      "sunny_honey": "阳光蜜水"
+    },
+    "MealNumber8": {
+      "name": "餐品8数量",
+      "help": ""
     }
   },
   "IslandTeahouseNextTask": {
@@ -3230,13 +3384,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "餐品数量",
-      "help": "会影响备餐",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "厨师",
       "help": "a为上限为a的厨师，b为b及b以下的厨师",
@@ -3256,6 +3403,10 @@
       "carnival": "烤肉狂欢",
       "double_energy": "能量双拼套餐"
     },
+    "MealNumber1": {
+      "name": "餐品1数量",
+      "help": ""
+    },
     "Meal2": {
       "name": "餐品2",
       "help": "",
@@ -3268,9 +3419,13 @@
       "carnival": "烤肉狂欢",
       "double_energy": "能量双拼套餐"
     },
+    "MealNumber2": {
+      "name": "餐品2数量",
+      "help": ""
+    },
     "Meal3": {
       "name": "餐品3",
-      "help": "未解锁第三格请选none",
+      "help": "",
       "None": "None",
       "roasted_skewer": "碳烤肉串",
       "chicken_potato": "禽肉土豆拼盘",
@@ -3280,9 +3435,13 @@
       "carnival": "烤肉狂欢",
       "double_energy": "能量双拼套餐"
     },
+    "MealNumber3": {
+      "name": "餐品3数量",
+      "help": ""
+    },
     "Meal4": {
       "name": "餐品4",
-      "help": "未解锁第四格请选none",
+      "help": "",
       "None": "None",
       "roasted_skewer": "碳烤肉串",
       "chicken_potato": "禽肉土豆拼盘",
@@ -3291,6 +3450,74 @@
       "steak_bowl": "汉堡肉饭",
       "carnival": "烤肉狂欢",
       "double_energy": "能量双拼套餐"
+    },
+    "MealNumber4": {
+      "name": "餐品4数量",
+      "help": ""
+    },
+    "Meal5": {
+      "name": "餐品5",
+      "help": "",
+      "None": "None",
+      "roasted_skewer": "碳烤肉串",
+      "chicken_potato": "禽肉土豆拼盘",
+      "carrot_omelette": "胡萝卜厚蛋烧",
+      "stir_fried_chicken": "爆炒禽肉",
+      "steak_bowl": "汉堡肉饭",
+      "carnival": "烤肉狂欢",
+      "double_energy": "能量双拼套餐"
+    },
+    "MealNumber5": {
+      "name": "餐品5数量",
+      "help": ""
+    },
+    "Meal6": {
+      "name": "餐品6",
+      "help": "",
+      "None": "None",
+      "roasted_skewer": "碳烤肉串",
+      "chicken_potato": "禽肉土豆拼盘",
+      "carrot_omelette": "胡萝卜厚蛋烧",
+      "stir_fried_chicken": "爆炒禽肉",
+      "steak_bowl": "汉堡肉饭",
+      "carnival": "烤肉狂欢",
+      "double_energy": "能量双拼套餐"
+    },
+    "MealNumber6": {
+      "name": "餐品6数量",
+      "help": ""
+    },
+    "Meal7": {
+      "name": "餐品7",
+      "help": "",
+      "None": "None",
+      "roasted_skewer": "碳烤肉串",
+      "chicken_potato": "禽肉土豆拼盘",
+      "carrot_omelette": "胡萝卜厚蛋烧",
+      "stir_fried_chicken": "爆炒禽肉",
+      "steak_bowl": "汉堡肉饭",
+      "carnival": "烤肉狂欢",
+      "double_energy": "能量双拼套餐"
+    },
+    "MealNumber7": {
+      "name": "餐品7数量",
+      "help": ""
+    },
+    "Meal8": {
+      "name": "餐品8",
+      "help": "",
+      "None": "None",
+      "roasted_skewer": "碳烤肉串",
+      "chicken_potato": "禽肉土豆拼盘",
+      "carrot_omelette": "胡萝卜厚蛋烧",
+      "stir_fried_chicken": "爆炒禽肉",
+      "steak_bowl": "汉堡肉饭",
+      "carnival": "烤肉狂欢",
+      "double_energy": "能量双拼套餐"
+    },
+    "MealNumber8": {
+      "name": "餐品8数量",
+      "help": ""
     }
   },
   "IslandGrillNextTask": {
@@ -3322,13 +3549,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "餐品数量",
-      "help": "会影响备餐",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "厨师",
       "help": "a为上限为a的厨师，b为b及b以下的厨师",
@@ -3350,6 +3570,10 @@
       "berry_orange": "莓果香橙甜点组",
       "strawberry_charlotte": "草莓夏洛特"
     },
+    "MealNumber1": {
+      "name": "餐品1数量",
+      "help": ""
+    },
     "Meal2": {
       "name": "餐品2",
       "help": "",
@@ -3364,9 +3588,13 @@
       "berry_orange": "莓果香橙甜点组",
       "strawberry_charlotte": "草莓夏洛特"
     },
+    "MealNumber2": {
+      "name": "餐品2数量",
+      "help": ""
+    },
     "Meal3": {
       "name": "餐品3",
-      "help": "未解锁第三格请选none",
+      "help": "",
       "None": "None",
       "apple_pie": "苹果派",
       "corn_cup": "玉米杯",
@@ -3378,9 +3606,13 @@
       "berry_orange": "莓果香橙甜点组",
       "strawberry_charlotte": "草莓夏洛特"
     },
+    "MealNumber3": {
+      "name": "餐品3数量",
+      "help": ""
+    },
     "Meal4": {
       "name": "餐品4",
-      "help": "未解锁第四格请选none",
+      "help": "",
       "None": "None",
       "apple_pie": "苹果派",
       "corn_cup": "玉米杯",
@@ -3391,6 +3623,82 @@
       "succulently_sweet": "香甜组合",
       "berry_orange": "莓果香橙甜点组",
       "strawberry_charlotte": "草莓夏洛特"
+    },
+    "MealNumber4": {
+      "name": "餐品4数量",
+      "help": ""
+    },
+    "Meal5": {
+      "name": "餐品5",
+      "help": "",
+      "None": "None",
+      "apple_pie": "苹果派",
+      "corn_cup": "玉米杯",
+      "orange_pie": "香橙派",
+      "banana_crepe": "香蕉可丽饼",
+      "orchard_duo": "果园二重奏",
+      "rice_mango": "芒果糯米饭",
+      "succulently_sweet": "香甜组合",
+      "berry_orange": "莓果香橙甜点组",
+      "strawberry_charlotte": "草莓夏洛特"
+    },
+    "MealNumber5": {
+      "name": "餐品5数量",
+      "help": ""
+    },
+    "Meal6": {
+      "name": "餐品6",
+      "help": "",
+      "None": "None",
+      "apple_pie": "苹果派",
+      "corn_cup": "玉米杯",
+      "orange_pie": "香橙派",
+      "banana_crepe": "香蕉可丽饼",
+      "orchard_duo": "果园二重奏",
+      "rice_mango": "芒果糯米饭",
+      "succulently_sweet": "香甜组合",
+      "berry_orange": "莓果香橙甜点组",
+      "strawberry_charlotte": "草莓夏洛特"
+    },
+    "MealNumber6": {
+      "name": "餐品6数量",
+      "help": ""
+    },
+    "Meal7": {
+      "name": "餐品7",
+      "help": "",
+      "None": "None",
+      "apple_pie": "苹果派",
+      "corn_cup": "玉米杯",
+      "orange_pie": "香橙派",
+      "banana_crepe": "香蕉可丽饼",
+      "orchard_duo": "果园二重奏",
+      "rice_mango": "芒果糯米饭",
+      "succulently_sweet": "香甜组合",
+      "berry_orange": "莓果香橙甜点组",
+      "strawberry_charlotte": "草莓夏洛特"
+    },
+    "MealNumber7": {
+      "name": "餐品7数量",
+      "help": ""
+    },
+    "Meal8": {
+      "name": "餐品8",
+      "help": "",
+      "None": "None",
+      "apple_pie": "苹果派",
+      "corn_cup": "玉米杯",
+      "orange_pie": "香橙派",
+      "banana_crepe": "香蕉可丽饼",
+      "orchard_duo": "果园二重奏",
+      "rice_mango": "芒果糯米饭",
+      "succulently_sweet": "香甜组合",
+      "berry_orange": "莓果香橙甜点组",
+      "strawberry_charlotte": "草莓夏洛特"
+    },
+    "MealNumber8": {
+      "name": "餐品8数量",
+      "help": ""
     }
   },
   "IslandJuuEateryNextTask": {
@@ -3424,13 +3732,6 @@
       "1": "1",
       "2": "2"
     },
-    "MealNumber": {
-      "name": "餐品数量",
-      "help": "会影响备餐",
-      "5": "5",
-      "6": "6",
-      "7": "7"
-    },
     "Chef": {
       "name": "厨师",
       "help": "a为上限为a的厨师，b为b及b以下的厨师",
@@ -3452,6 +3753,10 @@
       "wake_up_call": "醒神套餐",
       "fruity_fruitier": "果香双杯乐"
     },
+    "MealNumber1": {
+      "name": "餐品1数量",
+      "help": ""
+    },
     "Meal2": {
       "name": "餐品2",
       "help": "",
@@ -3466,9 +3771,13 @@
       "wake_up_call": "醒神套餐",
       "fruity_fruitier": "果香双杯乐"
     },
+    "MealNumber2": {
+      "name": "餐品2数量",
+      "help": ""
+    },
     "Meal3": {
       "name": "餐品3",
-      "help": "未解锁第三格请选none",
+      "help": "",
       "None": "None",
       "iced_coffee": "冰咖啡",
       "omelette": "欧姆蛋",
@@ -3480,9 +3789,13 @@
       "wake_up_call": "醒神套餐",
       "fruity_fruitier": "果香双杯乐"
     },
+    "MealNumber3": {
+      "name": "餐品3数量",
+      "help": ""
+    },
     "Meal4": {
       "name": "餐品4",
-      "help": "未解锁第四格请选none",
+      "help": "",
       "None": "None",
       "iced_coffee": "冰咖啡",
       "omelette": "欧姆蛋",
@@ -3493,6 +3806,82 @@
       "morning_light": "晨光活力组合",
       "wake_up_call": "醒神套餐",
       "fruity_fruitier": "果香双杯乐"
+    },
+    "MealNumber4": {
+      "name": "餐品4数量",
+      "help": ""
+    },
+    "Meal5": {
+      "name": "餐品5",
+      "help": "",
+      "None": "None",
+      "iced_coffee": "冰咖啡",
+      "omelette": "欧姆蛋",
+      "cheese": "芝士",
+      "latte": "拿铁",
+      "citrus_coffee": "柑橘咖啡",
+      "strawberry_milkshake": "草莓奶绿",
+      "morning_light": "晨光活力组合",
+      "wake_up_call": "醒神套餐",
+      "fruity_fruitier": "果香双杯乐"
+    },
+    "MealNumber5": {
+      "name": "餐品5数量",
+      "help": ""
+    },
+    "Meal6": {
+      "name": "餐品6",
+      "help": "",
+      "None": "None",
+      "iced_coffee": "冰咖啡",
+      "omelette": "欧姆蛋",
+      "cheese": "芝士",
+      "latte": "拿铁",
+      "citrus_coffee": "柑橘咖啡",
+      "strawberry_milkshake": "草莓奶绿",
+      "morning_light": "晨光活力组合",
+      "wake_up_call": "醒神套餐",
+      "fruity_fruitier": "果香双杯乐"
+    },
+    "MealNumber6": {
+      "name": "餐品6数量",
+      "help": ""
+    },
+    "Meal7": {
+      "name": "餐品7",
+      "help": "",
+      "None": "None",
+      "iced_coffee": "冰咖啡",
+      "omelette": "欧姆蛋",
+      "cheese": "芝士",
+      "latte": "拿铁",
+      "citrus_coffee": "柑橘咖啡",
+      "strawberry_milkshake": "草莓奶绿",
+      "morning_light": "晨光活力组合",
+      "wake_up_call": "醒神套餐",
+      "fruity_fruitier": "果香双杯乐"
+    },
+    "MealNumber7": {
+      "name": "餐品7数量",
+      "help": ""
+    },
+    "Meal8": {
+      "name": "餐品8",
+      "help": "",
+      "None": "None",
+      "iced_coffee": "冰咖啡",
+      "omelette": "欧姆蛋",
+      "cheese": "芝士",
+      "latte": "拿铁",
+      "citrus_coffee": "柑橘咖啡",
+      "strawberry_milkshake": "草莓奶绿",
+      "morning_light": "晨光活力组合",
+      "wake_up_call": "醒神套餐",
+      "fruity_fruitier": "果香双杯乐"
+    },
+    "MealNumber8": {
+      "name": "餐品8数量",
+      "help": ""
     }
   },
   "IslandJuuCoffeeNextTask": {
