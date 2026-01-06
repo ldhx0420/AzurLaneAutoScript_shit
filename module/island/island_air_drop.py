@@ -1,5 +1,6 @@
 from module.island.island import *
 from time import sleep
+from module.ui.scroll import Scroll
 
 class IslandDailyGather(Island):
     def run(self):
@@ -8,49 +9,167 @@ class IslandDailyGather(Island):
         next_daily_time += timedelta(days=1)
         self.goto_postmanage()
         if self.appear_then_click(MY_AIR_DROP_ALREADY):
-            self.ui_goto(page_island)
+            self.ui_goto(page_island,get_ship=False)
             self.island_air_drop()
-            #self.appear_then_click(skip)
-            self.island_down(1000)
-            self.island_air_drop()
-        self.ui_goto(page_island_management)
-        self.steal_air_drop()
-        self.ui_goto(page_island_visit)
-        image = self.device.screenshot()
-        ocr_air_drop = Digit(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
-                                    alphabet='0123456789')
-        number = ocr_air_drop.ocr(image)
-        if number>0:
+            #while 1:
+            #    if self.appear(ISLAND_CHECK):
+            #        break
+             #   if self.appear_then_click(skip):
+             #       continue
+            #self.island_down(1000)
+            #self.island_air_drop()
+        while 1:
+            self.ui_goto(page_island_visit, get_ship=False)
+            ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
+                                        alphabet='0123456789/')
+            image = self.device.screenshot()
+            number1,number2,number3 = ocr_air_drop.ocr(image)
+            if number1 > 0:
+                if self.find_air_drop():
+                    self.device.sleep(1)
+                    self.run_and_get()
+                    self.device.sleep(5)
+                    continue
+                else:
+                    break
+            else:
+                break
+
+        if number1>0:
             next_run_time = now + timedelta(hours=5)
             self.config.task_delay(target=next_run_time)
         else:
             self.config.task_delay(target=next_daily_time)
-    def steal_air_drop(self):
-        self.ui_goto(page_island_visit)
-        image = self.device.screenshot()
-        ocr_air_drop = Digit(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
-                                    alphabet='0123456789')
-        number = ocr_air_drop.ocr(image)
-        times = 5
-        while number > 0:
-            while times > 0:
-                self.device.screenshot()
-                self.appear_then_click(ONES_AIR_DROP,offset=300)
-                if self.island_access_map_check():
-                    self.post_manage_up_swipe(450)
+
+
+    def find_air_drop(self):
+        search_area = (662, 90, 720, 660)
+        VISIT_SCROLL = Scroll(VISIT_SCROLL_AREA, color=(255, 255, 255), name='VISIT_SCROLL')
+        max_swipe_attempts = 15
+        swipe_count = 0
+        while swipe_count <= max_swipe_attempts:
+            self.device.screenshot()
+            region_image = self.image_crop(search_area, copy=False)
+            air_drop_buttons = TEMPLATE_AIR_DROP.match_multi(
+                region_image,
+                similarity=0.85,
+                threshold=5,
+                name="air_drop_buttons"
+            )
+
+            if not air_drop_buttons:
+                logger.info("在指定区域内未找到补给")
+
+                # 检查是否在底部
+                if VISIT_SCROLL.at_bottom(main=self):
+                    logger.info("滑动槽已在底部，停止搜索")
+                    return False
+                # 如果还有滑动次数，尝试滑动
+                if swipe_count < max_swipe_attempts:
+                    logger.info(f"滑动尝试 {swipe_count + 1}/{max_swipe_attempts}")
+                    self.visit_swipe(480)
+                    swipe_count += 1
+                    self.device.sleep(0.5)
+                    continue
                 else:
-                    while True:
-                        self.device.screenshot()
-                        if self.appear_then_click(ISLAND_ACCESS_MAP):
-                            continue
-                        if self.appear(ISLAND_MAP_CHECK):
-                            self.device.click(ISLAND_MAP_GOTO_ISLAND)
-                            break
-                        self.device.sleep(1)
-                    self.run_and_get()
-                    self.device.click(AIR_DROP_RUN_AWAY)
-                times -= 1
-                number -= 1
+                    logger.info("达到最大滑动次数，停止搜索")
+                    return False
+
+            logger.info(f"找到 {len(air_drop_buttons)} 个补给目标")
+            air_drop_buttons.sort(key=lambda btn: btn.area[1])
+
+            # 标记是否有至少一个可以点击的补给
+            has_clickable_air_drop = False
+
+            for air_drop_button in air_drop_buttons:
+                air_drop_button_x = air_drop_button.area[0] + search_area[0]
+                air_drop_button_y = air_drop_button.area[1] + search_area[1]
+
+                visit_button = self.calculate_visit_position(air_drop_button_x, air_drop_button_y)
+                self.device.sleep(2)
+                result = self.check_visit(visit_button)
+
+                if result == "skip":
+                    logger.info("无法访问，跳过当前补给")
+                    continue
+                elif result == "success":
+                    logger.info("成功进入拜访状态，返回True")
+                    return True
+                elif result == "timeout":
+                    logger.warning("检测超时，跳过当前补给")
+                    continue
+                has_clickable_air_drop = True
+            # 如果当前页面所有补给都不可用（全部skip或timeout）
+            if not has_clickable_air_drop:
+                logger.info("当前页面没有可用补给目标")
+                # 检查是否在底部
+                if VISIT_SCROLL.at_bottom(main=self):
+                    logger.info("滑动槽已在底部，停止搜索")
+                    return False
+                # 滑动继续查找
+                if swipe_count < max_swipe_attempts:
+                    logger.info(f"滑动尝试 {swipe_count + 1}/{max_swipe_attempts}")
+                    self.visit_swipe(480)
+                    swipe_count += 1
+                    self.device.sleep(0.5)
+                    continue
+                else:
+                    logger.info("达到最大滑动次数，停止搜索")
+                    return False
+
+            if swipe_count < max_swipe_attempts:
+                logger.info(f"所有补给尝试失败，滑动尝试 {swipe_count + 1}/{max_swipe_attempts}")
+                self.visit_swipe(480)
+                swipe_count += 1
+                self.device.sleep(0.5)
+                continue
+
+        logger.info("未检测到可用补给")
+        return False
+
+    def check_visit(self, visit_button):
+        number = 10
+        self.device.click(visit_button)
+        while number:
+            self.device.screenshot()
+            if self.appear(ISLAND_ACCESS_MAP, offset=1):
+                return "success"
+            if self.appear(CANT_ACCESS, similarity=0.85):
+                return "skip"
+            self.device.sleep(1)
+            self.device.click(visit_button)
+            number -= 1
+        return "timeout"
+
+    def calculate_visit_position(self, air_drop_button_x, air_drop_button_y):
+
+        visit_button_x1 = air_drop_button_x + 225  # x偏移
+        visit_button_y1 = air_drop_button_y + 25  # y偏移
+        visit_button_width = 73  # 960 - 887 = 73
+        visit_button_height = 24  # 302 - 278 = 24
+        visit_button_x2 = visit_button_x1 + visit_button_width
+        visit_button_y2 = visit_button_y1 + visit_button_height
+
+        visit_button = Button(
+            area=(visit_button_x1, visit_button_y1, visit_button_x2, visit_button_y2),
+            color=(),
+            button=(visit_button_x1, visit_button_y1, visit_button_x2, visit_button_y2),
+            name="visit_button"
+        )
+        return visit_button
+
+    def visit_swipe(self, distance):
+        stop_button = Button(
+            area=(500, 90, 630, 660),
+            color=(),
+            button=(500, 90, 630, 660),
+            name="stop_button"
+        )
+        self.device.swipe_vector(vector=(0, -distance), box=(500, 90, 630, 660), name="VisitSwipe")
+        self.device.click(stop_button)
+        self.device.click_record_clear()
+
+
 
     def island_access_map_check(self):
         while True:
@@ -59,6 +178,7 @@ class IslandDailyGather(Island):
                 return False
             if self.appear(CANT_ACCESS):
                 return True
+            self.device.sleep(0.5)
 
     def island_air_drop(self):
         self.device.click(ISLAND_AIR_DROP_A)
@@ -105,10 +225,16 @@ class IslandDailyGather(Island):
                 break
             self.island_down(500)
             self.island_air_drop()
-
+        self.device.click(AIR_DROP_RUN_AWAY)
+    def test(self):
+        ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
+                                    alphabet='0123456789/')
+        image = self.device.screenshot()
+        number1, number2, number3 = ocr_air_drop.ocr(image)
+        print(number1)
 
 
 if __name__ == "__main__":
     az =IslandDailyGather('alas', task='Alas')
     az.device.screenshot()
-    az.run()
+    az.test()
