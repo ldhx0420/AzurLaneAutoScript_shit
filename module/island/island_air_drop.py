@@ -2,22 +2,29 @@ from module.island.island import *
 from time import sleep
 from module.ui.scroll import Scroll
 
-class IslandDailyGather(Island):
+class IslandAirDrop(Island):
     def run(self):
+        self.island_error = False
         now = datetime.now()
-        next_daily_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        next_daily_time += timedelta(days=1)
-        self.goto_postmanage()
-        if self.appear_then_click(MY_AIR_DROP_ALREADY):
-            self.ui_goto(page_island,get_ship=False)
-            self.island_air_drop()
-            #while 1:
-            #    if self.appear(ISLAND_CHECK):
-            #        break
-             #   if self.appear_then_click(skip):
-             #       continue
-            #self.island_down(1000)
-            #self.island_air_drop()
+        today = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        next_daily_time = today.replace(hour=3, minute=0, second=0, microsecond=0) + timedelta(days=1)
+        last_run_time = self.config.IslandAirDrop_LastRun
+        next_run_time = now + timedelta(hours=5)
+        last_attempt_today = now.replace(hour=23, minute=0, second=0, microsecond=0)
+        if last_run_time < today:
+            self.goto_postmanage()
+            if self.appear_then_click(MY_AIR_DROP_ALREADY):
+                self.ui_goto(page_island,get_ship=False)
+                self.island_air_drop()
+                while 1:
+                    if self.appear(ISLAND_CHECK):
+                        break
+                    if self.appear_then_click(AIR_DROP_SKIP):
+                        continue
+                self.device.sleep(1)
+                self.island_down(1000)
+                self.island_air_drop()
+        has_drops = True
         while 1:
             self.ui_goto(page_island_visit, get_ship=False)
             ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
@@ -25,6 +32,7 @@ class IslandDailyGather(Island):
             image = self.device.screenshot()
             number1,number2,number3 = ocr_air_drop.ocr(image)
             if number1 > 0:
+                has_drops = True
                 if self.find_air_drop():
                     self.device.sleep(1)
                     self.run_and_get()
@@ -33,13 +41,19 @@ class IslandDailyGather(Island):
                 else:
                     break
             else:
+                has_drops = False
                 break
+        self.config.IslandAirDrop_LastRun = datetime.now()
 
-        if number1>0:
-            next_run_time = now + timedelta(hours=5)
+        if has_drops and next_run_time<last_attempt_today:
             self.config.task_delay(target=next_run_time)
+        elif has_drops and next_run_time>last_attempt_today>now:
+            self.config.task_delay(target=last_attempt_today)
         else:
             self.config.task_delay(target=next_daily_time)
+        if self.island_error:
+            from module.exception import GameBugError
+            raise GameBugError("检测到岛屿拜访卡死，需要重启")
 
 
     def find_air_drop(self):
@@ -47,6 +61,7 @@ class IslandDailyGather(Island):
         VISIT_SCROLL = Scroll(VISIT_SCROLL_AREA, color=(255, 255, 255), name='VISIT_SCROLL')
         max_swipe_attempts = 15
         swipe_count = 0
+        last_attempt_swipe = 1
         while swipe_count <= max_swipe_attempts:
             self.device.screenshot()
             region_image = self.image_crop(search_area, copy=False)
@@ -61,7 +76,11 @@ class IslandDailyGather(Island):
                 logger.info("在指定区域内未找到补给")
 
                 # 检查是否在底部
-                if VISIT_SCROLL.at_bottom(main=self):
+                if VISIT_SCROLL.at_bottom(main=self) and last_attempt_swipe>0:
+                    last_attempt_swipe -= 1
+                    logger.info("滑动槽已在底部，最后尝试滑动")
+                    continue
+                elif VISIT_SCROLL.at_bottom(main=self) and last_attempt_swipe<=0:
                     logger.info("滑动槽已在底部，停止搜索")
                     return False
                 # 如果还有滑动次数，尝试滑动
@@ -96,14 +115,18 @@ class IslandDailyGather(Island):
                     logger.info("成功进入拜访状态，返回True")
                     return True
                 elif result == "timeout":
-                    logger.warning("检测超时，跳过当前补给")
-                    continue
+                    self.island_error = True
+                    return False
                 has_clickable_air_drop = True
             # 如果当前页面所有补给都不可用（全部skip或timeout）
             if not has_clickable_air_drop:
                 logger.info("当前页面没有可用补给目标")
                 # 检查是否在底部
-                if VISIT_SCROLL.at_bottom(main=self):
+                if VISIT_SCROLL.at_bottom(main=self) and last_attempt_swipe>0:
+                    last_attempt_swipe -= 1
+                    logger.info("滑动槽已在底部，最后尝试滑动")
+                    continue
+                elif VISIT_SCROLL.at_bottom(main=self) and last_attempt_swipe<=0:
                     logger.info("滑动槽已在底部，停止搜索")
                     return False
                 # 滑动继续查找
@@ -128,7 +151,7 @@ class IslandDailyGather(Island):
         return False
 
     def check_visit(self, visit_button):
-        number = 10
+        number = 20
         self.device.click(visit_button)
         while number:
             self.device.screenshot()
@@ -227,14 +250,13 @@ class IslandDailyGather(Island):
             self.island_air_drop()
         self.device.click(AIR_DROP_RUN_AWAY)
     def test(self):
-        ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
-                                    alphabet='0123456789/')
-        image = self.device.screenshot()
-        number1, number2, number3 = ocr_air_drop.ocr(image)
-        print(number1)
+        last_run_time = self.config.IslandAirDrop_LastRun
+        today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        if last_run_time < today:
+            print('yes')
 
 
 if __name__ == "__main__":
-    az =IslandDailyGather('alas', task='Alas')
+    az =IslandAirDrop('alas', task='Alas')
     az.device.screenshot()
     az.test()

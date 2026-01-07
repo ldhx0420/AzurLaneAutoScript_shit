@@ -298,6 +298,10 @@
       "name": "制造业",
       "help": ""
     },
+    "IslandAirDrop": {
+      "name": "岛屿空投补给",
+      "help": ""
+    },
     "Daemon": {
       "name": "半自动点击",
       "help": ""
@@ -3952,6 +3956,16 @@
       "0": "0",
       "1": "1",
       "2": "2"
+    }
+  },
+  "IslandAirDrop": {
+    "_info": {
+      "name": "每日补给",
+      "help": "建议刷新前检查剩余次数"
+    },
+    "LastRun": {
+      "name": "上次运行时间",
+      "help": ""
     }
   },
   "Daemon": {

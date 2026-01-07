@@ -376,6 +376,9 @@ Island:
       - WoodProcessing
       - Industrial
       - Handmade
+    IslandAirDrop:
+      - Scheduler
+      - IslandAirDrop
 # ==================== Tool ====================
 
 Tool:

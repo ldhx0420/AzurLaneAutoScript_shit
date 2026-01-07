@@ -298,6 +298,10 @@
       "name": "Task.IslandManufacture.name",
       "help": "Task.IslandManufacture.help"
     },
+    "IslandAirDrop": {
+      "name": "Task.IslandAirDrop.name",
+      "help": "Task.IslandAirDrop.help"
+    },
     "Daemon": {
       "name": "半自動點擊",
       "help": ""
@@ -3952,6 +3956,16 @@
       "0": "0",
       "1": "1",
       "2": "2"
+    }
+  },
+  "IslandAirDrop": {
+    "_info": {
+      "name": "IslandAirDrop._info.name",
+      "help": "IslandAirDrop._info.help"
+    },
+    "LastRun": {
+      "name": "IslandAirDrop.LastRun.name",
+      "help": "IslandAirDrop.LastRun.help"
     }
   },
   "Daemon": {
