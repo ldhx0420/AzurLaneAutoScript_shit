@@ -106,7 +106,7 @@ class IslandAirDrop(Island):
                 air_drop_button_y = air_drop_button.area[1] + search_area[1]
 
                 visit_button = self.calculate_visit_position(air_drop_button_x, air_drop_button_y)
-                self.device.sleep(2)
+                self.device.sleep(5)
                 result = self.check_visit(visit_button)
 
                 if result == "skip":
