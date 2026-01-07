@@ -3963,9 +3963,9 @@
       "name": "IslandAirDrop._info.name",
       "help": "IslandAirDrop._info.help"
     },
-    "LastRun": {
-      "name": "IslandAirDrop.LastRun.name",
-      "help": "IslandAirDrop.LastRun.help"
+    "LastSteal": {
+      "name": "IslandAirDrop.LastSteal.name",
+      "help": "IslandAirDrop.LastSteal.help"
     }
   },
   "Daemon": {

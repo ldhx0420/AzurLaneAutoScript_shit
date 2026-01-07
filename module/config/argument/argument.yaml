@@ -1114,8 +1114,7 @@ Handmade:
     value: 2
     option: [ 0, 1, 2 ]
 IslandAirDrop:
-  LastRun: 2020-01-01 00:00:00
-
+  LastSteal: 2020-01-01 00:00:00
 # ==================== Tools ====================
 
 Daemon:

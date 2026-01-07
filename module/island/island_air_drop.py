@@ -8,10 +8,10 @@ class IslandAirDrop(Island):
         now = datetime.now()
         today = now.replace(hour=0, minute=0, second=0, microsecond=0)
         next_daily_time = today.replace(hour=3, minute=0, second=0, microsecond=0) + timedelta(days=1)
-        last_run_time = self.config.IslandAirDrop_LastRun
-        next_run_time = now + timedelta(hours=5)
+        last_steal_time = self.config.IslandAirDrop_LastSteal
+        next_steal_time = now + timedelta(hours=5)
         last_attempt_today = now.replace(hour=23, minute=0, second=0, microsecond=0)
-        if last_run_time < today:
+        if last_steal_time < today:
             self.goto_postmanage()
             if self.appear_then_click(MY_AIR_DROP_ALREADY):
                 self.ui_goto(page_island,get_ship=False)
@@ -44,11 +44,11 @@ class IslandAirDrop(Island):
             else:
                 has_drops = False
                 break
-        self.config.IslandAirDrop_LastRun = datetime.now()
+        self.config.IslandAirDrop_LastSteal = datetime.now().replace(microsecond=0)
 
-        if has_drops and next_run_time<last_attempt_today:
-            self.config.task_delay(target=next_run_time)
-        elif has_drops and next_run_time>last_attempt_today>now:
+        if has_drops and next_steal_time<last_attempt_today:
+            self.config.task_delay(target=next_steal_time)
+        elif has_drops and next_steal_time>last_attempt_today>now:
             self.config.task_delay(target=last_attempt_today)
         else:
             self.config.task_delay(target=next_daily_time)
@@ -263,13 +263,8 @@ class IslandAirDrop(Island):
         cv2.imshow('Processed OCR', processed)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-    def test1(self):
-        ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(150, 150, 150), threshold=80,
-                                    alphabet='0123456789/')
-        image = self.device.screenshot()
-        number1, number2, number3 = ocr_air_drop.ocr(image)
 
 if __name__ == "__main__":
     az =IslandAirDrop('alas', task='Alas')
     az.device.screenshot()
-    az.test1()
+    az.run()

@@ -626,7 +626,7 @@ class GeneratedConfig:
     Handmade_Positions = 2  # 0, 1, 2
 
     # Group `IslandAirDrop`
-    IslandAirDrop_LastRun = datetime.datetime(2020, 1, 1, 0, 0)
+    IslandAirDrop_LastSteal = datetime.datetime(2020, 1, 1, 0, 0)
 
     # Group `Daemon`
     Daemon_EnterMap = True

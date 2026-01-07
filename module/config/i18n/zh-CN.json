@@ -3961,9 +3961,9 @@
   "IslandAirDrop": {
     "_info": {
       "name": "每日补给",
-      "help": "建议刷新前检查剩余次数"
+      "help": ""
     },
-    "LastRun": {
+    "LastSteal": {
       "name": "上次运行时间",
       "help": ""
     }
