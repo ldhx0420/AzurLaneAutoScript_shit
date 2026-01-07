@@ -28,7 +28,7 @@ class IslandAirDrop(Island):
         has_drops = True
         while 1:
             self.ui_goto(page_island_visit, get_ship=False)
-            ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
+            ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(150, 150, 150), threshold=80,
                                         alphabet='0123456789/')
             image = self.device.screenshot()
             number1,number2,number3 = ocr_air_drop.ocr(image)
@@ -251,13 +251,26 @@ class IslandAirDrop(Island):
             self.island_air_drop()
         self.device.click(AIR_DROP_RUN_AWAY)
     def test(self):
-        last_run_time = self.config.IslandAirDrop_LastRun
-        today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-        if last_run_time < today:
-            print('yes')
+        image = self.device.screenshot()
+        area = OCR_AIR_DROP.area if hasattr(OCR_AIR_DROP, 'area') else OCR_AIR_DROP
+        cropped = crop(image, area)
 
+        # 测试不同参数
+        letter = (150, 150, 150)
+        threshold = 80
+        processed = extract_letters(cropped, letter=letter, threshold=threshold)
+
+        # 显示处理后的图像
+        cv2.imshow('Processed OCR', processed)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+    def test1(self):
+        ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(150, 150, 150), threshold=80,
+                                    alphabet='0123456789/')
+        image = self.device.screenshot()
+        number1, number2, number3 = ocr_air_drop.ocr(image)
 
 if __name__ == "__main__":
     az =IslandAirDrop('alas', task='Alas')
     az.device.screenshot()
-    az.test()
+    az.test1()
