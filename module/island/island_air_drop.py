@@ -17,6 +17,7 @@ class IslandAirDrop(Island):
                 self.ui_goto(page_island,get_ship=False)
                 self.island_air_drop()
                 while 1:
+                    self.device.screenshot()
                     if self.appear(ISLAND_CHECK):
                         break
                     if self.appear_then_click(AIR_DROP_SKIP):
