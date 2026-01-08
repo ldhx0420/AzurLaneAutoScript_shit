@@ -1,7 +1,7 @@
 from module.island_restaurant.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
-
+from module.logger import logger
 
 class IslandRestaurant(IslandShopBase):
     def __init__(self, *args, **kwargs):
@@ -103,14 +103,14 @@ class IslandRestaurant(IslandShopBase):
             tofu_needed = number * 1
             if 'tofu' in self.warehouse_counts:
                 self.warehouse_counts['tofu'] -= tofu_needed
-                print(f"扣除豆腐：tofu -{tofu_needed} (用于制作 {product})")
+                logger.info(f"扣除豆腐：tofu -{tofu_needed} (用于制作 {product})")
 
         # tofu_meat需要扣除豆腐
         if product == 'tofu_meat':
             tofu_needed = number * 2
             if 'tofu' in self.warehouse_counts:
                 self.warehouse_counts['tofu'] -= tofu_needed
-                print(f"扣除豆腐：tofu -{tofu_needed} (用于制作 {product})")
+                logger.info(f"扣除豆腐：tofu -{tofu_needed} (用于制作 {product})")
 
     def apply_special_material_constraints(self, requirements):
         """覆盖：根据豆腐库存调整需求"""
@@ -128,7 +128,7 @@ class IslandRestaurant(IslandShopBase):
                 # 调整需求
                 max_cabbage = tofu_stock // 1
                 result['cabbage_tofu'] = max_cabbage
-                print(f"豆腐不足：cabbage_tofu需求从{cabbage_needed}调整为{max_cabbage}")
+                logger.info(f"豆腐不足：cabbage_tofu需求从{cabbage_needed}调整为{max_cabbage}")
                 tofu_stock -= max_cabbage  # 更新剩余豆腐
 
         # 处理tofu_meat的需求
@@ -140,13 +140,13 @@ class IslandRestaurant(IslandShopBase):
                 # 调整需求
                 max_tofu_meat = tofu_stock // 2
                 result['tofu_meat'] = max_tofu_meat
-                print(f"豆腐不足：tofu_meat需求从{tofu_meat_needed}调整为{max_tofu_meat}")
+                logger.info(f"豆腐不足：tofu_meat需求从{tofu_meat_needed}调整为{max_tofu_meat}")
 
         return result
 
     def test(self):
         chef_config = getattr(self.config, "IslandRestaurant_Chef", "WorkerJuu")
-        print(chef_config)
+        logger.info(chef_config)
 
 
 if __name__ == "__main__":

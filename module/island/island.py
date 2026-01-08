@@ -8,7 +8,7 @@ from module.island.island_select_character import *
 from module.island.warehouse import *
 from module.handler.login import LoginHandler
 from module.ui.ui import *
-
+from module.logger import logger
 
 class Island(SelectCharacter):
     def __init__(self, *args, **kwargs):
@@ -239,7 +239,7 @@ class Island(SelectCharacter):
 
     def goto_mill(self, max_attempts=3):
         for attempt in range(max_attempts):
-            print(f"尝试前往磨坊，第{attempt + 1}次尝试")
+            logger.info(f"尝试前往磨坊，第{attempt + 1}次尝试")
             self.island_map_goto('farm')
             self.island_up(800)
             self.island_left(1300)
@@ -252,12 +252,12 @@ class Island(SelectCharacter):
                 if self.appear_then_click(ISLAND_MILL):
                     continue
                 if self.appear(ISLAND_MILL_CHECK):
-                    print("成功到达磨坊")
+                    logger.info("成功到达磨坊")
                     return True
                 if time.time() - start_time > 5:
-                    print("超时，重新尝试")
+                    logger.info("超时，重新尝试")
                     break
-        print(f"尝试{max_attempts}次后仍然失败")
+        logger.info(f"尝试{max_attempts}次后仍然失败")
         return False
 
 

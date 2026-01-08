@@ -3,7 +3,7 @@ from module.island.island import *
 from datetime import datetime
 from module.handler.login import LoginHandler
 from module.island.warehouse import *
-
+from module.logger import logger
 
 class IslandFarm(Island, WarehouseOCR, LoginHandler):
     def __init__(self, *args, **kwargs):
@@ -233,7 +233,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             count = self.ocr_item_quantity(image, item_config['template'])
             results[item_config['name']] = count
             setattr(self, item_config['var_name'], count)
-            print(f"{item_config['name']}: {count}")
+            logger.info(f"{item_config['name']}: {count}")
         return results
 
     def warehouse_mill_ranch(self):
@@ -248,7 +248,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         for item_config in self.INVENTORY_CONFIG['mill']['items']:
             count = self.ocr_item_quantity(image, item_config['template'])
             self.inventory_counts['mill'][item_config['name']] = count
-            print(f"{item_config['name']}: {count}")
+            logger.info(f"{item_config['name']}: {count}")
         self.ui_goto(page_island_warehouse_filter, get_ship=False)
         self.appear_then_click(FILTER_RESET)
         self.appear_then_click(FILTER_RANCH)
@@ -260,7 +260,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         for item_config in self.INVENTORY_CONFIG['ranch']['items']:
             count = self.ocr_item_quantity(image, item_config['template'])
             self.inventory_counts['ranch'][item_config['name']] = count
-            print(f"{item_config['name']}: {count}")
+            logger.info(f"{item_config['name']}: {count}")
 
     def post_plant_check(self, category):
         config = self.INVENTORY_CONFIG[category]
@@ -430,7 +430,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         required_material = mill_config['required_material']
         if required_material in self.inventory_counts['farm']:
             if self.inventory_counts['farm'][required_material] < 330:
-                print(f"原材料{required_material}不足，无法加工{mill_item}")
+                logger.info(f"原材料{required_material}不足，无法加工{mill_item}")
                 return False
         while True:
             self.device.screenshot()
@@ -456,9 +456,9 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             self.device.click(ISLAND_SHOP_CONFIRM)
         if required_material in self.inventory_counts['farm']:
             self.inventory_counts['farm'][required_material] -= 330
-            print(f"扣除原材料{required_material} 330单位")
+            logger.info(f"扣除原材料{required_material} 330单位")
         self.inventory_counts['mill'][mill_item] = self.inventory_counts['mill'].get(mill_item, 0) + target * 10
-        print(f"加工完成：{mill_item} +{target}")
+        logger.info(f"加工完成：{mill_item} +{target}")
         return True
 
     def check_mill_needs(self):
@@ -468,7 +468,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
 
         if wheat_flour_count < 50 and wheat_count > 330:
             mill_needs.append('wheat_flour')
-            print("需要加工面粉")
+            logger.info("需要加工面粉")
 
         chicken_count = self.inventory_counts['ranch'].get('chicken', 0)
         chicken_feed_count = self.inventory_counts['mill'].get('chicken_feed', 0)
@@ -478,7 +478,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 chicken_feed_count < 50 and
                 'wheat_flour' not in mill_needs):
             mill_needs.append('chicken_feed')
-            print("需要加工鸡饲料")
+            logger.info("需要加工鸡饲料")
 
         pork_count = self.inventory_counts['ranch'].get('pork', 0)
         pig_feed_count = self.inventory_counts['mill'].get('pig_feed', 0)
@@ -488,20 +488,20 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 corn_count > 330 and
                 pig_feed_count < 50):
             mill_needs.append('pig_feed')
-            print("需要加工猪饲料")
+            logger.info("需要加工猪饲料")
 
         cattle_feed_count = self.inventory_counts['mill'].get('cattle_feed', 0)
         pasture_count = self.inventory_counts['farm'].get('pasture', 0)
 
         if cattle_feed_count < 50 and pasture_count > 330:
             mill_needs.append('cattle_feed')
-            print("需要加工牛饲料")
+            logger.info("需要加工牛饲料")
 
         sheep_feed_count = self.inventory_counts['mill'].get('sheep_feed', 0)
 
         if sheep_feed_count < 50 and pasture_count > 330:
             mill_needs.append('sheep_feed')
-            print("需要加工羊饲料")
+            logger.info("需要加工羊饲料")
         return mill_needs
 
     def set_buy_number(self, target):
@@ -543,40 +543,40 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
 
         if chicken_count < self.ranch_chicken_threshold and chicken_feed_count >= 50:
             ranch_needs.append('ISLAND_RANCH_POST1')
-            print("需要执行养鸡任务")
+            logger.info("需要执行养鸡任务")
 
         pork_count = self.inventory_counts['ranch'].get('pork', 0)
         pig_feed_count = self.inventory_counts['mill'].get('pig_feed', 0)
 
         if pork_count < self.ranch_pork_threshold and pig_feed_count >= 50:
             ranch_needs.append('ISLAND_RANCH_POST2')
-            print("需要执行养猪任务")
+            logger.info("需要执行养猪任务")
 
         cattle_feed_count = self.inventory_counts['mill'].get('cattle_feed', 0)
         if cattle_feed_count >= 50:
             ranch_needs.append('ISLAND_RANCH_POST3')
-            print("需要执行养牛任务")
+            logger.info("需要执行养牛任务")
 
         sheep_feed_count = self.inventory_counts['mill'].get('sheep_feed', 0)
         if sheep_feed_count >= 50:
             ranch_needs.append('ISLAND_RANCH_POST4')
-            print("需要执行养羊任务")
+            logger.info("需要执行养羊任务")
         return ranch_needs
 
     def run(self):
         self.island_error = False
         self.check_inventory_and_prepare_lists()
         self.warehouse_mill_ranch()
-        print("\n当前库存统计:")
-        print(f"农场库存: {self.inventory_counts['farm']}")
-        print(f"磨坊库存: {self.inventory_counts['mill']}")
-        print(f"牧场库存: {self.inventory_counts['ranch']}")
+        logger.info("\n当前库存统计:")
+        logger.info(f"农场库存: {self.inventory_counts['farm']}")
+        logger.info(f"磨坊库存: {self.inventory_counts['mill']}")
+        logger.info(f"牧场库存: {self.inventory_counts['ranch']}")
 
-        print("\n[3/5] 检查并执行磨坊加工...")
+        logger.info("\n[3/5] 检查并执行磨坊加工...")
         mill_needs = self.check_mill_needs()
         if mill_needs:
             self.goto_mill()
-            print(f"需要加工的项目: {mill_needs}")
+            logger.info(f"需要加工的项目: {mill_needs}")
             priority_order = ['wheat_flour', 'chicken_feed', 'pig_feed', 'cattle_feed', 'sheep_feed']
             for item in priority_order:
                 if item in mill_needs:
@@ -585,7 +585,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                         break
             self.device.click(ISLAND_MILL_GOTO_ISLAND)
         else:
-            print("没有磨坊加工需求")
+            logger.info("没有磨坊加工需求")
         ranch_needs = self.check_ranch_needs()
         self.goto_postmanage()
         self.post_manage_mode(POST_MANAGE_PRODUCTION)
@@ -593,7 +593,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         self.post_manage_swipe(0)
 
         if ranch_needs:
-            print(f"需要执行的牧场岗位: {ranch_needs}")
+            logger.info(f"需要执行的牧场岗位: {ranch_needs}")
             for post_id in ranch_needs:
                 self.ranch_post(post_id)
         self.time_vars = {
@@ -647,9 +647,9 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                         'time_var_name': time_var_name
                     })
 
-        print(f"\n空闲岗位统计:")
+        logger.info(f"\n空闲岗位统计:")
         for category in ['farm', 'orchard', 'nursery']:
-            print(f"{category}: {len(idle_posts[category])}个空闲岗位")
+            logger.info(f"{category}: {len(idle_posts[category])}个空闲岗位")
 
         all_plants_to_buy = {'farm': [], 'orchard': [], 'nursery': []}
 
@@ -670,7 +670,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 if self.posts[post_id]['crop'] == default_crop:
                     already_planted_default += 1
 
-            print(f"{category}已有{already_planted_default}个岗位种植了{default_crop}，配置要求{default_count}个")
+            logger.info(f"{category}已有{already_planted_default}个岗位种植了{default_crop}，配置要求{default_count}个")
 
             need_default = max(0, default_count - already_planted_default)
 
@@ -688,7 +688,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     all_plants_to_buy[category].append(default_crop)
 
             if all_plants_to_buy[category]:
-                print(f"\n{category}需要购买的作物: {all_plants_to_buy[category]}")
+                logger.info(f"\n{category}需要购买的作物: {all_plants_to_buy[category]}")
 
         need_to_buy_seeds = any(all_plants_to_buy.values())
 
@@ -718,7 +718,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                         pass
 
                 for crop, count in crop_counts.items():
-                    print(f"购买{category}类别的{crop}种子，{count}份")
+                    logger.info(f"购买{category}类别的{crop}种子，{count}份")
                     for _ in range(count):
                         self.buy_seeds(crop, category)
 
@@ -736,20 +736,20 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
 
             for i, post_info in enumerate(idle_posts_list):
                 if i >= len(crops_to_plant):
-                    print(f"跳过{category}岗位{post_info['post_id']}: 没有需要种植的作物")
+                    logger.info(f"跳过{category}岗位{post_info['post_id']}: 没有需要种植的作物")
                     continue
 
                 crop_to_plant = crops_to_plant[i]
-                print(f"尝试播种{category}岗位{post_info['post_id']}: {crop_to_plant}")
+                logger.info(f"尝试播种{category}岗位{post_info['post_id']}: {crop_to_plant}")
 
                 success = self.post_plant(post_info['button'], crop_to_plant, category, post_info['time_var_name'])
 
                 if success:
-                    print(f"播种{category}岗位{post_info['post_id']}成功: {crop_to_plant}")
+                    logger.info(f"播种{category}岗位{post_info['post_id']}成功: {crop_to_plant}")
                     if crop_to_plant in self.to_plant_lists[category]:
                         self.to_plant_lists[category].remove(crop_to_plant)
 
-        print("\n农田管理完成！")
+        logger.info("\n农田管理完成！")
         future_finish = []
 
         for category in ['farm', 'orchard', 'nursery']:
@@ -763,7 +763,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         future_finish.append(six_hours_later)
         future_finish.sort()
         self.config.task_delay(target=future_finish)
-        print(f'下次运行时间: {future_finish[0]}')
+        logger.info(f'下次运行时间: {future_finish[0]}')
         if self.island_error:
             from module.exception import GameBugError
             raise GameBugError("检测到岛屿ERROR1，需要重启")
