@@ -732,6 +732,389 @@ OpsiHazard1Leveling:
     value: 0
     option: [ 0, 44, 22 ]
 
+# ==================== Island ====================
+PersonnelManagement:
+  BusinessStatus:
+    value: 0
+    option: [ 0, 1, 2 ]
+IslandRestaurantBusiness:
+  time:
+    value: None
+    option: [ None, one, two ]
+  Waiter1:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+  Waiter2:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+IslandTeahouseBusiness:
+  time:
+    value: None
+    option: [ None, one, two ]
+  Waiter1:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+  Waiter2:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+IslandGrillBusiness:
+  time:
+    value: None
+    option: [ None, one, two ]
+  Waiter1:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+  Waiter2:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+IslandJuuEateryBusiness:
+  time:
+    value: None
+    option: [ None, one, two ]
+  Waiter1:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+  Waiter2:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+IslandJuuCoffeeBusiness:
+  time:
+    value: None
+    option: [ None, one, two ]
+  Waiter1:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+  Waiter2:
+    value: WorkerJuu
+    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
+IslandFarm:
+  Positions:
+    value: 3
+    option: [ 1, 2, 3, 4 ]
+  MinFarm: 300
+  PlantPotatoes:
+    value: 4
+    option: [ 0, 1, 2, 3, 4 ]
+IslandOrchard:
+  Positions:
+    value: 4
+    option: [ 1, 2, 3, 4 ]
+  MinOrchard: 300
+  IgnoreAvocado: true
+  PlantRubber:
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
+  AmagiChanRubber: false
+IslandNursery:
+  Positions:
+    value: 2
+    option: [ 1, 2 ]
+  MinNursery: 0
+  PlantLavender:
+    value: 2
+    option: [ 0, 1, 2 ]
+IslandRanch:
+  MinChicken: 300
+  MinPork: 300
+  Milk: true
+  Wool: true
+IslandMine:
+  Mining1:
+    value: Silver
+    option: [ None, Copper, Aluminium, Iron, Sulphur, Silver ]
+  Mining2:
+    value: Silver
+    option: [ None, Copper, Aluminium, Iron, Sulphur, Silver ]
+  Mining3:
+    value: Silver
+    option: [ None, Copper, Aluminium, Iron, Sulphur, Silver ]
+  Mining4:
+    value: Silver
+    option: [ None, Copper, Aluminium, Iron, Sulphur, Silver ]
+IslandForest:
+  Felling1:
+    value: Elegant
+    option: [ None, Practical, Selected, Elegant ]
+  Felling2:
+    value: Elegant
+    option: [ None, Practical, Selected, Elegant ]
+  Felling3:
+    value: Elegant
+    option: [ None, Practical, Selected, Elegant ]
+  Felling4:
+    value: Elegant
+    option: [ None, Practical, Selected, Elegant ]
+IslandRestaurant:
+  PostNumber:
+    value: 2
+    option: [ 1, 2 ]
+  Chef:
+    value: YingSwei
+    option: [ WorkerJuu, a, b, YingSwei]
+  Meal1:
+    value: tofu_meat
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber1:
+    value: 6
+  Meal2:
+    value: hearty_meal
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber2:
+    value: 6
+  Meal3:
+    value: omurice
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber3:
+    value: 6
+  Meal4:
+    value: None
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber4:
+    value: 0
+  Meal5:
+    value: None
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber5:
+    value: 0
+  Meal6:
+    value: None
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber6:
+    value: 0
+  Meal7:
+    value: None
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber7:
+    value: 0
+  Meal8:
+    value: None
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+  MealNumber8:
+    value: 0
+IslandRestaurantNextTask:
+  AwayCook:
+    value: None
+    option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
+IslandTeahouse:
+  PostNumber:
+    value: 2
+    option: [ 1, 2 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
+  Meal1:
+    value: floral_fruity
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber1:
+    value: 6
+  Meal2:
+    value: lavender_tea
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber2:
+    value: 6
+  Meal3:
+    value: strawberry_lemon
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber3:
+    value: 6
+  Meal4:
+    value: None
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber4:
+    value: 0
+  Meal5:
+    value: None
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber5:
+    value: 0
+  Meal6:
+    value: None
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber6:
+    value: 0
+  Meal7:
+    value: None
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber7:
+    value: 0
+  Meal8:
+    value: None
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+  MealNumber8:
+    value: 0
+IslandTeahouseNextTask:
+  AwayCook:
+    value: None
+    option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
+IslandGrill:
+  PostNumber:
+    value: 1
+    option: [ 1, 2 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
+  Meal1:
+    value: double_energy
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy  ]
+  MealNumber1:
+    value: 6
+  Meal2:
+    value: steak_bowl
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+  MealNumber2:
+    value: 6
+  Meal3:
+    value: stir_fried_chicken
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+  MealNumber3:
+    value: 6
+  Meal4:
+    value: None
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+  MealNumber4:
+    value: 0
+  Meal5:
+    value: None
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+  MealNumber5:
+    value: 0
+  Meal6:
+    value: None
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+  MealNumber6:
+    value: 0
+  Meal7:
+    value: None
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+  MealNumber7:
+    value: 0
+  Meal8:
+    value: None
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+  MealNumber8:
+    value: 0
+IslandGrillNextTask:
+  AwayCook:
+    value: None
+    option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy ]
+IslandJuuEatery:
+  PostNumber:
+    value: 1
+    option: [ 1, 2 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
+  Meal1:
+    value: berry_orange
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber1:
+    value: 6
+  Meal2:
+    value: succulently_sweet
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber2:
+    value: 6
+  Meal3:
+    value: rice_mango
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber3:
+    value: 6
+  Meal4:
+    value: None
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber4:
+    value: 0
+  Meal5:
+    value: None
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber5:
+    value: 0
+  Meal6:
+    value: None
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber6:
+    value: 0
+  Meal7:
+    value: None
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber7:
+    value: 0
+  Meal8:
+    value: None
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+  MealNumber8:
+    value: 0
+IslandJuuEateryNextTask:
+  AwayCook:
+    value: None
+    option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
+IslandJuuCoffee:
+  PostNumber:
+    value: 2
+    option: [ 1, 2 ]
+  Chef:
+    value: WorkerJuu
+    option: [ WorkerJuu, a, b ]
+  Meal1:
+    value: wake_up_call
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber1:
+    value: 6
+  Meal2:
+    value: cheese
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber2:
+    value: 6
+  Meal3:
+    value: fruity_fruitier
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber3:
+    value: 6
+  Meal4:
+    value: None
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber4:
+    value: 0
+  Meal5:
+    value: None
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber5:
+    value: 0
+  Meal6:
+    value: None
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber6:
+    value: 0
+  Meal7:
+    value: None
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber7:
+    value: 0
+  Meal8:
+    value: None
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+  MealNumber8:
+    value: 0
+IslandJuuCoffeeNextTask:
+  AwayCook:
+    value: None
+    option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]
+IslandDailyGather:
+  Daily: true
+WoodProcessing:
+  Positions:
+    value: 2
+    option: [ 0, 1, 2 ]
+Industrial:
+  Positions:
+    value: 2
+    option: [ 0, 1, 2 ]
+Handmade:
+  Positions:
+    value: 2
+    option: [ 0, 1, 2 ]
+IslandAirDrop:
+  LastSteal: 2020-01-01 00:00:00
 # ==================== Tools ====================
 
 Daemon:

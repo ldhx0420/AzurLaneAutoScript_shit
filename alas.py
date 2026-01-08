@@ -431,6 +431,46 @@ class AzurLaneAutoScript:
         from module.daemon.game_manager import GameManager
         GameManager(config=self.config, device=self.device, task="GameManager").run()
 
+    def island_mine_forest(self):
+        from module.island.island_mine_forest import IslandMineForest
+        IslandMineForest(config=self.config, device=self.device).run()
+
+    def island_farm(self):
+        from module.island.island_farm import IslandFarm
+        IslandFarm(config=self.config, device=self.device).run()
+
+    def island_grill(self):
+        from module.island.island_grill import IslandGrill
+        IslandGrill(config=self.config, device=self.device).run()
+
+    def island_teahouse(self):
+        from module.island.island_teahouse import IslandTeahouse
+        IslandTeahouse(config=self.config, device=self.device).run()
+
+    def island_restaurant(self):
+        from module.island.island_restaurant import IslandRestaurant
+        IslandRestaurant(config=self.config, device=self.device).run()
+
+    def island_juu_coffee(self):
+        from module.island.island_juu_coffee import IslandJuuCoffee
+        IslandJuuCoffee(config=self.config, device=self.device).run()
+
+    def island_juu_eatery(self):
+        from module.island.island_juu_eatery import IslandJuuEatery
+        IslandJuuEatery(config=self.config, device=self.device).run()
+
+    def island_daily_gather(self):
+        from module.island.island_daily_gather import IslandDailyGather
+        IslandDailyGather(config=self.config, device=self.device).run()
+
+    def island_manufacture(self):
+        from module.island.island_manufacture import IslandManufacture
+        IslandManufacture(config=self.config, device=self.device).run()
+
+    def island_air_drop(self):
+        from module.island.island_air_drop import IslandAirDrop
+        IslandAirDrop(config=self.config, device=self.device).run()
+
     def wait_until(self, future):
         """
         Wait until a specific time.

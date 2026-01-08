@@ -1906,6 +1906,334 @@
       "Storage": {}
     }
   },
+  "PersonnelManagement": {
+    "PersonnelManagement": {
+      "BusinessStatus": 0
+    },
+    "IslandRestaurantBusiness": {
+      "time": "None",
+      "Waiter1": "WorkerJuu",
+      "Waiter2": "WorkerJuu"
+    },
+    "IslandTeahouseBusiness": {
+      "time": "None",
+      "Waiter1": "WorkerJuu",
+      "Waiter2": "WorkerJuu"
+    },
+    "IslandGrillBusiness": {
+      "time": "None",
+      "Waiter1": "WorkerJuu",
+      "Waiter2": "WorkerJuu"
+    },
+    "IslandJuuEateryBusiness": {
+      "time": "None",
+      "Waiter1": "WorkerJuu",
+      "Waiter2": "WorkerJuu"
+    },
+    "IslandJuuCoffeeBusiness": {
+      "time": "None",
+      "Waiter1": "WorkerJuu",
+      "Waiter2": "WorkerJuu"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandFarm": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandFarm",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandFarm": {
+      "Positions": 3,
+      "MinFarm": 300,
+      "PlantPotatoes": 4
+    },
+    "IslandOrchard": {
+      "Positions": 4,
+      "MinOrchard": 300,
+      "IgnoreAvocado": true,
+      "PlantRubber": 0,
+      "AmagiChanRubber": false
+    },
+    "IslandNursery": {
+      "Positions": 2,
+      "MinNursery": 0,
+      "PlantLavender": 2
+    },
+    "IslandRanch": {
+      "MinChicken": 300,
+      "MinPork": 300,
+      "Milk": true,
+      "Wool": true
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandMineForest": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandMineForest",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandMine": {
+      "Mining1": "Silver",
+      "Mining2": "Silver",
+      "Mining3": "Silver",
+      "Mining4": "Silver"
+    },
+    "IslandForest": {
+      "Felling1": "Elegant",
+      "Felling2": "Elegant",
+      "Felling3": "Elegant",
+      "Felling4": "Elegant"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandRestaurant": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandRestaurant",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandRestaurant": {
+      "PostNumber": 2,
+      "Chef": "YingSwei",
+      "Meal1": "tofu_meat",
+      "MealNumber1": 6,
+      "Meal2": "hearty_meal",
+      "MealNumber2": 6,
+      "Meal3": "omurice",
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
+    },
+    "IslandRestaurantNextTask": {
+      "AwayCook": "None"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandTeahouse": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandTeahouse",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandTeahouse": {
+      "PostNumber": 2,
+      "Chef": "WorkerJuu",
+      "Meal1": "floral_fruity",
+      "MealNumber1": 6,
+      "Meal2": "lavender_tea",
+      "MealNumber2": 6,
+      "Meal3": "strawberry_lemon",
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
+    },
+    "IslandTeahouseNextTask": {
+      "AwayCook": "None"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandGrill": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandGrill",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandGrill": {
+      "PostNumber": 1,
+      "Chef": "WorkerJuu",
+      "Meal1": "double_energy",
+      "MealNumber1": 6,
+      "Meal2": "steak_bowl",
+      "MealNumber2": 6,
+      "Meal3": "stir_fried_chicken",
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
+    },
+    "IslandGrillNextTask": {
+      "AwayCook": "None"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandJuuEatery": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandJuuEatery",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandJuuEatery": {
+      "PostNumber": 1,
+      "Chef": "WorkerJuu",
+      "Meal1": "berry_orange",
+      "MealNumber1": 6,
+      "Meal2": "succulently_sweet",
+      "MealNumber2": 6,
+      "Meal3": "rice_mango",
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
+    },
+    "IslandJuuEateryNextTask": {
+      "AwayCook": "None"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandJuuCoffee": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandJuuCoffee",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandJuuCoffee": {
+      "PostNumber": 2,
+      "Chef": "WorkerJuu",
+      "Meal1": "wake_up_call",
+      "MealNumber1": 6,
+      "Meal2": "cheese",
+      "MealNumber2": 6,
+      "Meal3": "fruity_fruitier",
+      "MealNumber3": 6,
+      "Meal4": "None",
+      "MealNumber4": 0,
+      "Meal5": "None",
+      "MealNumber5": 0,
+      "Meal6": "None",
+      "MealNumber6": 0,
+      "Meal7": "None",
+      "MealNumber7": 0,
+      "Meal8": "None",
+      "MealNumber8": 0
+    },
+    "IslandJuuCoffeeNextTask": {
+      "AwayCook": "None"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandDailyGather": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandDailyGather",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandDailyGather": {
+      "Daily": true
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandManufacture": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandManufacture",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "WoodProcessing": {
+      "Positions": 2
+    },
+    "Industrial": {
+      "Positions": 2
+    },
+    "Handmade": {
+      "Positions": 2
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandAirDrop": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandAirDrop",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandAirDrop": {
+      "LastSteal": "2020-01-01 00:00:00"
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "Daemon": {
     "Daemon": {
       "EnterMap": true

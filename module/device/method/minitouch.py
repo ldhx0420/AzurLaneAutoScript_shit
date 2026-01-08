@@ -713,3 +713,16 @@ class Minitouch(Connection):
 
         builder.up().commit()
         builder.send()
+
+    def island_swipe_hold_minitouch(self, p1, p2, hold_time):
+        points = insert_swipe(p0=p1, p3=p2)
+        builder = self.minitouch_builder
+        builder.down(*points[0]).commit().wait(10)
+        builder.send()
+        for point in points[1:]:
+            builder.move(*point).commit().wait(10)
+        builder.send()
+        builder.wait(hold_time)
+        builder.send()
+        builder.up().commit()
+        builder.send()
