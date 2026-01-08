@@ -794,7 +794,7 @@ IslandRestaurant:
   PostNumber:
     value: 2
     option: [ 1, 2 ]
-  Chef: |-
+  ChefFilter: |-
     WorkerJuu
   Meal1:
     value: tofu_meat
@@ -844,7 +844,7 @@ IslandTeahouse:
   PostNumber:
     value: 2
     option: [ 1, 2 ]
-  Chef: |-
+  ChefFilter: |-
     WorkerJuu
   Meal1:
     value: floral_fruity
@@ -894,7 +894,7 @@ IslandGrill:
   PostNumber:
     value: 1
     option: [ 1, 2 ]
-  Chef: |-
+  ChefFilter: |-
     WorkerJuu
   Meal1:
     value: double_energy
@@ -944,7 +944,7 @@ IslandJuuEatery:
   PostNumber:
     value: 1
     option: [ 1, 2 ]
-  Chef: |-
+  ChefFilter: |-
     WorkerJuu
   Meal1:
     value: berry_orange
@@ -994,7 +994,7 @@ IslandJuuCoffee:
   PostNumber:
     value: 2
     option: [ 1, 2 ]
-  Chef: |-
+  ChefFilter: |-
     WorkerJuu
   Meal1:
     value: wake_up_call

@@ -361,14 +361,14 @@ Island:
       - Scheduler
       - IslandJuuCoffee
       - IslandJuuCoffeeNextTask
-    IslandDailyGather:
-      - Scheduler
-      - IslandDailyGather
     IslandManufacture:
       - Scheduler
       - WoodProcessing
       - Industrial
       - Handmade
+    IslandDailyGather:
+      - Scheduler
+      - IslandDailyGather
     IslandAirDrop:
       - Scheduler
       - IslandAirDrop

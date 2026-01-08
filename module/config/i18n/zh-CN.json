@@ -286,16 +286,16 @@
       "name": "啾咖啡",
       "help": ""
     },
-    "IslandDailyGather": {
-      "name": "每日采集",
-      "help": ""
-    },
     "IslandManufacture": {
       "name": "制造业",
       "help": ""
     },
+    "IslandDailyGather": {
+      "name": "每日采集",
+      "help": ""
+    },
     "IslandAirDrop": {
-      "name": "岛屿空投补给",
+      "name": "每日补给",
       "help": ""
     },
     "Daemon": {
@@ -2788,7 +2788,7 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
+    "ChefFilter": {
       "name": "厨师",
       "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
@@ -2950,7 +2950,7 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
+    "ChefFilter": {
       "name": "厨师",
       "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
@@ -3130,7 +3130,7 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
+    "ChefFilter": {
       "name": "厨师",
       "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
@@ -3292,7 +3292,7 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
+    "ChefFilter": {
       "name": "厨师",
       "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
@@ -3472,7 +3472,7 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
+    "ChefFilter": {
       "name": "厨师",
       "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },

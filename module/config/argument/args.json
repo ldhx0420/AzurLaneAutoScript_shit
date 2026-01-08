@@ -9503,8 +9503,8 @@
           2
         ]
       },
-      "Chef": {
-        "type": "input",
+      "ChefFilter": {
+        "type": "textarea",
         "value": "WorkerJuu"
       },
       "Meal1": {
@@ -9722,8 +9722,8 @@
           2
         ]
       },
-      "Chef": {
-        "type": "input",
+      "ChefFilter": {
+        "type": "textarea",
         "value": "WorkerJuu"
       },
       "Meal1": {
@@ -9959,8 +9959,8 @@
           2
         ]
       },
-      "Chef": {
-        "type": "input",
+      "ChefFilter": {
+        "type": "textarea",
         "value": "WorkerJuu"
       },
       "Meal1": {
@@ -10178,8 +10178,8 @@
           2
         ]
       },
-      "Chef": {
-        "type": "input",
+      "ChefFilter": {
+        "type": "textarea",
         "value": "WorkerJuu"
       },
       "Meal1": {
@@ -10415,8 +10415,8 @@
           2
         ]
       },
-      "Chef": {
-        "type": "input",
+      "ChefFilter": {
+        "type": "textarea",
         "value": "WorkerJuu"
       },
       "Meal1": {
@@ -10607,57 +10607,6 @@
       }
     }
   },
-  "IslandDailyGather": {
-    "Scheduler": {
-      "Enable": {
-        "type": "checkbox",
-        "value": false,
-        "option": [
-          true,
-          false
-        ]
-      },
-      "NextRun": {
-        "type": "datetime",
-        "value": "2020-01-01 00:00:00",
-        "validate": "datetime"
-      },
-      "Command": {
-        "type": "input",
-        "value": "IslandDailyGather",
-        "display": "hide"
-      },
-      "SuccessInterval": {
-        "type": "input",
-        "value": 0,
-        "display": "hide"
-      },
-      "FailureInterval": {
-        "type": "input",
-        "value": 120,
-        "display": "hide"
-      },
-      "ServerUpdate": {
-        "type": "input",
-        "value": "00:00",
-        "display": "hide"
-      }
-    },
-    "IslandDailyGather": {
-      "Daily": {
-        "type": "checkbox",
-        "value": true
-      }
-    },
-    "Storage": {
-      "Storage": {
-        "type": "storage",
-        "value": {},
-        "valuetype": "ignore",
-        "display": "disabled"
-      }
-    }
-  },
   "IslandManufacture": {
     "Scheduler": {
       "Enable": {
@@ -10725,6 +10674,57 @@
           1,
           2
         ]
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "IslandDailyGather": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "IslandDailyGather",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "IslandDailyGather": {
+      "Daily": {
+        "type": "checkbox",
+        "value": true
       }
     },
     "Storage": {

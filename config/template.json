@@ -1978,7 +1978,7 @@
     },
     "IslandRestaurant": {
       "PostNumber": 2,
-      "Chef": "WorkerJuu",
+      "ChefFilter": "WorkerJuu",
       "Meal1": "tofu_meat",
       "MealNumber1": 6,
       "Meal2": "hearty_meal",
@@ -2014,7 +2014,7 @@
     },
     "IslandTeahouse": {
       "PostNumber": 2,
-      "Chef": "WorkerJuu",
+      "ChefFilter": "WorkerJuu",
       "Meal1": "floral_fruity",
       "MealNumber1": 6,
       "Meal2": "lavender_tea",
@@ -2050,7 +2050,7 @@
     },
     "IslandGrill": {
       "PostNumber": 1,
-      "Chef": "WorkerJuu",
+      "ChefFilter": "WorkerJuu",
       "Meal1": "double_energy",
       "MealNumber1": 6,
       "Meal2": "steak_bowl",
@@ -2086,7 +2086,7 @@
     },
     "IslandJuuEatery": {
       "PostNumber": 1,
-      "Chef": "WorkerJuu",
+      "ChefFilter": "WorkerJuu",
       "Meal1": "berry_orange",
       "MealNumber1": 6,
       "Meal2": "succulently_sweet",
@@ -2122,7 +2122,7 @@
     },
     "IslandJuuCoffee": {
       "PostNumber": 2,
-      "Chef": "WorkerJuu",
+      "ChefFilter": "WorkerJuu",
       "Meal1": "wake_up_call",
       "MealNumber1": 6,
       "Meal2": "cheese",
@@ -2147,22 +2147,6 @@
       "Storage": {}
     }
   },
-  "IslandDailyGather": {
-    "Scheduler": {
-      "Enable": false,
-      "NextRun": "2020-01-01 00:00:00",
-      "Command": "IslandDailyGather",
-      "SuccessInterval": 0,
-      "FailureInterval": 120,
-      "ServerUpdate": "00:00"
-    },
-    "IslandDailyGather": {
-      "Daily": true
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
   "IslandManufacture": {
     "Scheduler": {
       "Enable": false,
@@ -2180,6 +2164,22 @@
     },
     "Handmade": {
       "Positions": 2
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
+  "IslandDailyGather": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "IslandDailyGather",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "IslandDailyGather": {
+      "Daily": true
     },
     "Storage": {
       "Storage": {}

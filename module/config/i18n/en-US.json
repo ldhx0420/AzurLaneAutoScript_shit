@@ -286,13 +286,13 @@
       "name": "Task.IslandJuuCoffee.name",
       "help": "Task.IslandJuuCoffee.help"
     },
-    "IslandDailyGather": {
-      "name": "Task.IslandDailyGather.name",
-      "help": "Task.IslandDailyGather.help"
-    },
     "IslandManufacture": {
       "name": "Task.IslandManufacture.name",
       "help": "Task.IslandManufacture.help"
+    },
+    "IslandDailyGather": {
+      "name": "Task.IslandDailyGather.name",
+      "help": "Task.IslandDailyGather.help"
     },
     "IslandAirDrop": {
       "name": "Task.IslandAirDrop.name",
@@ -2788,9 +2788,9 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
-      "name": "IslandRestaurant.Chef.name",
-      "help": "IslandRestaurant.Chef.help"
+    "ChefFilter": {
+      "name": "IslandRestaurant.ChefFilter.name",
+      "help": "IslandRestaurant.ChefFilter.help"
     },
     "Meal1": {
       "name": "IslandRestaurant.Meal1.name",
@@ -2950,9 +2950,9 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
-      "name": "IslandTeahouse.Chef.name",
-      "help": "IslandTeahouse.Chef.help"
+    "ChefFilter": {
+      "name": "IslandTeahouse.ChefFilter.name",
+      "help": "IslandTeahouse.ChefFilter.help"
     },
     "Meal1": {
       "name": "IslandTeahouse.Meal1.name",
@@ -3130,9 +3130,9 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
-      "name": "IslandGrill.Chef.name",
-      "help": "IslandGrill.Chef.help"
+    "ChefFilter": {
+      "name": "IslandGrill.ChefFilter.name",
+      "help": "IslandGrill.ChefFilter.help"
     },
     "Meal1": {
       "name": "IslandGrill.Meal1.name",
@@ -3292,9 +3292,9 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
-      "name": "IslandJuuEatery.Chef.name",
-      "help": "IslandJuuEatery.Chef.help"
+    "ChefFilter": {
+      "name": "IslandJuuEatery.ChefFilter.name",
+      "help": "IslandJuuEatery.ChefFilter.help"
     },
     "Meal1": {
       "name": "IslandJuuEatery.Meal1.name",
@@ -3472,9 +3472,9 @@
       "1": "1",
       "2": "2"
     },
-    "Chef": {
-      "name": "IslandJuuCoffee.Chef.name",
-      "help": "IslandJuuCoffee.Chef.help"
+    "ChefFilter": {
+      "name": "IslandJuuCoffee.ChefFilter.name",
+      "help": "IslandJuuCoffee.ChefFilter.help"
     },
     "Meal1": {
       "name": "IslandJuuCoffee.Meal1.name",
