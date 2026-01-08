@@ -3,9 +3,7 @@ from collections import Counter
 from datetime import datetime, timedelta
 from module.handler.login import LoginHandler
 from module.island.warehouse import *
-import logging
-
-logger = logging.getLogger(__name__)
+from module.logger import logger
 
 
 class IslandShopBase(Island, WarehouseOCR):
@@ -141,7 +139,7 @@ class IslandShopBase(Island, WarehouseOCR):
         for dish in self.shop_items:
             self.warehouse_counts[dish['name']] = self.ocr_item_quantity(image, dish['template'])
             if self.warehouse_counts[dish['name']]:
-                print(f"{dish['name']}", self.warehouse_counts[dish['name']])
+                logger.info(f"{dish['name']}", self.warehouse_counts[dish['name']])
         return self.warehouse_counts
 
     def post_produce(self, post_id, product, number, time_var_name):
@@ -175,7 +173,7 @@ class IslandShopBase(Island, WarehouseOCR):
         self.wait_until_appear(ISLAND_POSTMANAGE_CHECK)
         self.device.sleep(0.3)
         self.post_manage_swipe(self.post_manage_swipe_count)
-        print(post_button)
+        logger.info(post_button)
         self.post_open(post_button)
         image = self.device.screenshot()
         ocr_post_number = Digit(OCR_POST_NUMBER, letter=(57, 58, 60), threshold=100,
@@ -187,7 +185,7 @@ class IslandShopBase(Island, WarehouseOCR):
         self.posts[post_id]['status'] = 'working'
         # 扣除前置材料（子类可覆盖）
         self.deduct_materials(product, actual_number)
-        print(f"已安排生产：{product} x{actual_number}")
+        logger.info(f"已安排生产：{product} x{actual_number}")
         self.post_close()
         # 返回实际生产数量
         return actual_number
@@ -202,7 +200,7 @@ class IslandShopBase(Island, WarehouseOCR):
                 material_needed = number * quantity_per
                 if material in self.warehouse_counts:
                     self.warehouse_counts[material] -= material_needed
-                    print(f"扣除原材料：{material} -{material_needed} (用于制作 {product})")
+                    logger.info(f"扣除原材料：{material} -{material_needed} (用于制作 {product})")
 
     def get_idle_posts(self):
         """获取空闲的岗位ID列表（通用）"""
@@ -245,18 +243,18 @@ class IslandShopBase(Island, WarehouseOCR):
                 self.current_totals[item] = self.post_check_meal.get(item, 0) + self.warehouse_counts.get(item, 0)
 
             # ============ 调试信息 ============
-            print(f"=== 调试信息 ===")
-            print(f"仓库库存: {self.warehouse_counts}")
-            print(f"生产中库存: {self.post_check_meal}")
-            print(f"当前总库存: {self.current_totals}")
-            print(f"基础需求配置: {self.post_products}")
-            print("===============")
+            logger.info(f"=== 调试信息 ===")
+            logger.info(f"仓库库存: {self.warehouse_counts}")
+            logger.info(f"生产中库存: {self.post_check_meal}")
+            logger.info(f"当前总库存: {self.current_totals}")
+            logger.info(f"基础需求配置: {self.post_products}")
+            logger.info("===============")
 
             # 清空待生产列表
             self.to_post_products = {}
 
             # ============ 基础需求计算 ============
-            print("阶段：基础需求")
+            logger.info("阶段：基础需求")
             # 计算基础需求
             for item, target in self.post_products.items():
                 current = self.current_totals.get(item, 0)
@@ -266,43 +264,43 @@ class IslandShopBase(Island, WarehouseOCR):
             # ============ 处理套餐分解 ============
             if self.to_post_products:
                 self.to_post_products = self.process_meal_requirements(self.to_post_products)
-                print(f"基础需求生产计划: {self.to_post_products}")
+                logger.info(f"基础需求生产计划: {self.to_post_products}")
 
             # ============ 安排基础需求生产 ============
             if self.to_post_products:
                 # 安排基础需求生产
                 self.schedule_production()
             else:
-                print("基础需求已满足")
+                logger.info("基础需求已满足")
 
             # ============ 检查是否还有空闲岗位，安排常驻餐品 ============
             # 重新检查空闲岗位（因为可能部分岗位被基础需求占用）
             idle_posts_after_basic = self.get_idle_posts()
             if idle_posts_after_basic:
-                print(f"基础需求完成后，还有 {len(idle_posts_after_basic)} 个空闲岗位，检查常驻餐品")
+                logger.info(f"基础需求完成后，还有 {len(idle_posts_after_basic)} 个空闲岗位，检查常驻餐品")
 
                 # 处理常驻餐品
                 away_cook = getattr(self.config, self.config_away_cook, None)
                 if away_cook and away_cook != "None" and away_cook in self.name_to_config:
-                    print(f"常驻餐品模式：生产 {away_cook}")
+                    logger.info(f"常驻餐品模式：生产 {away_cook}")
                     # 为每个剩余的空闲岗位安排常驻餐品
                     for post_id in idle_posts_after_basic:
                         # 检查材料限制
-                        batch_size = min(7, 9999)  # 最大7个
+                        batch_size = min(6, 9999)  # 最大6个
                         batch_size = self.get_max_producible(away_cook, batch_size)
 
                         if batch_size > 0:
                             post_num = post_id[-1]
                             time_var_name = f'{self.time_prefix}{post_num}'
                             self.post_produce(post_id, away_cook, batch_size, time_var_name)
-                            print(f"已为岗位 {post_id} 安排常驻餐品 {away_cook} x{batch_size}")
+                            logger.info(f"已为岗位 {post_id} 安排常驻餐品 {away_cook} x{batch_size}")
                         else:
-                            print(f"生产 {away_cook} 的材料不足，跳过岗位 {post_id}")
+                            logger.info(f"生产 {away_cook} 的材料不足，跳过岗位 {post_id}")
                 else:
                     if away_cook is None or away_cook == "None":
-                        print("未设置常驻餐品，保持空闲")
+                        logger.info("未设置常驻餐品，保持空闲")
                     elif away_cook not in self.name_to_config:
-                        print(f"常驻餐品 '{away_cook}' 不在商品列表中，保持空闲")
+                        logger.info(f"常驻餐品 '{away_cook}' 不在商品列表中，保持空闲")
 
         # ============ 设置任务延迟 ============
         finish_times = []
@@ -314,7 +312,7 @@ class IslandShopBase(Island, WarehouseOCR):
             finish_times.sort()
             self.config.task_delay(target=finish_times)
         else:
-            next_check = datetime.now() + timedelta(hours=12)
+            next_check = datetime.now() + timedelta(hours=6)
             logger.info(f'没有任务需要安排，下次检查时间：{next_check.strftime("%H:%M")}')
             self.config.task_delay(target=[next_check])
 
@@ -324,8 +322,8 @@ class IslandShopBase(Island, WarehouseOCR):
 
     def process_meal_requirements(self, source_products):
         """处理套餐需求（修正版）"""
-        print(f"=== 进入process_meal_requirements ===")
-        print(f"传入的需求: {source_products}")
+        logger.info(f"=== 进入process_meal_requirements ===")
+        logger.info(f"传入的需求: {source_products}")
 
         result = {}
 
@@ -338,20 +336,20 @@ class IslandShopBase(Island, WarehouseOCR):
                 continue
             if product in self.meal_compositions:
                 meal_demands[product] = quantity
-                print(f"  识别为套餐: {product} x{quantity}")
+                logger.info(f"  识别为套餐: {product} x{quantity}")
             else:
                 base_demands[product] = quantity
-                print(f"  识别为基础餐品: {product} x{quantity}")
+                logger.info(f"  识别为基础餐品: {product} x{quantity}")
 
-        print(f"套餐需求: {meal_demands}")
-        print(f"基础需求: {base_demands}")
+        logger.info(f"套餐需求: {meal_demands}")
+        logger.info(f"基础需求: {base_demands}")
 
         # 2. 处理套餐需求 - 直接加入结果（套餐可以直接生产）
         # 注意：这里传入的已经是净需求，不需要再扣除库存
         for meal, meal_quantity in meal_demands.items():
             if meal_quantity > 0:
                 result[meal] = meal_quantity
-                print(f"  套餐直接生产: {meal} x{meal_quantity}")
+                logger.info(f"  套餐直接生产: {meal} x{meal_quantity}")
 
         # 3. 处理基础需求（这些可能是套餐的原材料）
         material_needs = {}
@@ -363,13 +361,13 @@ class IslandShopBase(Island, WarehouseOCR):
                 for material in composition['required']:
                     needed = meal_quantity * composition.get('quantity_per', 1)
                     material_needs[material] = material_needs.get(material, 0) + needed
-                    print(f"  套餐 {meal} 需要原材料: {material} x{needed}")
+                    logger.info(f"  套餐 {meal} 需要原材料: {material} x{needed}")
 
-        print(f"原材料总需求: {material_needs}")
+        logger.info(f"原材料总需求: {material_needs}")
 
         # 4. 处理基础需求，并考虑原材料需求
         for base_product, base_quantity in base_demands.items():
-            print(f"  处理基础餐品 {base_product}: 基础需求={base_quantity}")
+            logger.info(f"  处理基础餐品 {base_product}: 基础需求={base_quantity}")
 
             # 总需求 = 基础需求（已经是净需求） + 套餐原材料需求
             total_needed = base_quantity
@@ -381,45 +379,45 @@ class IslandShopBase(Island, WarehouseOCR):
 
                 # 检查原材料库存
                 current_stock = self.current_totals.get(base_product, 0)
-                print(f"    原材料需求: +{raw_material_needed}, 当前库存: {current_stock}")
+                logger.info(f"    原材料需求: +{raw_material_needed}, 当前库存: {current_stock}")
 
                 # 计算原材料净需求
                 net_raw_needed = max(0, raw_material_needed - current_stock)
                 total_needed += net_raw_needed
 
-                print(f"    原材料净需求: {net_raw_needed}, 总需求: {total_needed}")
+                logger.info(f"    原材料净需求: {net_raw_needed}, 总需求: {total_needed}")
 
                 # 从material_needs中移除，避免重复计算
                 del material_needs[base_product]
             else:
                 # 不是原材料，直接使用基础需求
-                print(f"    总需求: {total_needed}")
+                logger.info(f"    总需求: {total_needed}")
 
             if total_needed > 0:
                 result[base_product] = total_needed
-                print(f"    添加到生产计划: {base_product} x{total_needed}")
+                logger.info(f"    添加到生产计划: {base_product} x{total_needed}")
             else:
-                print(f"    不需要生产")
+                logger.info(f"    不需要生产")
 
         # 5. 处理剩余的原材料需求（这些基础餐品不在基础需求列表中）
         for material, material_quantity in material_needs.items():
-            print(f"  处理剩余原材料 {material}: 需求={material_quantity}")
+            logger.info(f"  处理剩余原材料 {material}: 需求={material_quantity}")
 
             current_stock = self.current_totals.get(material, 0)
-            print(f"    当前总库存: {current_stock}")
+            logger.info(f"    当前总库存: {current_stock}")
 
             net_needed = max(0, material_quantity - current_stock)
             if net_needed > 0:
                 result[material] = net_needed
-                print(f"    添加到生产计划: {material} x{net_needed}")
+                logger.info(f"    添加到生产计划: {material} x{net_needed}")
             else:
-                print(f"    库存充足，不需要生产")
+                logger.info(f"    库存充足，不需要生产")
 
         # 6. 考虑特殊材料限制
         result = self.apply_special_material_constraints(result)
 
-        print(f"最终生产计划: {result}")
-        print(f"=== 离开process_meal_requirements ===")
+        logger.info(f"最终生产计划: {result}")
+        logger.info(f"=== 离开process_meal_requirements ===")
 
         return result
 
@@ -439,11 +437,11 @@ class IslandShopBase(Island, WarehouseOCR):
                 max_by_material = material_stock // quantity_per
                 max_producible = min(max_producible, max_by_material)
                 if max_by_material <= 0:
-                    print(f"  {product} 缺少原材料: {material}")
+                    logger.info(f"  {product} 缺少原材料: {material}")
                     return 0
 
-        # 2. 检查岗位数量限制（每个岗位最多7个）
-        max_producible = min(max_producible, 7)
+        # 2. 检查岗位数量限制（每个岗位最多6个）
+        max_producible = min(max_producible, 6)
 
         # 3. 检查特殊材料（被子类覆盖）
         max_producible = self.check_special_materials(product, max_producible)
@@ -468,24 +466,24 @@ class IslandShopBase(Island, WarehouseOCR):
         # 检查 away_cook 是否有效
         if away_cook and away_cook != "None" and away_cook in self.name_to_config:
             self.to_post_products = {away_cook: 9999}
-            print(f"常驻餐品模式：生产 {away_cook}")
+            logger.info(f"常驻餐品模式：生产 {away_cook}")
         else:
             self.to_post_products = {}
             if away_cook is None or away_cook == "None":
-                print("未设置常驻餐品，保持空闲")
+                logger.info("未设置常驻餐品，保持空闲")
             elif away_cook not in self.name_to_config:
-                print(f"常驻餐品 '{away_cook}' 不在商品列表中，保持空闲")
+                logger.info(f"常驻餐品 '{away_cook}' 不在商品列表中，保持空闲")
 
     def schedule_production(self):
         """安排生产，利用所有空闲岗位"""
         if not self.to_post_products:
-            print("没有需要生产的餐品")
+            logger.info("没有需要生产的餐品")
             return
 
         # 获取空闲岗位
         idle_posts = self.get_idle_posts()
         if not idle_posts:
-            print("没有空闲的岗位")
+            logger.info("没有空闲的岗位")
             return
 
         # 检查是否为常驻餐品模式（无限数量生产）
@@ -498,15 +496,15 @@ class IslandShopBase(Island, WarehouseOCR):
                 break
 
         if is_away_cook_mode:
-            print(f"常驻餐品模式：为所有空闲岗位安排生产 {away_cook_product}")
+            logger.info(f"常驻餐品模式：为所有空闲岗位安排生产 {away_cook_product}")
             # 为每个空闲岗位安排生产
             for post_id in idle_posts:
                 # 检查材料限制
-                batch_size = min(7, 9999)  # 最大7个
+                batch_size = min(6, 9999)  # 最大6个
                 batch_size = self.get_max_producible(away_cook_product, batch_size)
 
                 if batch_size <= 0:
-                    print(f"生产 {away_cook_product} 的前置材料不足，跳过岗位 {post_id}")
+                    logger.info(f"生产 {away_cook_product} 的前置材料不足，跳过岗位 {post_id}")
                     continue
 
                 # 分配生产
@@ -514,7 +512,7 @@ class IslandShopBase(Island, WarehouseOCR):
                 time_var_name = f'{self.time_prefix}{post_num}'
                 self.post_produce(post_id, away_cook_product, batch_size, time_var_name)
 
-            print("常驻餐品模式：已为所有空闲岗位安排生产")
+            logger.info("常驻餐品模式：已为所有空闲岗位安排生产")
             return
 
         # 非常驻餐品模式：处理所有产品需求
@@ -526,14 +524,14 @@ class IslandShopBase(Island, WarehouseOCR):
                 product, quantity = item
                 if product in self.meal_compositions:
                     # 检查套餐原材料是否充足
-                    max_producible = self.get_max_producible(product, min(7, quantity))
+                    max_producible = self.get_max_producible(product, min(6, quantity))
                     if max_producible > 0:
                         return 0  # 最高优先级：可立即生产的套餐
                     else:
                         return 2  # 低优先级：原材料不足的套餐
                 else:
                     # 基础餐品：检查是否可以生产
-                    max_producible = self.get_max_producible(product, min(7, quantity))
+                    max_producible = self.get_max_producible(product, min(6, quantity))
                     if max_producible > 0:
                         return 1  # 中等优先级：可生产的基础餐品
                     else:
@@ -559,10 +557,10 @@ class IslandShopBase(Island, WarehouseOCR):
                 post_id = idle_posts[post_index]
 
                 # 计算最大可生产数量
-                max_producible = self.get_max_producible(product, min(7, remaining_need))
+                max_producible = self.get_max_producible(product, min(6, remaining_need))
 
                 if max_producible <= 0:
-                    print(f"生产 {product} 的材料不足，跳过")
+                    logger.info(f"生产 {product} 的材料不足，跳过")
                     break
 
                 # 分配生产
@@ -588,7 +586,7 @@ class IslandShopBase(Island, WarehouseOCR):
             if post_index >= total_idle_posts:
                 break
 
-        print(f"生产安排完成，剩余需求: {self.to_post_products}")
+        logger.info(f"生产安排完成，剩余需求: {self.to_post_products}")
 
     def check_special_materials(self, product, batch_size):
         """检查特殊材料（子类可覆盖）"""

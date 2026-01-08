@@ -91,8 +91,9 @@ class IslandMineForest(Island,LoginHandler):
             self.config.task_delay(target=finish_times)
             logger.info(f'Found {len(finish_times)} post timers, next run at {finish_times[0]}')
         else:
-            logger.info('No post timers found')
-            self.config.task_delay(success=True)
+            next_check = datetime.now() + timedelta(hours=6)
+            logger.info(f'没有任务需要安排，下次检查时间：{next_check.strftime("%H:%M")}')
+            self.config.task_delay(target=[next_check])
     def test(self):
         self.post_get_and_add(SELECT_SILVER, SELECT_SILVER_CHECK)
 if __name__ == "__main__":
