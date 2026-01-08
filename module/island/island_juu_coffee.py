@@ -10,7 +10,7 @@ class IslandJuuCoffee(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "juu_coffee"
         self.time_prefix = "time_coffee"
-        self.chef_config = self.config.IslandJuuCoffee_Chef
+        self.chef_config = self.config.IslandJuuCoffee_ChefFilter
 
         # 设置商品列表
         self.shop_items = [

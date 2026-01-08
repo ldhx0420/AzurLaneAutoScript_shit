@@ -11,7 +11,7 @@ class IslandJuuEatery(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "juu_eatery"
         self.time_prefix = "time_eatery"
-        self.chef_config = self.config.IslandJuuEatery_Chef
+        self.chef_config = self.config.IslandJuuEatery_ChefFilter
 
         # 设置商品列表
         self.shop_items = [

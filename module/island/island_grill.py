@@ -10,7 +10,7 @@ class IslandGrill(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "grill"
         self.time_prefix = "time_meal"
-        self.chef_config = self.config.IslandGrill_Chef
+        self.chef_config = self.config.IslandGrill_ChefFilter
 
         # 设置商品列表
         self.shop_items = [

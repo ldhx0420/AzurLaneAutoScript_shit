@@ -10,7 +10,7 @@ class IslandRestaurant(IslandShopBase):
         # 设置店铺类型
         self.shop_type = "restaurant"
         self.time_prefix = "time_restaurant"
-        self.chef_config = self.config.IslandRestaurant_Chef
+        self.chef_config = self.config.IslandRestaurant_ChefFilter
 
         # 设置商品列表
         self.shop_items = [
