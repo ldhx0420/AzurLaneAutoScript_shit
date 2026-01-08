@@ -20,8 +20,9 @@ class IslandAirDrop(Island):
                     self.device.screenshot()
                     if self.appear(ISLAND_CHECK):
                         break
-                    if self.appear_then_click(AIR_DROP_SKIP):
+                    if self.appear_then_click(AIR_DROP_SKIP,offset=0):
                         continue
+                    self.device.sleep(0.5)
                 self.device.sleep(1)
                 self.island_down(1000)
                 self.island_air_drop()
