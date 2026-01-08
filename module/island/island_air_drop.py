@@ -7,7 +7,7 @@ class IslandAirDrop(Island):
         self.island_error = False
         now = datetime.now()
         today = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        next_daily_time = today.replace(hour=3, minute=0, second=0, microsecond=0) + timedelta(days=1)
+        next_daily_time = today.replace(hour=1, minute=0, second=0, microsecond=0) + timedelta(days=1)
         last_steal_time = self.config.IslandAirDrop_LastSteal
         next_steal_time = now + timedelta(hours=5)
         last_attempt_today = now.replace(hour=23, minute=0, second=0, microsecond=0)
