@@ -258,10 +258,6 @@
       "name": "跨月每日",
       "help": "    Alas将在大世界跨月重置之前10分钟进入大世界，等待大世界重置但不退出大世界，然后完成新一天的大世界每日、隐秘海域、深渊海域和短猫相接，以获得额外的金菜。运行大世界每日时，按\"大世界每日\"任务设置运行，其余同理。\n    重要：Alas等待跨月期间，请不要操作游戏。"
     },
-    "PersonnelManagement": {
-      "name": "人员管理",
-      "help": ""
-    },
     "IslandFarm": {
       "name": "农牧",
       "help": ""
@@ -2590,254 +2586,6 @@
       "22": "22 | NA海域西南B"
     }
   },
-  "PersonnelManagement": {
-    "_info": {
-      "name": "人员管理",
-      "help": "这一页无用"
-    },
-    "BusinessStatus": {
-      "name": "营业状态",
-      "help": "第一波开始营业设为1，第二波开始营业设为2",
-      "0": "0",
-      "1": "1",
-      "2": "2"
-    }
-  },
-  "IslandRestaurantBusiness": {
-    "_info": {
-      "name": "有鱼餐馆",
-      "help": ""
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    }
-  },
-  "IslandTeahouseBusiness": {
-    "_info": {
-      "name": "白熊饮品",
-      "help": ""
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    }
-  },
-  "IslandGrillBusiness": {
-    "_info": {
-      "name": "乌鱼烤肉",
-      "help": ""
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    }
-  },
-  "IslandJuuEateryBusiness": {
-    "_info": {
-      "name": "啾啾简餐",
-      "help": ""
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    }
-  },
-  "IslandJuuCoffeeBusiness": {
-    "_info": {
-      "name": "啾咖啡",
-      "help": ""
-    },
-    "time": {
-      "name": "营业波次",
-      "help": "仅支持一二轮，不营业则none",
-      "None": "None",
-      "one": "第一波",
-      "two": "第二波"
-    },
-    "Waiter1": {
-      "name": "店员1",
-      "help": "",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    },
-    "Waiter2": {
-      "name": "店员2",
-      "help": "未解锁请选none",
-      "None": "None",
-      "WorkerJuu": "工作啾",
-      "NewJersey": "新泽西",
-      "Tashkent": "塔什干",
-      "YingSwei": "应瑞",
-      "Saratoga": "萨拉托加",
-      "Akashi": "明石",
-      "LeMalin": "恶毒",
-      "Shimakaze": "岛风",
-      "Amagi_chan": "小天城",
-      "Cheshire": "柴郡",
-      "Unicorn": "独角兽",
-      "ChaoHo": "肇和"
-    }
-  },
   "IslandFarm": {
     "_info": {
       "name": "农田",
@@ -2897,7 +2645,7 @@
     },
     "AmagiChanRubber": {
       "name": "小天城种橡胶",
-      "help": "会从厨师排除小天城"
+      "help": ""
     }
   },
   "IslandNursery": {
@@ -3042,11 +2790,7 @@
     },
     "Chef": {
       "name": "厨师",
-      "help": "a为上限为a的厨师，b为b及b以下的厨师",
-      "WorkerJuu": "工作啾",
-      "a": "a",
-      "b": "b",
-      "YingSwei": "应瑞+工作啾"
+      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
     "Meal1": {
       "name": "餐品1",
@@ -3208,10 +2952,7 @@
     },
     "Chef": {
       "name": "厨师",
-      "help": "a为上限为a的厨师，b为b及b以下的厨师",
-      "WorkerJuu": "工作啾",
-      "a": "方案a",
-      "b": "方案b"
+      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
     "Meal1": {
       "name": "餐品1",
@@ -3391,10 +3132,7 @@
     },
     "Chef": {
       "name": "厨师",
-      "help": "a为上限为a的厨师，b为b及b以下的厨师",
-      "WorkerJuu": "工作啾",
-      "a": "方案a",
-      "b": "方案b"
+      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
     "Meal1": {
       "name": "餐品1",
@@ -3556,10 +3294,7 @@
     },
     "Chef": {
       "name": "厨师",
-      "help": "a为上限为a的厨师，b为b及b以下的厨师",
-      "WorkerJuu": "工作啾",
-      "a": "方案a",
-      "b": "方案b"
+      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
     "Meal1": {
       "name": "餐品1",
@@ -3739,10 +3474,7 @@
     },
     "Chef": {
       "name": "厨师",
-      "help": "a为上限为a的厨师，b为b及b以下的厨师",
-      "WorkerJuu": "工作啾",
-      "a": "方案a",
-      "b": "方案b"
+      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
     },
     "Meal1": {
       "name": "餐品1",

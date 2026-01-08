@@ -100,7 +100,6 @@
     "menu": "collapse",
     "page": "setting",
     "tasks": [
-      "PersonnelManagement",
       "IslandFarm",
       "IslandMineForest",
       "IslandRestaurant",

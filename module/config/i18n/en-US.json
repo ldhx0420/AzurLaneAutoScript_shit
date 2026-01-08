@@ -258,10 +258,6 @@
       "name": "Cross Month Daily",
       "help": "    ALAS will enter OpSi 10min before OpSi reset, wait until OpSi reset but not exit OpSi. Then do the daily, obscure, abyssal and meowfficer farming to get extra gold plates. When running dailies, settings in task \"OpSiDaily\" are used, the rest function are the same.\n    IMPORTANT: Please do not touch the game while ALAS is waiting for OpSi reset."
     },
-    "PersonnelManagement": {
-      "name": "Task.PersonnelManagement.name",
-      "help": "Task.PersonnelManagement.help"
-    },
     "IslandFarm": {
       "name": "Task.IslandFarm.name",
       "help": "Task.IslandFarm.help"
@@ -2590,254 +2586,6 @@
       "22": "22 | NA Ocean SW Sector B"
     }
   },
-  "PersonnelManagement": {
-    "_info": {
-      "name": "PersonnelManagement._info.name",
-      "help": "PersonnelManagement._info.help"
-    },
-    "BusinessStatus": {
-      "name": "PersonnelManagement.BusinessStatus.name",
-      "help": "PersonnelManagement.BusinessStatus.help",
-      "0": "0",
-      "1": "1",
-      "2": "2"
-    }
-  },
-  "IslandRestaurantBusiness": {
-    "_info": {
-      "name": "IslandRestaurantBusiness._info.name",
-      "help": "IslandRestaurantBusiness._info.help"
-    },
-    "time": {
-      "name": "IslandRestaurantBusiness.time.name",
-      "help": "IslandRestaurantBusiness.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandRestaurantBusiness.Waiter1.name",
-      "help": "IslandRestaurantBusiness.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    },
-    "Waiter2": {
-      "name": "IslandRestaurantBusiness.Waiter2.name",
-      "help": "IslandRestaurantBusiness.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    }
-  },
-  "IslandTeahouseBusiness": {
-    "_info": {
-      "name": "IslandTeahouseBusiness._info.name",
-      "help": "IslandTeahouseBusiness._info.help"
-    },
-    "time": {
-      "name": "IslandTeahouseBusiness.time.name",
-      "help": "IslandTeahouseBusiness.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandTeahouseBusiness.Waiter1.name",
-      "help": "IslandTeahouseBusiness.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    },
-    "Waiter2": {
-      "name": "IslandTeahouseBusiness.Waiter2.name",
-      "help": "IslandTeahouseBusiness.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    }
-  },
-  "IslandGrillBusiness": {
-    "_info": {
-      "name": "IslandGrillBusiness._info.name",
-      "help": "IslandGrillBusiness._info.help"
-    },
-    "time": {
-      "name": "IslandGrillBusiness.time.name",
-      "help": "IslandGrillBusiness.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandGrillBusiness.Waiter1.name",
-      "help": "IslandGrillBusiness.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    },
-    "Waiter2": {
-      "name": "IslandGrillBusiness.Waiter2.name",
-      "help": "IslandGrillBusiness.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    }
-  },
-  "IslandJuuEateryBusiness": {
-    "_info": {
-      "name": "IslandJuuEateryBusiness._info.name",
-      "help": "IslandJuuEateryBusiness._info.help"
-    },
-    "time": {
-      "name": "IslandJuuEateryBusiness.time.name",
-      "help": "IslandJuuEateryBusiness.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandJuuEateryBusiness.Waiter1.name",
-      "help": "IslandJuuEateryBusiness.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    },
-    "Waiter2": {
-      "name": "IslandJuuEateryBusiness.Waiter2.name",
-      "help": "IslandJuuEateryBusiness.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    }
-  },
-  "IslandJuuCoffeeBusiness": {
-    "_info": {
-      "name": "IslandJuuCoffeeBusiness._info.name",
-      "help": "IslandJuuCoffeeBusiness._info.help"
-    },
-    "time": {
-      "name": "IslandJuuCoffeeBusiness.time.name",
-      "help": "IslandJuuCoffeeBusiness.time.help",
-      "None": "None",
-      "one": "one",
-      "two": "two"
-    },
-    "Waiter1": {
-      "name": "IslandJuuCoffeeBusiness.Waiter1.name",
-      "help": "IslandJuuCoffeeBusiness.Waiter1.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    },
-    "Waiter2": {
-      "name": "IslandJuuCoffeeBusiness.Waiter2.name",
-      "help": "IslandJuuCoffeeBusiness.Waiter2.help",
-      "None": "None",
-      "WorkerJuu": "WorkerJuu",
-      "NewJersey": "NewJersey",
-      "Tashkent": "Tashkent",
-      "YingSwei": "YingSwei",
-      "Saratoga": "Saratoga",
-      "Akashi": "Akashi",
-      "LeMalin": "LeMalin",
-      "Shimakaze": "Shimakaze",
-      "Amagi_chan": "Amagi_chan",
-      "Cheshire": "Cheshire",
-      "Unicorn": "Unicorn",
-      "ChaoHo": "ChaoHo"
-    }
-  },
   "IslandFarm": {
     "_info": {
       "name": "IslandFarm._info.name",
@@ -3042,11 +2790,7 @@
     },
     "Chef": {
       "name": "IslandRestaurant.Chef.name",
-      "help": "IslandRestaurant.Chef.help",
-      "WorkerJuu": "WorkerJuu",
-      "a": "a",
-      "b": "b",
-      "YingSwei": "YingSwei"
+      "help": "IslandRestaurant.Chef.help"
     },
     "Meal1": {
       "name": "IslandRestaurant.Meal1.name",
@@ -3208,10 +2952,7 @@
     },
     "Chef": {
       "name": "IslandTeahouse.Chef.name",
-      "help": "IslandTeahouse.Chef.help",
-      "WorkerJuu": "WorkerJuu",
-      "a": "a",
-      "b": "b"
+      "help": "IslandTeahouse.Chef.help"
     },
     "Meal1": {
       "name": "IslandTeahouse.Meal1.name",
@@ -3391,10 +3132,7 @@
     },
     "Chef": {
       "name": "IslandGrill.Chef.name",
-      "help": "IslandGrill.Chef.help",
-      "WorkerJuu": "WorkerJuu",
-      "a": "a",
-      "b": "b"
+      "help": "IslandGrill.Chef.help"
     },
     "Meal1": {
       "name": "IslandGrill.Meal1.name",
@@ -3556,10 +3294,7 @@
     },
     "Chef": {
       "name": "IslandJuuEatery.Chef.name",
-      "help": "IslandJuuEatery.Chef.help",
-      "WorkerJuu": "WorkerJuu",
-      "a": "a",
-      "b": "b"
+      "help": "IslandJuuEatery.Chef.help"
     },
     "Meal1": {
       "name": "IslandJuuEatery.Meal1.name",
@@ -3739,10 +3474,7 @@
     },
     "Chef": {
       "name": "IslandJuuCoffee.Chef.name",
-      "help": "IslandJuuCoffee.Chef.help",
-      "WorkerJuu": "WorkerJuu",
-      "a": "a",
-      "b": "b"
+      "help": "IslandJuuCoffee.Chef.help"
     },
     "Meal1": {
       "name": "IslandJuuCoffee.Meal1.name",

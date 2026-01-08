@@ -733,60 +733,6 @@ OpsiHazard1Leveling:
     option: [ 0, 44, 22 ]
 
 # ==================== Island ====================
-PersonnelManagement:
-  BusinessStatus:
-    value: 0
-    option: [ 0, 1, 2 ]
-IslandRestaurantBusiness:
-  time:
-    value: None
-    option: [ None, one, two ]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-IslandTeahouseBusiness:
-  time:
-    value: None
-    option: [ None, one, two ]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-IslandGrillBusiness:
-  time:
-    value: None
-    option: [ None, one, two ]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-IslandJuuEateryBusiness:
-  time:
-    value: None
-    option: [ None, one, two ]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-IslandJuuCoffeeBusiness:
-  time:
-    value: None
-    option: [ None, one, two ]
-  Waiter1:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
-  Waiter2:
-    value: WorkerJuu
-    option: [ None, WorkerJuu, NewJersey, Tashkent, YingSwei, Saratoga, Akashi, LeMalin, Shimakaze, Amagi_chan, Cheshire, Unicorn, ChaoHo ]
 IslandFarm:
   Positions:
     value: 3
@@ -848,9 +794,8 @@ IslandRestaurant:
   PostNumber:
     value: 2
     option: [ 1, 2 ]
-  Chef:
-    value: YingSwei
-    option: [ WorkerJuu, a, b, YingSwei]
+  Chef: |-
+    WorkerJuu
   Meal1:
     value: tofu_meat
     option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
@@ -899,9 +844,8 @@ IslandTeahouse:
   PostNumber:
     value: 2
     option: [ 1, 2 ]
-  Chef:
-    value: WorkerJuu
-    option: [ WorkerJuu, a, b ]
+  Chef: |-
+    WorkerJuu
   Meal1:
     value: floral_fruity
     option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]
@@ -950,9 +894,8 @@ IslandGrill:
   PostNumber:
     value: 1
     option: [ 1, 2 ]
-  Chef:
-    value: WorkerJuu
-    option: [ WorkerJuu, a, b ]
+  Chef: |-
+    WorkerJuu
   Meal1:
     value: double_energy
     option: [ None, roasted_skewer, chicken_potato, carrot_omelette, stir_fried_chicken, steak_bowl, carnival, double_energy  ]
@@ -1001,9 +944,8 @@ IslandJuuEatery:
   PostNumber:
     value: 1
     option: [ 1, 2 ]
-  Chef:
-    value: WorkerJuu
-    option: [ WorkerJuu, a, b ]
+  Chef: |-
+    WorkerJuu
   Meal1:
     value: berry_orange
     option: [ None, apple_pie, corn_cup, orange_pie, banana_crepe, orchard_duo, rice_mango, succulently_sweet, berry_orange, strawberry_charlotte ]
@@ -1052,9 +994,8 @@ IslandJuuCoffee:
   PostNumber:
     value: 2
     option: [ 1, 2 ]
-  Chef:
-    value: WorkerJuu
-    option: [ WorkerJuu, a, b ]
+  Chef: |-
+    WorkerJuu
   Meal1:
     value: wake_up_call
     option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]

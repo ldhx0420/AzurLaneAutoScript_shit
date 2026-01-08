@@ -158,6 +158,7 @@ class SelectCharacter(UI):
             if char_info["grid_position"] == (row, col):
                 return char_info
         return None
+
     def select_character_filter(self):
         if self.appear_then_click(SELECT_CHARACTER_FILTER):
             self.device.sleep(0.5)
@@ -167,113 +168,6 @@ class SelectCharacter(UI):
             self.device.sleep(0.5)
             return True
         return False
-    def select_character(self, character_name="WorkerJuu"):
-        """
-        选择指定角色，如果不可用则选择WorkerJuu
-
-        Returns:
-            bool: 成功选择角色返回True，无角色可选返回False
-        """
-        self.select_character_filter()
-        screenshot = self.device.screenshot()
-        all_status = self.recognize_all_characters(screenshot)
-        target_row, target_col = None, None
-
-        # 首先尝试选择指定角色
-        if character_name != "WorkerJuu":
-            for char_info in all_status:
-                if char_info["character_name"] == character_name:
-                    if not char_info["is_working"] and char_info["has_stamina"]:
-                        target_row, target_col = char_info["grid_position"]
-                        break
-
-        # 如果指定角色不可用，则选择WorkerJuu
-        if target_row is None:
-            for char_info in all_status:
-                if char_info["character_name"] == "WorkerJuu":
-                    target_row, target_col = char_info["grid_position"]
-                    break
-
-        # 如果连WorkerJuu都找不到，返回False
-        if target_row is None or target_col is None:
-            return False
-
-        # 点击选择角色
-        button = self.select_character_grid[target_row, target_col]
-        max_attempts = 5
-        attempts = 0
-
-        while attempts < max_attempts:
-            screenshot = self.device.screenshot()
-            current_char_info = self.get_character_by_position(screenshot, target_row, target_col)
-
-            if current_char_info and current_char_info["is_selected"]:
-                return True
-            else:
-                self.device.click(button)
-
-            self.device.sleep(0.3)
-            attempts += 1
-        return False
-
-    def _is_character_available_by_config(self, character_name):
-        """
-        根据玩家配置判断角色是否可用于选择
-        返回True表示角色可用于选择，False表示不可用
-        """
-        if character_name == "WorkerJuu":
-            return True
-        # 特殊角色配置检查
-        if character_name == "YingSwei" and self.config.IslandRestaurant_Chef == "YingSwei":
-            return False  # 不可用
-        if character_name == "Amagi_chan" and self.config.IslandOrchard_AmagiChanRubber:
-            return False  # 不可用
-        # 获取营业状态
-        business_status = self.config.PersonnelManagement_BusinessStatus
-        # 检查角色是否在店铺配置中以及对应的波次
-        business_configs = [
-            "IslandRestaurantBusiness",
-            "IslandTeahouseBusiness",
-            "IslandGrillBusiness",
-            "IslandJuuEateryBusiness",
-            "IslandJuuCoffeeBusiness"
-        ]
-        # 记录角色出现在哪个波次的店铺中
-        appears_in_wave1 = False
-        appears_in_wave2 = False
-        for business in business_configs:
-            # 检查该角色是否是此店铺的店员
-            waiter1 = getattr(self.config, f"{business}_Waiter1", None)
-            waiter2 = getattr(self.config, f"{business}_Waiter2", None)
-
-            if waiter1 == character_name or waiter2 == character_name:
-                # 获取店铺波次
-                time_attr = getattr(self.config, f"{business}_time", 0)
-                if time_attr == 1:
-                    appears_in_wave1 = True
-                elif time_attr == 2:
-                    appears_in_wave2 = True
-        # 根据营业状态判断
-        if business_status == 0:  # 所有店铺角色不可选
-            # 如果角色出现在任何店铺中，都不可选
-            if appears_in_wave1 or appears_in_wave2:
-                return False
-            # 不在任何店铺中，可用
-            return True
-        elif business_status == 1:  # 只有波次为1且不在波次2的店铺角色可选
-            # 如果出现在波次2中，不可选
-            if appears_in_wave2:
-                return False
-            # 如果只出现在波次1中，可选
-            if appears_in_wave1:
-                return True
-            # 不出现在任何店铺中，可用
-            return True
-        elif business_status == 2:  # 所有店铺角色可选
-            # 无论出现在哪个波次，都可用
-            return True
-        # 默认情况
-        return True
 
     def _select_first_available_character(self, screenshot, character_list):
         """
@@ -289,68 +183,50 @@ class SelectCharacter(UI):
         character_dict = {}
         for char_info in all_characters:
             character_dict[char_info["character_name"]] = char_info
+
         # 优先按列表顺序检查指定角色
         for char_name in character_list:
             if char_name in character_dict:
                 char_info = character_dict[char_name]
                 # 检查角色状态和配置可用性
                 if (not char_info["is_working"] and
-                        char_info["has_stamina"] and
-                        self._is_character_available_by_config(char_name)):
+                        char_info["has_stamina"]
+                        ):
                     return char_info["grid_position"]
+
         # 如果没有找到可用角色，查找WorkerJuu
         if "WorkerJuu" in character_dict:
             worker_info = character_dict["WorkerJuu"]
             return worker_info["grid_position"]
+
         return None
 
-    def select_character_a(self):
+    def select_character(self, character_list="WorkerJuu"):
         """
-        选择第一个可用的A类角色，否则选择WorkerJuu
-        角色列表: "Amagi_chan", "NewJersey", "Unicorn", "LeMalin"
+        按照角色列表优先级选择角色
+        如果没有可选角色则选择工作啾
+
+        Args:
+            character_list: 角色列表字符串，用">"分隔，如"Cheshire > YingSwei"
+                          也可以传入单个角色名，如"Cheshire"
 
         Returns:
             bool: 成功选择角色返回True，无角色可选返回False
         """
+        # 应用体力筛选
         self.select_character_filter()
-        character_list = ["LeMalin", "Unicorn", "ChaoHo", "NewJersey", "Amagi_chan"]
 
+        # 解析角色列表
+        if isinstance(character_list, str):
+            # 处理 "Cheshire > YingSwei" 格式
+            characters = [char.strip() for char in character_list.split(">")]
+        else:
+            # 假设传入的是列表
+            characters = character_list
+
+        # 获取截图并选择角色
         screenshot = self.device.screenshot()
-        position = self._select_first_available_character(screenshot, character_list)
-
-        # 如果没有找到任何可用角色
-        if position is None:
-            return False
-        row, col = position
-        button = self.select_character_grid[row, col]
-
-        max_attempts = 5
-        attempts = 0
-
-        while attempts < max_attempts:
-            screenshot = self.device.screenshot()
-            current_char_info = self.get_character_by_position(screenshot, row, col)
-            if current_char_info and current_char_info["is_selected"]:
-                return True
-            else:
-                self.device.click(button)
-            self.device.sleep(0.3)
-            attempts += 1
-        return False
-
-    def select_character_b(self):
-        """
-        选择第一个可用的B类角色，否则选择WorkerJuu
-        合并了原来的B类和C类角色
-        角色列表: "Cheshire", "YingSwei", "Shimakaze", "Saratoga", "Tashkent", "Akashi"
-
-        Returns:
-            bool: 成功选择角色返回True，无角色可选返回False
-        """
-        self.select_character_filter()
-        character_list = ["Cheshire", "YingSwei", "Shimakaze", "Saratoga", "Tashkent", "Akashi"]
-        screenshot = self.device.screenshot()
-        position = self._select_first_available_character(screenshot, character_list)
+        position = self._select_first_available_character(screenshot, characters)
 
         # 如果没有找到任何可用角色
         if position is None:
@@ -359,12 +235,14 @@ class SelectCharacter(UI):
         row, col = position
         button = self.select_character_grid[row, col]
 
+        # 尝试点击选择，最多5次
         max_attempts = 5
         attempts = 0
 
         while attempts < max_attempts:
             screenshot = self.device.screenshot()
             current_char_info = self.get_character_by_position(screenshot, row, col)
+
             if current_char_info and current_char_info["is_selected"]:
                 return True
             else:
@@ -372,4 +250,5 @@ class SelectCharacter(UI):
 
             self.device.sleep(0.3)
             attempts += 1
+
         return False

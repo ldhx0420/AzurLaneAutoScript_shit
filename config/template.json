@@ -1906,39 +1906,6 @@
       "Storage": {}
     }
   },
-  "PersonnelManagement": {
-    "PersonnelManagement": {
-      "BusinessStatus": 0
-    },
-    "IslandRestaurantBusiness": {
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
-    },
-    "IslandTeahouseBusiness": {
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
-    },
-    "IslandGrillBusiness": {
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
-    },
-    "IslandJuuEateryBusiness": {
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
-    },
-    "IslandJuuCoffeeBusiness": {
-      "time": "None",
-      "Waiter1": "WorkerJuu",
-      "Waiter2": "WorkerJuu"
-    },
-    "Storage": {
-      "Storage": {}
-    }
-  },
   "IslandFarm": {
     "Scheduler": {
       "Enable": false,
@@ -2011,7 +1978,7 @@
     },
     "IslandRestaurant": {
       "PostNumber": 2,
-      "Chef": "YingSwei",
+      "Chef": "WorkerJuu",
       "Meal1": "tofu_meat",
       "MealNumber1": 6,
       "Meal2": "hearty_meal",

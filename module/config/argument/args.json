@@ -9173,272 +9173,6 @@
       }
     }
   },
-  "PersonnelManagement": {
-    "PersonnelManagement": {
-      "BusinessStatus": {
-        "type": "select",
-        "value": 0,
-        "option": [
-          0,
-          1,
-          2
-        ]
-      }
-    },
-    "IslandRestaurantBusiness": {
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      }
-    },
-    "IslandTeahouseBusiness": {
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      }
-    },
-    "IslandGrillBusiness": {
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      }
-    },
-    "IslandJuuEateryBusiness": {
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      }
-    },
-    "IslandJuuCoffeeBusiness": {
-      "time": {
-        "type": "select",
-        "value": "None",
-        "option": [
-          "None",
-          "one",
-          "two"
-        ]
-      },
-      "Waiter1": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      },
-      "Waiter2": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "None",
-          "WorkerJuu",
-          "NewJersey",
-          "Tashkent",
-          "YingSwei",
-          "Saratoga",
-          "Akashi",
-          "LeMalin",
-          "Shimakaze",
-          "Amagi_chan",
-          "Cheshire",
-          "Unicorn",
-          "ChaoHo"
-        ]
-      }
-    },
-    "Storage": {
-      "Storage": {
-        "type": "storage",
-        "value": {},
-        "valuetype": "ignore",
-        "display": "disabled"
-      }
-    }
-  },
   "IslandFarm": {
     "Scheduler": {
       "Enable": {
@@ -9770,14 +9504,8 @@
         ]
       },
       "Chef": {
-        "type": "select",
-        "value": "YingSwei",
-        "option": [
-          "WorkerJuu",
-          "a",
-          "b",
-          "YingSwei"
-        ]
+        "type": "input",
+        "value": "WorkerJuu"
       },
       "Meal1": {
         "type": "select",
@@ -9995,13 +9723,8 @@
         ]
       },
       "Chef": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "WorkerJuu",
-          "a",
-          "b"
-        ]
+        "type": "input",
+        "value": "WorkerJuu"
       },
       "Meal1": {
         "type": "select",
@@ -10237,13 +9960,8 @@
         ]
       },
       "Chef": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "WorkerJuu",
-          "a",
-          "b"
-        ]
+        "type": "input",
+        "value": "WorkerJuu"
       },
       "Meal1": {
         "type": "select",
@@ -10461,13 +10179,8 @@
         ]
       },
       "Chef": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "WorkerJuu",
-          "a",
-          "b"
-        ]
+        "type": "input",
+        "value": "WorkerJuu"
       },
       "Meal1": {
         "type": "select",
@@ -10703,13 +10416,8 @@
         ]
       },
       "Chef": {
-        "type": "select",
-        "value": "WorkerJuu",
-        "option": [
-          "WorkerJuu",
-          "a",
-          "b"
-        ]
+        "type": "input",
+        "value": "WorkerJuu"
       },
       "Meal1": {
         "type": "select",

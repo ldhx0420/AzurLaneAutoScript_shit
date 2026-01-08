@@ -331,13 +331,6 @@ Island:
   menu: 'collapse'
   page: 'setting'
   tasks:
-    PersonnelManagement:
-      - PersonnelManagement
-      - IslandRestaurantBusiness
-      - IslandTeahouseBusiness
-      - IslandGrillBusiness
-      - IslandJuuEateryBusiness
-      - IslandJuuCoffeeBusiness
     IslandFarm:
       - Scheduler
       - IslandFarm
