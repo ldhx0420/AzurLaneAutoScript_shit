@@ -1,6 +1,7 @@
 from module.island_select_character.assets import *
 from module.base.button import *
 from module.ui.ui import UI
+from module.logger import logger
 
 
 class SelectCharacter(UI):
@@ -214,7 +215,8 @@ class SelectCharacter(UI):
             bool: 成功选择角色返回True，无角色可选返回False
         """
         # 应用体力筛选
-        self.select_character_filter()
+        if not self.select_character_filter():
+            return False
 
         # 解析角色列表
         if isinstance(character_list, str):

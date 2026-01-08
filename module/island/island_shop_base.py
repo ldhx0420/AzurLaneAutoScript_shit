@@ -75,20 +75,6 @@ class IslandShopBase(Island, WarehouseOCR):
         for post_id, button in self.post_buttons.items():
             self.posts[post_id] = {'status': 'none', 'button': button}
 
-    # ============ 角色选择方法 ============
-    def select_character_for_shop(self):
-        """根据chef_config选择角色"""
-        if self.chef_config == "WorkerJuu":
-            return self.select_character()  # 默认WorkerJuu
-        elif self.chef_config == "a":
-            return self.select_character_a()
-        elif self.chef_config == "b":
-            return self.select_character_b()
-        elif self.chef_config == "YingSwei":
-            return self.select_character(character_name="YingSwei")
-        else:
-            return self.select_character()
-
     # ============ 通用方法 ============
     def post_check(self, post_id, time_var_name):
         """检查岗位状态（通用）"""
@@ -156,7 +142,7 @@ class IslandShopBase(Island, WarehouseOCR):
             if self.appear_then_click(ISLAND_POST_SELECT, offset=1):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
-                if self.select_character_for_shop():
+                if self.select_character(character_list=self.chef_config):
                     self.device.sleep(0.5)
                     self.appear_then_click(SELECT_UI_CONFIRM)
                     self.device.sleep(0.5)
