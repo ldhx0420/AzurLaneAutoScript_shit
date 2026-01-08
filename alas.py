@@ -13,6 +13,7 @@ from module.config.deep import deep_get, deep_set
 from module.exception import *
 from module.logger import logger
 from module.notify import handle_notify
+from module.ui.page import page_main
 
 
 class AzurLaneAutoScript:
@@ -175,7 +176,12 @@ class AzurLaneAutoScript:
         from module.ui.ui import UI
         if self.device.app_is_running():
             logger.info('App is already running, goto main page')
-            UI(self.config, device=self.device).ui_goto_main()
+            page = UI(self.config, device=self.device).ui_get_current_page()
+            valid_pages = ['page_island_management', 'page_island_postmanage', 'page_island', 'page_island_warehouse', 'page_island_visit']
+            if page.name in valid_pages:
+                UI(self.config, device=self.device).ui_goto(page_main,get_ship=False)
+            else:
+                UI(self.config, device=self.device).ui_goto_main()
         else:
             logger.info('App is not running, start app and goto main page')
             LoginHandler(self.config, device=self.device).app_start()

@@ -56,6 +56,7 @@ class IslandAirDrop(Island):
         if self.island_error:
             from module.exception import GameBugError
             raise GameBugError("检测到岛屿拜访卡死，需要重启")
+        return True
 
 
     def find_air_drop(self):
