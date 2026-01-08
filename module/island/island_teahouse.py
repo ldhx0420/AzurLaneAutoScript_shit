@@ -4,9 +4,7 @@ from module.island.assets import *
 from module.ui.page import *
 from collections import Counter
 from datetime import datetime, timedelta
-import logging
-
-logger = logging.getLogger(__name__)
+from module.logger import logger
 
 
 class IslandTeahouse(IslandShopBase):
@@ -100,7 +98,7 @@ class IslandTeahouse(IslandShopBase):
         self.device.sleep(0.3)
         image = self.device.screenshot()
         self.fresh_honey = self.ocr_item_quantity(image, TEMPLATE_FRESH_HONEY)
-        print(f"蜂蜜数量: {self.fresh_honey}")
+        logger.info(f"蜂蜜数量: {self.fresh_honey}")
 
         # 将蜂蜜库存存入warehouse_counts，便于统一处理
         self.warehouse_counts['fresh_honey'] = self.fresh_honey
@@ -145,12 +143,12 @@ class IslandTeahouse(IslandShopBase):
             # 优先扣除蜂蜜
             if self.fresh_honey >= honey_needed:
                 self.fresh_honey -= honey_needed
-                print(f"扣除蜂蜜：fresh_honey -{honey_needed} (用于制作sunny_honey)")
+                logger.info(f"扣除蜂蜜：fresh_honey -{honey_needed} (用于制作sunny_honey)")
             else:
                 # 蜂蜜不足，扣除honey_lemon
                 remaining_needed = honey_needed - self.fresh_honey
                 if self.fresh_honey > 0:
-                    print(f"扣除蜂蜜：fresh_honey -{self.fresh_honey} (用于制作sunny_honey)")
+                    logger.info(f"扣除蜂蜜：fresh_honey -{self.fresh_honey} (用于制作sunny_honey)")
                     self.fresh_honey = 0
 
                 # 扣除honey_lemon库存
@@ -158,7 +156,7 @@ class IslandTeahouse(IslandShopBase):
                     available_honey_lemon = min(remaining_needed, self.warehouse_counts['honey_lemon'])
                     if available_honey_lemon > 0:
                         self.warehouse_counts['honey_lemon'] -= available_honey_lemon
-                        print(f"扣除honey_lemon：honey_lemon -{available_honey_lemon} (用于制作sunny_honey)")
+                        logger.info(f"扣除honey_lemon：honey_lemon -{available_honey_lemon} (用于制作sunny_honey)")
 
     def apply_special_material_constraints(self, requirements):
         """覆盖：根据蜂蜜库存调整需求"""
@@ -170,7 +168,7 @@ class IslandTeahouse(IslandShopBase):
             max_honey_lemon = min(honey_lemon_needed, self.fresh_honey)
 
             if max_honey_lemon < honey_lemon_needed:
-                print(f"蜂蜜不足：honey_lemon需求从{honey_lemon_needed}调整为{max_honey_lemon}")
+                logger.info(f"蜂蜜不足：honey_lemon需求从{honey_lemon_needed}调整为{max_honey_lemon}")
 
             result['honey_lemon'] = max_honey_lemon
 
@@ -190,7 +188,7 @@ class IslandTeahouse(IslandShopBase):
             max_sunny_honey = min(sunny_honey_needed, honey_remaining)
 
             if max_sunny_honey < sunny_honey_needed:
-                print(f"蜂蜜不足：sunny_honey需求从{sunny_honey_needed}调整为{max_sunny_honey}")
+                logger.info(f"蜂蜜不足：sunny_honey需求从{sunny_honey_needed}调整为{max_sunny_honey}")
 
             result['sunny_honey'] = max_sunny_honey
 

@@ -2,7 +2,7 @@ from module.island_juu_eatery.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
 from module.ui.page import *
-
+from module.logger import logger
 
 class IslandJuuEatery(IslandShopBase):
     def __init__(self, *args, **kwargs):
@@ -99,7 +99,7 @@ class IslandJuuEatery(IslandShopBase):
         image = self.device.screenshot()
         self.cheese_stock = self.ocr_item_quantity(image, TEMPLATE_CHEESE)
         self.special_materials['cheese'] = self.cheese_stock
-        print(f"芝士数量: {self.cheese_stock}")
+        logger.info(f"芝士数量: {self.cheese_stock}")
 
         # 将cheese库存也存入warehouse_counts，便于统一处理
         self.warehouse_counts['cheese'] = self.cheese_stock
@@ -132,7 +132,7 @@ class IslandJuuEatery(IslandShopBase):
             self.special_materials['cheese'] = self.cheese_stock
             if 'cheese' in self.warehouse_counts:
                 self.warehouse_counts['cheese'] = self.cheese_stock
-            print(f"扣除芝士：cheese -{cheese_needed} (用于制作 {product})")
+            logger.info(f"扣除芝士：cheese -{cheese_needed} (用于制作 {product})")
 
     def apply_special_material_constraints(self, requirements):
         """覆盖：根据芝士库存调整需求"""
@@ -148,7 +148,7 @@ class IslandJuuEatery(IslandShopBase):
                 # 调整需求
                 max_strawberry = cheese_available // 2
                 result['strawberry_charlotte'] = max_strawberry
-                print(f"芝士不足：strawberry_charlotte需求从{strawberry_needed}调整为{max_strawberry}")
+                logger.info(f"芝士不足：strawberry_charlotte需求从{strawberry_needed}调整为{max_strawberry}")
 
         return result
 

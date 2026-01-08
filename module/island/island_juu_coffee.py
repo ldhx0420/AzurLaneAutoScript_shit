@@ -1,7 +1,7 @@
 from module.island_juu_coffee.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
-
+from module.logger import logger
 
 class IslandJuuCoffee(IslandShopBase):
     def __init__(self, *args, **kwargs):
@@ -85,14 +85,14 @@ class IslandJuuCoffee(IslandShopBase):
 
     def process_meal_requirements(self, source_products):
         """覆盖：处理套餐需求，添加调试信息"""
-        print(f"=== IslandJuuCoffee.process_meal_requirements ===")
-        print(f"传入的需求: {source_products}")
+        logger.info(f"=== IslandJuuCoffee.process_meal_requirements ===")
+        logger.info(f"传入的需求: {source_products}")
 
         # 调用父类方法
         result = super().process_meal_requirements(source_products)
 
-        print(f"返回结果: {result}")
-        print(f"=== 结束IslandJuuCoffee.process_meal_requirements ===")
+        logger.info(f"返回结果: {result}")
+        logger.info(f"=== 结束IslandJuuCoffee.process_meal_requirements ===")
 
         return result
 

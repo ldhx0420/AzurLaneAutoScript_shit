@@ -1,7 +1,7 @@
 from module.island_grill.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import FILTER_ISLAND_GRILL, POST_MANAGE_GETTED_CHECK
-
+from module.logger import logger
 
 class IslandGrill(IslandShopBase):
     def __init__(self, *args, **kwargs):
@@ -73,7 +73,7 @@ class IslandGrill(IslandShopBase):
         self.island_error = False
         self.post_get_and_close()
         if self.island_error:
-            print('error1')
+            logger.info('error1')
 
 
 if __name__ == "__main__":
