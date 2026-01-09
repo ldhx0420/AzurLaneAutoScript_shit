@@ -2790,7 +2790,7 @@
     },
     "ChefFilter": {
       "name": "厨师",
-      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
+      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
     },
     "Meal1": {
       "name": "餐品1",
@@ -2952,7 +2952,7 @@
     },
     "ChefFilter": {
       "name": "厨师",
-      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
+      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
     },
     "Meal1": {
       "name": "餐品1",
@@ -3132,7 +3132,7 @@
     },
     "ChefFilter": {
       "name": "厨师",
-      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
+      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
     },
     "Meal1": {
       "name": "餐品1",
@@ -3294,7 +3294,7 @@
     },
     "ChefFilter": {
       "name": "厨师",
-      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
+      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
     },
     "Meal1": {
       "name": "餐品1",
@@ -3474,7 +3474,7 @@
     },
     "ChefFilter": {
       "name": "厨师",
-      "help": "新泽西：NewJersey > 塔什干：Tashkent > 应瑞：YingSwei > 小加加：Saratoga > 明石：Akashi > 恶毒：LeMalin > 岛风：Shimakaze > 小天城：Amagi_chan > 柴郡：Cheshire > 独角兽：Unicorn > 肇和：ChaoHo"
+      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
     },
     "Meal1": {
       "name": "餐品1",
