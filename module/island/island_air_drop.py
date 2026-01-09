@@ -26,6 +26,8 @@ class IslandAirDrop(Island):
                     if self.appear_then_click(AIR_DROP_SKIP,offset=1):
                         continue
                     self.device.sleep(0.5)
+                if self.appear(ISLAND_SEASON_CHECK, offset=1):
+                    self.device.click(ISLAND_SEASON_GOTO_ISLAND)
                 self.device.sleep(1)
                 self.island_down(1000)
                 self.island_air_drop()
