@@ -19,20 +19,34 @@ class Island(SelectCharacter):
 
     def goto_postmanage(self):
         page = self.ui_get_current_page()
-        valid_pages = ['page_island_management', 'page_island_postmanage', 'page_island', 'page_island_warehouse', 'page_island_visit']
+        valid_pages = ['page_island_management', 'page_island_postmanage', 'page_island', 'page_island_warehouse', 'page_island_visit', 'page_island_season']
         if page.name in valid_pages:
             self.ui_goto(page_island_postmanage,get_ship=False)
         else:
             self.goto_management()
             self.ui_goto(page_island_postmanage,get_ship=False)
     def goto_management(self):
-        self.ui_goto(page_island,get_ship=False)
-        while True:
-            self.device.screenshot()
-            if self.appear(ISLAND_CHECK, offset=(5, 5)):
-                self.device.click(ISLAND_GOTO_MANAGEMENT)
-            if self.appear(ISLAND_MANAGEMENT_CHECK, offset=(5, 5)):
-                break
+        page = self.ui_get_current_page()
+        valid_pages = ['page_island_management', 'page_island_postmanage', 'page_island', 'page_island_warehouse',
+                       'page_island_visit', 'page_island_season']
+        if page.name in valid_pages:
+            self.ui_goto(page_island_management, get_ship=False)
+        else:
+            self.ui_goto(page_island,get_ship=False)
+            while True:
+                self.device.screenshot()
+                if self.appear(ISLAND_MANAGEMENT_CHECK, offset=1):
+                    break
+                if self.appear(ISLAND_CHECK, offset=1):
+                    self.device.click(ISLAND_GOTO_MANAGEMENT)
+                    continue
+                if self.appear(ISLAND_SEASON_CHECK, offset=1):
+                    self.device.click(ISLAND_SEASON_GOTO_ISLAND)
+                    continue
+                self.device.sleep(0.5)
+            if self.appear(ISLAND_SEASON_CHECK, offset=1):
+                self.ui_goto(page_island_management, get_ship=False)
+
     def goto_island_map(self):
         self.ui_goto(page_island,get_ship=False)
         while True:

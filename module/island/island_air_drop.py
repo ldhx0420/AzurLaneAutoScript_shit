@@ -20,13 +20,17 @@ class IslandAirDrop(Island):
                     self.device.screenshot()
                     if self.appear(ISLAND_CHECK):
                         break
-                    if self.appear_then_click(AIR_DROP_SKIP,offset=0):
+                    if self.appear(ISLAND_SEASON_CHECK,offset=1):
+                        self.device.click(ISLAND_SEASON_GOTO_ISLAND)
+                        continue
+                    if self.appear_then_click(AIR_DROP_SKIP,offset=1):
                         continue
                     self.device.sleep(0.5)
                 self.device.sleep(1)
                 self.island_down(1000)
                 self.island_air_drop()
         has_drops = True
+        self.goto_management()
         while 1:
             self.ui_goto(page_island_visit, get_ship=False)
             ocr_air_drop = DigitCounter(OCR_AIR_DROP, name='air_drop', letter=(150, 150, 150), threshold=80,
@@ -266,7 +270,10 @@ class IslandAirDrop(Island):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
+    def test1(self):
+        self.goto_management()
+
 if __name__ == "__main__":
     az =IslandAirDrop('alas', task='Alas')
     az.device.screenshot()
-    az.run()
+    az.test1()
