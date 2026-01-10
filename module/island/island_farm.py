@@ -356,7 +356,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
                 if product == 'rubber' and self.config.IslandOrchard_AmagiChanRubber:
-                    if self.select_character(character_name="Amagi_chan"):
+                    if self.select_character(character_list="Amagi_chan"):
                         self.device.click(SELECT_UI_CONFIRM)
                 else:
                     if self.select_character():
