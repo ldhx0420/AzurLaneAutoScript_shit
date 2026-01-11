@@ -325,7 +325,6 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
                     self.device.sleep(0.5)
-                    break
                 continue
             if (
                     self.appear(ISLAND_POST_CHECK, offset=1)
@@ -334,6 +333,11 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     and not self.appear(ISLAND_POST_SELECT, offset=1)
             ):
                 self.device.click(POST_CLOSE)
+                break
+            if (
+                    self.appear(ISLAND_POSTMANAGE_CHECK, offset=1)
+                    and not self.appear(ISLAND_POST_CHECK)
+            ):
                 break
 
     def ranch_post(self, post_id):
@@ -769,7 +773,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             raise GameBugError("检测到岛屿ERROR1，需要重启")
 
     def test(self):
-        self.warehouse_mill_ranch()
+        self.ranch_post_get_and_add()
 
 
 if __name__ == "__main__":

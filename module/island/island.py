@@ -183,7 +183,6 @@ class Island(SelectCharacter):
                     self.device.sleep(0.3)
                     self.device.click(POST_ADD_ORDER)
                     self.device.sleep(0.5)
-                    break
                 continue
             if (
                     self.appear(ISLAND_POST_CHECK, offset=1)
@@ -192,6 +191,11 @@ class Island(SelectCharacter):
                     and not self.appear(ISLAND_POST_SELECT, offset=1)
             ):
                 self.device.click(POST_CLOSE)
+                break
+            if (
+                    self.appear(ISLAND_POSTMANAGE_CHECK, offset=1)
+                    and not self.appear(ISLAND_POST_CHECK)
+            ):
                 break
 
     def post_open(self,post):
