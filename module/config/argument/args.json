@@ -9222,7 +9222,7 @@
       },
       "MinFarm": {
         "type": "input",
-        "value": 300
+        "value": 660
       },
       "PlantPotatoes": {
         "type": "select",
@@ -10644,6 +10644,17 @@
       }
     },
     "WoodProcessing": {
+      "Positions": {
+        "type": "select",
+        "value": 2,
+        "option": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "ElectronicProcessing": {
       "Positions": {
         "type": "select",
         "value": 2,

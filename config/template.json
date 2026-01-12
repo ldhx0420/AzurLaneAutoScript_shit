@@ -1917,7 +1917,7 @@
     },
     "IslandFarm": {
       "Positions": 3,
-      "MinFarm": 300,
+      "MinFarm": 660,
       "PlantPotatoes": 4
     },
     "IslandOrchard": {
@@ -2157,6 +2157,9 @@
       "ServerUpdate": "00:00"
     },
     "WoodProcessing": {
+      "Positions": 2
+    },
+    "ElectronicProcessing": {
       "Positions": 2
     },
     "Industrial": {

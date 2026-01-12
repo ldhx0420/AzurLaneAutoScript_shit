@@ -18,7 +18,6 @@ class IslandManufacture(IslandShopBase):
 
         # 设置滑动配置（岗位管理界面需要两次滑动）
         self.post_manage_swipe_count = 2
-        self.post_produce_swipe_count = 2
 
         # 设置筛选资产
         self.filter_asset = FILTER_FACTORY
@@ -30,6 +29,14 @@ class IslandManufacture(IslandShopBase):
                     {'name': 'file_cabinet', 'template': TEMPLATE_FILE_CABINET,
                      'var_name': 'file_cabinet', 'selection': SELECT_FILE_CABINET,
                      'selection_check': SELECT_FILE_CABINET_CHECK, 'post_action': POST_FILE_CABINET},
+                ]
+            },
+            #TEMPLATE_FILTER_ELEMENT 未添加
+            'electronic_processing': {
+                'items': [
+                    {'name': 'filter_element', 'template': TEMPLATE_FILE_CABINET,
+                     'var_name': 'filter_element', 'selection': SELECT_FILTER_ELEMENT,
+                     'selection_check': SELECT_FILTER_ELEMENT_CHECK, 'post_action': POST_FILTER_ELEMENT},
                 ]
             },
             'industrial_production': {
@@ -87,6 +94,11 @@ class IslandManufacture(IslandShopBase):
         if self.config.WoodProcessing_Positions >= 2:
             post_buttons['ISLAND_WOOD_PROCESSING_POST2'] = ISLAND_WOOD_PROCESSING_POST2
 
+        if self.config.ElectronicProcessing_Positions >= 1:
+            post_buttons['ISLAND_ELECTRONIC_PROCESSING_POST1'] = ISLAND_ELECTRONIC_PROCESSING_POST1
+        if self.config.ElectronicProcessing_Positions >= 2:
+            post_buttons['ISLAND_ELECTRONIC_PROCESSING_POST2'] = ISLAND_ELECTRONIC_PROCESSING_POST2
+
         if self.config.Industrial_Positions >= 1:
             post_buttons['ISLAND_INDUSTRIAL_POST1'] = ISLAND_INDUSTRIAL_POST1
         if self.config.Industrial_Positions >= 2:
@@ -104,6 +116,8 @@ class IslandManufacture(IslandShopBase):
         category_posts = []
         if category == 'wood_processing':
             category_posts = ['ISLAND_WOOD_PROCESSING_POST1', 'ISLAND_WOOD_PROCESSING_POST2']
+        elif category == 'electronic_processing':
+            category_posts = ['ISLAND_ELECTRONIC_PROCESSING_POST1', 'ISLAND_ELECTRONIC_PROCESSING_POST2']
         elif category == 'industrial_production':
             category_posts = ['ISLAND_INDUSTRIAL_POST1', 'ISLAND_INDUSTRIAL_POST2']
         elif category == 'handmade':
@@ -187,7 +201,7 @@ class IslandManufacture(IslandShopBase):
                 self.device.sleep(0.3)
                 self.post_close()
 
-                for _ in range(self.post_produce_swipe_count):
+                for _ in range(self.post_manage_swipe_count):
                     self.post_manage_up_swipe(450)
 
                 if selected_product:
@@ -222,11 +236,12 @@ class IslandManufacture(IslandShopBase):
 
     def schedule_manufacture(self):
         """安排制造业生产（覆盖基类方法）"""
-        # 1. 木料加工：只生产file_cabinet
         self.schedule_wood_processing()
-        # 2. 工业生产
+
+        self.schedule_electronic_processing()
+
         self.schedule_industrial_production()
-        # 3. 手工生产
+
         self.schedule_handmade()
 
     def schedule_wood_processing(self):
@@ -236,6 +251,16 @@ class IslandManufacture(IslandShopBase):
             return
         # 木料加工只生产file_cabinet
         product_list = self.manufacture['wood_processing']['items']
+        for post_id in idle_posts:
+            self.select_product_with_material_check(post_id, product_list)
+
+    def schedule_electronic_processing(self):
+        """安排电子加工生产"""
+        idle_posts = self.get_idle_posts_by_category('electronic_processing')
+        if not idle_posts:
+            return
+        # 木料加工只生产file_cabinet
+        product_list = self.manufacture['electronic_processing']['items']
         for post_id in idle_posts:
             self.select_product_with_material_check(post_id, product_list)
 
@@ -386,4 +411,4 @@ class IslandManufacture(IslandShopBase):
 if __name__ == "__main__":
     az = IslandManufacture('alas', task='Alas')
     az.device.screenshot()
-    az.test()
+    az.run()

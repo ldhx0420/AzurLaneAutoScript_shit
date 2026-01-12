@@ -2601,7 +2601,7 @@
     },
     "MinFarm": {
       "name": "农田作物底线",
-      "help": ""
+      "help": "建议660及以上"
     },
     "PlantPotatoes": {
       "name": "种土豆",
@@ -3655,6 +3655,19 @@
     "_info": {
       "name": "木料加工",
       "help": "仅制作文件柜"
+    },
+    "Positions": {
+      "name": "岗位数",
+      "help": "",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    }
+  },
+  "ElectronicProcessing": {
+    "_info": {
+      "name": "电子加工",
+      "help": "仅制作滤芯"
     },
     "Positions": {
       "name": "岗位数",

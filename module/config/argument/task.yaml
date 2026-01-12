@@ -364,6 +364,7 @@ Island:
     IslandManufacture:
       - Scheduler
       - WoodProcessing
+      - ElectronicProcessing
       - Industrial
       - Handmade
     IslandDailyGather:

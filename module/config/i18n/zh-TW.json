@@ -3664,6 +3664,19 @@
       "2": "2"
     }
   },
+  "ElectronicProcessing": {
+    "_info": {
+      "name": "ElectronicProcessing._info.name",
+      "help": "ElectronicProcessing._info.help"
+    },
+    "Positions": {
+      "name": "ElectronicProcessing.Positions.name",
+      "help": "ElectronicProcessing.Positions.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    }
+  },
   "Industrial": {
     "_info": {
       "name": "Industrial._info.name",

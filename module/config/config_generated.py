@@ -437,7 +437,7 @@ class GeneratedConfig:
 
     # Group `IslandFarm`
     IslandFarm_Positions = 3  # 1, 2, 3, 4
-    IslandFarm_MinFarm = 300
+    IslandFarm_MinFarm = 660
     IslandFarm_PlantPotatoes = 4  # 0, 1, 2, 3, 4
 
     # Group `IslandOrchard`
@@ -590,6 +590,9 @@ class GeneratedConfig:
 
     # Group `WoodProcessing`
     WoodProcessing_Positions = 2  # 0, 1, 2
+
+    # Group `ElectronicProcessing`
+    ElectronicProcessing_Positions = 2  # 0, 1, 2
 
     # Group `Industrial`
     Industrial_Positions = 2  # 0, 1, 2
