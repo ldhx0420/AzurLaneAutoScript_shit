@@ -18,7 +18,10 @@ class SelectCharacter(UI):
         # 定义状态检测区域（相对于每个角色按钮）
         self.character_area_relative = (32, 14, 118, 65)
         self.working_area_relative = (15, 65, 105, 95)
-        self.stamina_area_relative = (56, 139, 58, 152)
+        self.stamina_area_relative = (18, 139, 19, 140)
+        # (18, 139, 19, 140)>25
+        # (22, 139, 23, 140)>30
+        # (56, 139, 58, 152) 约75
         self.selected_area_relative = (86, 1, 119, 12)
 
         # 角色模板映射
