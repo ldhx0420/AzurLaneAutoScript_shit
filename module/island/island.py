@@ -159,7 +159,7 @@ class Island(SelectCharacter):
             if self.appear(ISLAND_GET,offset=1):
                 self.device.click(ISLAND_POST_SAFE_AREA)
                 continue
-            if self.appear_then_click(POST_ADD):
+            if self.appear_then_click(POST_ADD,offset=1):
                 continue
             if self.appear_then_click(POST_GET,offset=(50,0)):
                 self.device.sleep(0.5)

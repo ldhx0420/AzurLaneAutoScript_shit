@@ -83,17 +83,12 @@ class IslandMineForest(Island,LoginHandler):
     def _process_finish_times(self, time_vars):
         """处理完成时间"""
         finish_times = [getattr(self, var) for var in time_vars if getattr(self, var) is not None]
+        six_hours_later = datetime.now() + timedelta(hours=6)
+        finish_times.append(six_hours_later)
         finish_times.sort()
+        self.config.task_delay(target=finish_times)
+        logger.info(f'Found {len(finish_times)} post timers, next run at {finish_times[0]}')
 
-        logger.info(f'Island post finish times: {[str(f) for f in finish_times]}')
-
-        if finish_times:
-            self.config.task_delay(target=finish_times)
-            logger.info(f'Found {len(finish_times)} post timers, next run at {finish_times[0]}')
-        else:
-            next_check = datetime.now() + timedelta(hours=6)
-            logger.info(f'没有任务需要安排，下次检查时间：{next_check.strftime("%H:%M")}')
-            self.config.task_delay(target=[next_check])
     def test(self):
         self.post_get_and_add(SELECT_SILVER, SELECT_SILVER_CHECK)
 if __name__ == "__main__":
