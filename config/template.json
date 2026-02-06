@@ -1936,16 +1936,16 @@
       "Storage": {}
     }
   },
-  "IslandRanch": {
+  "IslandRancher": {
     "Scheduler": {
       "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
-      "Command": "IslandRanch",
+      "Command": "IslandRancher",
       "SuccessInterval": 0,
       "FailureInterval": 120,
       "ServerUpdate": "00:00"
     },
-    "IslandRanch": {
+    "IslandRancher": {
       "MinChicken": 300,
       "MinPork": 300,
       "Milk": true,

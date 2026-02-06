@@ -1,18 +1,18 @@
 from module.island_farm.assets import *
-from module.island_ranch.assets import *
+from module.island_rancher.assets import *
 from module.island.island import *
-from datetime import datetime, timedelta
+from datetime import datetime
 from module.handler.login import LoginHandler
 from module.island.warehouse import *
 from module.logger import logger
 
 
-class IslandRanch(Island, WarehouseOCR, LoginHandler):
+class IslandRancher(Island, WarehouseOCR, LoginHandler):
     def __init__(self, *args, **kwargs):
         Island.__init__(self, *args, **kwargs)
         WarehouseOCR.__init__(self)
-        self.ranch_chicken_threshold = self.config.IslandRanch_MinChicken
-        self.ranch_pork_threshold = self.config.IslandRanch_MinPork
+        self.ranch_chicken_threshold = self.config.IslandRancher_MinChicken
+        self.ranch_pork_threshold = self.config.IslandRancher_MinPork
         self.island_shop_grid = ButtonGrid(
             origin=(254, 223),
             delta=(163, 167),
@@ -51,9 +51,9 @@ class IslandRanch(Island, WarehouseOCR, LoginHandler):
                 'filter': FILTER_RANCH,
                 'items': [
                     {'name': 'chicken', 'template': TEMPLATE_CHICKEN, 'var_name': 'chicken',
-                     'category': 'ranch', 'threshold': self.config.IslandRanch_MinChicken},
+                     'category': 'ranch', 'threshold': self.config.IslandRancher_MinChicken},
                     {'name': 'pork', 'template': TEMPLATE_PORK, 'var_name': 'pork',
-                     'category': 'ranch', 'threshold': self.config.IslandRanch_MinPork},
+                     'category': 'ranch', 'threshold': self.config.IslandRancher_MinPork},
                 ]
             }
         }
@@ -189,7 +189,7 @@ class IslandRanch(Island, WarehouseOCR, LoginHandler):
     def post_mode_check(self, post_id):
         """检查岗位是否使用特定角色配置"""
         if post_id == 'ISLAND_RANCH_POST3':
-            config_str = self.config.IslandRanch_RancherFilter
+            config_str = self.config.IslandRancher_RancherFilter
         elif post_id in ['ISLAND_FISHERY_POST1', 'ISLAND_FISHERY_POST2', 'ISLAND_FISHERY_POST3']:
             config_str = self.config.IslandFishery_RancherFilter
         else:
@@ -210,7 +210,7 @@ class IslandRanch(Island, WarehouseOCR, LoginHandler):
 
         # 获取对应的配置
         if post_id == 'ISLAND_RANCH_POST3':
-            config_str = self.config.IslandRanch_RancherFilter
+            config_str = self.config.IslandRancher_RancherFilter
         elif is_fish:
             config_str = self.config.IslandFishery_RancherFilter
         else:
@@ -282,7 +282,7 @@ class IslandRanch(Island, WarehouseOCR, LoginHandler):
         chicken_count = self.inventory_counts['ranch'].get('chicken', 0)
         chicken_feed_count = self.inventory_counts['mill'].get('chicken_feed', 0)
 
-        if (chicken_count < self.config.IslandRanch_MinChicken and
+        if (chicken_count < self.config.IslandRancher_MinChicken and
                 wheat_count > 330 and
                 chicken_feed_count < 50 and
                 'wheat_flour' not in mill_needs):
@@ -293,7 +293,7 @@ class IslandRanch(Island, WarehouseOCR, LoginHandler):
         pig_feed_count = self.inventory_counts['mill'].get('pig_feed', 0)
         corn_count = self.inventory_counts['farm'].get('corn', 0)
 
-        if (pork_count < self.config.IslandRanch_MinPork and
+        if (pork_count < self.config.IslandRancher_MinPork and
                 corn_count > 330 and
                 pig_feed_count < 50):
             mill_needs.append('pig_feed')
@@ -479,6 +479,6 @@ class IslandRanch(Island, WarehouseOCR, LoginHandler):
 
 
 if __name__ == "__main__":
-    az = IslandRanch('alas', task='Alas')
+    az = IslandRancher('alas', task='Alas')
     az.device.screenshot()
     az.run()

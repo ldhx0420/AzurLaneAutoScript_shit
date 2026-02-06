@@ -262,7 +262,7 @@
       "name": "农田",
       "help": ""
     },
-    "IslandRanch": {
+    "IslandRancher": {
       "name": "牧场",
       "help": ""
     },
@@ -2670,7 +2670,7 @@
       "2": "2"
     }
   },
-  "IslandRanch": {
+  "IslandRancher": {
     "_info": {
       "name": "牧场",
       "help": ""
@@ -2684,15 +2684,15 @@
       "help": ""
     },
     "Milk": {
-      "name": "奶牛",
+      "name": "养牛",
       "help": ""
     },
     "RancherFilter": {
-      "name": "养牛人",
-      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
+      "name": "使用角色",
+      "help": "\"以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire\""
     },
     "Wool": {
-      "name": "绵羊",
+      "name": "养羊",
       "help": ""
     }
   },
@@ -2710,7 +2710,7 @@
       "3": "3"
     },
     "RancherFilter": {
-      "name": "渔夫",
+      "name": "使用角色",
       "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
     }
   },

@@ -452,12 +452,12 @@ class GeneratedConfig:
     IslandNursery_MinNursery = 0
     IslandNursery_PlantLavender = 2  # 0, 1, 2
 
-    # Group `IslandRanch`
-    IslandRanch_MinChicken = 300
-    IslandRanch_MinPork = 300
-    IslandRanch_Milk = True
-    IslandRanch_RancherFilter = 'WorkerJuu'
-    IslandRanch_Wool = True
+    # Group `IslandRancher`
+    IslandRancher_MinChicken = 300
+    IslandRancher_MinPork = 300
+    IslandRancher_Milk = True
+    IslandRancher_RancherFilter = 'WorkerJuu'
+    IslandRancher_Wool = True
 
     # Group `IslandFishery`
     IslandFishery_Cray = 2  # 0, 1, 2, 3
