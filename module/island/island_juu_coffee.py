@@ -1,7 +1,9 @@
 from module.island_juu_coffee.assets import *
 from module.island.island_shop_base import IslandShopBase
 from module.island.assets import *
+from module.ui.page import *
 from module.logger import logger
+
 
 class IslandJuuCoffee(IslandShopBase):
     def __init__(self, *args, **kwargs):
@@ -80,8 +82,166 @@ class IslandJuuCoffee(IslandShopBase):
         # 设置滑动次数（JuuCoffee需要滑动两次）
         self.post_manage_swipe_count = 2  # run方法中滑动2次450
 
+        # 特殊材料：牛奶
+        self.milk_stock = 0
+        self.special_materials = {'milk': 0}
+
         # 初始化店铺
         self.initialize_shop()
+
+    def get_warehouse_counts(self):
+        """覆盖：获取仓库数量，包括牛奶"""
+        # 先调用父类方法获取基础库存
+        super().get_warehouse_counts()
+
+        # 额外获取milk数量（从牧场）
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
+        self.appear_then_click(FILTER_RESET)
+        self.appear_then_click(FILTER_RANCH)
+        self.appear_then_click(FILTER_CONFIRM)
+        self.wait_until_appear(ISLAND_WAREHOUSE_GOTO_WAREHOUSE_FILTER)
+        image = self.device.screenshot()
+        self.milk_stock = self.ocr_item_quantity(image, TEMPLATE_MILK)
+        self.special_materials['milk'] = self.milk_stock
+        logger.info(f"牛奶数量: {self.milk_stock}")
+
+        # 将牛奶库存也存入warehouse_counts，便于统一处理
+        self.warehouse_counts['milk'] = self.milk_stock
+
+        return self.warehouse_counts
+
+    def check_special_materials(self, product, batch_size):
+        """覆盖：检查特殊材料（牛奶）限制"""
+        if batch_size <= 0:
+            return 0
+
+        # cheese需要8个牛奶
+        if product == 'cheese':
+            milk_needed_per_batch = 8
+            milk_available = self.milk_stock
+            max_by_milk = milk_available // milk_needed_per_batch
+            batch_size = min(batch_size, max_by_milk)
+            logger.info(f"  {product} 牛奶限制: 可用{milk_available}, 每批{milk_needed_per_batch}, 最大{max_by_milk}")
+
+        # latte需要2个牛奶
+        elif product == 'latte':
+            milk_needed_per_batch = 2
+            milk_available = self.milk_stock
+            max_by_milk = milk_available // milk_needed_per_batch
+            batch_size = min(batch_size, max_by_milk)
+            logger.info(f"  {product} 牛奶限制: 可用{milk_available}, 每批{milk_needed_per_batch}, 最大{max_by_milk}")
+
+        # strawberry_milkshake需要1个牛奶
+        elif product == 'strawberry_milkshake':
+            milk_needed_per_batch = 1
+            milk_available = self.milk_stock
+            max_by_milk = milk_available // milk_needed_per_batch
+            batch_size = min(batch_size, max_by_milk)
+            logger.info(f"  {product} 牛奶限制: 可用{milk_available}, 每批{milk_needed_per_batch}, 最大{max_by_milk}")
+
+        return batch_size
+
+    def deduct_materials(self, product, number):
+        """覆盖：扣除前置材料，包括牛奶和套餐原材料"""
+        # 先调用父类方法扣除套餐原材料
+        super().deduct_materials(product, number)
+
+        # cheese需要扣除牛奶
+        if product == 'cheese':
+            milk_needed = number * 8
+            self.milk_stock = max(0, self.milk_stock - milk_needed)
+            self.special_materials['milk'] = self.milk_stock
+            if 'milk' in self.warehouse_counts:
+                self.warehouse_counts['milk'] = self.milk_stock
+            logger.info(f"扣除牛奶：milk -{milk_needed} (用于制作 {product})")
+
+        # latte需要扣除牛奶
+        elif product == 'latte':
+            milk_needed = number * 2
+            self.milk_stock = max(0, self.milk_stock - milk_needed)
+            self.special_materials['milk'] = self.milk_stock
+            if 'milk' in self.warehouse_counts:
+                self.warehouse_counts['milk'] = self.milk_stock
+            logger.info(f"扣除牛奶：milk -{milk_needed} (用于制作 {product})")
+
+        # strawberry_milkshake需要扣除牛奶
+        elif product == 'strawberry_milkshake':
+            milk_needed = number * 1
+            self.milk_stock = max(0, self.milk_stock - milk_needed)
+            self.special_materials['milk'] = self.milk_stock
+            if 'milk' in self.warehouse_counts:
+                self.warehouse_counts['milk'] = self.milk_stock
+            logger.info(f"扣除牛奶：milk -{milk_needed} (用于制作 {product})")
+
+    def apply_special_material_constraints(self, requirements):
+        """覆盖：根据牛奶库存调整需求"""
+        result = requirements.copy()
+
+        # 计算所有需要牛奶的产品总需求
+        milk_demand = 0
+
+        # cheese需求（每个需要8牛奶）
+        if 'cheese' in result and result['cheese'] > 0:
+            milk_demand += result['cheese'] * 8
+
+        # latte需求（每个需要2牛奶）
+        if 'latte' in result and result['latte'] > 0:
+            milk_demand += result['latte'] * 2
+
+        # strawberry_milkshake需求（每个需要1牛奶）
+        if 'strawberry_milkshake' in result and result['strawberry_milkshake'] > 0:
+            milk_demand += result['strawberry_milkshake'] * 1
+
+        # 检查牛奶是否足够
+        milk_available = self.milk_stock
+
+        if milk_demand > milk_available:
+            logger.info(f"牛奶不足：总需求{milk_demand}，可用{milk_available}")
+
+            # 按优先级调整需求（这里可以根据需要调整优先级）
+            # 例如：先满足latte，然后是strawberry_milkshake，最后是cheese
+            remaining_milk = milk_available
+
+            # 调整cheese需求
+            if 'cheese' in result and result['cheese'] > 0:
+                cheese_needed = result['cheese']
+                milk_for_cheese = cheese_needed * 8
+
+                if remaining_milk < milk_for_cheese:
+                    max_cheese = remaining_milk // 8
+                    result['cheese'] = max_cheese
+                    logger.info(f"牛奶不足：cheese需求从{cheese_needed}调整为{max_cheese}")
+                    remaining_milk -= max_cheese * 8
+                else:
+                    remaining_milk -= milk_for_cheese
+
+            # 调整latte需求
+            if 'latte' in result and result['latte'] > 0:
+                latte_needed = result['latte']
+                milk_for_latte = latte_needed * 2
+
+                if remaining_milk < milk_for_latte:
+                    max_latte = remaining_milk // 2
+                    result['latte'] = max_latte
+                    logger.info(f"牛奶不足：latte需求从{latte_needed}调整为{max_latte}")
+                    remaining_milk -= max_latte * 2
+                else:
+                    remaining_milk -= milk_for_latte
+
+            # 调整strawberry_milkshake需求
+            if 'strawberry_milkshake' in result and result['strawberry_milkshake'] > 0:
+                milkshake_needed = result['strawberry_milkshake']
+                milk_for_milkshake = milkshake_needed * 1
+
+                if remaining_milk < milk_for_milkshake:
+                    max_milkshake = remaining_milk // 1
+                    result['strawberry_milkshake'] = max_milkshake
+                    logger.info(f"牛奶不足：strawberry_milkshake需求从{milkshake_needed}调整为{max_milkshake}")
+                    remaining_milk -= max_milkshake * 1
+                else:
+                    remaining_milk -= milk_for_milkshake
+
+        return result
 
     def process_meal_requirements(self, source_products):
         """覆盖：处理套餐需求，添加调试信息"""
@@ -95,6 +255,7 @@ class IslandJuuCoffee(IslandShopBase):
         logger.info(f"=== 结束IslandJuuCoffee.process_meal_requirements ===")
 
         return result
+
 
 if __name__ == "__main__":
     az = IslandJuuCoffee('alas', task='Alas')

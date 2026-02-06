@@ -4,6 +4,7 @@ from module.island.assets import *
 from module.ui.page import *
 from module.logger import logger
 
+
 class IslandJuuEatery(IslandShopBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -78,20 +79,24 @@ class IslandJuuEatery(IslandShopBase):
             config_post_number="IslandJuuEatery_PostNumber"
         )
 
-        # 特殊材料：cheese
+        # 特殊材料：cheese 和 milk
         self.cheese_stock = 0
-        self.special_materials = {'cheese': 0}  # 用于基类处理
+        self.milk_stock = 0  # 新增牛奶库存
+        self.special_materials = {
+            'cheese': 0,
+            'milk': 0  # 新增牛奶
+        }
 
         # 初始化店铺
         self.initialize_shop()
 
     def get_warehouse_counts(self):
-        """覆盖：获取仓库数量，包括cheese"""
+        """覆盖：获取仓库数量，包括cheese和milk"""
         # 先调用父类方法获取基础库存
         super().get_warehouse_counts()
 
-        # 额外获取cheese数量
-        self.ui_goto(page_island_warehouse_filter,get_ship=False)
+        # 获取cheese数量
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
         self.appear_then_click(FILTER_RESET)
         self.appear_then_click(FILTER_ISLAND_JUU_COFFEE)
         self.appear_then_click(FILTER_CONFIRM)
@@ -104,10 +109,24 @@ class IslandJuuEatery(IslandShopBase):
         # 将cheese库存也存入warehouse_counts，便于统一处理
         self.warehouse_counts['cheese'] = self.cheese_stock
 
+        # 获取milk数量
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
+        self.appear_then_click(FILTER_RESET)
+        self.appear_then_click(FILTER_RANCH)
+        self.appear_then_click(FILTER_CONFIRM)
+        self.wait_until_appear(ISLAND_WAREHOUSE_GOTO_WAREHOUSE_FILTER)
+        image = self.device.screenshot()
+        self.milk_stock = self.ocr_item_quantity(image, TEMPLATE_MILK)
+        self.special_materials['milk'] = self.milk_stock
+        logger.info(f"牛奶数量: {self.milk_stock}")
+
+        # 将milk库存也存入warehouse_counts，便于统一处理
+        self.warehouse_counts['milk'] = self.milk_stock
+
         return self.warehouse_counts
 
     def check_special_materials(self, product, batch_size):
-        """覆盖：检查特殊材料（芝士）限制"""
+        """覆盖：检查特殊材料（芝士和牛奶）限制"""
         if batch_size <= 0:
             return 0
 
@@ -116,12 +135,22 @@ class IslandJuuEatery(IslandShopBase):
             cheese_needed_per_batch = 2
             cheese_available = self.cheese_stock
             max_by_cheese = cheese_available // cheese_needed_per_batch
-            return min(batch_size, max_by_cheese)
+            batch_size = min(batch_size, max_by_cheese)
+            logger.info(
+                f"  {product} 芝士限制: 可用{cheese_available}, 每批{cheese_needed_per_batch}, 最大{max_by_cheese}")
+
+        # corn_cup需要1个牛奶
+        elif product == 'corn_cup':
+            milk_needed_per_batch = 1
+            milk_available = self.milk_stock
+            max_by_milk = milk_available // milk_needed_per_batch
+            batch_size = min(batch_size, max_by_milk)
+            logger.info(f"  {product} 牛奶限制: 可用{milk_available}, 每批{milk_needed_per_batch}, 最大{max_by_milk}")
 
         return batch_size
 
     def deduct_materials(self, product, number):
-        """覆盖：扣除前置材料，包括芝士和套餐原材料"""
+        """覆盖：扣除前置材料，包括芝士、牛奶和套餐原材料"""
         # 先调用父类方法扣除套餐原材料
         super().deduct_materials(product, number)
 
@@ -134,8 +163,17 @@ class IslandJuuEatery(IslandShopBase):
                 self.warehouse_counts['cheese'] = self.cheese_stock
             logger.info(f"扣除芝士：cheese -{cheese_needed} (用于制作 {product})")
 
+        # corn_cup需要扣除牛奶
+        elif product == 'corn_cup':
+            milk_needed = number * 1
+            self.milk_stock = max(0, self.milk_stock - milk_needed)
+            self.special_materials['milk'] = self.milk_stock
+            if 'milk' in self.warehouse_counts:
+                self.warehouse_counts['milk'] = self.milk_stock
+            logger.info(f"扣除牛奶：milk -{milk_needed} (用于制作 {product})")
+
     def apply_special_material_constraints(self, requirements):
-        """覆盖：根据芝士库存调整需求"""
+        """覆盖：根据芝士和牛奶库存调整需求"""
         result = requirements.copy()
 
         # 处理strawberry_charlotte的芝士限制
@@ -150,9 +188,21 @@ class IslandJuuEatery(IslandShopBase):
                 result['strawberry_charlotte'] = max_strawberry
                 logger.info(f"芝士不足：strawberry_charlotte需求从{strawberry_needed}调整为{max_strawberry}")
 
+        # 处理corn_cup的牛奶限制
+        if 'corn_cup' in result and result['corn_cup'] > 0:
+            corn_cup_needed = result['corn_cup']
+            milk_needed = corn_cup_needed * 1
+            milk_available = self.milk_stock
+
+            if milk_available < milk_needed:
+                # 调整需求
+                max_corn_cup = milk_available // 1
+                result['corn_cup'] = max_corn_cup
+                logger.info(f"牛奶不足：corn_cup需求从{corn_cup_needed}调整为{max_corn_cup}")
+
         return result
 
-    # 新增方法：处理芝士任务（如果需要）
+    # 新增方法：处理特殊任务（如果需要）
     def process_special_task(self):
         """处理特殊任务（如芝士消耗）"""
         # 这里可以添加处理芝士相关任务的逻辑
