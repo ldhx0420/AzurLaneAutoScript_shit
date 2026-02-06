@@ -254,6 +254,36 @@ class Island(SelectCharacter):
         p1 = (218, 507)
         p2 = (152, 507)
         self.device.island_swipe_hold(p1, p2,hold_time)
+    def set_buy_number(self, target):
+        increment = target - 1
+        add_ten_clicks = increment // 10
+        add_one_clicks = increment % 10
+        while True:
+            if add_ten_clicks == 0:
+                break
+            self.device.click(ADD_TEN_A)
+            add_ten_clicks -= 1
+            if add_ten_clicks == 0:
+                break
+            self.device.click(ADD_TEN_B)
+            add_ten_clicks -= 1
+            if add_ten_clicks == 0:
+                break
+            self.device.click(ADD_TEN_C)
+            add_ten_clicks -= 1
+        while True:
+            if add_one_clicks == 0:
+                break
+            self.device.click(ADD_ONE_A)
+            add_one_clicks -= 1
+            if add_one_clicks == 0:
+                break
+            self.device.click(ADD_ONE_B)
+            add_one_clicks -= 1
+            if add_one_clicks == 0:
+                break
+            self.device.click(ADD_ONE_C)
+            add_one_clicks -= 1
 
     def goto_mill(self, max_attempts=3):
         for attempt in range(max_attempts):

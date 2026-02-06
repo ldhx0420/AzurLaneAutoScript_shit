@@ -10,6 +10,7 @@ class IslandDailyGather(Island):
             self.gather_wood()
             self.gather_farm()
             self.gather_nursery()
+            self.gather_spring()
             next_run_time = now.replace(hour=3, minute=0, second=0, microsecond=0)
             self.config.task_delay(target=next_run_time)
         elif 3 <= current_hour < 18:
@@ -17,6 +18,7 @@ class IslandDailyGather(Island):
             self.gather_wood()
             self.gather_farm()
             self.gather_nursery()
+            self.gather_spring()
             next_run_time = now.replace(hour=18, minute=0, second=0, microsecond=0)
             self.config.task_delay(target=next_run_time)
         elif 18 <= current_hour < 24:
@@ -24,11 +26,13 @@ class IslandDailyGather(Island):
                 self.gather_wood()
                 self.gather_farm()
                 self.gather_nursery()
+                self.gather_spring()
             else:
                 self.gather_coal()
                 self.gather_wood()
                 self.gather_farm()
                 self.gather_nursery()
+                self.gather_spring()
             next_run_time = now.replace(hour=0, minute=0, second=0, microsecond=0)
             next_run_time += timedelta(days=1)
             self.config.task_delay(target=next_run_time)
@@ -40,18 +44,6 @@ class IslandDailyGather(Island):
         sleep(0.1)
         self.device.click(ISLAND_GATHER_C)
         sleep(1.8)
-    def island_air_drop(self):
-        self.device.click(ISLAND_AIR_DROP_A)
-        sleep(0.1)
-        self.device.click(ISLAND_AIR_DROP_B)
-        sleep(0.1)
-        self.device.click(ISLAND_AIR_DROP_C)
-        sleep(0.5)
-        self.device.click(ISLAND_AIR_DROP_A)
-        sleep(0.1)
-        self.device.click(ISLAND_AIR_DROP_B)
-        sleep(0.1)
-        self.device.click(ISLAND_AIR_DROP_C)
     def gather_wood(self):
         self.island_map_goto('mine_forest')
         self.island_up(2500)
@@ -112,7 +104,6 @@ class IslandDailyGather(Island):
         self.island_down(600)
         self.island_right(600)
         self.island_gathering()
-
     def gather_coal(self):
         self.island_map_goto('mine_forest')
         self.island_right(1000)
@@ -147,6 +138,51 @@ class IslandDailyGather(Island):
         self.island_left(600)
         self.island_gathering()
 
+    def gather_spring(self):
+        self.gather_hyacinth()
+        self.gather_bamboo_shoot()
+        self.gather_shepherd_purse()
+        self.gather_winter_jasmine()
+    def gather_hyacinth(self):
+        self.island_map_goto('mine_forest')
+        self.island_right(6000)
+        self.island_down(300)
+        self.island_right(1500)
+        self.island_down(300)
+        self.island_gathering()
+        self.island_up(600)
+        self.island_right(1100)
+        self.island_gathering()
+    def gather_bamboo_shoot(self):
+        self.island_map_goto('mine_forest')
+        self.island_up(4000)
+        self.island_left(1000)
+        self.island_up(1500)
+        self.island_left(1000)
+        self.island_up(1400)
+        self.island_left(800)
+        self.island_gathering()
+        self.island_up(1500)
+        self.island_left(500)
+        self.island_gathering()
+    def gather_shepherd_purse(self):
+        self.island_map_goto('farm')
+        self.island_up(700)
+        self.island_left(1300)
+        self.island_gathering()
+        self.island_down(1700)
+        self.island_left(400)
+        self.island_gathering()
+    def gather_winter_jasmine(self):
+        self.island_map_goto('farm')
+        self.island_up(700)
+        self.island_left(1300)
+        self.island_up(2500)
+        self.island_left(500)
+        self.island_up(500)
+        self.island_gathering()
+        self.island_right(1000)
+        self.island_gathering()
 
     def gather_farm(self):
         self.island_map_goto('farm')
@@ -184,6 +220,7 @@ class IslandDailyGather(Island):
         self.island_left(300)
         self.island_gathering()
 
+
     def gather_nursery(self):
         self.island_map_goto('nursery')
         self.island_up(4500)
@@ -192,9 +229,10 @@ class IslandDailyGather(Island):
     def test(self):
         image = self.device.screenshot()
         ocr_air_drop = Digit(OCR_AIR_DROP, name='air_drop', letter=(170, 170, 170), threshold=80,
-                                    alphabet='0123456789')
-        x= ocr_air_drop.ocr(image)
+                             alphabet='0123456789')
+        x = ocr_air_drop.ocr(image)
         print(x)
+
 
 
 

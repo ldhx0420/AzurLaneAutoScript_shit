@@ -262,6 +262,10 @@
       "name": "Task.IslandFarm.name",
       "help": "Task.IslandFarm.help"
     },
+    "IslandRanch": {
+      "name": "Task.IslandRanch.name",
+      "help": "Task.IslandRanch.help"
+    },
     "IslandMineForest": {
       "name": "Task.IslandMineForest.name",
       "help": "Task.IslandMineForest.help"
@@ -2683,9 +2687,31 @@
       "name": "IslandRanch.Milk.name",
       "help": "IslandRanch.Milk.help"
     },
+    "RancherFilter": {
+      "name": "IslandRanch.RancherFilter.name",
+      "help": "IslandRanch.RancherFilter.help"
+    },
     "Wool": {
       "name": "IslandRanch.Wool.name",
       "help": "IslandRanch.Wool.help"
+    }
+  },
+  "IslandFishery": {
+    "_info": {
+      "name": "IslandFishery._info.name",
+      "help": "IslandFishery._info.help"
+    },
+    "Cray": {
+      "name": "IslandFishery.Cray.name",
+      "help": "IslandFishery.Cray.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3"
+    },
+    "RancherFilter": {
+      "name": "IslandFishery.RancherFilter.name",
+      "help": "IslandFishery.RancherFilter.help"
     }
   },
   "IslandMine": {

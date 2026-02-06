@@ -763,7 +763,15 @@ IslandRanch:
   MinChicken: 300
   MinPork: 300
   Milk: true
+  RancherFilter: |-
+    WorkerJuu
   Wool: true
+IslandFishery:
+  Cray:
+    value: 2
+    option: [ 0, 1, 2, 3 ]
+  RancherFilter: |-
+    WorkerJuu
 IslandMine:
   Mining1:
     value: Silver

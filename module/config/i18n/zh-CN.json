@@ -259,7 +259,11 @@
       "help": "    Alas将在大世界跨月重置之前10分钟进入大世界，等待大世界重置但不退出大世界，然后完成新一天的大世界每日、隐秘海域、深渊海域和短猫相接，以获得额外的金菜。运行大世界每日时，按\"大世界每日\"任务设置运行，其余同理。\n    重要：Alas等待跨月期间，请不要操作游戏。"
     },
     "IslandFarm": {
-      "name": "农牧",
+      "name": "农田",
+      "help": ""
+    },
+    "IslandRanch": {
+      "name": "牧场",
       "help": ""
     },
     "IslandMineForest": {
@@ -2683,9 +2687,31 @@
       "name": "奶牛",
       "help": ""
     },
+    "RancherFilter": {
+      "name": "养牛人",
+      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
+    },
     "Wool": {
       "name": "绵羊",
       "help": ""
+    }
+  },
+  "IslandFishery": {
+    "_info": {
+      "name": "渔场",
+      "help": ""
+    },
+    "Cray": {
+      "name": "渔场岗位",
+      "help": "",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3"
+    },
+    "RancherFilter": {
+      "name": "渔夫",
+      "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire"
     }
   },
   "IslandMine": {

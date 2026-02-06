@@ -101,6 +101,7 @@
     "page": "setting",
     "tasks": [
       "IslandFarm",
+      "IslandRanch",
       "IslandMineForest",
       "IslandRestaurant",
       "IslandTeahouse",

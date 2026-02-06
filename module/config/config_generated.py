@@ -456,7 +456,12 @@ class GeneratedConfig:
     IslandRanch_MinChicken = 300
     IslandRanch_MinPork = 300
     IslandRanch_Milk = True
+    IslandRanch_RancherFilter = 'WorkerJuu'
     IslandRanch_Wool = True
+
+    # Group `IslandFishery`
+    IslandFishery_Cray = 2  # 0, 1, 2, 3
+    IslandFishery_RancherFilter = 'WorkerJuu'
 
     # Group `IslandMine`
     IslandMine_Mining1 = 'Silver'  # None, Copper, Aluminium, Iron, Sulphur, Silver

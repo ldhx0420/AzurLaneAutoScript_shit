@@ -336,7 +336,10 @@ Island:
       - IslandFarm
       - IslandOrchard
       - IslandNursery
+    IslandRanch:
+      - Scheduler
       - IslandRanch
+      - IslandFishery
     IslandMineForest:
       - Scheduler
       - IslandMine

@@ -445,6 +445,10 @@ class AzurLaneAutoScript:
         from module.island.island_farm import IslandFarm
         IslandFarm(config=self.config, device=self.device).run()
 
+    def island_ranch(self):
+        from module.island.island_ranch import IslandRanch
+        IslandRanch(config=self.config, device=self.device).run()
+
     def island_grill(self):
         from module.island.island_grill import IslandGrill
         IslandGrill(config=self.config, device=self.device).run()

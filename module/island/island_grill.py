@@ -66,6 +66,8 @@ class IslandGrill(IslandShopBase):
             config_post_number="IslandGrill_PostNumber"
         )
 
+        self.post_manage_swipe_count = 2
+
         # 初始化店铺
         self.initialize_shop()
 
