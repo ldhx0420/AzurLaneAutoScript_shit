@@ -487,7 +487,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     for _ in range(count):
                         self.buy_seeds(crop, category)
             while 1:
-                self.device.click(ISLAND_SHOP_GOTO_ISLAND)
+                self.device.click(SELECT_UI_BACK)
+                self.device.sleep(0.5)
                 self.device.screenshot()
                 if self.appear(ISLAND_CHECK):
                     break
@@ -521,13 +522,13 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                         if crop_to_plant in self.to_plant_lists[category]:
                             self.to_plant_lists[category].remove(crop_to_plant)
 
-            # 滑动到苗圃位置
-            self.post_manage_up_swipe(450)
-            self.device.sleep(0.5)  # 等待滑动动画完成
+
 
             # 然后处理苗圃的播种
             category = 'nursery'
             if idle_posts[category]:
+                self.post_manage_up_swipe(450)
+                self.device.sleep(0.5)
                 idle_posts_list = idle_posts[category]
                 crops_to_plant = all_plants_to_buy[category]
 
@@ -565,14 +566,12 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             from module.exception import GameBugError
             raise GameBugError("检测到岛屿ERROR1，需要重启")
     def test(self):
-        self.ui_goto(page_island_shop, get_ship=False)
         while 1:
-            self.device.click(ISLAND_SHOP_GOTO_SEED_SHOP)
+            self.device.click(ISLAND_SHOP_GOTO_ISLAND)
             self.device.screenshot()
-            if self.appear(ISLAND_SEED_SHOP_CHECK):
+            if self.appear(ISLAND_CHECK):
                 break
             self.device.sleep(0.5)
-
 if __name__ == "__main__":
     az = IslandFarm('alas', task='Alas')
     az.device.screenshot()
