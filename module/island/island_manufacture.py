@@ -292,9 +292,9 @@ class IslandManufacture(IslandShopBase):
         # 构建产品选择列表（按优先级）
         product_list = []
         # 优先生产peanut_oil
-        peanut_oil_item = [item for item in self.manufacture['handmade']['items']
-                           if item['name'] == 'peanut_oil'][0]
-        product_list.append(peanut_oil_item)
+        #peanut_oil_item = [item for item in self.manufacture['handmade']['items']
+        #                   if item['name'] == 'peanut_oil'][0]
+        #product_list.append(peanut_oil_item)
 
         # 如果leather库存>=10，则生产boot
         if leather_stock >= 10:
