@@ -9295,6 +9295,10 @@
         "type": "input",
         "value": 0
       },
+      "IgnorePineapple": {
+        "type": "checkbox",
+        "value": true
+      },
       "PlantLavender": {
         "type": "select",
         "value": 2,

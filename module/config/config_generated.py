@@ -450,6 +450,7 @@ class GeneratedConfig:
     # Group `IslandNursery`
     IslandNursery_Positions = 2  # 1, 2
     IslandNursery_MinNursery = 0
+    IslandNursery_IgnorePineapple = True
     IslandNursery_PlantLavender = 2  # 0, 1, 2
 
     # Group `IslandRancher`

@@ -54,12 +54,15 @@ class IslandManufacture(IslandShopBase):
                     {'name': 'leather', 'template': TEMPLATE_LEATHER,
                      'var_name': 'leather', 'selection': SELECT_LEATHER,
                      'selection_check': SELECT_LEATHER_CHECK, 'post_action': POST_LEATHER},
-                    {'name': 'peanut_oil', 'template': TEMPLATE_PEANUT_OIL,
-                     'var_name': 'peanut_oil', 'selection': SELECT_PEANUT_OIL,
-                     'selection_check': SELECT_PEANUT_OIL_CHECK, 'post_action': POST_PEANUT_OIL},
                     {'name': 'boot', 'template': TEMPLATE_BOOT,
                      'var_name': 'boot', 'selection': SELECT_BOOT,
                      'selection_check': SELECT_BOOT_CHECK, 'post_action': POST_BOOT},
+                    {'name': 'peanut_oil', 'template': TEMPLATE_PEANUT_OIL,
+                     'var_name': 'peanut_oil', 'selection': SELECT_PEANUT_OIL,
+                     'selection_check': SELECT_PEANUT_OIL_CHECK, 'post_action': POST_PEANUT_OIL},
+                    {'name': 'shepherd_purse', 'template': TEMPLATE_SHEPHERD_PURSE,
+                     'var_name': 'shepherd_purse', 'selection': SELECT_SHEPHERD_PURSE,
+                     'selection_check': SELECT_SHEPHERD_PURSE_CHECK, 'post_action': POST_SHEPHERD_PURSE},
                 ]
             }
         }
@@ -291,10 +294,10 @@ class IslandManufacture(IslandShopBase):
         leather_stock = self.warehouse_counts.get('leather', 0)
         # 构建产品选择列表（按优先级）
         product_list = []
-        # 优先生产peanut_oil
-        #peanut_oil_item = [item for item in self.manufacture['handmade']['items']
-        #                   if item['name'] == 'peanut_oil'][0]
-        #product_list.append(peanut_oil_item)
+        # 优先生产shepherd_purse
+        shepherd_purse_item = [item for item in self.manufacture['handmade']['items']
+                           if item['name'] == 'shepherd_purse'][0]
+        product_list.append(shepherd_purse_item)
 
         # 如果leather库存>=10，则生产boot
         if leather_stock >= 10:

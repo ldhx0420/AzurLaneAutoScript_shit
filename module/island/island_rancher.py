@@ -409,13 +409,40 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
                 if self.appear(MILL_WHEAT_FLOUR):
                     break
                 self.device.sleep(0.5)
+
             logger.info(f"需要加工的项目: {mill_needs}")
             priority_order = ['wheat_flour', 'chicken_feed', 'pig_feed', 'cattle_feed', 'sheep_feed']
+
+            processed_items = []
             for item in priority_order:
                 if item in mill_needs:
+                    # 重新检查库存是否足够
+                    mill_config = self.name_to_config[item]
+                    required_material = mill_config['required_material']
+
+                    if required_material in self.inventory_counts['farm']:
+                        current_material = self.inventory_counts['farm'][required_material]
+                        if current_material < 330:
+                            logger.info(f"原材料{required_material}不足 ({current_material}/330)，跳过加工{item}")
+                            continue
+
                     success = self.mill_process(item)
                     if success:
-                        break
+                        processed_items.append(item)
+                        # 立即更新内存中的库存计数
+                        if required_material in self.inventory_counts['farm']:
+                            self.inventory_counts['farm'][required_material] -= 330
+                            logger.info(
+                                f"更新库存: {required_material} = {self.inventory_counts['farm'][required_material]}")
+                        logger.info(f"成功加工: {item}")
+                    else:
+                        logger.warning(f"加工失败: {item}")
+
+            if processed_items:
+                logger.info(f"本次运行共加工了 {len(processed_items)} 个项目: {processed_items}")
+            else:
+                logger.info("本次运行未成功加工任何项目")
+
             while 1:
                 self.device.click(ISLAND_SHOP_GOTO_ISLAND)
                 self.device.screenshot()

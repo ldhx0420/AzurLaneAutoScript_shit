@@ -2662,6 +2662,10 @@
       "name": "IslandNursery.MinNursery.name",
       "help": "IslandNursery.MinNursery.help"
     },
+    "IgnorePineapple": {
+      "name": "IslandNursery.IgnorePineapple.name",
+      "help": "IslandNursery.IgnorePineapple.help"
+    },
     "PlantLavender": {
       "name": "IslandNursery.PlantLavender.name",
       "help": "IslandNursery.PlantLavender.help",

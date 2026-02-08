@@ -13,10 +13,12 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
         self.farm_positions = self.config.IslandFarm_Positions
         self.orchard_positions = self.config.IslandOrchard_Positions
         self.nursery_positions = self.config.IslandNursery_Positions
-        self.ignore_avocado = self.config.IslandOrchard_IgnoreAvocado
         self.farm_threshold = self.config.IslandFarm_MinFarm
         self.orchard_threshold = self.config.IslandOrchard_MinOrchard
         self.nursery_threshold = self.config.IslandNursery_MinNursery
+
+        self.ignore_avocado = self.config.IslandOrchard_IgnoreAvocado
+        self.ignore_pineapple = self.config.IslandNursery_IgnorePineapple
 
         # 修改默认作物配置：数值类型，表示要种植默认作物的岗位数量
         self.plant_config = {
@@ -139,6 +141,14 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                      'selection': SELECT_LAVENDER, 'selection_check': SELECT_LAVENDER_CHECK,
                      'post_action': POST_LAVENDER, 'category': 'nursery', 'seed_number': 12,
                      'shop': SHOP_SEED_LAVENDER},
+                    {'name': 'pineapple', 'template': TEMPLATE_PINEAPPLE, 'var_name': 'pineapple',
+                     'selection': SELECT_PINEAPPLE, 'selection_check': SELECT_PINEAPPLE_CHECK,
+                     'post_action': POST_PINEAPPLE, 'category': 'nursery', 'seed_number': 12,
+                     'shop': SHOP_SEED_PINEAPPLE},
+                    {'name': 'asparagus', 'template': TEMPLATE_ASPARAGUS, 'var_name': 'asparagus',
+                     'selection': SELECT_ASPARAGUS, 'selection_check': SELECT_ASPARAGUS_CHECK,
+                     'post_action': POST_ASPARAGUS, 'category': 'nursery', 'seed_number': 12,
+                     'shop': SHOP_SEED_ASPARAGUS},
                 ]
             }
         }
@@ -183,6 +193,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             self.inventory_counts[category] = inventory
             for item_name, count in inventory.items():
                 if category == 'orchard' and item_name == 'avocado' and self.ignore_avocado:
+                    continue
+                if category == 'nursery' and item_name == 'pineapple' and self.ignore_pineapple:
                     continue
                 if count < threshold:
                     self.to_plant_lists[category].append(item_name)

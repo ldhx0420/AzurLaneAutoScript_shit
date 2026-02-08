@@ -1930,6 +1930,7 @@
     "IslandNursery": {
       "Positions": 2,
       "MinNursery": 0,
+      "IgnorePineapple": true,
       "PlantLavender": 2
     },
     "Storage": {
