@@ -22,7 +22,7 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
         )
         self.INVENTORY_CONFIG = {
             'farm': {
-                'filter': FILTER_FARM,
+                'filter': 'farm',
                 'items': [
                     {'name': 'wheat', 'template': TEMPLATE_WHEAT, 'var_name': 'wheat',
                      'category': 'farm'},
@@ -33,7 +33,7 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
                 ]
             },
             'mill': {
-                'filter': FILTER_PROCESSED,
+                'filter': 'processed',
                 'items': [
                     {'name': 'chicken_feed', 'template': TEMPLATE_CHICKEN_FEED, 'var_name': 'chicken_feed',
                      'category': 'mill', 'number': 11, 'mill': MILL_CHICKEN_FEED, 'required_material': 'wheat'},
@@ -48,7 +48,7 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
                 ]
             },
             'ranch': {
-                'filter': FILTER_RANCH,
+                'filter': 'ranch',
                 'items': [
                     {'name': 'chicken', 'template': TEMPLATE_CHICKEN, 'var_name': 'chicken',
                      'category': 'ranch', 'threshold': self.config.IslandRancher_MinChicken},
