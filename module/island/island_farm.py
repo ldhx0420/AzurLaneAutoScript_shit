@@ -462,11 +462,13 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
 
         if need_to_buy_seeds:
             self.ui_goto(page_island_shop, get_ship=False)
+            self.device.sleep(0.5)
+            self.device.click(ISLAND_SHOP_GOTO_SEED_SHOP)
             while 1:
-                self.device.click(ISLAND_SHOP_GOTO_SEED_SHOP)
                 self.device.screenshot()
                 if self.appear(ISLAND_SEED_SHOP_CHECK):
                     break
+                self.device.click(ISLAND_SHOP_GOTO_SEED_SHOP)
                 self.device.sleep(0.5)
 
             for category in ['farm', 'orchard', 'nursery']:
