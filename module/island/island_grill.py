@@ -1,6 +1,5 @@
 from module.island_grill.assets import *
 from module.island.island_shop_base import IslandShopBase
-from module.island.assets import FILTER_ISLAND_GRILL, POST_MANAGE_GETTED_CHECK
 from module.logger import logger
 
 class IslandGrill(IslandShopBase):
