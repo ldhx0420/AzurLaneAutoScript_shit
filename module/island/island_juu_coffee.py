@@ -13,6 +13,7 @@ class IslandJuuCoffee(IslandShopBase):
         self.shop_type = "juu_coffee"
         self.time_prefix = "time_coffee"
         self.chef_config = self.config.IslandJuuCoffee_ChefFilter
+        self.special_character = self.config.IslandJuuCoffee_Friedrich
 
         # 设置商品列表
         self.shop_items = [
@@ -69,7 +70,7 @@ class IslandJuuCoffee(IslandShopBase):
         }
 
         # 设置筛选资产
-        self.filter_asset = FILTER_ISLAND_JUU_COFFEE
+        self.filter_asset = 'juu_coffee'
 
         # 设置配置前缀
         self.setup_config(
@@ -95,11 +96,7 @@ class IslandJuuCoffee(IslandShopBase):
         super().get_warehouse_counts()
 
         # 额外获取milk数量（从牧场）
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(FILTER_RANCH)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.wait_until_appear(ISLAND_WAREHOUSE_GOTO_WAREHOUSE_FILTER)
+        self.warehouse_filter('ranch')
         image = self.device.screenshot()
         self.milk_stock = self.ocr_item_quantity(image, TEMPLATE_MILK)
         self.special_materials['milk'] = self.milk_stock
@@ -141,6 +138,11 @@ class IslandJuuCoffee(IslandShopBase):
 
         return batch_size
 
+    def select_special_character(self,product):
+        if product in ['cheese','wake_up_call',]:
+            self.select_character("Friedrich")
+        else:
+            self.select_character(self.chef_config)
     def deduct_materials(self, product, number):
         """覆盖：扣除前置材料，包括牛奶和套餐原材料"""
         # 先调用父类方法扣除套餐原材料

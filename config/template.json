@@ -2142,6 +2142,7 @@
     "IslandJuuCoffee": {
       "PostNumber": 2,
       "ChefFilter": "WorkerJuu",
+      "Friedrich": false,
       "Meal1": "wake_up_call",
       "MealNumber1": 6,
       "Meal2": "cheese",

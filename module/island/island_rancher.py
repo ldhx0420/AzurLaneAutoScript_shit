@@ -314,11 +314,7 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
         return mill_needs
 
     def warehouse_mill_ranch(self):
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(FILTER_PROCESSED)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.device.sleep(0.3)
+        self.warehouse_filter('processed')
         image = self.device.screenshot()
         self.inventory_counts['mill'] = {}
         for item_config in self.INVENTORY_CONFIG['mill']['items']:
@@ -326,11 +322,7 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
             self.inventory_counts['mill'][item_config['name']] = count
             logger.info(f"{item_config['name']}: {count}")
 
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(FILTER_RANCH)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.device.sleep(0.3)
+        self.warehouse_filter('ranch')
         image = self.device.screenshot()
         self.inventory_counts['ranch'] = {}
         for item_config in self.INVENTORY_CONFIG['ranch']['items']:
@@ -338,11 +330,7 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
             self.inventory_counts['ranch'][item_config['name']] = count
             logger.info(f"{item_config['name']}: {count}")
 
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(FILTER_FARM)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.device.sleep(0.3)
+        self.warehouse_filter('farm')
         image = self.device.screenshot()
         self.inventory_counts['farm'] = {}
         for item_config in self.INVENTORY_CONFIG['farm']['items']:

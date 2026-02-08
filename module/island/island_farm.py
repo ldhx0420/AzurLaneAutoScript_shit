@@ -38,7 +38,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
 
         self.INVENTORY_CONFIG = {
             'farm': {
-                'filter': FILTER_FARM,
+                'filter': 'farm',
                 'threshold': self.farm_threshold,
                 'items': [
                     {'name': 'wheat', 'template': TEMPLATE_WHEAT, 'var_name': 'wheat',
@@ -76,7 +76,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 ]
             },
             'orchard': {
-                'filter': FILTER_ORCHARD,
+                'filter': 'orchard',
                 'threshold': self.orchard_threshold,
                 'items': [
                     {'name': 'apple', 'template': TEMPLATE_APPLE, 'var_name': 'apple',
@@ -110,7 +110,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                 ]
             },
             'nursery': {
-                'filter': FILTER_NURSERY,
+                'filter': 'nursery',
                 'threshold': self.nursery_threshold,
                 'items': [
                     {'name': 'carrot', 'template': TEMPLATE_CARROT, 'var_name': 'carrot',
@@ -202,11 +202,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
     def warehouse_inventory(self, category):
         """获取仓库库存信息"""
         config = self.INVENTORY_CONFIG[category]
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(config['filter'])
-        self.appear_then_click(FILTER_CONFIRM)
-        self.device.sleep(0.3)
+        self.warehouse_filter(config['filter'])
         image = self.device.screenshot()
         results = {}
         for item_config in config['items']:
@@ -580,12 +576,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             from module.exception import GameBugError
             raise GameBugError("检测到岛屿ERROR1，需要重启")
     def test(self):
-        while 1:
-            self.device.click(ISLAND_SHOP_GOTO_ISLAND)
-            self.device.screenshot()
-            if self.appear(ISLAND_CHECK):
-                break
-            self.device.sleep(0.5)
+        self.warehouse_inventory('farm')
 if __name__ == "__main__":
     az = IslandFarm('alas', task='Alas')
     az.device.screenshot()

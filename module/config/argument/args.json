@@ -10499,6 +10499,10 @@
         "type": "textarea",
         "value": "WorkerJuu"
       },
+      "Friedrich": {
+        "type": "checkbox",
+        "value": false
+      },
       "Meal1": {
         "type": "select",
         "value": "wake_up_call",

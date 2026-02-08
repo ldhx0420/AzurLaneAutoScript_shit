@@ -59,7 +59,7 @@ class IslandRestaurant(IslandShopBase):
         }
 
         # 设置筛选资产
-        self.filter_asset = FILTER_ISLAND_RESTAURANT
+        self.filter_asset = 'restaurant'
 
         # 设置配置前缀
         self.setup_config(

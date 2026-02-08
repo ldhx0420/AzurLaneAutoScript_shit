@@ -1005,6 +1005,7 @@ IslandJuuCoffee:
     option: [ 1, 2 ]
   ChefFilter: |-
     WorkerJuu
+  Friedrich: false
   Meal1:
     value: wake_up_call
     option: [ None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier ]

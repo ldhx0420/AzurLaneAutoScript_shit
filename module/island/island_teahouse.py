@@ -70,7 +70,7 @@ class IslandTeahouse(IslandShopBase):
         }
 
         # 设置筛选资产
-        self.filter_asset = FILTER_ISLAND_TEAHOUSE
+        self.filter_asset = 'teahouse'
 
         # 设置配置前缀（更新为4个参数，删除任务相关配置）
         self.setup_config(
@@ -90,12 +90,7 @@ class IslandTeahouse(IslandShopBase):
         super().get_warehouse_counts()
 
         # 额外获取蜂蜜数量（用于库存限制）
-        self.ui_goto(page_island_warehouse_filter,get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(FILTER_BASIC)
-        self.appear_then_click(FILTER_OTHER)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.device.sleep(0.3)
+        self.warehouse_filter('basic','other_from')
         image = self.device.screenshot()
         self.fresh_honey = self.ocr_item_quantity(image, TEMPLATE_FRESH_HONEY)
         logger.info(f"蜂蜜数量: {self.fresh_honey}")

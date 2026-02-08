@@ -69,7 +69,7 @@ class IslandJuuEatery(IslandShopBase):
         }
 
         # 设置筛选资产
-        self.filter_asset = FILTER_ISLAND_JUU_EATERY
+        self.filter_asset = 'juu_eatery'
 
         # 设置配置前缀
         self.setup_config(
@@ -96,11 +96,8 @@ class IslandJuuEatery(IslandShopBase):
         super().get_warehouse_counts()
 
         # 获取cheese数量
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(FILTER_ISLAND_JUU_COFFEE)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.wait_until_appear(ISLAND_WAREHOUSE_GOTO_WAREHOUSE_FILTER)
+
+        self.warehouse_filter('juu_coffee')
         image = self.device.screenshot()
         self.cheese_stock = self.ocr_item_quantity(image, TEMPLATE_CHEESE)
         self.special_materials['cheese'] = self.cheese_stock
@@ -110,11 +107,7 @@ class IslandJuuEatery(IslandShopBase):
         self.warehouse_counts['cheese'] = self.cheese_stock
 
         # 获取milk数量
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.appear_then_click(FILTER_RANCH)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.wait_until_appear(ISLAND_WAREHOUSE_GOTO_WAREHOUSE_FILTER)
+        self.warehouse_filter('ranch')
         image = self.device.screenshot()
         self.milk_stock = self.ocr_item_quantity(image, TEMPLATE_MILK)
         self.special_materials['milk'] = self.milk_stock

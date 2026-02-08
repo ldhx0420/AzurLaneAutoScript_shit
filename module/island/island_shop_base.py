@@ -18,7 +18,7 @@ class IslandShopBase(Island, WarehouseOCR):
         self.filter_asset = None  # 仓库筛选资产
         self.post_buttons = {}  # 岗位按钮
         self.time_prefix = "time_meal"  # 时间变量前缀
-
+        self.special_character = False
         # 角色选择配置
         self.chef_config = None
 
@@ -115,11 +115,7 @@ class IslandShopBase(Island, WarehouseOCR):
 
     def get_warehouse_counts(self):
         """获取仓库数量（通用）"""
-        self.ui_goto(page_island_warehouse_filter, get_ship=False)
-        self.appear_then_click(FILTER_RESET)
-        self.device.click(self.filter_asset)
-        self.appear_then_click(FILTER_CONFIRM)
-        self.device.sleep(0.3)
+        self.warehouse_filter(self.filter_asset)
         image = self.device.screenshot()
 
         for dish in self.shop_items:
@@ -127,7 +123,8 @@ class IslandShopBase(Island, WarehouseOCR):
             if self.warehouse_counts[dish['name']]:
                 logger.info(f"{dish['name']}: {self.warehouse_counts[dish['name']]}")
         return self.warehouse_counts
-
+    def select_special_character(self,product):
+        self.select_character(character_list=self.chef_config)
     def post_produce(self, post_id, product, number, time_var_name):
         """生产产品（通用）"""
         post_button = self.posts[post_id]['button']
@@ -142,7 +139,12 @@ class IslandShopBase(Island, WarehouseOCR):
             if self.appear_then_click(ISLAND_POST_SELECT, offset=1):
                 continue
             if self.appear(ISLAND_SELECT_CHARACTER_CHECK, offset=1):
-                if self.select_character(character_list=self.chef_config):
+                if self.special_character:
+                    self.select_special_character(product)
+                    self.device.sleep(0.5)
+                    self.appear_then_click(SELECT_UI_CONFIRM)
+                    self.device.sleep(0.5)
+                elif self.select_character(character_list=self.chef_config):
                     self.device.sleep(0.5)
                     self.appear_then_click(SELECT_UI_CONFIRM)
                     self.device.sleep(0.5)
@@ -157,7 +159,7 @@ class IslandShopBase(Island, WarehouseOCR):
                     break
                 continue
         self.wait_until_appear(ISLAND_POSTMANAGE_CHECK)
-        self.device.sleep(0.3)
+        self.device.sleep(0.5)
         self.post_manage_swipe(self.post_manage_swipe_count)
         logger.info(post_button)
         self.post_open(post_button)

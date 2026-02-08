@@ -20,7 +20,7 @@ class IslandManufacture(IslandShopBase):
         self.post_manage_swipe_count = 2
 
         # 设置筛选资产
-        self.filter_asset = FILTER_FACTORY
+        self.filter_asset = 'factory'
 
         # 制造业产品配置
         self.manufacture = {

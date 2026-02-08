@@ -16,6 +16,126 @@ class Island(SelectCharacter):
         UI.__init__(self, *args, **kwargs)
         SelectCharacter.__init__(self, *args, **kwargs)
         self.island_error = False
+        self.warehouse_filter_kind = ButtonGrid(
+            origin=(261, 260),
+            delta=(155, 56),
+            button_shape=(137, 42),
+            grid_shape=(5, 1),
+            name="WAREHOUSE_FILTER_KIND"
+        )
+        self.warehouse_filter_from = ButtonGrid(
+            origin=(261, 355),
+            delta=(155, 56),
+            button_shape=(137, 42),
+            grid_shape=(5, 3),
+            name="WAREHOUSE_FILTER_FROM"
+        )
+        self.warehouse_area_relative = (116, 4, 133, 39)
+    def warehouse_absolute_area(self, button, relative_area):
+        """将相对坐标转换为绝对坐标"""
+        x1 = button.area[0] + relative_area[0]
+        y1 = button.area[1] + relative_area[1]
+        x2 = button.area[0] + relative_area[2]
+        y2 = button.area[1] + relative_area[3]
+        return (x1, y1, x2, y2)
+
+    def warehouse_filter(self, button1, button2=None):
+        self.ui_goto(page_island_warehouse_filter, get_ship=False)
+        # 定义按钮名称到网格坐标的映射
+        kind_map = {
+            'all_kind': (0, 0),
+            'basic': (1, 0),
+            'processed': (2, 0),
+            'product': (3, 0),
+            'other_kind': (4, 0)
+        }
+        from_map = {
+            'all_from': (0, 0),
+            'farm': (1, 0),
+            'ranch': (2, 0),
+            'mine': (3, 0),
+            'forest': (4, 0),
+            'orchard': (0, 1),
+            'nursery': (1, 1),
+            'juu_coffee': (2, 1),
+            'restaurant': (3, 1),
+            'teahouse': (4, 1),
+            'juu_eatery': (0, 2),
+            'grill': (1, 2),
+            'factory': (2, 2),
+            'other_from': (3, 2)
+        }
+        # 等待并重置筛选器，直到两个全选按钮都被选中
+        while 1:
+            self.device.screenshot()
+            # 检查all_kind全选按钮是否选中
+            all_kind_button = self.warehouse_filter_kind[kind_map['all_kind']]
+            warehouse_area = self.warehouse_absolute_area(all_kind_button, self.warehouse_area_relative)
+            warehouse_color = get_color(self.device.image, warehouse_area)
+            all_kind_selected = color_similar(warehouse_color, (60, 61, 63), 80)
+
+            # 检查all_from全选按钮是否选中
+            all_from_button = self.warehouse_filter_from[from_map['all_from']]
+            warehouse_area = self.warehouse_absolute_area(all_from_button, self.warehouse_area_relative)
+            warehouse_color = get_color(self.device.image, warehouse_area)
+            all_from_selected = color_similar(warehouse_color, (60, 61, 63), 80)
+
+            if all_kind_selected and all_from_selected:
+                break
+            else:
+                self.appear_then_click(FILTER_RESET)
+                self.device.sleep(0.3)
+
+        # 处理第一个按钮
+        # 确定按钮属于哪个网格并获取按钮对象
+        if button1 in kind_map:
+            button_obj = self.warehouse_filter_kind[kind_map[button1]]
+        elif button1 in from_map:
+            button_obj = self.warehouse_filter_from[from_map[button1]]
+        else:
+            raise ValueError(f"未知的按钮名称: {button1}")
+
+        while 1:
+            self.device.screenshot()
+
+            # 检查按钮是否已选中
+            warehouse_area = self.warehouse_absolute_area(button_obj, self.warehouse_area_relative)
+            warehouse_color = get_color(self.device.image, warehouse_area)
+            button_selected = color_similar(warehouse_color, (60, 61, 63), 80)
+
+            if button_selected:
+                break
+            else:
+                # 点击按钮
+                self.device.click(button_obj)
+                self.device.sleep(0.3)
+
+        # 处理第二个按钮（如果有）
+        if button2:
+            # 确定按钮属于哪个网格并获取按钮对象
+            if button2 in kind_map:
+                button2_obj = self.warehouse_filter_kind[kind_map[button2]]
+            elif button2 in from_map:
+                button2_obj = self.warehouse_filter_from[from_map[button2]]
+            else:
+                raise ValueError(f"未知的按钮名称: {button2}")
+
+            while 1:
+                self.device.screenshot()
+
+                # 检查按钮是否已选中
+                warehouse_area = self.warehouse_absolute_area(button2_obj, self.warehouse_area_relative)
+                warehouse_color = get_color(self.device.image, warehouse_area)
+                button2_selected = color_similar(warehouse_color, (60, 61, 63), 80)
+
+                if button2_selected:
+                    break
+                else:
+                    # 点击按钮
+                    self.device.click(button2_obj)
+                    self.device.sleep(0.3)
+        self.appear_then_click(FILTER_CONFIRM)
+        self.device.sleep(1)
 
     def goto_postmanage(self):
         page = self.ui_get_current_page()
@@ -43,7 +163,7 @@ class Island(SelectCharacter):
                 if self.appear(ISLAND_SEASON_CHECK, offset=1):
                     self.device.click(ISLAND_SEASON_GOTO_ISLAND)
                     continue
-                self.device.sleep(0.5)
+                self.device.sleep(0.3)
             if self.appear(ISLAND_SEASON_CHECK, offset=1):
                 self.ui_goto(page_island_management, get_ship=False)
 
@@ -116,7 +236,7 @@ class Island(SelectCharacter):
     def post_close(self):
         while 1:
             self.device.screenshot()
-            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=1) and not self.appear(ISLAND_POST_CHECK):
+            if self.appear(ISLAND_POSTMANAGE_CHECK, offset=1) and self.appear(POST_MANAGE_GETTED_CHECK,threshold=5) and not self.appear(ISLAND_POST_CHECK):
                 break
             if self.appear(ISLAND_GET,offset=1):
                 self.device.click(ISLAND_POST_SAFE_AREA)

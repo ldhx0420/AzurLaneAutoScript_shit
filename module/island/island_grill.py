@@ -56,7 +56,7 @@ class IslandGrill(IslandShopBase):
         }
 
         # 设置筛选资产
-        self.filter_asset = FILTER_ISLAND_GRILL
+        self.filter_asset = 'grill'
 
         # 设置配置前缀
         self.setup_config(

@@ -571,6 +571,7 @@ class GeneratedConfig:
     # Group `IslandJuuCoffee`
     IslandJuuCoffee_PostNumber = 2  # 1, 2
     IslandJuuCoffee_ChefFilter = 'WorkerJuu'
+    IslandJuuCoffee_Friedrich = False
     IslandJuuCoffee_Meal1 = 'wake_up_call'  # None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier
     IslandJuuCoffee_MealNumber1 = 6
     IslandJuuCoffee_Meal2 = 'cheese'  # None, iced_coffee, omelette, cheese, latte, citrus_coffee, strawberry_milkshake, morning_light, wake_up_call, fruity_fruitier

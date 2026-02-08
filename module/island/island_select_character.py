@@ -40,7 +40,10 @@ class SelectCharacter(UI):
             "Unicorn": TEMPLATE_UNICORN,
             "ChaoHo": TEMPLATE_CHAO_HO,
             "ChenHai": TEMPLATE_CHEN_HAI,
-            "WilliamDPorter": TEMPLATE_WILLIAM_D_PORTER
+            "WilliamDPorter": TEMPLATE_WILLIAM_D_PORTER,
+            "Helena": TEMPLATE_HELENA,
+            "Friedrich": TEMPLATE_FRIEDRICH,
+            "Atago": TEMPLATE_ATAGO
         }
 
     def recognize_all_characters(self, screenshot):
