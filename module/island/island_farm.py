@@ -397,6 +397,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     })
 
         # 滑动到苗圃位置
+        self.device.sleep(1)
         self.post_manage_up_swipe(450)
         self.device.sleep(0.5)  # 等待滑动动画完成
 
@@ -539,6 +540,7 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             # 然后处理苗圃的播种
             category = 'nursery'
             if idle_posts[category]:
+                self.device.sleep(1)
                 self.post_manage_up_swipe(450)
                 self.device.sleep(0.5)
                 idle_posts_list = idle_posts[category]
