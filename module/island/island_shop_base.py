@@ -162,6 +162,7 @@ class IslandShopBase(Island, WarehouseOCR):
                 continue
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 if self.select_product(selection, selection_check):
+                    self.device.sleep(0.5)
                     if self.produce_check:
                         logger.warning(f"原料不足，无法生产 {product}")
                         self.device.sleep(0.5)
@@ -170,6 +171,7 @@ class IslandShopBase(Island, WarehouseOCR):
                                 selection2 = self.name_to_config[product]['selection']
                                 selection_check2 = self.name_to_config[product]['selection_check']
                                 self.select_product(selection2, selection_check2)
+                                self.device.sleep(0.5)
                                 if self.produce_check:
                                     logger.warning(f"原料不足，无法生产 {product2}")
                                     self.device.click(ISLAND_BACK)
