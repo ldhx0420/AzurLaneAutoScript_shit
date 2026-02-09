@@ -2703,7 +2703,7 @@
   "IslandFishery": {
     "_info": {
       "name": "渔场",
-      "help": ""
+      "help": "仅小龙虾，且不识别岗位"
     },
     "Cray": {
       "name": "渔场岗位",
