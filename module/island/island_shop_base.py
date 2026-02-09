@@ -53,7 +53,8 @@ class IslandShopBase(Island, WarehouseOCR):
         color = get_color(image, area)
         if color_similar(color, (153, 156, 156), 80):
             return True
-        return False
+        else:
+            return False
     def setup_config(self, config_meal_prefix, config_number_prefix,
                      config_away_cook, config_post_number):
         """从配置中读取餐品需求 - 修改为8种餐品"""
@@ -163,7 +164,7 @@ class IslandShopBase(Island, WarehouseOCR):
             if self.appear(ISLAND_SELECT_PRODUCT_CHECK, offset=1):
                 if self.select_product(selection, selection_check):
                     self.device.sleep(0.5)
-                    if self.produce_check:
+                    if self.produce_check():
                         logger.warning(f"原料不足，无法生产 {product}")
                         self.device.sleep(0.5)
                         if product == self.special_food:
@@ -172,7 +173,7 @@ class IslandShopBase(Island, WarehouseOCR):
                                 selection_check2 = self.name_to_config[product]['selection_check']
                                 self.select_product(selection2, selection_check2)
                                 self.device.sleep(0.5)
-                                if self.produce_check:
+                                if self.produce_check():
                                     logger.warning(f"原料不足，无法生产 {product2}")
                                     self.device.click(ISLAND_BACK)
                                     self.device.sleep(0.5)
