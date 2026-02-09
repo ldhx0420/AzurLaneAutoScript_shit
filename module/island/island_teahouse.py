@@ -15,6 +15,8 @@ class IslandTeahouse(IslandShopBase):
         self.shop_type = "teahouse"
         self.time_prefix = "time_tea"
         self.chef_config = self.config.IslandTeahouse_ChefFilter
+        if self.config.IslandTeahouse_Seasonal:
+            self.special_food = 'winter_jasmine_tea'
 
         # 设置商品列表
         self.shop_items = [
@@ -45,6 +47,9 @@ class IslandTeahouse(IslandShopBase):
             {'name': 'sunny_honey', 'template': TEMPLATE_SUNNY_HONEY, 'var_name': 'sunny_honey',
              'selection': SELECT_SUNNY_HONEY, 'selection_check': SELECT_SUNNY_HONEY_CHECK,
              'post_action': POST_SUNNY_HONEY},
+            {'name': 'winter_jasmine_tea', 'template': TEMPLATE_WINTER_JASMINE_TEA, 'var_name': 'winter_jasmine_tea',
+             'selection': SELECT_WINTER_JASMINE_TEA, 'selection_check': SELECT_WINTER_JASMINE_TEA_CHECK,
+             'post_action': POST_WINTER_JASMINE_TEA}
         ]
 
         # 设置套餐组成

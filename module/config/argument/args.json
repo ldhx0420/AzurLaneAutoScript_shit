@@ -9587,6 +9587,10 @@
         "type": "textarea",
         "value": "WorkerJuu"
       },
+      "Seasonal": {
+        "type": "checkbox",
+        "value": false
+      },
       "Meal1": {
         "type": "select",
         "value": "tofu_meat",
@@ -9805,6 +9809,10 @@
       "ChefFilter": {
         "type": "textarea",
         "value": "WorkerJuu"
+      },
+      "Seasonal": {
+        "type": "checkbox",
+        "value": false
       },
       "Meal1": {
         "type": "select",

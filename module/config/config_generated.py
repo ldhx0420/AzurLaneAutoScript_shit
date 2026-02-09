@@ -479,6 +479,7 @@ class GeneratedConfig:
     # Group `IslandRestaurant`
     IslandRestaurant_PostNumber = 2  # 1, 2
     IslandRestaurant_ChefFilter = 'WorkerJuu'
+    IslandRestaurant_Seasonal = False
     IslandRestaurant_Meal1 = 'tofu_meat'  # None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal
     IslandRestaurant_MealNumber1 = 6
     IslandRestaurant_Meal2 = 'hearty_meal'  # None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal
@@ -502,6 +503,7 @@ class GeneratedConfig:
     # Group `IslandTeahouse`
     IslandTeahouse_PostNumber = 2  # 1, 2
     IslandTeahouse_ChefFilter = 'WorkerJuu'
+    IslandTeahouse_Seasonal = False
     IslandTeahouse_Meal1 = 'floral_fruity'  # None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey
     IslandTeahouse_MealNumber1 = 6
     IslandTeahouse_Meal2 = 'lavender_tea'  # None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey

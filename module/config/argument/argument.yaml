@@ -805,6 +805,7 @@ IslandRestaurant:
     option: [ 1, 2 ]
   ChefFilter: |-
     WorkerJuu
+  Seasonal: false
   Meal1:
     value: tofu_meat
     option: [ None, tofu, omurice, cabbage_tofu, salad, tofu_meat, tofu_combo, hearty_meal ]
@@ -855,6 +856,7 @@ IslandTeahouse:
     option: [ 1, 2 ]
   ChefFilter: |-
     WorkerJuu
+  Seasonal: false
   Meal1:
     value: floral_fruity
     option: [ None, apple_juice, banana_mango, honey_lemon, strawberry_lemon, strawberry_honey, floral_fruity, fruit_paradise, lavender_tea, sunny_honey ]

@@ -1998,6 +1998,7 @@
     "IslandRestaurant": {
       "PostNumber": 2,
       "ChefFilter": "WorkerJuu",
+      "Seasonal": false,
       "Meal1": "tofu_meat",
       "MealNumber1": 6,
       "Meal2": "hearty_meal",
@@ -2034,6 +2035,7 @@
     "IslandTeahouse": {
       "PostNumber": 2,
       "ChefFilter": "WorkerJuu",
+      "Seasonal": false,
       "Meal1": "floral_fruity",
       "MealNumber1": 6,
       "Meal2": "lavender_tea",

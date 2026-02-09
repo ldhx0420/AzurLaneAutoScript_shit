@@ -11,7 +11,8 @@ class IslandRestaurant(IslandShopBase):
         self.shop_type = "restaurant"
         self.time_prefix = "time_restaurant"
         self.chef_config = self.config.IslandRestaurant_ChefFilter
-
+        if self.config.IslandRestaurant_Seasonal:
+            self.special_food = 'double_bamboo_shoots'
         # 设置商品列表
         self.shop_items = [
             {'name': 'tofu', 'template': TEMPLATE_TOFU, 'var_name': 'tofu',
@@ -35,6 +36,9 @@ class IslandRestaurant(IslandShopBase):
             {'name': 'hearty_meal', 'template': TEMPLATE_HEARTY_MEAL, 'var_name': 'hearty_meal',
              'selection': SELECT_HEARTY_MEAL, 'selection_check': SELECT_HEARTY_MEAL_CHECK,
              'post_action': POST_HEARTY_MEAL},
+            {'name': 'double_bamboo_shoots', 'template': TEMPLATE_DOUBLE_BAMBOO_SHOOTS, 'var_name': 'double_bamboo_shoots',
+             'selection': SELECT_DOUBLE_BAMBOO_SHOOTS, 'selection_check': SELECT_DOUBLE_BAMBOO_SHOOTS_CHECK,
+             'post_action': POST_DOUBLE_BAMBOO_SHOOTS}
         ]
 
         # 设置套餐组成

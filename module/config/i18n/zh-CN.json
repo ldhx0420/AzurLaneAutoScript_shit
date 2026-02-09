@@ -2817,6 +2817,10 @@
       "name": "厨师",
       "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire\n镇海：ChenHai > 威廉D波特：WilliamDPorter\n海伦娜：Helena > 大帝：Friedrich > 愛宕：Atago"
     },
+    "Seasonal": {
+      "name": "双笋",
+      "help": "在常驻餐品之前检查并制作"
+    },
     "Meal1": {
       "name": "餐品1",
       "help": "",
@@ -2978,6 +2982,10 @@
     "ChefFilter": {
       "name": "厨师",
       "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire\n镇海：ChenHai > 威廉D波特：WilliamDPorter\n海伦娜：Helena > 大帝：Friedrich > 愛宕：Atago"
+    },
+    "Seasonal": {
+      "name": "迎春花茶",
+      "help": "在常驻餐品之前检查并制作"
     },
     "Meal1": {
       "name": "餐品1",

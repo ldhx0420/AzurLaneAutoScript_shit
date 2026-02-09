@@ -367,14 +367,10 @@ class IslandManufacture(IslandShopBase):
             time_value = getattr(self, var)
             if time_value is not None:
                 finish_times.append(time_value)
-
-        if finish_times:
-            finish_times.sort()
-            self.config.task_delay(target=finish_times)
-        else:
-            next_check = datetime.now() + timedelta(hours=6)
-            logger.info(f'没有任务需要安排，下次检查时间：{next_check.strftime("%H:%M")}')
-            self.config.task_delay(target=[next_check])
+        hours_later = datetime.now() + timedelta(hours=6)
+        finish_times.append(hours_later)
+        finish_times.sort()
+        self.config.task_delay(target=finish_times)
 
         if self.island_error:
             from module.exception import GameBugError

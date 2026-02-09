@@ -2817,6 +2817,10 @@
       "name": "IslandRestaurant.ChefFilter.name",
       "help": "IslandRestaurant.ChefFilter.help"
     },
+    "Seasonal": {
+      "name": "IslandRestaurant.Seasonal.name",
+      "help": "IslandRestaurant.Seasonal.help"
+    },
     "Meal1": {
       "name": "IslandRestaurant.Meal1.name",
       "help": "IslandRestaurant.Meal1.help",
@@ -2978,6 +2982,10 @@
     "ChefFilter": {
       "name": "IslandTeahouse.ChefFilter.name",
       "help": "IslandTeahouse.ChefFilter.help"
+    },
+    "Seasonal": {
+      "name": "IslandTeahouse.Seasonal.name",
+      "help": "IslandTeahouse.Seasonal.help"
     },
     "Meal1": {
       "name": "IslandTeahouse.Meal1.name",
