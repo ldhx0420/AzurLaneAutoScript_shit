@@ -330,6 +330,7 @@ class Island(SelectCharacter):
                 return True
             if self.appear_then_click(post,offset=300):
                 continue
+            self.device.sleep(0.5)
     def post_manage_up_swipe(self,distance):
         self.device.swipe_vector(vector=(0, -distance), box=(688, 69, 725, 656), name="PostUpSwipe")
         self.device.click(POST_MANAGE_SWIPE_STOP)

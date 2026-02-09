@@ -276,6 +276,8 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
             self.device.sleep(1)
             self.post_manage_up_swipe(450)
         self.post_open(post_button)
+        self.device.sleep(0.5)
+        self.device.screenshot()
         time_value = time_work.ocr(self.device.image)
         finish_time = datetime.now() + time_value
         setattr(self, time_var_name, finish_time)

@@ -81,6 +81,7 @@ class IslandShopBase(Island, WarehouseOCR):
         post_button = self.posts[post_id]['button']
         self.post_close()
         self.post_open(post_button)
+        self.device.sleep(0.5)
         image = self.device.screenshot()
         ocr_post_number = Digit(OCR_POST_NUMBER, letter=(57, 58, 60), threshold=100,
                                 alphabet='0123456789')
@@ -104,7 +105,7 @@ class IslandShopBase(Island, WarehouseOCR):
             self.posts[post_id]['status'] = 'idle'
             setattr(self, time_var_name, None)
         self.post_get_and_close()
-        self.device.sleep(0.3)
+        self.device.sleep(0.5)
 
     def post_product_check(self):
         """检查岗位生产的产品（通用）"""
@@ -130,7 +131,7 @@ class IslandShopBase(Island, WarehouseOCR):
         post_button = self.posts[post_id]['button']
         self.post_close()
         self.post_open(post_button)
-        self.device.screenshot()
+        self.device.sleep(0.5)
         time_work = Duration(ISLAND_WORKING_TIME)
         selection = self.name_to_config[product]['selection']
         selection_check = self.name_to_config[product]['selection_check']
@@ -163,6 +164,7 @@ class IslandShopBase(Island, WarehouseOCR):
         self.post_manage_swipe(self.post_manage_swipe_count)
         logger.info(post_button)
         self.post_open(post_button)
+        self.device.sleep(0.5)
         image = self.device.screenshot()
         ocr_post_number = Digit(OCR_POST_NUMBER, letter=(57, 58, 60), threshold=100,
                                 alphabet='0123456789')

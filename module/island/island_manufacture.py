@@ -137,6 +137,7 @@ class IslandManufacture(IslandShopBase):
         # 打开岗位
         self.post_close()
         self.post_open(post_button)
+        self.device.sleep(0.5)
 
         while True:
             self.device.screenshot()
@@ -158,7 +159,7 @@ class IslandManufacture(IslandShopBase):
 
                     # 点击产品选择按钮
                     self.select_product(selection, selection_check)
-                    self.device.sleep(0.3)
+                    self.device.sleep(0.5)
 
                     # 检查确认按钮状态
                     image = self.device.screenshot()
@@ -201,7 +202,7 @@ class IslandManufacture(IslandShopBase):
                             logger.info(f"清空岗位时间变量: {time_var_name}")
 
                 self.wait_until_appear(ISLAND_POSTMANAGE_CHECK)
-                self.device.sleep(0.3)
+                self.device.sleep(0.5)
                 self.post_close()
 
                 for _ in range(self.post_manage_swipe_count):

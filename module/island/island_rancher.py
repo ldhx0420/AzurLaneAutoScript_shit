@@ -218,7 +218,8 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
 
         self.post_close()
         self.post_open(post_button)
-
+        self.device.sleep(0.5)
+        self.device.screenshot()
         if self.appear(ISLAND_WORKING) and self.post_mode_check(post_id):
             time_work = Duration(ISLAND_WORKING_TIME)
             time_value = time_work.ocr(self.device.image)
@@ -226,6 +227,7 @@ class IslandRancher(Island, WarehouseOCR, LoginHandler):
         else:
             self.ranch_post_get_and_add(is_fish, config_str)
             self.post_open(post_button)
+            self.device.sleep(0.5)
             self.device.screenshot()
             time_work = Duration(ISLAND_WORKING_TIME)
             time_value = time_work.ocr(self.device.image)

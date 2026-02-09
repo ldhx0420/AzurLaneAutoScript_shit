@@ -26,6 +26,7 @@ class IslandMineForest(Island,LoginHandler):
         """运行单个岗位，包含完整的处理逻辑"""
         self.post_close()
         self.post_open(post_id)
+        self.device.sleep(0.5)
         self.device.screenshot()
         selection, selection_check, post_check = self.PRODUCT_CONFIGS.get(product_name, (None, None, None))
         if self.appear(ISLAND_WORKING) and not self.appear(post_check):
@@ -35,6 +36,7 @@ class IslandMineForest(Island,LoginHandler):
         else:
             self.post_get_and_add(selection, selection_check)
             self.post_open(post_id)
+            self.device.sleep(0.5)
             self.device.screenshot()
             time_work = Duration(ISLAND_WORKING_TIME)
             time_value = time_work.ocr(self.device.image)
