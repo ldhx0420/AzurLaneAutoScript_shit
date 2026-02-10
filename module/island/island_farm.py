@@ -500,11 +500,10 @@ class IslandFarm(Island, WarehouseOCR, LoginHandler):
                     for _ in range(count):
                         self.buy_seeds(crop, category)
             while 1:
-                self.device.click(SELECT_UI_BACK)
-                self.device.sleep(0.5)
                 self.device.screenshot()
                 if self.appear(ISLAND_CHECK):
                     break
+                self.device.click(ISLAND_BACK)
                 self.device.sleep(0.5)
 
             self.goto_management()
